@@ -48,5 +48,4 @@ jobs:
           git config user.name "Agente Solares Bot"
           git config user.email "bot@agentesolares.local"
           git add data/solares.db docs/data/listings.json docs/data/listings.js docs/last_email_preview.html
-          git diff --staged --quiet || git commit -m "chore(radar): actualización diaria de precios y solares"
-          git push
+          git diff --staged --quiet || (git commit -m "chore(radar): actualización diaria de precios y solares" && git pull --rebase -X theirs origin main && git push)

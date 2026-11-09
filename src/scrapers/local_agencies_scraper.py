@@ -43,12 +43,13 @@ class LocalAgenciesAndBanksScraper:
         for ag in self.custom_agencies:
             name = ag.get("name", "Inmobiliaria Local")
             url = ag.get("url", "")
+            raw_type = ag.get("raw_type", "")
             if not url:
                 continue
             raw_html = http_get(url)
             if not raw_html:
                 continue
-            for item in self.parse_universal_agency_html(raw_html, name, url):
+            for item in self.parse_universal_agency_html(raw_html, name, url, raw_type):
                 u = item.get("url", "")
                 if u and u not in seen_urls:
                     seen_urls.add(u)
@@ -60,17 +61,28 @@ class LocalAgenciesAndBanksScraper:
         self, raw_html: str, agency_name: str, base_url: str, default_type: str = ""
     ) -> List[Dict[str, Any]]:
         """
-        Parser universal para webs de inmobiliarias locales (Inmovilla, Witei, WordPress, Gestimob).
+        Parser para inmobiliarias locales de la Vega Baja:
+        Soporta específicamente 10 Soles (Inmoweb), Primer Grupo Vegacasa, InmoAdapta / Esphouses (Mediaelx),
+        además de Inmovilla, Witei y WordPress Real Estate.
         """
-        items: List[Dict[str, Any]] = []
+        u_low = base_url.lower()
+        if "10soles.com" in u_low or 'class="venta punto_mapa"' in raw_html:
+            return self._parse_10soles(raw_html, agency_name, base_url, default_type)
+        if "primergrupovegacasa.com" in u_low or '<section class="inmueble container">' in raw_html:
+            return self._parse_vegacasa(raw_html, agency_name, base_url, default_type)
+        if "inmoadapta.com" in u_low or "esphouses.es" in u_low or "data-id-prop=" in raw_html:
+            return self._parse_inmoadapta(raw_html, agency_name, base_url, default_type)
 
-        # Buscar contenedores habituales en WordPress/Inmovilla/Witei
+        items: List[Dict[str, Any]] = []
+        # Normalizar <sup>2</sup> a 2 antes de limpiar etiquetas
+        norm_html = re.sub(r"<\s*sup\s*>\s*2\s*<\s*/\s*sup\s*>", "2", raw_html, flags=re.IGNORECASE)
+
         block_regex = re.compile(
-            r'<(?:article|div|li)[^>]+class=["\'][^"\']*(?:property|propiedad|inmueble|ficha|listing|card|item-prop)[^"\']*["\'][^>]*>(.*?)</(?:article|div|li)>',
+            r'<(?:article|div|li|section)[^>]+class=["\'][^"\']*(?:property|propiedad|inmueble|ficha|listing|card|item-prop)[^"\']*["\'][^>]*>(.*?)</(?:article|div|li|section)>',
             re.IGNORECASE | re.DOTALL,
         )
 
-        for match in block_regex.finditer(raw_html):
+        for match in block_regex.finditer(norm_html):
             block = match.group(1)
             all_links = re.findall(r'<a[^>]+href=["\']([^"\']+)["\'][^>]*>(.*?)</a>', block, re.IGNORECASE | re.DOTALL)
             if not all_links:
@@ -102,7 +114,7 @@ class LocalAgenciesAndBanksScraper:
             m2_m = re.search(r"(\d{1,3}(?:\.\d{3})*|\d{2,6})\s*m[²2]", text_clean, re.IGNORECASE)
             surface_m2 = float(m2_m.group(1).replace(".", "")) if m2_m else None
 
-            if not price_eur and not surface_m2:
+            if not price_eur or not surface_m2:
                 continue
 
             title_text = chosen_anchor if len(chosen_anchor) >= 8 else text_clean[:100]
@@ -119,6 +131,178 @@ class LocalAgenciesAndBanksScraper:
                 }
             )
 
+        return items
+
+    def _parse_10soles(
+        self, raw_html: str, agency_name: str, base_url: str, default_type: str = ""
+    ) -> List[Dict[str, Any]]:
+        items: List[Dict[str, Any]] = []
+        parts = re.split(r'(?=<div[^>]+class=["\'][^"\']*venta\s+punto_mapa)', raw_html)
+        for part in parts[1:]:
+            chunk = part[:4500]
+            url_m = re.search(r'data-url=["\']([^"\']+)["\']', chunk)
+            if not url_m:
+                continue
+            full_url = urllib.parse.urljoin(base_url, url_m.group(1).strip())
+            if not PortalsScraper.is_valid_detail_url(full_url):
+                continue
+
+            lat_m = re.search(r'data-lat=["\']([\d\.-]+)["\']', chunk)
+            lng_m = re.search(r'data-lng=["\']([\d\.-]+)["\']', chunk)
+            ref_m = re.search(r'data-ref=["\']([^"\']+)["\']', chunk)
+
+            price_m = re.search(r'<span[^>]+class=["\']actual["\'][^>]*>\s*([\d\.]+)\s*€', chunk, re.IGNORECASE)
+            price_eur = float(price_m.group(1).replace(".", "")) if price_m else None
+
+            rooms_m = re.search(r"Habitaciones:</span>\s*(\d+)", chunk, re.IGNORECASE)
+            rooms = int(rooms_m.group(1)) if rooms_m else None
+
+            plot_m = re.search(r"Sup\.\s*Parcela:</span>\s*([\d\.]+)\s*m", chunk, re.IGNORECASE)
+            built_m = re.search(r"Sup\.\s*Construida:</span>\s*([\d\.]+)\s*m", chunk, re.IGNORECASE)
+            plot_m2 = float(plot_m.group(1).replace(".", "")) if plot_m else None
+            built_m2 = float(built_m.group(1).replace(".", "")) if built_m else None
+
+            desc_m = re.search(r'<p[^>]+class=["\']descripcion[^"\']*["\'][^>]*>(.*?)</p>', chunk, re.IGNORECASE | re.DOTALL)
+            desc = html.unescape(re.sub(r"<[^>]+>", " ", desc_m.group(1))).strip() if desc_m else ""
+
+            slug_title = url_m.group(1).strip("/").split("-es")[0].replace("-", " ").capitalize()
+            ref_str = f" (Ref. {ref_m.group(1)})" if ref_m else ""
+            title = f"{slug_title}{ref_str}"
+
+            if not price_eur or not (plot_m2 or built_m2):
+                continue
+
+            items.append(
+                {
+                    "external_id": f"10soles-{ref_m.group(1).lower()}" if ref_m else None,
+                    "portal": agency_name,
+                    "title": title[:150],
+                    "url": full_url,
+                    "price_eur": price_eur,
+                    "surface_plot_m2": plot_m2 or built_m2,
+                    "surface_built_m2": built_m2,
+                    "rooms": rooms,
+                    "lat": float(lat_m.group(1)) if lat_m else None,
+                    "lon": float(lng_m.group(1)) if lng_m else None,
+                    "description": desc[:550] or title,
+                    "raw_type": default_type or ("solar_urbano" if "solar" in slug_title.lower() or "parcela" in slug_title.lower() else "casa_planta_baja"),
+                }
+            )
+        return items
+
+    def _parse_vegacasa(
+        self, raw_html: str, agency_name: str, base_url: str, default_type: str = ""
+    ) -> List[Dict[str, Any]]:
+        items: List[Dict[str, Any]] = []
+        blocks = re.findall(r'<section[^>]+class=["\'][^"\']*inmueble\s+container[^"\']*["\'][^>]*>(.*?)</section>', raw_html, re.IGNORECASE | re.DOTALL)
+        for blk in blocks:
+            u_m = re.search(r'href=["\'](/ad/\d+)["\']', blk)
+            if not u_m:
+                continue
+            full_url = urllib.parse.urljoin(base_url, u_m.group(1))
+            h1_m = re.search(r"<h1>\s*<a[^>]*>(.*?)</a>\s*</h1>", blk, re.IGNORECASE | re.DOTALL)
+            title = html.unescape(re.sub(r"<[^>]+>", " ", h1_m.group(1))).strip() if h1_m else "Inmueble en Vegacasa"
+
+            price_m = re.search(r'class=["\']price["\'][^>]*>\s*([\d\.]+)\s*€', blk, re.IGNORECASE)
+            price_eur = float(price_m.group(1).replace(".", "")) if price_m else None
+
+            ref_m = re.search(r"Ref\.\s*([A-Za-z0-9_-]+)", blk)
+            rooms_m = re.search(r"(\d+)\s*Dorm", blk, re.IGNORECASE)
+            rooms = int(rooms_m.group(1)) if rooms_m else None
+
+            m2_m = re.search(r"icon-plans['\"][^>]*></span>\s*([\d\.]+)\s*m", blk, re.IGNORECASE)
+            surface_m2 = float(m2_m.group(1).replace(".", "")) if m2_m else None
+
+            text_clean = html.unescape(re.sub(r"<[^>]+>", " ", blk))
+            text_clean = re.sub(r"\s+", " ", text_clean).strip()
+
+            if not price_eur or not surface_m2:
+                continue
+
+            rtype = default_type
+            tl = title.lower()
+            if any(w in tl for w in ["piso", "ático", "atico", "apartamento", "oficina", "local", "garaje", "trastero", "nave", "edificio", "dúplex", "duplex"]):
+                continue
+            if not rtype:
+                if any(w in tl for w in ["solar", "terreno", "parcela", "suelo"]):
+                    rtype = "solar_urbano"
+                elif any(w in tl for w in ["casa", "planta baja", "chalet", "adosad"]):
+                    rtype = "casa_planta_baja"
+                else:
+                    continue
+
+            items.append(
+                {
+                    "external_id": f"vega-{ref_m.group(1).lower()}" if ref_m else None,
+                    "portal": agency_name,
+                    "title": f"{title} ({ref_m.group(0)})" if ref_m else title,
+                    "url": full_url,
+                    "price_eur": price_eur,
+                    "surface_plot_m2": surface_m2,
+                    "rooms": rooms,
+                    "description": text_clean[:550],
+                    "raw_type": rtype,
+                }
+            )
+        return items
+
+    def _parse_inmoadapta(
+        self, raw_html: str, agency_name: str, base_url: str, default_type: str = ""
+    ) -> List[Dict[str, Any]]:
+        items: List[Dict[str, Any]] = []
+        norm_html = re.sub(r"<\s*sup\s*>\s*2\s*<\s*/\s*sup\s*>", "2", raw_html, flags=re.IGNORECASE)
+        parts = re.split(r'(?=data-id-prop=["\']\d+["\'])', norm_html)
+        for part in parts[1:]:
+            chunk = part[:4800]
+            url_m = re.search(r'data-url=["\'](/propiedad/\d+/[^"\']+)["\']', chunk)
+            if not url_m:
+                continue
+            full_url = urllib.parse.urljoin(base_url, url_m.group(1).strip())
+            alt_m = re.search(r'data-alt=["\']([^"\']+)["\']', chunk)
+            title = html.unescape(alt_m.group(1)).strip() if alt_m else "Propiedad en InmoAdapta"
+
+            plot_m = re.search(r'class=["\']m2p["\'][^>]*>\s*([\d\.]+)\s*m', chunk, re.IGNORECASE)
+            built_m = re.search(r'house\.svg["\'][^>]*>\s*<span>\s*([\d\.]+)\s*m', chunk, re.IGNORECASE)
+            plot_m2 = float(plot_m.group(1).replace(".", "")) if plot_m else None
+            built_m2 = float(built_m.group(1).replace(".", "")) if built_m else None
+
+            beds_m = re.search(r'class=["\']beds["\'][^>]*>\s*(\d+)', chunk, re.IGNORECASE)
+            rooms = int(beds_m.group(1)) if beds_m else None
+
+            text_clean = html.unescape(re.sub(r"<[^>]+>", " ", chunk))
+            text_clean = re.sub(r"\s+", " ", text_clean).strip()
+
+            price_m = re.search(r"(\d{1,3}(?:\.\d{3})+|\d{4,7})\s*€", text_clean)
+            price_eur = float(price_m.group(1).replace(".", "")) if price_m else None
+
+            if not price_eur or not (plot_m2 or built_m2):
+                continue
+
+            rtype = default_type
+            tl = f"{title} {full_url}".lower()
+            if any(w in tl for w in ["piso", "ático", "atico", "apartamento", "oficina", "local", "garaje", "trastero", "nave", "edificio", "dúplex", "duplex", "bungalow-planta-alta"]):
+                continue
+            if not rtype:
+                if any(w in tl for w in ["solar", "terreno", "parcela"]):
+                    rtype = "solar_urbano"
+                elif any(w in tl for w in ["casa", "planta-baja", "bungalow-planta-baja", "chalet", "adosado"]):
+                    rtype = "casa_planta_baja"
+                else:
+                    continue
+
+            items.append(
+                {
+                    "portal": agency_name,
+                    "title": title[:150],
+                    "url": full_url,
+                    "price_eur": price_eur,
+                    "surface_plot_m2": plot_m2 or built_m2,
+                    "surface_built_m2": built_m2,
+                    "rooms": rooms,
+                    "description": text_clean[:550],
+                    "raw_type": rtype,
+                }
+            )
         return items
 
 

@@ -226,7 +226,7 @@ class PortalsScraper:
         if re.search(r"habitaclia\.com/(?:terrenos|casas|viviendas)-[a-z0-9_-]+\.htm$", u):
             return False
 
-        # Patrones de ficha individual de anuncio por portal
+        # Patrones de ficha individual de anuncio por portal e inmobiliarias locales
         good_patterns = [
             r"pisos\.com/comprar/[^/]+-\d+",
             r"habitaclia\.com/comprar-[^/]+-i\d+\.htm",
@@ -240,6 +240,9 @@ class PortalsScraper:
             r"alisedainmobiliaria\.com/inmueble/",
             r"haya\.es/.*/\d+",
             r"esphouses\.es/propiedad/",
+            r"inmoadapta\.com/propiedad/\d+/",
+            r"primergrupovegacasa\.com/ad/\d+",
+            r"10soles\.com/[a-z0-9-]+-es\d+\.html",
         ]
         if any(re.search(p, u) for p in good_patterns):
             return True

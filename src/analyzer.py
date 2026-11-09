@@ -115,17 +115,23 @@ class PropertyAnalyzer:
         norm_title = normalize_text(f"{title} {raw_type}")
         norm_all = normalize_text(f"{title} {raw_type} {description}")
 
-        # 1. Descartar pisos/apartamentos en altura salvo que sea una casa entera o solar
+        # 1. Descartar pisos/apartamentos en altura, locales, oficinas, garajes o naves salvo que sea una casa entera o solar
         high_rise_terms = [
-            r"\bpiso en venta\b",
+            r"\bpiso\b",
+            r"\bpisos\b",
             r"\batico\b",
             r"\bapartamento\b",
+            r"\boficina\b",
+            r"\blocal\b",
+            r"\bgaraje\b",
+            r"\btrastero\b",
+            r"\bnave\b",
+            r"\bedificio\b",
             r"\bplanta [1-9]\b",
             r"\b[1-9]a planta\b",
             r"\bduplex\b",
-            r"\bestudio en venta\b",
-            r"\bplaza de garaje\b",
-            r"\btrastero\b",
+            r"\bestudio\b",
+            r"\bplanta alta\b",
         ]
         is_house_or_plot = any(
             w in norm_title
@@ -140,8 +146,7 @@ class PropertyAnalyzer:
                 "casa para derribar",
                 "casa antigua",
                 "casa independiente",
-                "casa en venta",
-                "chalet",
+                "casa con terreno",
             ]
         )
         if not is_house_or_plot:

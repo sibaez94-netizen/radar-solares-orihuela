@@ -7,7 +7,7 @@ Se ejecuta diariamente desde GitHub Actions o manualmente con `python main.py`.
 import argparse
 import os
 import sys
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 from src.analyzer import PropertyAnalyzer, load_config
 from src.notifier import EmailNotifier
@@ -69,6 +69,44 @@ def seed_historical_baseline(storage: StorageManager, analyzer: PropertyAnalyzer
         storage.upsert_listings([analyzed_cur])
 
 
+def clean_non_direct_urls(storage: StorageManager, analyzer: Optional[PropertyAnalyzer] = None) -> int:
+    """
+    Elimina de la base de datos:
+    1) Anuncios de muestra inicial o enlaces que apunten a buscadores generales / perfiles de agencia.
+    2) Solares rústicos o terrenos de más de 2.000 m².
+    3) Pisos o chalets terminados fuera del objetivo.
+    Además actualiza el número de cuartos (rooms) en los inmuebles existentes.
+    """
+    removed = 0
+    with storage._connect() as conn:
+        rows = conn.execute("SELECT * FROM listings").fetchall()
+        for r in rows:
+            lid = r["id"]
+            url = r["url"] or ""
+            eff_m2 = r["effective_plot_m2"] or 0
+            atype = r["asset_type"] or ""
+
+            if analyzer:
+                re_eval = analyzer.analyze_raw_item(dict(r))
+                atype = re_eval["asset_type"]
+                eff_m2 = re_eval["effective_plot_m2"] or 0
+                if re_eval.get("rooms") is not None:
+                    conn.execute("UPDATE listings SET rooms = ? WHERE id = ?", (re_eval["rooms"], lid))
+
+            if (
+                str(lid).startswith(("ori-", "ben-", "gra-"))
+                or not PortalsScraper.is_valid_detail_url(url)
+                or atype in ("rustico_dudoso", "descartado_piso")
+                or eff_m2 <= 0
+                or eff_m2 > 2000
+                or not r["price_eur"]
+            ):
+                conn.execute("DELETE FROM price_history WHERE listing_id = ?", (lid,))
+                conn.execute("DELETE FROM listings WHERE id = ?", (lid,))
+                removed += 1
+    return removed
+
+
 def run_agent(skip_network: bool = False) -> Dict[str, Any]:
     base_dir = os.path.dirname(os.path.abspath(__file__))
     load_dotenv_file(base_dir)
@@ -76,8 +114,10 @@ def run_agent(skip_network: bool = False) -> Dict[str, Any]:
     analyzer = PropertyAnalyzer(config)
     storage = StorageManager()
 
-    # 1. Asegurar histórico inicial si la BD está recién creada
-    seed_historical_baseline(storage, analyzer)
+    # 1. Limpiar enlaces genéricos de buscadores, rústicos o parcelas > 2.000 m²
+    purged = clean_non_direct_urls(storage, analyzer)
+    if purged:
+        print(f"[Limpieza] Eliminados {purged} anuncios (buscadores, rústicos o >2.000 m²).")
 
     raw_collected: List[Dict[str, Any]] = []
     sources_summary: Dict[str, int] = {}

@@ -405,6 +405,67 @@
     table.z-tbl tr:hover { background: var(--bg-subtle); }
     table.z-tbl th { color: var(--muted); font-size: 11px; text-transform: uppercase; }
 
+    /* Excel Spreadsheet Section */
+    .excel-sec {
+      display: none;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+    }
+    .excel-sec.active { display: block; }
+    .excel-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .excel-wrap {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+    table.excel-tbl {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    table.excel-tbl th, table.excel-tbl td {
+      border: 1px solid var(--line-soft);
+      padding: 7px 10px;
+      text-align: left;
+    }
+    table.excel-tbl th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 800;
+      font-size: 11px;
+      text-transform: uppercase;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+    html[data-theme="dark"] table.excel-tbl th {
+      background: #1e293b;
+      color: #f1f5f9;
+    }
+    table.excel-tbl tbody tr:nth-child(even) { background: var(--bg-subtle); }
+    table.excel-tbl tbody tr:hover { background: var(--blue-soft); }
+    table.excel-tbl td.num { text-align: right; font-weight: 600; }
+    table.excel-tbl td.title-cell {
+      max-width: 290px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
     /* Modals */
     dialog {
       margin: auto;
@@ -486,7 +547,10 @@
     <!-- Navigation Tabs -->
     <nav class="tabs-bar" id="main-tabs">
       <button class="tab-btn active" data-tab="principal">
-        🎯 Destacados ≥ 180 m² <span class="tab-count" id="tc-principal">0</span>
+        🎯 Destacados (180–2.000 m²) <span class="tab-count" id="tc-principal">0</span>
+      </button>
+      <button class="tab-btn" data-tab="excel">
+        📊 Tabla Excel (Histórico) <span class="tab-count" id="tc-excel">0</span>
       </button>
       <button class="tab-btn" data-tab="drops">
         📉 Bajadas de Precio <span class="tab-count" id="tc-drops">0</span>
@@ -579,6 +643,27 @@
           </div>
           <canvas id="scatter-cv" height="150" style="width:100%;height:150px;"></canvas>
         </div>
+      </div>
+    </section>
+
+    <!-- Excel Spreadsheet Section -->
+    <section class="excel-sec" id="excel-sec">
+      <div class="excel-toolbar">
+        <div>
+          <h3 style="font-size:16px;font-weight:800;">📊 Registro Histórico Tipo Excel (Seguimiento de Precios por Fecha)</h3>
+          <p style="font-size:12px;color:var(--muted);">
+            Cada vez que el agente se ejecuta, si un anuncio cambia de precio se añade automáticamente una nueva columna con la fecha y el nuevo importe.
+          </p>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <button class="btn pri" id="btn-export-csv">📥 Descargar para Excel (.CSV)</button>
+        </div>
+      </div>
+      <div class="excel-wrap">
+        <table class="excel-tbl" id="excel-tbl">
+          <thead id="excel-thead"></thead>
+          <tbody id="excel-tbody"></tbody>
+        </table>
       </div>
     </section>
 
@@ -783,19 +868,19 @@
       $('k-med-casa').textContent = `Casas a reformar: ${STATE.stats.median_casa_eur_m2 ? fmtNum(STATE.stats.median_casa_eur_m2) : '440'} €/m²`;
 
       $('tc-principal').textContent = hl.length;
+      $('tc-excel').textContent = all.length;
       $('tc-drops').textContent = drops.length;
       $('tc-all').textContent = all.length;
       $('tc-favs').textContent = favCount;
 
       const liveCount = all.filter(x => !String(x.id).startsWith('ori-') && !String(x.id).startsWith('ben-') && !String(x.id).startsWith('gra-')).length;
-      $('source-status-txt').textContent = liveCount > 0
-        ? `${liveCount} anuncios capturados en vivo + base histórica de referencia activa.`
-        : `Mostrando base de referencia inicial (${all.length} inmuebles). Ejecuta python main.py con internet o activa GitHub Actions + Gmail para recibir alertas reales cada mañana.`;
+      $('source-status-txt').textContent = `${liveCount} inmuebles reales activos (filtrados entre 180 y 2.000 m², sin rústicos ni Orihuela Costa).`;
     }
 
     function getFilteredListings() {
       return STATE.listings.filter(item => {
         const plotM2 = item.effective_plot_m2 || item.surface_plot_m2 || 0;
+        if (plotM2 > 2000) return false; // Evitar solares rústicos o > 2000 m²
 
         if (STATE.tab === 'principal' && plotM2 < 180) return false;
         if (STATE.tab === 'drops' && !(item.price_drop_pct > 0)) return false;
@@ -808,7 +893,7 @@
         if (STATE.maxM2Price && item.eur_per_m2 && item.eur_per_m2 > STATE.maxM2Price) return false;
 
         if (STATE.search) {
-          const hay = `${item.title} ${item.zone_name} ${item.description} ${item.portal} ${STATE.notes[item.id] || ''}`.toLowerCase();
+          const hay = `${item.id} ${item.title} ${item.zone_name} ${item.description} ${item.portal} ${STATE.notes[item.id] || ''}`.toLowerCase();
           if (!hay.includes(STATE.search.toLowerCase())) return false;
         }
         return true;
@@ -822,13 +907,145 @@
       });
     }
 
+    function collectUniqueDates(items) {
+      const dateSet = new Set();
+      const today = new Date().toISOString().slice(0, 10);
+      items.forEach(it => {
+        if (it.price_history && it.price_history.length) {
+          it.price_history.forEach(h => { if (h.date) dateSet.add(h.date.slice(0, 10)); });
+        } else if (it.first_seen_at) {
+          dateSet.add(it.first_seen_at.slice(0, 10));
+        }
+      });
+      if (!dateSet.size) dateSet.add(today);
+      return Array.from(dateSet).sort();
+    }
+
+    function getPriceAtDate(it, dStr) {
+      const hist = it.price_history || [];
+      if (!hist.length) return it.price_eur;
+      let val = null;
+      for (const h of hist) {
+        const hd = (h.date || '').slice(0, 10);
+        if (hd <= dStr) val = h.price;
+      }
+      return val != null ? val : hist[0].price;
+    }
+
+    function renderExcelTable(items) {
+      const dates = collectUniqueDates(items);
+      const thead = $('excel-thead');
+      const tbody = $('excel-tbody');
+
+      const dateHeaders = dates.map(d => `<th style="text-align:right;background:#e0f2fe;color:#0369a1;">Precio ${d}</th>`).join('');
+      thead.innerHTML = `
+        <tr>
+          <th>Referencia</th>
+          <th>Portal</th>
+          <th>Zona / Pedanía</th>
+          <th>Tipo</th>
+          <th>Título del Anuncio</th>
+          <th style="text-align:right;">Tamaño (m²)</th>
+          <th style="text-align:center;">Nº Cuartos</th>
+          <th style="text-align:right;">€/m²</th>
+          ${dateHeaders}
+          <th style="text-align:right;">Variación</th>
+          <th style="text-align:center;">Score</th>
+        </tr>
+      `;
+
+      tbody.innerHTML = items.map(it => {
+        const plotM2 = it.effective_plot_m2 || it.surface_plot_m2 || 0;
+        const roomsStr = it.rooms != null ? `${it.rooms} hab.` : (it.asset_type === 'casa_planta_baja' ? 'A consultar' : '— (Solar)');
+        const dateCells = dates.map(d => {
+          const p = getPriceAtDate(it, d);
+          return `<td class="num">${fmtEur(p)}</td>`;
+        }).join('');
+
+        const pFirst = getPriceAtDate(it, dates[0]);
+        const pLast = it.price_eur;
+        let diffHtml = '<span style="color:var(--muted)">= Sin cambios</span>';
+        if (pFirst && pLast && pLast < pFirst) {
+          const dPct = (((pFirst - pLast) / pFirst) * 100).toFixed(1);
+          diffHtml = `<span style="color:var(--accent);font-weight:700;">▼ -${fmtEur(pFirst - pLast)} (-${dPct}%)</span>`;
+        } else if (pFirst && pLast && pLast > pFirst) {
+          const uPct = (((pLast - pFirst) / pFirst) * 100).toFixed(1);
+          diffHtml = `<span style="color:var(--red);font-weight:700;">▲ +${fmtEur(pLast - pFirst)} (+${uPct}%)</span>`;
+        }
+
+        return `
+          <tr>
+            <td><a href="${it.url || '#'}" target="_blank" style="color:var(--blue);font-weight:700;text-decoration:none;">#${String(it.id).slice(0, 10)} ↗</a></td>
+            <td>${it.portal}</td>
+            <td><b>${it.zone_name}</b></td>
+            <td>${it.asset_label}</td>
+            <td class="title-cell" title="${(it.title || '').replace(/"/g, '&quot;')}"><a href="${it.url || '#'}" target="_blank" style="color:var(--txt);text-decoration:none;">${it.title}</a></td>
+            <td class="num">${fmtNum(plotM2)} m²</td>
+            <td style="text-align:center;">${roomsStr}</td>
+            <td class="num" style="color:var(--accent)">${it.eur_per_m2 ? fmtNum(it.eur_per_m2) + ' €/m²' : '—'}</td>
+            ${dateCells}
+            <td class="num">${diffHtml}</td>
+            <td style="text-align:center;"><b>${it.chollo_score || 50}</b></td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function exportExcelCSV() {
+      const items = getFilteredListings();
+      const dates = collectUniqueDates(items);
+      const headers = [
+        'Referencia', 'Portal', 'Zona', 'Tipo', 'Titulo', 'Tamano_m2', 'Num_Cuartos', 'EUR_m2',
+        ...dates.map(d => `Precio_${d}`),
+        'Precio_Actual', 'Variacion_EUR', 'Score_Chollo', 'URL'
+      ];
+      const rows = [headers.join(';')];
+      items.forEach(it => {
+        const plotM2 = it.effective_plot_m2 || it.surface_plot_m2 || 0;
+        const rooms = it.rooms != null ? it.rooms : '';
+        const pFirst = getPriceAtDate(it, dates[0]) || it.price_eur || 0;
+        const pLast = it.price_eur || 0;
+        const diff = pLast - pFirst;
+        const dateVals = dates.map(d => getPriceAtDate(it, d) || '');
+        const cols = [
+          it.id,
+          `"${(it.portal || '').replace(/"/g, '""')}"`,
+          `"${(it.zone_name || '').replace(/"/g, '""')}"`,
+          `"${(it.asset_label || '').replace(/"/g, '""')}"`,
+          `"${(it.title || '').replace(/"/g, '""')}"`,
+          String(plotM2).replace('.', ','),
+          rooms,
+          it.eur_per_m2 ? String(it.eur_per_m2).replace('.', ',') : '',
+          ...dateVals,
+          pLast,
+          diff,
+          it.chollo_score || 50,
+          it.url || ''
+        ];
+        rows.push(cols.join(';'));
+      });
+      const blob = new Blob(['\uFEFF' + rows.join('\r\n')], {type: 'text/csv;charset=utf-8;'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `Historico_Solares_Vega_Baja_${new Date().toISOString().slice(0, 10)}.csv`;
+      a.click();
+    }
+
     function renderAll() {
       const items = getFilteredListings();
       const showAnalytics = STATE.tab === 'map';
+      const showExcel = STATE.tab === 'excel';
       $('analytics-sec').classList.toggle('active', showAnalytics);
+      $('excel-sec').classList.toggle('active', showExcel);
+      $('listings-grid').style.display = showExcel ? 'none' : 'grid';
+
       if (showAnalytics) {
         initOrUpdateMap(items);
         drawScatterChart(items);
+      }
+      if (showExcel) {
+        renderExcelTable(items);
+        return;
       }
 
       const grid = $('listings-grid');
@@ -1087,11 +1304,13 @@
       if (!btn) return;
       STATE.tab = btn.dataset.tab;
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b === btn));
-      if (STATE.tab === 'all') $('f-min-m2').value = 0;
+      if (STATE.tab === 'all' || STATE.tab === 'excel') $('f-min-m2').value = 0;
       else if (STATE.tab === 'principal' && +$('f-min-m2').value < 180) $('f-min-m2').value = 180;
       STATE.minM2 = +$('f-min-m2').value || 0;
       renderAll();
     };
+
+    $('btn-export-csv').onclick = exportExcelCSV;
 
     $('zone-pills').onclick = e => {
       const pill = e.target.closest('.z-pill');

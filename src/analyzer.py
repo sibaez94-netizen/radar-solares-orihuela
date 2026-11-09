@@ -233,22 +233,51 @@ class PropertyAnalyzer:
                 "rustico",
                 "finca rustica",
                 "terreno rustico",
+                "suelo rustico",
                 "suelo no urbanizable",
+                "no urbanizable",
                 "uso agricola",
+                "agricola",
+                "agrario",
                 "regadio",
                 "limoneros",
                 "naranjos",
                 "cultivo",
+                "poligono",
+                "partida ",
+                "paraje ",
+                "secano",
+                "olivos",
+                "almendros",
+                "monte ",
+                "invernadero",
             ]
         )
 
-        if is_rustico and not is_urbano and not is_urbanizable:
+        if is_rustico:
             return "rustico_dudoso", "Suelo Rústico / Huerta", False
 
         if is_urbanizable and not is_urbano:
             return "solar_urbanizable", "Solar Urbanizable", True
 
         return "solar_urbano", "Solar Urbano", True
+
+    def extract_rooms(self, title: str, description: str, asset_type: str = "") -> Optional[int]:
+        """Extrae el número de habitaciones / cuartos / dormitorios si se especifica."""
+        if asset_type in ("solar_urbano", "solar_urbanizable", "rustico_dudoso"):
+            return None
+        norm = normalize_text(f"{title}. {description}")
+        patterns = [
+            r"\b(\d{1,2})\s*(?:habs?\.?|habitaciones|dormitorios|cuartos|dorms?\.?)\b",
+            r"(?:habitaciones|dormitorios|cuartos)\s*:\s*(\d{1,2})\b",
+        ]
+        for pat in patterns:
+            m = re.search(pat, norm)
+            if m:
+                val = int(m.group(1))
+                if 1 <= val <= 20:
+                    return val
+        return None
 
     def extract_surfaces(
         self,
@@ -456,11 +485,37 @@ class PropertyAnalyzer:
             asset_type=asset_type,
         )
 
+        rooms = item.get("rooms")
+        if rooms is None:
+            rooms = self.extract_rooms(title, description, asset_type=asset_type)
+
+        max_plot_m2 = float(self.filters.get("max_plot_m2", 2000))
+        norm_full = normalize_text(full_text)
+
+        # Regla estricta: evitar cualquier solar o terreno de más de 2.000 m² o rústico (< 40 €/m²)
+        if effective_plot_m2 > max_plot_m2:
+            asset_type = "rustico_dudoso"
+            asset_label = f"Descartado (> {int(max_plot_m2)} m² / Rústico)"
+            is_target_type = False
+        elif asset_type in ("solar_urbano", "solar_urbanizable"):
+            ratio_check = (price_eur / effective_plot_m2) if (price_eur and effective_plot_m2 > 0) else 100.0
+            if ratio_check < 40.0 and "solar urbano" not in norm_full:
+                asset_type = "rustico_dudoso"
+                asset_label = "Suelo Rústico / Agrícola"
+                is_target_type = False
+
+        # Si es un chalet/casa de más de 155.000€ que no menciona reforma, derribo, casa de pueblo ni planta baja, descartar
+        if asset_type == "casa_planta_baja" and price_eur and price_eur > 155000:
+            if not any(w in norm_full for w in ["reformar", "derribar", "planta baja", "casa de pueblo", "antigua", "solar"]):
+                asset_type = "descartado_piso"
+                asset_label = "Chalet terminado / No objetivo"
+                is_target_type = False
+
         min_hl = self.filters.get("min_highlight_plot_m2", 180)
         is_highlighted = (
             is_target_type
             and not is_costa
-            and effective_plot_m2 >= min_hl
+            and min_hl <= effective_plot_m2 <= max_plot_m2
         )
 
         score, reasons, eur_m2, discount_pct = self.calculate_chollo_score(
@@ -498,6 +553,7 @@ class PropertyAnalyzer:
             "surface_plot_m2": plot_m2,
             "surface_built_m2": built_m2,
             "effective_plot_m2": effective_plot_m2,
+            "rooms": rooms,
             "eur_per_m2": eur_m2,
             "discount_vs_ref_pct": discount_pct,
             "is_highlighted": is_highlighted,

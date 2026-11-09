@@ -2,6 +2,7 @@
   "project_name": "Agente Solares Vega Baja",
   "filters": {
     "min_highlight_plot_m2": 180,
+    "max_plot_m2": 2000,
     "save_all_sizes": true,
     "exclude_orihuela_costa": true,
     "exclude_high_rise_apartments": true,
@@ -105,7 +106,8 @@
     "dehesa de campoamor", "playa flamenca", "punta prima", "las ramblas",
     "lomas de cabo roig", "los dolses", "la regia", "aguamarina",
     "las filipinas", "mil palmeras", "torrevieja", "pilar de la horadada",
-    "guardamar"
+    "guardamar", "abanilla", "terreno-baina", "fortuna", "barinas", "macisvenda",
+    "algorfa", "rojales", "benijofar", "formentera del segura", "jacarilla"
   ],
   "local_agencies_urls": [
     {

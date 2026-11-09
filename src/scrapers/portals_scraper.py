@@ -69,12 +69,14 @@ class PortalsScraper:
     """
 
     PORTAL_URLS = [
-        # Pisos.com - Terrenos y Solares
-        ("Pisos.com", "https://www.pisos.com/venta/terrenos-orihuela/", "solar_urbano"),
+        # Pisos.com - Terrenos y Solares (Núcleo Urbano y Pedanías, sin Orihuela Costa)
+        ("Pisos.com", "https://www.pisos.com/venta/terrenos-orihuela_nucleo_urbano/", "solar_urbano"),
+        ("Pisos.com", "https://www.pisos.com/venta/terrenos-orihuela_pedanias/", "solar_urbano"),
         ("Pisos.com", "https://www.pisos.com/venta/terrenos-benferri/", "solar_urbano"),
         ("Pisos.com", "https://www.pisos.com/venta/terrenos-granja_de_rocamora/", "solar_urbano"),
-        # Pisos.com - Casas y Chalets (para filtrar planta baja / a reformar)
-        ("Pisos.com", "https://www.pisos.com/venta/casas-orihuela/con-a_reformar/", "casa_planta_baja"),
+        # Pisos.com - Casas de pueblo / planta baja / a reformar
+        ("Pisos.com", "https://www.pisos.com/venta/casas-orihuela_nucleo_urbano/", "casa_planta_baja"),
+        ("Pisos.com", "https://www.pisos.com/venta/casas-orihuela_pedanias/", "casa_planta_baja"),
         ("Pisos.com", "https://www.pisos.com/venta/casas-benferri/", "casa_planta_baja"),
         ("Pisos.com", "https://www.pisos.com/venta/casas-granja_de_rocamora/", "casa_planta_baja"),
         # Habitaclia
@@ -141,32 +143,19 @@ class PortalsScraper:
     ) -> List[Dict[str, Any]]:
         items: List[Dict[str, Any]] = []
 
-        # 1. Extraer JSON-LD estructurado si existe (Pisos.com, Habitaclia, Yaencontre, Fotocasa incluyen Schema.org)
-        ld_matches = re.findall(
-            r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>(.*?)</script>',
-            raw_html,
-            re.IGNORECASE | re.DOTALL,
-        )
-        for ld_raw in ld_matches:
-            try:
-                data = json.loads(ld_raw.strip())
-                items.extend(self._extract_from_jsonld(data, portal_name, base_url, raw_type))
-            except Exception:
-                pass
-
-        # 2. Parser HTML por bloques de anuncios (tarjetas de inmueble)
-        card_patterns = [
-            # Pisos.com ad-preview
-            r'<div[^>]+class=["\'][^"\']*ad-preview[^"\']*["\'][^>]*>(.*?)</div>\s*</div>\s*</div>',
-            # Habitaclia / Yaencontre / genérico article
-            r"<article[^>]*>(.*?)</article>",
-        ]
-        for pat in card_patterns:
-            for m in re.finditer(pat, raw_html, re.IGNORECASE | re.DOTALL):
-                block = m.group(1)
-                card = self._parse_card_block(block, portal_name, base_url, raw_type)
+        # 1. Dividir por tarjetas completas de anuncio (Pisos.com usa <div ... class="ad-preview" data-lnk-href="...">)
+        if "ad-preview" in raw_html:
+            parts = re.split(r'(?=<div[^>]+class=["\'][^"\']*\bad-preview\b)', raw_html)
+            for part in parts[1:]:
+                card = self._parse_card_block(part[:8000], portal_name, base_url, raw_type)
                 if card:
                     items.append(card)
+
+        # 2. Habitaclia / Yaencontre / Trovimap (<article ...> o bloques de listado)
+        for m in re.finditer(r"<article[^>]*>(.*?)</article>", raw_html, re.IGNORECASE | re.DOTALL):
+            card = self._parse_card_block(m.group(1), portal_name, base_url, raw_type)
+            if card:
+                items.append(card)
 
         return items
 
@@ -190,6 +179,8 @@ class PortalsScraper:
         url = item_obj.get("url") or data.get("url")
         if name and url:
             full_url = urllib.parse.urljoin(base_url, str(url))
+            if not self.is_valid_detail_url(full_url):
+                return out
             desc = item_obj.get("description") or ""
             offers = item_obj.get("offers") or {}
             if isinstance(offers, list) and offers:
@@ -208,22 +199,94 @@ class PortalsScraper:
             )
         return out
 
+    @staticmethod
+    def is_valid_detail_url(url: str) -> bool:
+        """
+        Verifica que la URL apunte a una ficha concreta de un anuncio (con ID o slug de inmueble)
+        y NO a una página general de búsqueda, listado por municipio o perfil de inmobiliaria.
+        """
+        u = url.lower().split("?")[0].rstrip("/")
+        # Descartar perfiles de agencia, listados generales o páginas de categoría
+        bad_fragments = [
+            "/inmobiliaria/",
+            "/inmobiliarias/",
+            "/agencia/",
+            "/venta/terrenos-",
+            "/venta/casas-",
+            "/venta-terrenos/",
+            "/venta-viviendas/",
+            "/todas-las-zonas/",
+            "/alquiler",
+            "javascript:",
+            "mailto:",
+            "tel:",
+        ]
+        if any(b in u for b in bad_fragments):
+            return False
+        if re.search(r"habitaclia\.com/(?:terrenos|casas|viviendas)-[a-z0-9_-]+\.htm$", u):
+            return False
+
+        # Patrones de ficha individual de anuncio por portal
+        good_patterns = [
+            r"pisos\.com/comprar/[^/]+-\d+",
+            r"habitaclia\.com/comprar-[^/]+-i\d+\.htm",
+            r"yaencontre\.com/venta/[^/]+/[^/]+/inmueble-\d+",
+            r"yaencontre\.com/venta/(?:terrenos|casas|chalets)/inmueble-",
+            r"idealista\.com/inmueble/\d+",
+            r"fotocasa\.es/.*/comprar/(?:terreno|vivienda|casa|edificio)/[^/]+/\d+",
+            r"milanuncios\.com/[^/]+-\d+\.htm",
+            r"trovimap\.com/inmueble/",
+            r"solvia\.es/es/comprar/.*/[a-z0-9-]+-\d+",
+            r"alisedainmobiliaria\.com/inmueble/",
+            r"haya\.es/.*/\d+",
+            r"esphouses\.es/propiedad/",
+        ]
+        if any(re.search(p, u) for p in good_patterns):
+            return True
+
+        # Fallback: si la URL tiene un identificador numérico de al menos 5 dígitos al final o en el slug
+        return bool(re.search(r"\d{5,}", u))
+
     def _parse_card_block(
         self, block: str, portal_name: str, base_url: str, raw_type: str
     ) -> Optional[Dict[str, Any]]:
-        link_m = re.search(r'<a[^>]+href=["\']([^"\']+)["\'][^>]*>(.*?)</a>', block, re.IGNORECASE | re.DOTALL)
-        if not link_m:
-            return None
-        href = link_m.group(1).strip()
-        if href.startswith("#") or "javascript:" in href:
-            return None
-        full_url = urllib.parse.urljoin(base_url, href)
+        chosen_url = None
+        chosen_anchor = ""
 
+        # 1. Comprobar atributo data-lnk-href de Pisos.com
+        lnk_m = re.search(r'data-lnk-href=["\']([^"\']+)["\']', block, re.IGNORECASE)
+        if lnk_m:
+            cand = urllib.parse.urljoin(base_url, lnk_m.group(1).strip())
+            if self.is_valid_detail_url(cand):
+                chosen_url = cand
+
+        # 2. Buscar todos los enlaces dentro de la tarjeta y quedarse con el que apunte a la ficha del anuncio
+        all_links = re.findall(r'<a[^>]+href=["\']([^"\']+)["\'][^>]*>(.*?)</a>', block, re.IGNORECASE | re.DOTALL)
+        for href, anchor_html in all_links:
+            href = href.strip()
+            if href.startswith("#") or "javascript:" in href:
+                continue
+            cand_url = urllib.parse.urljoin(base_url, href)
+            if self.is_valid_detail_url(cand_url):
+                if not chosen_url:
+                    chosen_url = cand_url
+                anchor_txt = re.sub(r"<[^>]+>", " ", anchor_html).strip()
+                if len(anchor_txt) > len(chosen_anchor):
+                    chosen_anchor = anchor_txt
+
+        if not chosen_url:
+            return None
+
+        full_url = chosen_url
         text_clean = html.unescape(re.sub(r"<[^>]+>", " ", block))
         text_clean = re.sub(r"\s+", " ", text_clean).strip()
 
-        title_m = re.search(r'<a[^>]+class=["\'][^"\']*title[^"\']*["\'][^>]*>(.*?)</a>', block, re.IGNORECASE | re.DOTALL)
-        raw_title = re.sub(r"<[^>]+>", " ", title_m.group(1) if title_m else link_m.group(2)).strip()
+        title_m = re.search(
+            r'<(?:a|h2|h3|span)[^>]+class=["\'][^"\']*(?:title|heading|ad-preview__title)[^"\']*["\'][^>]*>(.*?)</(?:a|h2|h3|span)>',
+            block,
+            re.IGNORECASE | re.DOTALL,
+        )
+        raw_title = re.sub(r"<[^>]+>", " ", title_m.group(1) if title_m else chosen_anchor).strip()
         if len(raw_title) < 6:
             raw_title = text_clean[:95]
 
@@ -233,7 +296,10 @@ class PortalsScraper:
         m2_m = re.search(r"(\d{1,3}(?:\.\d{3})*|\d{2,6})\s*m[²2]", text_clean, re.IGNORECASE)
         surface_m2 = float(m2_m.group(1).replace(".", "")) if m2_m else None
 
-        if not price_eur and not surface_m2:
+        rooms_m = re.search(r"(\d{1,2})\s*(?:habs?\.?|habitaciones|dorms?\.?)", text_clean, re.IGNORECASE)
+        rooms = int(rooms_m.group(1)) if rooms_m else None
+
+        if not price_eur or not surface_m2:
             return None
 
         return {
@@ -242,7 +308,8 @@ class PortalsScraper:
             "url": full_url,
             "price_eur": price_eur,
             "surface_plot_m2": surface_m2,
-            "description": text_clean[:500],
+            "rooms": rooms,
+            "description": text_clean[:550],
             "raw_type": raw_type,
         }
 
@@ -277,6 +344,9 @@ class PortalsScraper:
                 real_url = urllib.parse.unquote(qs.get("uddg", [raw_href])[0])
             else:
                 real_url = raw_href
+
+            if not self.is_valid_detail_url(real_url):
+                continue
 
             title = html.unescape(re.sub(r"<[^>]+>", " ", a_m.group(2))).strip()
             snippet = html.unescape(re.sub(r"<[^>]+>", " ", blk))

@@ -10,7 +10,7 @@ import re
 import urllib.parse
 from typing import Any, Dict, List, Optional
 
-from src.scrapers.portals_scraper import http_get
+from src.scrapers.portals_scraper import PortalsScraper, http_get
 
 
 class LocalAgenciesAndBanksScraper:
@@ -72,13 +72,23 @@ class LocalAgenciesAndBanksScraper:
 
         for match in block_regex.finditer(raw_html):
             block = match.group(1)
-            link_m = re.search(r'<a[^>]+href=["\']([^"\']+)["\'][^>]*>(.*?)</a>', block, re.IGNORECASE | re.DOTALL)
-            if not link_m:
+            all_links = re.findall(r'<a[^>]+href=["\']([^"\']+)["\'][^>]*>(.*?)</a>', block, re.IGNORECASE | re.DOTALL)
+            if not all_links:
                 continue
-            href = link_m.group(1).strip()
-            if href.startswith("#") or "javascript:" in href:
+            full_url = None
+            chosen_anchor = ""
+            for href, anchor_html in all_links:
+                href = href.strip()
+                if href.startswith("#") or "javascript:" in href:
+                    continue
+                cand = urllib.parse.urljoin(base_url, href)
+                if PortalsScraper.is_valid_detail_url(cand):
+                    full_url = cand
+                    anchor_txt = re.sub(r"<[^>]+>", " ", anchor_html).strip()
+                    if len(anchor_txt) > len(chosen_anchor):
+                        chosen_anchor = anchor_txt
+            if not full_url:
                 continue
-            full_url = urllib.parse.urljoin(base_url, href)
 
             text_clean = html.unescape(re.sub(r"<[^>]+>", " ", block))
             text_clean = re.sub(r"\s+", " ", text_clean).strip()
@@ -95,9 +105,7 @@ class LocalAgenciesAndBanksScraper:
             if not price_eur and not surface_m2:
                 continue
 
-            title_text = re.sub(r"<[^>]+>", " ", link_m.group(2)).strip()
-            if len(title_text) < 8:
-                title_text = text_clean[:100]
+            title_text = chosen_anchor if len(chosen_anchor) >= 8 else text_clean[:100]
 
             items.append(
                 {

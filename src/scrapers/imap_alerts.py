@@ -33,9 +33,9 @@ class ImapAlertsReader:
         password: Optional[str] = None,
         lookback_days: int = 7,
     ):
-        self.host = host or os.environ.get("IMAP_HOST", "imap.gmail.com")
-        self.user = user or os.environ.get("IMAP_USER", "")
-        self.password = password or os.environ.get("IMAP_PASSWORD", "")
+        self.host = (host or os.environ.get("IMAP_HOST") or "").strip() or "imap.gmail.com"
+        self.user = (user or os.environ.get("IMAP_USER") or os.environ.get("SMTP_USER") or "").strip()
+        self.password = (password or os.environ.get("IMAP_PASSWORD") or os.environ.get("SMTP_PASSWORD") or "").strip()
         self.lookback_days = lookback_days
 
     def is_configured(self) -> bool:

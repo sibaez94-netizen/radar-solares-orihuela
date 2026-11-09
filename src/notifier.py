@@ -18,13 +18,14 @@ from typing import Any, Dict, List, Optional
 class EmailNotifier:
     def __init__(self, config: Optional[Dict[str, Any]] = None):
         self.config = config or {}
-        self.smtp_host = os.environ.get("SMTP_HOST", "smtp.gmail.com")
-        self.smtp_port = int(os.environ.get("SMTP_PORT", "465"))
-        self.smtp_user = os.environ.get("SMTP_USER", "")
-        self.smtp_password = os.environ.get("SMTP_PASSWORD", "")
-        self.resend_api_key = os.environ.get("RESEND_API_KEY", "")
-        self.to_email = os.environ.get("NOTIFY_EMAIL", self.smtp_user)
-        self.dashboard_url = os.environ.get("DASHBOARD_URL", "")
+        self.smtp_host = (os.environ.get("SMTP_HOST") or "").strip() or "smtp.gmail.com"
+        raw_port = (os.environ.get("SMTP_PORT") or "").strip() or "465"
+        self.smtp_port = int(raw_port) if raw_port.isdigit() else 465
+        self.smtp_user = (os.environ.get("SMTP_USER") or os.environ.get("IMAP_USER") or "").strip()
+        self.smtp_password = (os.environ.get("SMTP_PASSWORD") or os.environ.get("IMAP_PASSWORD") or "").strip()
+        self.resend_api_key = (os.environ.get("RESEND_API_KEY") or "").strip()
+        self.to_email = (os.environ.get("NOTIFY_EMAIL") or "").strip() or self.smtp_user
+        self.dashboard_url = (os.environ.get("DASHBOARD_URL") or "").strip()
 
     def build_daily_html(
         self,

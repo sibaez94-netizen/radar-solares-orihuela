@@ -55,6 +55,7 @@ class StorageManager:
                     surface_plot_m2 REAL,
                     surface_built_m2 REAL,
                     effective_plot_m2 REAL,
+                    rooms INTEGER,
                     eur_per_m2 REAL,
                     discount_vs_ref_pct REAL,
                     is_highlighted INTEGER,
@@ -96,6 +97,10 @@ class StorageManager:
                 CREATE INDEX IF NOT EXISTS idx_history_listing ON price_history(listing_id);
                 """
             )
+            try:
+                conn.execute("ALTER TABLE listings ADD COLUMN rooms INTEGER")
+            except Exception:
+                pass
 
     def upsert_listings(self, analyzed_items: List[Dict[str, Any]], now_iso: Optional[str] = None) -> Dict[str, Any]:
         """
@@ -111,8 +116,13 @@ class StorageManager:
 
         with self._connect() as conn:
             for item in analyzed_items:
-                # Ignorar pisos en altura o costa si están excluidos
-                if item.get("asset_type") == "descartado_piso" or item.get("is_orihuela_costa"):
+                # Ignorar pisos en altura, rústicos, parcelas > 2000 m2 o costa
+                eff_m2 = item.get("effective_plot_m2") or 0
+                if (
+                    item.get("asset_type") in ("descartado_piso", "rustico_dudoso")
+                    or item.get("is_orihuela_costa")
+                    or eff_m2 > 2000
+                ):
                     continue
 
                 lid = item["id"]
@@ -128,7 +138,7 @@ class StorageManager:
                             lat, lon, asset_type, asset_label, is_target_type, is_orihuela_costa,
                             initial_price_eur, price_eur, min_price_eur, max_price_eur,
                             price_drop_eur, price_drop_pct,
-                            surface_plot_m2, surface_built_m2, effective_plot_m2,
+                            surface_plot_m2, surface_built_m2, effective_plot_m2, rooms,
                             eur_per_m2, discount_vs_ref_pct, is_highlighted,
                             chollo_score, chollo_reasons_json, description, image_url, phone,
                             first_seen_at, last_seen_at, last_price_change_at, status, times_seen
@@ -137,7 +147,7 @@ class StorageManager:
                             ?, ?, ?, ?, ?, ?,
                             ?, ?, ?, ?,
                             0, 0,
-                            ?, ?, ?,
+                            ?, ?, ?, ?,
                             ?, ?, ?,
                             ?, ?, ?, ?, ?,
                             ?, ?, NULL, 'new', 1
@@ -165,6 +175,7 @@ class StorageManager:
                             item.get("surface_plot_m2"),
                             item.get("surface_built_m2"),
                             item.get("effective_plot_m2"),
+                            item.get("rooms"),
                             item.get("eur_per_m2"),
                             item.get("discount_vs_ref_pct"),
                             1 if item.get("is_highlighted") else 0,
@@ -242,6 +253,7 @@ class StorageManager:
                             max_price_eur = COALESCE(?, max_price_eur),
                             price_drop_eur = ?,
                             price_drop_pct = ?,
+                            rooms = COALESCE(?, rooms),
                             eur_per_m2 = COALESCE(?, eur_per_m2),
                             discount_vs_ref_pct = COALESCE(?, discount_vs_ref_pct),
                             is_highlighted = ?,
@@ -259,6 +271,7 @@ class StorageManager:
                             max_price,
                             drop_eur,
                             drop_pct,
+                            item.get("rooms"),
                             item.get("eur_per_m2"),
                             item.get("discount_vs_ref_pct"),
                             1 if item.get("is_highlighted") else 0,

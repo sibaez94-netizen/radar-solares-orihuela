@@ -1,0 +1,52 @@
+name: Radar Diario Solares Vega Baja
+
+on:
+  schedule:
+    - cron: '30 7 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  monitor-and-notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio con el histórico
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Instalar dependencias de scraping
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Ejecutar Agente
+        env:
+          IMAP_HOST: ${{ secrets.IMAP_HOST }}
+          IMAP_USER: ${{ secrets.IMAP_USER }}
+          IMAP_PASSWORD: ${{ secrets.IMAP_PASSWORD }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          NOTIFY_EMAIL: ${{ secrets.NOTIFY_EMAIL }}
+          DASHBOARD_URL: https://sibaez94-netizen.github.io/radar-solares-orihuela/
+        run: |
+          python main.py
+
+      - name: Guardar cambios históricos en el repositorio
+        run: |
+          git config user.name "Agente Solares Bot"
+          git config user.email "bot@agentesolares.local"
+          git add data/solares.db docs/data/listings.json docs/data/listings.js docs/last_email_preview.html
+          git diff --staged --quiet || git commit -m "chore(radar): actualización diaria de precios y solares"
+          git push

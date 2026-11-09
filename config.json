@@ -111,36 +111,55 @@
   ],
   "local_agencies_urls": [
     {
+      "name": "Inmobiliaria 10 Soles",
+      "url": "https://www.10soles.com/solares-urbanos-en-venta-en-orihuela-27-1-0736.html",
+      "raw_type": "solar_urbano"
+    },
+    {
+      "name": "Inmobiliaria 10 Soles",
+      "url": "https://www.10soles.com/solares-urbanos-en-venta-27-1.html",
+      "raw_type": "solar_urbano"
+    },
+    {
+      "name": "Inmobiliaria 10 Soles",
+      "url": "https://www.10soles.com/parcelas-en-venta-5-1.html",
+      "raw_type": "solar_urbano"
+    },
+    {
+      "name": "Inmobiliaria 10 Soles",
+      "url": "https://www.10soles.com/casas-de-pueblo-en-venta-en-orihuela-20-1-0736.html",
+      "raw_type": "casa_planta_baja"
+    },
+    {
+      "name": "Inmobiliaria 10 Soles",
+      "url": "https://www.10soles.com/casas-de-pueblo-en-venta-20-1.html",
+      "raw_type": "casa_planta_baja"
+    },
+    {
+      "name": "Primer Grupo Vegacasa",
+      "url": "https://www.primergrupovegacasa.com/ads/venta/inmueble/alicante-orihuela"
+    },
+    {
+      "name": "Primer Grupo Vegacasa",
+      "url": "https://www.primergrupovegacasa.com/ads/venta/inmueble/alicante-benferri"
+    },
+    {
+      "name": "InmoAdapta (Vega Baja)",
+      "url": "https://inmoadapta.com/propiedades/?loct%5B%5D=8176&loct%5B%5D=8181&tp%5B%5D=41&tp%5B%5D=20&tp%5B%5D=26",
+      "raw_type": "solar_urbano"
+    },
+    {
+      "name": "InmoAdapta (Vega Baja)",
+      "url": "https://inmoadapta.com/propiedades/?loct%5B%5D=8176&loct%5B%5D=8181&tp%5B%5D=30&tp%5B%5D=14&tp%5B%5D=35",
+      "raw_type": "casa_planta_baja"
+    },
+    {
+      "name": "InmoAdapta (Vega Baja)",
+      "url": "https://inmoadapta.com/propiedades/?loct%5B%5D=8176&loct%5B%5D=8181"
+    },
+    {
       "name": "Inmobiliaria Esphouses (Vega Baja)",
       "url": "https://www.esphouses.es/propiedades/?loct%5B%5D=orihuela"
-    },
-    {
-      "name": "Trovimap Orihuela Solares",
-      "url": "https://www.trovimap.com/venta-solar-orihuela"
-    },
-    {
-      "name": "Yaencontre Solares Orihuela",
-      "url": "https://www.yaencontre.com/venta/terrenos/orihuela"
-    },
-    {
-      "name": "Yaencontre Solares Benferri",
-      "url": "https://www.yaencontre.com/venta/terrenos/benferri"
-    },
-    {
-      "name": "Yaencontre Solares Granja de Rocamora",
-      "url": "https://www.yaencontre.com/venta/terrenos/granja-de-rocamora"
-    },
-    {
-      "name": "Pisos.com Terrenos Orihuela",
-      "url": "https://www.pisos.com/venta/terrenos-orihuela/"
-    },
-    {
-      "name": "Pisos.com Casas para reformar Orihuela",
-      "url": "https://www.pisos.com/venta/casas-orihuela/"
-    },
-    {
-      "name": "Habitaclia Terrenos Orihuela",
-      "url": "https://www.habitaclia.com/terrenos-orihuela.htm"
     }
   ],
   "email_notification": {

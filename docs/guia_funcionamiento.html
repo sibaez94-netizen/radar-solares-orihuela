@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Manual de Funcionamiento · Agente de Solares y Casas de Pueblo (Vega Baja)</title>
+  <style>
+    @page { size: A4; margin: 16mm; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #ffffff;
+      color: #0f172a;
+      font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      line-height: 1.55;
+      padding: 28px;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    .header-box {
+      border-bottom: 4px solid #059669;
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+    }
+    .tag {
+      display: inline-block;
+      background: #d1fae5;
+      color: #065f46;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 99px;
+      margin-bottom: 8px;
+    }
+    h1 { font-size: 26px; font-weight: 800; color: #0f172a; }
+    .subtitle { font-size: 14px; color: #475569; margin-top: 4px; }
+    h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #065f46;
+      margin: 24px 0 10px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    p, li { font-size: 13.5px; color: #1e293b; }
+    ul, ol { margin-left: 20px; margin-bottom: 12px; }
+    li { margin-bottom: 6px; }
+    .card {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-left: 4px solid #059669;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin: 12px 0;
+    }
+    .card.warn { border-left-color: #d97706; background: #fffbeb; }
+    .card.blue { border-left-color: #0284c7; background: #f0f9ff; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 13px;
+    }
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 8px 10px;
+      text-align: left;
+    }
+    th { background: #f1f5f9; font-weight: 700; color: #334155; }
+    code {
+      background: #e2e8f0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+      font-size: 12.5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header-box">
+    <span class="tag">Documento Explicativo · Arquitectura y Puesta en Marcha</span>
+    <h1>Cómo funciona tu Agente Monitor de Solares y Casas de Pueblo</h1>
+    <div class="subtitle">
+      Zonas objetivo: Orihuela · Montepinar · Raiguero de Bonanza · Raiguero de Levante · Benferri · Granja de Rocamora
+    </div>
+  </div>
+
+  <h2>1. ¿De dónde salen los datos ahora mismo y cómo capta nuevos anuncios?</h2>
+  <div class="card warn">
+    <strong>¿Por qué ves ya 14 anuncios aunque todavía no has puesto tu clave de Gmail?</strong><br>
+    Para que no te encuentres el panel vacío el primer día, el archivo <code>src/scrapers/local_agencies_scraper.py</code> incluye una <strong>Semilla Inicial de Referencia (14 inmuebles)</strong> con precios, m² e historial de rebajas en Raiguero de Bonanza, Raiguero de Levante, Montepinar, Benferri, Granja de Rocamora y Orihuela centro. Así puedes probar los filtros, el mapa y las gráficas inmediatamente.
+  </div>
+
+  <p>En cuanto el agente se ejecuta con conexión a Internet (cada mañana en la nube o ejecutando <code>python main.py</code> en tu PC), obtiene la información por <strong>3 canales simultáneos</strong>:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Canal de Captación</th>
+        <th>Qué portales cubre</th>
+        <th>¿Necesita contraseña o clave?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1. Scraping Directo Web</strong><br>(<code>portals_scraper.py</code> y <code>local_agencies_scraper.py</code>)</td>
+        <td><strong>Pisos.com, Habitaclia, Yaencontre, Trovimap, Bancos (Solvia, Aliseda, Haya)</strong> e inmobiliarias locales de la Vega Baja (Esphouses y las que añadas en <code>config.json</code>).</td>
+        <td><strong>No.</strong> Funciona solo sin ninguna clave.</td>
+      </tr>
+      <tr>
+        <td><strong>2. Buscador Indexado</strong><br>(<code>portals_scraper.py</code>)</td>
+        <td>Rastrea enlaces públicos recién indexados de <strong>Idealista, Fotocasa y Milanuncios</strong> en tus pedanías sin chocar con el bloqueo anti-bots.</td>
+        <td><strong>No.</strong> Funciona solo sin ninguna clave.</td>
+      </tr>
+      <tr>
+        <td><strong>3. Lector de Alertas de Correo (IMAP)</strong><br>(<code>imap_alerts.py</code>)</td>
+        <td><strong>Idealista, Fotocasa, Milanuncios, Pisos.com, Habitaclia.</strong> Lee los correos de alerta gratuitos que te envían los portales cada vez que sale un solar o baja de precio.</td>
+        <td><strong>Sí (Contraseña de Aplicación de Gmail de 16 letras).</strong> No es una API de pago; se activa gratis en 30 segundos.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>2. Cómo funciona el filtro inteligente (≥ 180 m², Pedanías y Tahúllas)</h2>
+  <ul>
+    <li><strong>Guardar todos, destacar solo ≥ 180 m²:</strong> Tal como pediste, el agente guarda en la base de datos (<code>data/solares.db</code>) todos los solares y casas de pueblo que encuentra, pero en la pestaña <strong>"🎯 Destacados ≥ 180 m²"</strong> y en tu email diario solo te enseña los que tienen al menos 180 m² de suelo. Si quieres curiosear los de 120–170 m², los tienes en la pestaña <em>"🗂️ Todos"</em>.</li>
+    <li><strong>Detección de pedanías y erratas locales:</strong> Muchos propietarios y agencias suben un solar en el Raiguero o Montepinar dentro del cajón general de "Orihuela". El motor lee el título y la descripción buscando variantes como <em>"Riguero de Bonanza"</em>, <em>"Raiguero de Bonanza"</em>, <em>"Rincón de Bonanza"</em>, <em>"Raiguero de Levante"</em>, <em>"Montepinar"</em>, <em>"Benferri / Benfis Park"</em> y <em>"Granja de Rocamora"</em>.</li>
+    <li><strong>Exclusión automática de Orihuela Costa y pisos:</strong> Si el anuncio menciona <em>La Zenia, Cabo Roig, Villamartín, Campoamor, Playa Flamenca</em> o es un piso en altura, lo descarta automáticamente para no ensuciar tu radar.</li>
+    <li><strong>Conversión automática de Tahúllas:</strong> Si una descripción en la Vega Baja dice <em>"solar de media tahúlla"</em>, el agente calcula automáticamente <code>0,5 × 1.118 m² = 559 m²</code>.</li>
+  </ul>
+
+  <h2>3. Cómo se calcula el "Chollo Score" (de 0 a 100)</h2>
+  <p>Cada anuncio recibe una nota de 0 a 100 combinando cuatro factores objetivos:</p>
+  <ol>
+    <li><strong>Ratio €/m² de parcela frente a su pedanía:</strong> Compara el €/m² del anuncio con la mediana de esa misma zona (por ejemplo, ~210 €/m² en Raiguero de Bonanza o ~195 €/m² en Benferri). Cuanto más barato esté respecto a su zona, más sube la nota.</li>
+    <li><strong>Bajada histórica de precio:</strong> Si un solar costaba 54.000 € en septiembre y hoy baja a 46.000 € (-14,8%), el agente guarda el historial de precios y le suma puntos de oportunidad.</li>
+    <li><strong>Palabras clave de edificabilidad y urgencia:</strong> Suma puntos extra si el texto menciona <em>"esquina"</em>, <em>"da a dos calles"</em>, <em>"bajo + 2 alturas"</em>, <em>"urge vender"</em>, <em>"negociable"</em>, <em>"herencia"</em> o <em>"activo bancario"</em>.</li>
+    <li><strong>Amplitud de parcela:</strong> Bonifica las parcelas de ≥ 180 m² y ≥ 300 m².</li>
+  </ol>
+
+  <h2>4. Cómo conectar tu Gmail en 2 minutos (Sin usar Google Cloud API)</h2>
+  <div class="card blue">
+    No necesitas contratar ninguna API ni saber programar. Google permite generar una <strong>Contraseña de Aplicación</strong> gratuita para que tu agente lea las alertas de Idealista/Fotocasa y te mande el resumen cada mañana:
+    <ol style="margin-top:8px;">
+      <li>Entra en tu cuenta de <strong>Idealista</strong> y <strong>Fotocasa</strong>, busca Terrenos y Casas a reformar en tus zonas y pulsa <strong>"Guardar búsqueda → Recibir alertas por email"</strong>.</li>
+      <li>Entra en <a href="https://myaccount.google.com/apppasswords">https://myaccount.google.com/apppasswords</a> con tu cuenta de Gmail, escribe de nombre <code>Agente Solares</code> y copia la clave de <strong>16 letras</strong> que aparece en pantalla.</li>
+      <li>Si lo usas en tu PC, copia el archivo <code>.env.example</code> a <code>.env</code> y pega tu correo y esas 16 letras. Si lo subes a GitHub (nube gratuita), pégalas en <strong>Settings → Secrets and variables → Actions</strong>.</li>
+    </ol>
+  </div>
+</body>
+</html>

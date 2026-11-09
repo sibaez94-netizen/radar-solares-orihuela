@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Radar Solares y Casas a Reformar · Orihuela y Vega Baja</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <style>
+    :root, html[data-theme="light"] {
+      --bg: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --bg-inp: #ffffff;
+      --bg-subtle: #f1f5f9;
+      --txt: #0f172a;
+      --muted: #475569;
+      --line: #cbd5e1;
+      --line-soft: #e2e8f0;
+      --accent: #059669;
+      --accent-soft: #d1fae5;
+      --blue: #0284c7;
+      --blue-soft: #e0f2fe;
+      --amber: #d97706;
+      --amber-soft: #fef3c7;
+      --purple: #7e22ce;
+      --purple-soft: #f3e8ff;
+      --red: #dc2626;
+      --shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+    }
+    html[data-theme="dark"] {
+      --bg: #0b111e;
+      --bg-card: #111a2e;
+      --bg-card-hover: #16223b;
+      --bg-inp: #0d1526;
+      --bg-subtle: #0d1526;
+      --txt: #f1f5f9;
+      --muted: #94a3b8;
+      --line: #1e293b;
+      --line-soft: #1e293b;
+      --accent: #10b981;
+      --accent-soft: rgba(16, 185, 129, 0.14);
+      --blue: #38bdf8;
+      --blue-soft: rgba(56, 189, 248, 0.14);
+      --amber: #f59e0b;
+      --amber-soft: rgba(245, 158, 11, 0.15);
+      --purple: #a855f7;
+      --purple-soft: rgba(168, 85, 247, 0.15);
+      --red: #ef4444;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--txt);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      line-height: 1.45;
+      padding-bottom: 60px;
+    }
+    .container { max-width: 1400px; margin: 0 auto; padding: 18px 20px; }
+
+    /* Header */
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 22px;
+      background: var(--bg-card);
+      border: 1px solid var(--line-soft);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 4px 10px;
+      border-radius: 99px;
+      margin-bottom: 6px;
+    }
+    header h1 { font-size: clamp(20px, 2.4vw, 26px); font-weight: 800; letter-spacing: -0.02em; color: var(--txt); }
+    .sub-zones { font-size: 13px; color: var(--muted); margin-top: 2px; }
+    .head-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg-card);
+      color: var(--txt);
+      border: 1px solid var(--line);
+      padding: 9px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+    .btn:hover { border-color: var(--accent); background: var(--bg-subtle); }
+    .btn.pri { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .btn.pri:hover { filter: brightness(0.95); }
+
+    /* Info Banner about Sources */
+    .source-banner {
+      background: #ffffff;
+      border: 1px solid #bae6fd;
+      border-left: 5px solid var(--blue);
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: #0f172a;
+      box-shadow: var(--shadow);
+    }
+
+    /* KPIs */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--line-soft);
+      border-radius: 14px;
+      padding: 14px 16px;
+      box-shadow: var(--shadow);
+    }
+    .kpi-lbl { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 700; }
+    .kpi-val { font-size: 26px; font-weight: 800; margin-top: 4px; font-variant-numeric: tabular-nums; }
+    .kpi-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    /* Navigation Tabs */
+    .tabs-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      background: var(--bg-card);
+      border: 1px solid var(--line-soft);
+      padding: 6px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+    }
+    .tab-btn {
+      flex: 1;
+      min-width: 155px;
+      background: transparent;
+      color: var(--muted);
+      border: 0;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      transition: all 0.15s;
+    }
+    .tab-btn:hover { background: var(--bg-subtle); color: var(--txt); }
+    .tab-btn.active {
+      background: var(--accent);
+      color: #ffffff;
+    }
+    .tab-count {
+      background: rgba(15, 23, 42, 0.1);
+      padding: 1px 7px;
+      border-radius: 99px;
+      font-size: 11px;
+    }
+    .tab-btn.active .tab-count {
+      background: rgba(255, 255, 255, 0.25);
+      color: #fff;
+    }
+
+    /* Filter Bar */
+    .filters-card {
+      background: var(--bg-card);
+      border: 1px solid var(--line-soft);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+      gap: 12px;
+      align-items: end;
+      box-shadow: var(--shadow);
+    }
+    .f-grp label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+    .inp {
+      width: 100%;
+      background: var(--bg-inp);
+      color: var(--txt);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 13px;
+    }
+    .inp:focus { outline: 2px solid var(--accent); border-color: var(--accent); }
+    .zone-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .z-pill {
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      padding: 6px 13px;
+      border-radius: 99px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .z-pill:hover { border-color: var(--accent); color: var(--txt); }
+    .z-pill.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    /* Cards Grid */
+    .listings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(365px, 1fr));
+      gap: 16px;
+    }
+    .prop-card {
+      background: var(--bg-card);
+      border: 1px solid var(--line-soft);
+      border-radius: 16px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      box-shadow: var(--shadow);
+      transition: transform 0.15s, border-color 0.15s;
+      position: relative;
+    }
+    .prop-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+    .prop-card.chollo-high {
+      border-left: 5px solid var(--accent);
+    }
+    .prop-card.secondary-size {
+      opacity: 0.9;
+      border-style: dashed;
+    }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .badges { display: flex; flex-wrap: wrap; gap: 6px; }
+    .badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 99px;
+    }
+    .b-zone { background: var(--blue-soft); color: var(--blue); }
+    .b-solar { background: var(--accent-soft); color: var(--accent); }
+    .b-casa { background: var(--purple-soft); color: var(--purple); }
+    .b-urb { background: var(--amber-soft); color: var(--amber); }
+    .b-drop { background: #fee2e2; color: #b91c1c; }
+
+    .score-pill {
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+    .sc-hi { background: var(--accent); color: #fff; }
+    .sc-md { background: var(--amber); color: #fff; }
+    .sc-lo { background: var(--bg-subtle); color: var(--muted); }
+
+    .prop-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--txt);
+      text-decoration: none;
+      line-height: 1.35;
+    }
+    .prop-title:hover { color: var(--accent); }
+
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--line-soft);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+    }
+    .m-box span { display: block; font-size: 10px; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+    .m-box b { font-size: 16px; font-weight: 800; font-variant-numeric: tabular-nums; color: var(--txt); }
+    .m-box small { font-size: 11px; color: var(--muted); display: block; }
+
+    .reasons-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 12px;
+      color: var(--txt);
+    }
+    .reasons-list li::before { content: "✔ "; color: var(--accent); font-weight: bold; }
+
+    .prop-desc {
+      font-size: 12.5px;
+      color: var(--muted);
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-foot {
+      margin-top: auto;
+      padding-top: 10px;
+      border-top: 1px solid var(--line-soft);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .portal-tag { font-size: 11px; color: var(--muted); font-weight: 600; }
+    .card-btns { display: flex; gap: 6px; }
+    .sm-btn {
+      background: var(--bg-card);
+      color: var(--txt);
+      border: 1px solid var(--line);
+      padding: 5px 10px;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .sm-btn:hover { border-color: var(--accent); background: var(--bg-subtle); }
+    .sm-btn.fav-on { background: var(--amber-soft); color: var(--amber); border-color: var(--amber); }
+
+    /* Analytics & Map View */
+    .analytics-layout {
+      display: none;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .analytics-layout.active { display: grid; }
+    #map-box {
+      height: 460px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      background: #e2e8f0;
+    }
+    .stats-table-card {
+      background: var(--bg-card);
+      border: 1px solid var(--line-soft);
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: var(--shadow);
+    }
+    table.z-tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+    table.z-tbl th, table.z-tbl td {
+      padding: 9px 8px;
+      border-bottom: 1px solid var(--line-soft);
+      text-align: left;
+    }
+    table.z-tbl tr:hover { background: var(--bg-subtle); }
+    table.z-tbl th { color: var(--muted); font-size: 11px; text-transform: uppercase; }
+
+    /* Modals */
+    dialog {
+      margin: auto;
+      background: var(--bg-card);
+      color: var(--txt);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px;
+      width: min(94vw, 680px);
+      max-height: 90vh;
+      overflow: auto;
+      box-shadow: 0 25px 60px rgba(15, 23, 42, 0.25);
+    }
+    dialog::backdrop { background: rgba(15, 23, 42, 0.45); }
+    .dlg-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+    .dlg-head h2 { font-size: 19px; font-weight: 800; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+
+    @media (max-width: 920px) {
+      .analytics-layout.active { grid-template-columns: 1fr; }
+      .listings-grid { grid-template-columns: 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <div class="brand-badge">● Agente Inmobiliario Autónomo · Vega Baja</div>
+        <h1>Radar de Solares y Casas de Pueblo a Reformar</h1>
+        <div class="sub-zones">
+          Orihuela · Montepinar · Raiguero de Bonanza · Raiguero de Levante · Benferri · Granja de Rocamora
+        </div>
+      </div>
+      <div class="head-actions">
+        <button class="btn" id="btn-sources-help">🔌 ¿De dónde salen los datos?</button>
+        <button class="btn" id="btn-calc">🧮 Calculadora Obra/Reforma</button>
+        <button class="btn" id="btn-email-preview">📩 Ver Email Diario</button>
+        <button class="btn pri" id="btn-add-manual">➕ Añadir Solar / Cartel</button>
+        <button class="btn" id="btn-theme" title="Cambiar entre Fondo Blanco y Oscuro">☀️/🌙</button>
+      </div>
+    </header>
+
+    <div class="source-banner" id="source-banner">
+      <div>
+        <strong>💡 Estado de las fuentes de datos:</strong>
+        <span id="source-status-txt">Cargando estado de captación...</span>
+      </div>
+      <button class="sm-btn" onclick="document.getElementById('dlg-sources').showModal()">
+        Ver cómo conectar Gmail y Portales paso a paso →
+      </button>
+    </div>
+
+    <!-- KPIs -->
+    <section class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-lbl">Destacados (Parcela ≥ 180 m²)</div>
+        <div class="kpi-val" id="k-hl" style="color:var(--accent)">–</div>
+        <div class="kpi-sub" id="k-total">de – monitorizados en total</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-lbl">Chollos Detectados (Score ≥ 72)</div>
+        <div class="kpi-val" id="k-chollos" style="color:var(--blue)">–</div>
+        <div class="kpi-sub">Por debajo de media €/m² o rebajados</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-lbl">Bajadas de Precio Registradas</div>
+        <div class="kpi-val" id="k-drops" style="color:var(--amber)">–</div>
+        <div class="kpi-sub">Con seguimiento histórico activo</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-lbl">Mediana Solar Urbano / Urbanizable</div>
+        <div class="kpi-val" id="k-med-solar">–</div>
+        <div class="kpi-sub" id="k-med-casa">Casas a reformar: – €/m²</div>
+      </div>
+    </section>
+
+    <!-- Navigation Tabs -->
+    <nav class="tabs-bar" id="main-tabs">
+      <button class="tab-btn active" data-tab="principal">
+        🎯 Destacados ≥ 180 m² <span class="tab-count" id="tc-principal">0</span>
+      </button>
+      <button class="tab-btn" data-tab="drops">
+        📉 Bajadas de Precio <span class="tab-count" id="tc-drops">0</span>
+      </button>
+      <button class="tab-btn" data-tab="map">
+        🗺️ Mapa y €/m² por Pedanía
+      </button>
+      <button class="tab-btn" data-tab="all">
+        🗂️ Todos (incl. &lt; 180 m²) <span class="tab-count" id="tc-all">0</span>
+      </button>
+      <button class="tab-btn" data-tab="favs">
+        ⭐ Favoritos y Notas <span class="tab-count" id="tc-favs">0</span>
+      </button>
+    </nav>
+
+    <!-- Quick Zone Pills -->
+    <div class="zone-pills" id="zone-pills">
+      <button class="z-pill active" data-zone="ALL">Todas las Zonas</button>
+      <button class="z-pill" data-zone="orihuela">Orihuela (Casco/Centro)</button>
+      <button class="z-pill" data-zone="montepinar">Montepinar</button>
+      <button class="z-pill" data-zone="raiguero_bonanza">Raiguero de Bonanza</button>
+      <button class="z-pill" data-zone="raiguero_levante">Raiguero de Levante</button>
+      <button class="z-pill" data-zone="benferri">Benferri</button>
+      <button class="z-pill" data-zone="granja_rocamora">Granja de Rocamora</button>
+      <button class="z-pill" data-zone="pedanias_orihuela">Otras Pedanías</button>
+    </div>
+
+    <!-- Filters Bar -->
+    <section class="filters-card">
+      <div class="f-grp">
+        <label for="f-search">Buscar texto / calle / palabra</label>
+        <input class="inp" id="f-search" type="search" placeholder="Ej. esquina, Raiguero, patio, banco..." />
+      </div>
+      <div class="f-grp">
+        <label for="f-type">Tipo de Inmueble</label>
+        <select class="inp" id="f-type">
+          <option value="ALL">Todos (Solares + Casas Planta Baja)</option>
+          <option value="solar_urbano">Solo Solar Urbano</option>
+          <option value="solar_urbanizable">Solo Solar Urbanizable</option>
+          <option value="casa_planta_baja">Solo Casa Planta Baja / A Reformar</option>
+        </select>
+      </div>
+      <div class="f-grp">
+        <label for="f-min-m2">Superficie Mínima (m²)</label>
+        <input class="inp" id="f-min-m2" type="number" step="10" value="180" />
+      </div>
+      <div class="f-grp">
+        <label for="f-max-price">Precio Máximo (€)</label>
+        <input class="inp" id="f-max-price" type="number" step="5000" placeholder="Sin tope" />
+      </div>
+      <div class="f-grp">
+        <label for="f-max-m2price">Tope €/m² Solar</label>
+        <input class="inp" id="f-max-m2price" type="number" step="10" placeholder="Ej. 250 €/m²" />
+      </div>
+      <div class="f-grp">
+        <label for="f-sort">Ordenar por</label>
+        <select class="inp" id="f-sort">
+          <option value="score">🔥 Mayor Score de Chollo</option>
+          <option value="eur_m2_asc">💎 Menor €/m² de parcela</option>
+          <option value="price_asc">💶 Menor Precio Total</option>
+          <option value="m2_desc">📐 Mayor Superficie (m²)</option>
+          <option value="drop_desc">📉 Mayor Bajada de Precio (%)</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Map & Zone Analytics Section -->
+    <section class="analytics-layout" id="analytics-sec">
+      <div id="map-box"></div>
+      <div class="stats-table-card">
+        <h3 style="font-size:16px;font-weight:800;">Comparativa de €/m² por Zona y Pedanía</h3>
+        <p style="font-size:12px;color:var(--muted);">
+          Haz clic en cualquier fila para filtrar los solares y casas de esa pedanía.
+        </p>
+        <table class="z-tbl">
+          <thead>
+            <tr>
+              <th>Pedanía / Municipio</th>
+              <th>≥180m²</th>
+              <th>Mediana Solar</th>
+              <th>Mediana Casa</th>
+              <th>Mín. €/m²</th>
+            </tr>
+          </thead>
+          <tbody id="zone-stats-tbody"></tbody>
+        </table>
+        <div style="margin-top:auto;padding-top:10px;">
+          <div style="font-size:12px;font-weight:700;margin-bottom:6px;color:var(--muted);">
+            Dispersión Superficie (m²) vs Precio (€/m²)
+          </div>
+          <canvas id="scatter-cv" height="150" style="width:100%;height:150px;"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cards Container -->
+    <main class="listings-grid" id="listings-grid"></main>
+  </div>
+
+  <!-- Modal: Explicación de Fuentes de Datos -->
+  <dialog id="dlg-sources">
+    <div class="dlg-head">
+      <h2>🔌 ¿De dónde saca la información el Agente?</h2>
+      <button class="btn" onclick="document.getElementById('dlg-sources').close()">✕</button>
+    </div>
+    <div style="font-size:13.5px;line-height:1.55;display:flex;flex-direction:column;gap:12px;">
+      <div style="background:var(--bg-subtle);padding:12px 14px;border-radius:10px;border-left:4px solid var(--amber);">
+        <b>1. ¿Qué estás viendo ahora mismo en pantalla?</b><br>
+        Como acabamos de instalar el programa y aún no le has puesto tu contraseña de correo ni se ha ejecutado en la nube, la base de datos arranca con <b>14 inmuebles de referencia (Semilla Inicial de Mercado)</b> de Orihuela, Montepinar, Raiguero de Bonanza, Raiguero de Levante, Benferri y Granja de Rocamora para que puedas probar los filtros, las gráficas de bajadas de precio y el mapa desde el minuto uno.
+      </div>
+      <div style="background:var(--bg-subtle);padding:12px 14px;border-radius:10px;border-left:4px solid var(--accent);">
+        <b>2. Canal 1: Scraping Directo de Webs y Buscadores (Sin claves ni registro)</b><br>
+        Cada vez que ejecutas <code>python main.py</code> en tu ordenador con internet (o cada mañana a las 08:30 en GitHub Actions), el agente entra solo a:
+        <ul style="margin-left:18px;margin-top:4px;">
+          <li><b>Pisos.com, Habitaclia, Yaencontre y Trovimap</b> (secciones de terrenos y casas a reformar en Orihuela, Benferri y Granja de Rocamora).</li>
+          <li><b>Bancos (Solvia, Aliseda, Haya Real Estate)</b> e <b>Inmobiliarias locales de la Vega Baja</b> (como Esphouses y las que añadas en <code>config.json</code>).</li>
+          <li><b>Buscador Indexado</b> para cazar enlaces públicos de Idealista, Fotocasa y Milanuncios.</li>
+        </ul>
+      </div>
+      <div style="background:var(--bg-subtle);padding:12px 14px;border-radius:10px;border-left:4px solid var(--blue);">
+        <b>3. Canal 2: Lector de Alertas de Gmail para Idealista y Fotocasa (Sin usar API de Google Cloud)</b><br>
+        Idealista y Fotocasa bloquean robots directos. Para saltarse ese bloqueo al 100% gratis:
+        <ol style="margin-left:18px;margin-top:4px;">
+          <li>Te creas una alerta gratuita normal en la web/app de Idealista y Fotocasa para que te manden correos cuando salga un solar o casa en tus pedanías.</li>
+          <li>En tu cuenta de Google creas una <b>"Contraseña de aplicación"</b> de 16 letras (no es una API de pago, se saca en 30 segundos en <i>Cuenta de Google → Seguridad → Contraseñas de aplicaciones</i>).</li>
+          <li>Pones tu correo y esas 16 letras en GitHub Secrets (o en un archivo <code>.env</code>). El agente abrirá tu bandeja de entrada cada mañana, extraerá todos los solares de los correos de Idealista/Fotocasa y te enviará el resumen limpio con los chollos.</li>
+        </ol>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Modal: Histórico de Precios y Notas -->
+  <dialog id="dlg-history">
+    <div class="dlg-head">
+      <h2 id="dh-title">Evolución Histórica de Precio</h2>
+      <button class="btn" onclick="document.getElementById('dlg-history').close()">✕</button>
+    </div>
+    <div id="dh-meta" style="font-size:13px;color:var(--muted);margin-bottom:12px;"></div>
+    <canvas id="dh-canvas" height="180" style="width:100%;height:180px;background:var(--bg-subtle);border-radius:10px;border:1px solid var(--line-soft);"></canvas>
+    <div id="dh-list" style="margin-top:14px;font-size:13px;"></div>
+    <div style="margin-top:16px;border-top:1px solid var(--line-soft);padding-top:12px;">
+      <label style="font-size:12px;font-weight:700;color:var(--muted);display:block;margin-bottom:6px;">
+        📝 Tus notas privadas sobre este solar / casa (se guardan en tu navegador):
+      </label>
+      <textarea class="inp" id="dh-note" rows="3" placeholder="Ej: Llamé al propietario, tiene 12m de fachada, acepta negociar un 10%..."></textarea>
+      <div style="display:flex;justify-content:flex-end;margin-top:8px;">
+        <button class="btn pri" id="dh-save-note">Guardar Nota</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Modal: Añadir Solar / Casa Manual -->
+  <dialog id="dlg-add">
+    <div class="dlg-head">
+      <h2>➕ Añadir Solar o Casa de Pueblo al Radar</h2>
+      <button class="btn" onclick="document.getElementById('dlg-add').close()">✕</button>
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">
+      ¿Has visto un cartel de "SE VENDE" en el Raiguero, Montepinar, Benferri o un anuncio en redes? Regístralo aquí para compararlo en €/m² con el resto.
+    </p>
+    <div class="grid-2">
+      <div class="f-grp">
+        <label>Título / Calle</label>
+        <input class="inp" id="m-title" placeholder="Ej. Solar en esquina cerca de ermita" />
+      </div>
+      <div class="f-grp">
+        <label>Pedanía / Zona</label>
+        <select class="inp" id="m-zone">
+          <option value="raiguero_bonanza">Raiguero de Bonanza</option>
+          <option value="raiguero_levante">Raiguero de Levante</option>
+          <option value="montepinar">Montepinar</option>
+          <option value="orihuela">Orihuela (Casco / Centro)</option>
+          <option value="benferri">Benferri</option>
+          <option value="granja_rocamora">Granja de Rocamora</option>
+          <option value="pedanias_orihuela">Otra Pedanía</option>
+        </select>
+      </div>
+      <div class="f-grp">
+        <label>Tipo de Activo</label>
+        <select class="inp" id="m-type">
+          <option value="solar_urbano">Solar Urbano</option>
+          <option value="solar_urbanizable">Solar Urbanizable</option>
+          <option value="casa_planta_baja">Casa Planta Baja / A Reformar</option>
+        </select>
+      </div>
+      <div class="f-grp">
+        <label>Precio (€)</label>
+        <input class="inp" id="m-price" type="number" placeholder="Ej. 45000" />
+      </div>
+      <div class="f-grp">
+        <label>Superficie Parcela / Solar (m²)</label>
+        <input class="inp" id="m-plot" type="number" placeholder="Ej. 250" />
+      </div>
+      <div class="f-grp">
+        <label>Enlace Web o Teléfono del cartel</label>
+        <input class="inp" id="m-url" placeholder="https://... o Tel: 600..." />
+      </div>
+    </div>
+    <div class="f-grp">
+      <label>Descripción / Detalles (fachada, esquina, alturas, estado...)</label>
+      <textarea class="inp" id="m-desc" rows="3" placeholder="Ej. Solar urbano directo, da a dos calles, luz y agua en acera..."></textarea>
+    </div>
+    <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:14px;">
+      <button class="btn" onclick="document.getElementById('dlg-add').close()">Cancelar</button>
+      <button class="btn pri" id="m-save">Guardar en el Radar</button>
+    </div>
+  </dialog>
+
+  <!-- Modal: Calculadora de Viabilidad Solar vs Reforma -->
+  <dialog id="dlg-calc">
+    <div class="dlg-head">
+      <h2>🧮 Calculadora de Viabilidad: Solar / Casa a Reformar</h2>
+      <button class="btn" onclick="document.getElementById('dlg-calc').close()">✕</button>
+    </div>
+    <div class="grid-2">
+      <div class="f-grp">
+        <label>Precio de Compra del Solar o Casa (€)</label>
+        <input class="inp" id="c-price" type="number" value="48000" />
+      </div>
+      <div class="f-grp">
+        <label>Superficie de Parcela (m²)</label>
+        <input class="inp" id="c-plot" type="number" value="250" />
+      </div>
+      <div class="f-grp">
+        <label>m² de Vivienda que quieres Construir / Reformar</label>
+        <input class="inp" id="c-built" type="number" value="150" />
+      </div>
+      <div class="f-grp">
+        <label>Tipo de Proyecto</label>
+        <select class="inp" id="c-mode">
+          <option value="obra_nueva">Obra Nueva en Solar (~1.150 €/m² const.)</option>
+          <option value="reforma">Reforma Integral Casa Planta Baja (~680 €/m²)</option>
+          <option value="derribo_obra">Derribo + Obra Nueva (~1.230 €/m²)</option>
+        </select>
+      </div>
+    </div>
+    <div id="c-result" style="background:var(--bg-subtle);border:1px solid var(--line-soft);border-radius:12px;padding:16px;margin-top:10px;font-size:14px;"></div>
+  </dialog>
+
+  <script src="data/listings.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script>
+  (() => {
+    const $ = id => document.getElementById(id);
+    const fmtEur = v => v == null || isNaN(v) ? 'Consultar' : new Intl.NumberFormat('es-ES', {maximumFractionDigits: 0}).format(v) + ' €';
+    const fmtNum = v => v == null || isNaN(v) ? '–' : new Intl.NumberFormat('es-ES', {maximumFractionDigits: 0}).format(v);
+
+    let STATE = {
+      tab: 'principal',
+      zone: 'ALL',
+      type: 'ALL',
+      search: '',
+      minM2: 180,
+      maxPrice: null,
+      maxM2Price: null,
+      sort: 'score',
+      listings: [],
+      stats: {},
+      favs: JSON.parse(localStorage.getItem('solares_favs') || '{}'),
+      notes: JSON.parse(localStorage.getItem('solares_notes') || '{}'),
+      manualItems: JSON.parse(localStorage.getItem('solares_manual') || '[]'),
+    };
+
+    let mapInstance = null;
+    let mapMarkers = [];
+
+    async function loadData() {
+      let payload = window.__SOLARES_DATA__ || null;
+      try {
+        const res = await fetch('data/listings.json', {cache: 'no-store'});
+        if (res.ok) payload = await res.json();
+      } catch (e) { /* Usa window.__SOLARES_DATA__ si se abre como archivo local */ }
+
+      if (!payload) payload = {stats: {}, listings: []};
+      STATE.stats = payload.stats || {};
+      STATE.listings = [...STATE.manualItems, ...(payload.listings || [])];
+      updateKPIs();
+      renderZoneStatsTable();
+      renderAll();
+    }
+
+    function updateKPIs() {
+      const all = STATE.listings;
+      const hl = all.filter(x => x.is_highlighted || (x.effective_plot_m2 >= 180));
+      const chollos = hl.filter(x => (x.chollo_score || 0) >= 72);
+      const drops = all.filter(x => (x.price_drop_pct || 0) > 0);
+      const favCount = all.filter(x => STATE.favs[x.id]).length;
+
+      $('k-hl').textContent = hl.length;
+      $('k-total').textContent = `de ${all.length} monitorizados en base de datos`;
+      $('k-chollos').textContent = chollos.length;
+      $('k-drops').textContent = drops.length;
+      $('k-med-solar').textContent = (STATE.stats.median_solar_eur_m2 ? fmtNum(STATE.stats.median_solar_eur_m2) : '205') + ' €/m²';
+      $('k-med-casa').textContent = `Casas a reformar: ${STATE.stats.median_casa_eur_m2 ? fmtNum(STATE.stats.median_casa_eur_m2) : '440'} €/m²`;
+
+      $('tc-principal').textContent = hl.length;
+      $('tc-drops').textContent = drops.length;
+      $('tc-all').textContent = all.length;
+      $('tc-favs').textContent = favCount;
+
+      const liveCount = all.filter(x => !String(x.id).startsWith('ori-') && !String(x.id).startsWith('ben-') && !String(x.id).startsWith('gra-')).length;
+      $('source-status-txt').textContent = liveCount > 0
+        ? `${liveCount} anuncios capturados en vivo + base histórica de referencia activa.`
+        : `Mostrando base de referencia inicial (${all.length} inmuebles). Ejecuta python main.py con internet o activa GitHub Actions + Gmail para recibir alertas reales cada mañana.`;
+    }
+
+    function getFilteredListings() {
+      return STATE.listings.filter(item => {
+        const plotM2 = item.effective_plot_m2 || item.surface_plot_m2 || 0;
+
+        if (STATE.tab === 'principal' && plotM2 < 180) return false;
+        if (STATE.tab === 'drops' && !(item.price_drop_pct > 0)) return false;
+        if (STATE.tab === 'favs' && !STATE.favs[item.id] && !STATE.notes[item.id]) return false;
+
+        if (STATE.zone !== 'ALL' && item.zone_id !== STATE.zone) return false;
+        if (STATE.type !== 'ALL' && item.asset_type !== STATE.type) return false;
+        if (STATE.minM2 > 0 && plotM2 < STATE.minM2) return false;
+        if (STATE.maxPrice && item.price_eur && item.price_eur > STATE.maxPrice) return false;
+        if (STATE.maxM2Price && item.eur_per_m2 && item.eur_per_m2 > STATE.maxM2Price) return false;
+
+        if (STATE.search) {
+          const hay = `${item.title} ${item.zone_name} ${item.description} ${item.portal} ${STATE.notes[item.id] || ''}`.toLowerCase();
+          if (!hay.includes(STATE.search.toLowerCase())) return false;
+        }
+        return true;
+      }).sort((a, b) => {
+        if (STATE.sort === 'score') return (b.chollo_score || 0) - (a.chollo_score || 0);
+        if (STATE.sort === 'eur_m2_asc') return (a.eur_per_m2 || 99999) - (b.eur_per_m2 || 99999);
+        if (STATE.sort === 'price_asc') return (a.price_eur || 9999999) - (b.price_eur || 9999999);
+        if (STATE.sort === 'm2_desc') return (b.effective_plot_m2 || 0) - (a.effective_plot_m2 || 0);
+        if (STATE.sort === 'drop_desc') return (b.price_drop_pct || 0) - (a.price_drop_pct || 0);
+        return 0;
+      });
+    }
+
+    function renderAll() {
+      const items = getFilteredListings();
+      const showAnalytics = STATE.tab === 'map';
+      $('analytics-sec').classList.toggle('active', showAnalytics);
+      if (showAnalytics) {
+        initOrUpdateMap(items);
+        drawScatterChart(items);
+      }
+
+      const grid = $('listings-grid');
+      if (!items.length) {
+        grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--muted);background:var(--bg-card);border-radius:14px;border:1px solid var(--line-soft);">
+          No hay solares ni casas que coincidan con estos filtros. Prueba a bajar el filtro de m² o seleccionar "Todas las Zonas".
+        </div>`;
+        return;
+      }
+
+      grid.innerHTML = items.map(it => {
+        const score = it.chollo_score || 50;
+        const scClass = score >= 75 ? 'sc-hi' : score >= 62 ? 'sc-md' : 'sc-lo';
+        const typeBadge = it.asset_type === 'casa_planta_baja' ? 'b-casa' : it.asset_type === 'solar_urbanizable' ? 'b-urb' : 'b-solar';
+        const plotM2 = it.effective_plot_m2 || it.surface_plot_m2 || 0;
+        const isFav = !!STATE.favs[it.id];
+        const note = STATE.notes[it.id] || '';
+        const dropHtml = (it.price_drop_pct || 0) > 0
+          ? `<span class="badge b-drop">▼ Rebajado -${it.price_drop_pct.toFixed(1)}% (-${fmtEur(it.price_drop_eur)})</span>`
+          : '';
+        const sizeWarn = plotM2 < 180
+          ? `<span class="badge" style="background:var(--bg-subtle);color:var(--muted)">Parcela &lt; 180 m²</span>`
+          : '';
+
+        const reasons = (it.chollo_reasons || []).map(r => `<li>${r}</li>`).join('');
+
+        return `
+          <article class="prop-card ${score >= 75 ? 'chollo-high' : ''} ${plotM2 < 180 ? 'secondary-size' : ''}">
+            <div class="card-top">
+              <div class="badges">
+                <span class="badge b-zone">📍 ${it.zone_name}</span>
+                <span class="badge ${typeBadge}">${it.asset_label}</span>
+                ${dropHtml}
+                ${sizeWarn}
+              </div>
+              <span class="score-pill ${scClass}" title="Puntuación de oportunidad (0-100)">
+                ${score >= 75 ? '🔥 ' : ''}Score ${score}
+              </span>
+            </div>
+
+            <a class="prop-title" href="${it.url || '#'}" target="_blank" rel="noopener">
+              ${it.title}
+            </a>
+
+            <div class="metrics-row">
+              <div class="m-box">
+                <span>Precio Actual</span>
+                <b>${fmtEur(it.price_eur)}</b>
+                <small>${it.initial_price_eur && it.initial_price_eur > it.price_eur ? 'Antes: ' + fmtEur(it.initial_price_eur) : 'Precio inicial'}</small>
+              </div>
+              <div class="m-box">
+                <span>Parcela / Solar</span>
+                <b>${fmtNum(plotM2)} m²</b>
+                <small>${it.surface_built_m2 ? fmtNum(it.surface_built_m2) + ' m² const.' : '≈ ' + (plotM2 / 1118).toFixed(2) + ' tahúllas'}</small>
+              </div>
+              <div class="m-box">
+                <span>Ratio Suelo</span>
+                <b style="color:var(--accent)">${it.eur_per_m2 ? fmtNum(it.eur_per_m2) + ' €/m²' : '–'}</b>
+                <small>${it.discount_vs_ref_pct > 0 ? '-' + it.discount_vs_ref_pct.toFixed(0) + '% vs zona' : 'Referencia zona'}</small>
+              </div>
+            </div>
+
+            ${reasons ? `<ul class="reasons-list">${reasons}</ul>` : ''}
+            <p class="prop-desc">${it.description || ''}</p>
+            ${note ? `<div style="background:var(--amber-soft);color:var(--amber);padding:7px 10px;border-radius:8px;font-size:12px;">📝 <b>Tu nota:</b> ${note}</div>` : ''}
+
+            <div class="card-foot">
+              <span class="portal-tag">Fuente: ${it.portal}</span>
+              <div class="card-btns">
+                <button class="sm-btn ${isFav ? 'fav-on' : ''}" onclick="window.__toggleFav('${it.id}')">
+                  ${isFav ? '★ Favorito' : '☆ Guardar'}
+                </button>
+                <button class="sm-btn" onclick="window.__openHistory('${it.id}')">
+                  📈 Histórico / Nota
+                </button>
+                <a class="sm-btn" href="${it.url || '#'}" target="_blank" rel="noopener">
+                  Ir al anuncio ↗
+                </a>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function renderZoneStatsTable() {
+      const zones = STATE.stats.zones || {};
+      const tbody = $('zone-stats-tbody');
+      tbody.innerHTML = Object.values(zones).map(z => `
+        <tr style="cursor:pointer" onclick="window.__filterZone('${z.zone_id}')">
+          <td><b>${z.zone_name}</b></td>
+          <td>${z.highlighted_count}</td>
+          <td>${z.median_solar_eur_m2 ? fmtNum(z.median_solar_eur_m2) + ' €/m²' : '—'}</td>
+          <td>${z.median_casa_eur_m2 ? fmtNum(z.median_casa_eur_m2) + ' €/m²' : '—'}</td>
+          <td style="color:var(--accent);font-weight:700;">${z.min_eur_m2 ? fmtNum(z.min_eur_m2) + ' €/m²' : '—'}</td>
+        </tr>
+      `).join('');
+    }
+
+    function initOrUpdateMap(items) {
+      if (typeof L === 'undefined') return;
+      if (!mapInstance) {
+        mapInstance = L.map('map-box').setView([38.095, -0.960], 12);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '© OpenStreetMap'
+        }).addTo(mapInstance);
+      }
+      setTimeout(() => mapInstance.invalidateSize(), 150);
+      mapMarkers.forEach(m => m.remove());
+      mapMarkers = [];
+
+      items.forEach(it => {
+        if (!it.lat || !it.lon) return;
+        const color = (it.chollo_score || 0) >= 75 ? '#059669' : it.asset_type === 'casa_planta_baja' ? '#7e22ce' : '#0284c7';
+        const marker = L.circleMarker([it.lat, it.lon], {
+          radius: 9,
+          fillColor: color,
+          color: '#ffffff',
+          weight: 2,
+          fillOpacity: 0.9
+        }).addTo(mapInstance);
+
+        marker.bindPopup(`
+          <div style="font-family:sans-serif;min-width:210px;">
+            <div style="font-size:11px;font-weight:700;color:#0f766e;">${it.zone_name} · ${it.asset_label}</div>
+            <div style="font-weight:700;margin:4px 0;">${it.title}</div>
+            <div style="font-size:13px;"><b>${fmtEur(it.price_eur)}</b> · ${fmtNum(it.effective_plot_m2)} m² (${fmtNum(it.eur_per_m2)} €/m²)</div>
+            <div style="margin-top:6px;"><a href="${it.url}" target="_blank">Abrir anuncio ↗</a></div>
+          </div>
+        `);
+        mapMarkers.push(marker);
+      });
+    }
+
+    function drawScatterChart(items) {
+      const cv = $('scatter-cv');
+      if (!cv) return;
+      const dpr = window.devicePixelRatio || 1;
+      const W = cv.clientWidth || 400, H = cv.clientHeight || 150;
+      cv.width = W * dpr; cv.height = H * dpr;
+      const ctx = cv.getContext('2d');
+      ctx.scale(dpr, dpr);
+      ctx.clearRect(0, 0, W, H);
+
+      const pts = items.filter(x => x.effective_plot_m2 > 0 && x.eur_per_m2 > 0);
+      if (!pts.length) return;
+
+      const maxM2 = Math.max(600, ...pts.map(p => p.effective_plot_m2)) * 1.08;
+      const maxEurM2 = Math.max(400, ...pts.map(p => p.eur_per_m2)) * 1.1;
+      const padL = 42, padR = 14, padT = 10, padB = 22;
+      const pw = W - padL - padR, ph = H - padT - padB;
+
+      ctx.strokeStyle = 'rgba(100,116,139,0.25)';
+      ctx.fillStyle = '#475569';
+      ctx.font = '10px sans-serif';
+      for (let i = 0; i <= 3; i++) {
+        const y = padT + (ph * i) / 3;
+        ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(padL + pw, y); ctx.stroke();
+        ctx.fillText(Math.round(maxEurM2 * (1 - i / 3)) + '€', 4, y + 3);
+      }
+
+      pts.forEach(p => {
+        const x = padL + (p.effective_plot_m2 / maxM2) * pw;
+        const y = padT + ph - (p.eur_per_m2 / maxEurM2) * ph;
+        ctx.beginPath();
+        ctx.arc(x, y, 5, 0, Math.PI * 2);
+        ctx.fillStyle = (p.chollo_score || 0) >= 75 ? '#059669' : p.asset_type === 'casa_planta_baja' ? '#7e22ce' : '#0284c7';
+        ctx.fill();
+      });
+    }
+
+    window.__toggleFav = id => {
+      if (STATE.favs[id]) delete STATE.favs[id];
+      else STATE.favs[id] = true;
+      localStorage.setItem('solares_favs', JSON.stringify(STATE.favs));
+      updateKPIs();
+      renderAll();
+    };
+
+    window.__filterZone = zid => {
+      STATE.zone = zid;
+      document.querySelectorAll('.z-pill').forEach(b => b.classList.toggle('active', b.dataset.zone === zid));
+      renderAll();
+    };
+
+    window.__openHistory = id => {
+      const it = STATE.listings.find(x => x.id === id);
+      if (!it) return;
+      $('dh-title').textContent = it.title;
+      $('dh-meta').textContent = `${it.zone_name} · ${it.asset_label} · Parcela: ${fmtNum(it.effective_plot_m2)} m² · Actual: ${fmtEur(it.price_eur)} (${fmtNum(it.eur_per_m2)} €/m²)`;
+      $('dh-note').value = STATE.notes[id] || '';
+      $('dh-save-note').onclick = () => {
+        const val = $('dh-note').value.trim();
+        if (val) STATE.notes[id] = val;
+        else delete STATE.notes[id];
+        localStorage.setItem('solares_notes', JSON.stringify(STATE.notes));
+        updateKPIs();
+        renderAll();
+        $('dlg-history').close();
+      };
+
+      const hist = it.price_history && it.price_history.length
+        ? it.price_history
+        : [{date: (it.first_seen_at || '').slice(0, 10) || 'Actual', price: it.price_eur}];
+
+      $('dh-list').innerHTML = hist.map((h, idx) => `
+        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line-soft);">
+          <span>📅 ${h.date}</span>
+          <b>${fmtEur(h.price)} ${idx > 0 && h.price < hist[idx-1].price ? '<span style="color:var(--accent)">▼ Rebaja</span>' : ''}</b>
+        </div>
+      `).join('');
+
+      $('dlg-history').showModal();
+
+      const cv = $('dh-canvas');
+      const dpr = window.devicePixelRatio || 1;
+      const W = cv.clientWidth || 560, H = 180;
+      cv.width = W * dpr; cv.height = H * dpr;
+      const c = cv.getContext('2d');
+      c.scale(dpr, dpr);
+      c.clearRect(0, 0, W, H);
+
+      const prices = hist.map(h => h.price || 0);
+      const minP = Math.min(...prices) * 0.92;
+      const maxP = Math.max(...prices) * 1.05;
+      const padL = 65, padR = 25, padT = 24, padB = 28;
+      const pw = W - padL - padR, ph = H - padT - padB;
+
+      c.strokeStyle = '#059669';
+      c.lineWidth = 3;
+      c.beginPath();
+      hist.forEach((h, i) => {
+        const x = padL + (hist.length === 1 ? pw / 2 : (i / (hist.length - 1)) * pw);
+        const y = padT + ph - ((h.price - minP) / Math.max(1, maxP - minP)) * ph;
+        i === 0 ? c.moveTo(x, y) : c.lineTo(x, y);
+      });
+      c.stroke();
+
+      hist.forEach((h, i) => {
+        const x = padL + (hist.length === 1 ? pw / 2 : (i / (hist.length - 1)) * pw);
+        const y = padT + ph - ((h.price - minP) / Math.max(1, maxP - minP)) * ph;
+        c.fillStyle = '#059669';
+        c.beginPath(); c.arc(x, y, 5, 0, Math.PI * 2); c.fill();
+        c.fillStyle = '#334155';
+        c.font = 'bold 11px sans-serif';
+        c.textAlign = 'center';
+        c.fillText(fmtEur(h.price), x, y - 10);
+        c.fillStyle = '#64748b';
+        c.font = '11px sans-serif';
+        c.fillText(h.date, x, H - 8);
+      });
+    };
+
+    $('main-tabs').onclick = e => {
+      const btn = e.target.closest('.tab-btn');
+      if (!btn) return;
+      STATE.tab = btn.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b === btn));
+      if (STATE.tab === 'all') $('f-min-m2').value = 0;
+      else if (STATE.tab === 'principal' && +$('f-min-m2').value < 180) $('f-min-m2').value = 180;
+      STATE.minM2 = +$('f-min-m2').value || 0;
+      renderAll();
+    };
+
+    $('zone-pills').onclick = e => {
+      const pill = e.target.closest('.z-pill');
+      if (!pill) return;
+      window.__filterZone(pill.dataset.zone);
+    };
+
+    ['f-search', 'f-type', 'f-min-m2', 'f-max-price', 'f-max-m2price', 'f-sort'].forEach(id => {
+      $(id).oninput = $(id).onchange = () => {
+        STATE.search = $('f-search').value.trim();
+        STATE.type = $('f-type').value;
+        STATE.minM2 = +$('f-min-m2').value || 0;
+        STATE.maxPrice = +$('f-max-price').value || null;
+        STATE.maxM2Price = +$('f-max-m2price').value || null;
+        STATE.sort = $('f-sort').value;
+        renderAll();
+      };
+    });
+
+    $('btn-theme').onclick = () => {
+      const cur = document.documentElement.dataset.theme;
+      document.documentElement.dataset.theme = cur === 'dark' ? 'light' : 'dark';
+    };
+
+    $('btn-sources-help').onclick = () => $('dlg-sources').showModal();
+    $('btn-email-preview').onclick = () => window.open('last_email_preview.html', '_blank');
+
+    $('btn-add-manual').onclick = () => $('dlg-add').showModal();
+    $('m-save').onclick = () => {
+      const title = $('m-title').value.trim() || 'Solar / Casa anotado manualmente';
+      const zoneId = $('m-zone').value;
+      const zoneNames = {
+        raiguero_bonanza: 'Raiguero de Bonanza',
+        raiguero_levante: 'Raiguero de Levante',
+        montepinar: 'Montepinar',
+        orihuela: 'Orihuela (Casco y Centro)',
+        benferri: 'Benferri',
+        granja_rocamora: 'Granja de Rocamora',
+        pedanias_orihuela: 'Otras Pedanías'
+      };
+      const type = $('m-type').value;
+      const labels = {
+        solar_urbano: 'Solar Urbano',
+        solar_urbanizable: 'Solar Urbanizable',
+        casa_planta_baja: 'Casa Planta Baja / A Reformar'
+      };
+      const price = +$('m-price').value || 0;
+      const plot = +$('m-plot').value || 200;
+      const eurM2 = price && plot ? Math.round(price / plot) : null;
+      const newItem = {
+        id: 'man-' + Date.now(),
+        portal: 'Anotación Propia / Cartel',
+        title,
+        zone_id: zoneId,
+        zone_name: zoneNames[zoneId],
+        asset_type: type,
+        asset_label: labels[type],
+        price_eur: price,
+        initial_price_eur: price,
+        surface_plot_m2: plot,
+        effective_plot_m2: plot,
+        eur_per_m2: eurM2,
+        is_highlighted: plot >= 180,
+        chollo_score: eurM2 && eurM2 < 200 ? 82 : 70,
+        chollo_reasons: ['Anotado manualmente en tu radar personal'],
+        description: $('m-desc').value.trim(),
+        url: $('m-url').value.trim() || '#',
+        lat: 38.0848,
+        lon: -0.96,
+        price_history: [{date: new Date().toISOString().slice(0, 10), price}]
+      };
+      STATE.manualItems.unshift(newItem);
+      localStorage.setItem('solares_manual', JSON.stringify(STATE.manualItems));
+      STATE.listings.unshift(newItem);
+      $('dlg-add').close();
+      updateKPIs();
+      renderAll();
+    };
+
+    function updateCalc() {
+      const price = +$('c-price').value || 0;
+      const plot = +$('c-plot').value || 1;
+      const built = +$('c-built').value || 1;
+      const mode = $('c-mode').value;
+      const costPerM2 = mode === 'reforma' ? 680 : mode === 'derribo_obra' ? 1230 : 1150;
+      const taxesAndLicenses = Math.round(price * 0.11 + built * 110);
+      const constructionCost = built * costPerM2;
+      const totalInvestment = price + taxesAndLicenses + constructionCost;
+      const finalEurM2Built = Math.round(totalInvestment / built);
+
+      $('c-result').innerHTML = `
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div>Repercusión del suelo: <b>${fmtNum(price / plot)} €/m² de parcela</b></div>
+          <div>Impuestos (ITP 10%) + Técnico/Licencia: <b>${fmtEur(taxesAndLicenses)}</b></div>
+          <div>Coste estimado Obra / Reforma: <b>${fmtEur(constructionCost)}</b></div>
+          <div>Inversión Total Llave en Mano: <b style="color:var(--accent);font-size:16px;">${fmtEur(totalInvestment)}</b></div>
+        </div>
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--line-soft);">
+          Coste final por m² de vivienda terminada: <b>${fmtNum(finalEurM2Built)} €/m² construido</b> (quedándote <b>${Math.max(0, plot - Math.round(built * 0.6))} m² de patio/parcela libre</b>).
+        </div>
+      `;
+    }
+    $('btn-calc').onclick = () => { updateCalc(); $('dlg-calc').showModal(); };
+    ['c-price', 'c-plot', 'c-built', 'c-mode'].forEach(id => $(id).oninput = $(id).onchange = updateCalc);
+
+    loadData();
+  })();
+  </script>
+</body>
+</html>

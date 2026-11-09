@@ -1,0 +1,100 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+3 0 obj
+<< /Length 1971 >>
+stream
+BT
+/F1 10.5 Tf
+45 790 Td
+15 TL
+/F2 11.5 Tf (MANUAL DE FUNCIONAMIENTO - AGENTE SOLARES Y CASAS VEGA BAJA) Tj /F1 10.5 Tf T*
+(Orihuela, Montepinar, Raiguero de Bonanza, Raiguero de Levante, Benferri y Granja de Rocamora) Tj T*
+(--------------------------------------------------------------------------------------------) Tj T*
+() Tj T*
+/F2 11.5 Tf (1. DE DONDE SACA LA INFORMACION EL AGENTE?) Tj /F1 10.5 Tf T*
+() Tj T*
+(A\) Por que ya aparecen 14 anuncios sin haber metido clave de Gmail?) Tj T*
+(   Para que puedas probar el panel, los filtros y las curvas de precios desde el minuto 1,) Tj T*
+(   el programa carga una Semilla Inicial de 14 anuncios de referencia en tus pedanias.) Tj T*
+() Tj T*
+(B\) Cuando se conecta a Internet \(3 canales simultaneos\):) Tj T*
+(   - Canal 1 \(Scraping Directo SIN CLAVES\): Escanea Pisos.com, Habitaclia, Yaencontre,) Tj T*
+(     Trovimap, Bancos \(Solvia, Aliseda, Haya\) e inmobiliarias locales de la Vega Baja.) Tj T*
+(   - Canal 2 \(Buscador Indexado SIN CLAVES\): Descubre anuncios publicos de Idealista,) Tj T*
+(     Fotocasa y Milanuncios en tus zonas sin chocar con los bloqueos anti-robots.) Tj T*
+(   - Canal 3 \(Lector de Alertas de Correo IMAP\): Lee los correos gratuitos de alerta que) Tj T*
+(     te mandan Idealista y Fotocasa. Asi te saltas al 100% sus bloqueos sin pagar proxies.) Tj T*
+() Tj T*
+/F2 11.5 Tf (2. COMO CONECTAR TU GMAIL EN 2 MINUTOS \(SIN API DE GOOGLE CLOUD\)) Tj /F1 10.5 Tf T*
+() Tj T*
+(   No hace falta usar Google Cloud ni pagar nada. Solo necesitas una Contrasena de Aplicacion:) Tj T*
+(   1. Guarda tus busquedas en Idealista y Fotocasa y activa 'Recibir alertas por email'.) Tj T*
+(   2. Entra en https://myaccount.google.com/apppasswords y crea una clave para 'Agente Solares'.) Tj T*
+(   3. Google te dara 16 letras. Pon tu correo y esas 16 letras en el archivo .env \(en tu PC\)) Tj T*
+(      o en los Secrets de GitHub Actions \(para que corra gratis en la nube cada manana\).) Tj T*
+ET
+endstream
+endobj
+4 0 obj
+<< /Type /Page /Parent 7 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 3 0 R >>
+endobj
+5 0 obj
+<< /Length 1561 >>
+stream
+BT
+/F1 10.5 Tf
+45 790 Td
+15 TL
+/F2 11.5 Tf (3. FILTRO DE 180 m2, DETECCION DE PEDANIAS Y CHOLLO SCORE) Tj /F1 10.5 Tf T*
+(--------------------------------------------------------------------------------------------) Tj T*
+() Tj T*
+(A\) Regla de Superficie \(>= 180 m2\):) Tj T*
+/F2 11.5 Tf (   - El agente guarda TODOS los solares y casas de planta baja en la base de datos SQLite,) Tj /F1 10.5 Tf T*
+(     pero destaca en la vista principal y en el email diario SOLO los que tienen >= 180 m2.) Tj T*
+(   - Los de menos de 180 m2 quedan guardados en la pestana 'Todos \(incl. < 180 m2\)'.) Tj T*
+(   - Si un anuncio local habla en 'tahullas', convierte automaticamente 1 tahulla = 1.118 m2.) Tj T*
+() Tj T*
+(B\) Deteccion inteligente de Pedanias y limpieza de Orihuela Costa:) Tj T*
+(   - Detecta Raiguero de Bonanza \(o Riguero / Rincon de Bonanza\), Raiguero de Levante,) Tj T*
+(     Montepinar, Benferri, Granja de Rocamora, Orihuela Casco y pedanias cercanas.) Tj T*
+(   - Descarta automaticamente Orihuela Costa \(La Zenia, Cabo Roig, Villamartin, Campoamor\)) Tj T*
+(     y descarta pisos en altura.) Tj T*
+() Tj T*
+(C\) Como calcula el Chollo Score \(0 a 100 puntos\):) Tj T*
+(   - Compara el precio en EUR/m2 de suelo contra la mediana de esa pedania concreta.) Tj T*
+(   - Suma puntos si detecta bajadas historicas de precio en la base de datos.) Tj T*
+/F2 11.5 Tf (   - Suma puntos si el anuncio menciona: 'esquina', 'dos calles', 'bajo + alturas',) Tj /F1 10.5 Tf T*
+(     'urge vender', 'precio negociable', 'herencia' o 'activo bancario'.) Tj T*
+ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 7 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 5 0 R >>
+endobj
+7 0 obj
+<< /Type /Pages /Kids [4 0 R 6 0 R] /Count 2 >>
+endobj
+8 0 obj
+<< /Type /Catalog /Pages 7 0 R >>
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000009 00000 n 
+0000000079 00000 n 
+0000000154 00000 n 
+0000002177 00000 n 
+0000002313 00000 n 
+0000003926 00000 n 
+0000004062 00000 n 
+0000004125 00000 n 
+trailer
+<< /Size 9 /Root 8 0 R >>
+startxref
+4174
+%%EOF

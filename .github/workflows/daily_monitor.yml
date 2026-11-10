@@ -2,6 +2,7 @@ name: Radar Diario Solares Vega Baja
 
 on:
   schedule:
+    # Se ejecuta todos los días a las 07:30 UTC (08:30 / 09:30 hora peninsular española)
     - cron: '30 7 * * *'
   workflow_dispatch:
 
@@ -28,7 +29,7 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Ejecutar Agente
+      - name: Ejecutar Agente (IMAP + Portales + Inmobiliarias Locales + Email Diario)
         env:
           IMAP_HOST: ${{ secrets.IMAP_HOST || 'imap.gmail.com' }}
           IMAP_USER: ${{ secrets.IMAP_USER }}
@@ -43,9 +44,9 @@ jobs:
         run: |
           python main.py
 
-      - name: Guardar cambios históricos en el repositorio
+      - name: Guardar cambios históricos en el repositorio (SQLite + JSON Panel Web)
         run: |
           git config user.name "Agente Solares Bot"
           git config user.email "bot@agentesolares.local"
           git add data/solares.db docs/data/listings.json docs/data/listings.js docs/last_email_preview.html
-          git diff --staged --quiet || (git commit -m "chore(radar): actualización diaria de precios y solares" && git pull --rebase -X theirs origin main && git push)
+          git diff --staged --quiet || (git commit -m "chore(radar): actualización diaria de precios y solares ($(date +'%Y-%m-%d'))" && git pull --rebase -X theirs origin main && git push)

@@ -15,15 +15,32 @@
       "name": "Orihuela (Casco y Centro)",
       "tier": 1,
       "lat": 38.0848,
-      "lon": -0.9440,
+      "lon": -0.944,
       "ref_eur_m2_solar": 340,
       "ref_eur_m2_casa_reforma": 520,
       "keywords": [
-        "orihuela centro", "orihuela casco", "casco antiguo", "casco historico",
-        "centro orihuela", "barrio nuevo", "san anton", "el palmeral", "capuchinos",
-        "severo ochoa", "ocana", "duque de tamames", "obispo", "santa justa",
-        "santo domingo", "las espejo", "escorratel", "camino viejo de callosa",
-        "puerta de la olma", "el rabaloche", "rabaloche", "san isidro"
+        "orihuela centro",
+        "orihuela casco",
+        "casco antiguo",
+        "casco historico",
+        "centro orihuela",
+        "barrio nuevo",
+        "san anton",
+        "el palmeral",
+        "capuchinos",
+        "severo ochoa",
+        "ocana",
+        "duque de tamames",
+        "obispo",
+        "santa justa",
+        "santo domingo",
+        "las espejo",
+        "escorratel",
+        "camino viejo de callosa",
+        "puerta de la olma",
+        "el rabaloche",
+        "rabaloche",
+        "san isidro"
       ]
     },
     "montepinar": {
@@ -34,7 +51,10 @@
       "ref_eur_m2_solar": 230,
       "ref_eur_m2_casa_reforma": 650,
       "keywords": [
-        "montepinar", "urbanizacion montepinar", "urb montepinar", "urb. montepinar",
+        "montepinar",
+        "urbanizacion montepinar",
+        "urb montepinar",
+        "urb. montepinar",
         "monte pinar"
       ]
     },
@@ -46,8 +66,13 @@
       "ref_eur_m2_solar": 210,
       "ref_eur_m2_casa_reforma": 460,
       "keywords": [
-        "raiguero de bonanza", "riguero de bonanza", "rincon de bonanza",
-        "bonanza", "el raiguero", "raiguero bonanza", "riguero bonanza",
+        "raiguero de bonanza",
+        "riguero de bonanza",
+        "rincon de bonanza",
+        "bonanza",
+        "el raiguero",
+        "raiguero bonanza",
+        "riguero bonanza",
         "raiguero de poniente"
       ]
     },
@@ -55,11 +80,13 @@
       "name": "Raiguero de Levante",
       "tier": 1,
       "lat": 38.0815,
-      "lon": -0.9710,
+      "lon": -0.971,
       "ref_eur_m2_solar": 205,
       "ref_eur_m2_casa_reforma": 450,
       "keywords": [
-        "raiguero de levante", "riguero de levante", "raiguero levante",
+        "raiguero de levante",
+        "riguero de levante",
+        "raiguero levante",
         "riguero levante"
       ]
     },
@@ -71,7 +98,11 @@
       "ref_eur_m2_solar": 195,
       "ref_eur_m2_casa_reforma": 430,
       "keywords": [
-        "benferri", "benferry", "benfis park", "benfispark", "urbanizacion benfis"
+        "benferri",
+        "benferry",
+        "benfis park",
+        "benfispark",
+        "urbanizacion benfis"
       ]
     },
     "granja_rocamora": {
@@ -82,32 +113,74 @@
       "ref_eur_m2_solar": 185,
       "ref_eur_m2_casa_reforma": 410,
       "keywords": [
-        "granja de rocamora", "la granja de rocamora", "rocamora"
+        "granja de rocamora",
+        "la granja de rocamora",
+        "rocamora"
       ]
     },
     "pedanias_orihuela": {
       "name": "Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...)",
       "tier": 2,
-      "lat": 38.0680,
-      "lon": -0.9550,
+      "lat": 38.068,
+      "lon": -0.955,
       "ref_eur_m2_solar": 190,
       "ref_eur_m2_casa_reforma": 420,
       "keywords": [
-        "la aparecida", "aparecida", "arneva", "hurchillo", "desamparados",
-        "las norias", "molins", "la campaneta", "campaneta", "san bartolome",
-        "correntias", "el baden", "camino de enmedio", "la matanza", "la murada",
-        "los desamparados", "media legua", "el mudamiento", "torremendo",
-        "redovan", "cox", "callosa de segura", "albatera"
+        "la aparecida",
+        "aparecida",
+        "arneva",
+        "hurchillo",
+        "desamparados",
+        "las norias",
+        "molins",
+        "la campaneta",
+        "campaneta",
+        "san bartolome",
+        "correntias",
+        "el baden",
+        "camino de enmedio",
+        "la matanza",
+        "la murada",
+        "los desamparados",
+        "media legua",
+        "el mudamiento",
+        "torremendo",
+        "redovan",
+        "cox",
+        "callosa de segura",
+        "albatera"
       ]
     }
   },
   "excluded_costa_keywords": [
-    "orihuela costa", "la zenia", "cabo roig", "villamartin", "campoamor",
-    "dehesa de campoamor", "playa flamenca", "punta prima", "las ramblas",
-    "lomas de cabo roig", "los dolses", "la regia", "aguamarina",
-    "las filipinas", "mil palmeras", "torrevieja", "pilar de la horadada",
-    "guardamar", "abanilla", "terreno-baina", "fortuna", "barinas", "macisvenda",
-    "algorfa", "rojales", "benijofar", "formentera del segura", "jacarilla"
+    "orihuela costa",
+    "la zenia",
+    "cabo roig",
+    "villamartin",
+    "campoamor",
+    "dehesa de campoamor",
+    "playa flamenca",
+    "punta prima",
+    "las ramblas",
+    "lomas de cabo roig",
+    "los dolses",
+    "la regia",
+    "aguamarina",
+    "las filipinas",
+    "mil palmeras",
+    "torrevieja",
+    "pilar de la horadada",
+    "guardamar",
+    "abanilla",
+    "terreno-baina",
+    "fortuna",
+    "barinas",
+    "macisvenda",
+    "algorfa",
+    "rojales",
+    "benijofar",
+    "formentera del segura",
+    "jacarilla"
   ],
   "local_agencies_urls": [
     {
@@ -166,5 +239,21 @@
     "enabled": true,
     "subject_prefix": "[Radar Solares Orihuela]",
     "send_only_on_changes_or_daily": "daily"
+  },
+  "boe_subastas": {
+    "enabled": true,
+    "provincias": [
+      "03"
+    ],
+    "estados": [
+      "EJ",
+      "PU"
+    ],
+    "excluir_codigos_postales": [
+      "03189"
+    ],
+    "extra_localidades": [],
+    "delay_s": 0.6,
+    "_nota": "Portal de Subastas del BOE. provincias: 03 = Alicante (añade '30' para Murcia). estados: EJ = celebrándose, PU = próxima apertura. Solo se guardan bienes cuya localidad/dirección coincide con las palabras clave de 'zones' y no está en 'excluded_costa_keywords'."
   }
 }

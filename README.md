@@ -54,3 +54,19 @@ Los grandes portales como **Idealista** y **Fotocasa** bloquean con *DataDome* l
 ## ⚙️ Añadir más inmobiliarias locales de la Vega Baja
 
 Puedes añadir cualquier web de inmobiliaria local en el archivo **`config.json`** dentro de `local_agencies_urls`. El parser universal (`src/scrapers/local_agencies_scraper.py`) detecta automáticamente fichas de Inmovilla, Witei, WordPress Real Estate y portales bancarios (Solvia, Aliseda, Haya).
+
+---
+
+## ⚖️ Subastas públicas del BOE (nuevo)
+
+Cada mañana el agente revisa también el **Portal de Subastas del BOE** (`subastas.boe.es`): subastas judiciales, de la Agencia Tributaria, de la Seguridad Social y notariales de **inmuebles en la provincia de Alicante** que estén celebrándose o a punto de abrir.
+
+- Abre la ficha de cada subasta (y de cada lote) y se queda solo con los bienes cuya **localidad o dirección** coincide con las zonas de `config.json` (`zones`), descartando la costa (`excluded_costa_keywords`) y el código postal 03189.
+- Calcula superficie (también cuando viene escrita en letra), valor de subasta, tasación, puja mínima, depósito, fecha de cierre y una **comparación orientativa con el €/m² de referencia de la zona**.
+- Marca los **riesgos**: solo se subasta una parte (50%, nuda propiedad...), ocupada, cargas previas, vivienda habitual del deudor, no visitable, ya tiene pujas.
+- Enlaza los documentos públicos de la subasta (por ejemplo, la certificación de dominio y cargas cuando el juzgado la publica).
+- Se ven en la pestaña **⚖️ Subastas BOE** del panel y en una sección propia del correo. No se mezclan con los anuncios de venta.
+
+Configuración en `config.json` → `boe_subastas` (provincias, estados, códigos postales excluidos, localidades extra). Para añadir Murcia, pon `"provincias": ["03", "30"]` y añade sus localidades en `extra_localidades`.
+
+> Importante: la información es orientativa. Antes de pujar, pide nota simple y certificación de cargas al Registro y revisa el estado de ocupación. Para pujar hay que registrarse en el portal y consignar el depósito (normalmente el 5%).

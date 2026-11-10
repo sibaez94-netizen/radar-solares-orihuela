@@ -11,6 +11,7 @@ from typing import Any, Dict, List, Optional
 
 from src.analyzer import PropertyAnalyzer, load_config
 from src.notifier import EmailNotifier
+from src.scrapers.boe_subastas import BoeSubastasScraper
 from src.scrapers.imap_alerts import ImapAlertsReader
 from src.scrapers.local_agencies_scraper import LocalAgenciesAndBanksScraper, get_initial_market_baseline
 from src.scrapers.portals_scraper import PortalsScraper
@@ -126,27 +127,51 @@ def run_agent(skip_network: bool = False) -> Dict[str, Any]:
         # 2. Leer alertas de correo IMAP (Idealista, Fotocasa, Milanuncios, Pisos.com...)
         imap_reader = ImapAlertsReader()
         if imap_reader.is_configured():
-            print("[1/3] Leyendo alertas de correo IMAP (Idealista / Fotocasa / Milanuncios)...")
+            print("[1/4] Leyendo alertas de correo IMAP (Idealista / Fotocasa / Milanuncios)...")
             imap_items = imap_reader.fetch_alerts()
             sources_summary["imap_alerts"] = len(imap_items)
             raw_collected.extend(imap_items)
         else:
-            print("[1/3] IMAP no configurado en variables de entorno (saltando lectura de buzón).")
+            print("[1/4] IMAP no configurado en variables de entorno (saltando lectura de buzón).")
             sources_summary["imap_alerts"] = 0
 
         # 3. Escanear portales nacionales e índices web
-        print("[2/3] Escaneando portales inmobiliarios y buscadores indexados...")
+        print("[2/4] Escaneando portales inmobiliarios y buscadores indexados...")
         portals = PortalsScraper()
         portal_items = portals.run_all()
         sources_summary["portals"] = len(portal_items)
         raw_collected.extend(portal_items)
 
         # 4. Escanear inmobiliarias locales de la Vega Baja y bancos
-        print("[3/3] Escaneando inmobiliarias locales de la Vega Baja y activos bancarios...")
+        print("[3/4] Escaneando inmobiliarias locales de la Vega Baja y activos bancarios...")
         local_scraper = LocalAgenciesAndBanksScraper(config.get("local_agencies_urls", []))
         local_items = local_scraper.run_all()
         sources_summary["local_and_banks"] = len(local_items)
         raw_collected.extend(local_items)
+
+    # 4b. Subastas públicas del BOE (tabla propia, no se mezclan con los anuncios)
+    auction_items: List[Dict[str, Any]] = []
+    auction_diff: Dict[str, Any] = {"new_auctions": [], "errors": []}
+    boe_cfg = config.get("boe_subastas", {}) or {}
+    if not skip_network and boe_cfg.get("enabled", True):
+        print("[4/4] Revisando subastas públicas del BOE (judiciales, Hacienda, Seg. Social, notariales)...")
+        boe = BoeSubastasScraper(config, analyzer, cache=storage.load_boe_cache())
+        try:
+            auction_items = boe.run()
+            if boe.listing_ok and boe.summary_ids:
+                storage.save_boe_cache(boe.cache, keep_ids=boe.summary_ids)
+                auction_diff.update(storage.upsert_auctions(auction_items, fetch_ok=True))
+            else:
+                storage.save_boe_cache(boe.cache)
+                auction_diff["errors"].append("No se pudo leer el listado del portal de subastas del BOE hoy.")
+            print(
+                f"      Subastas de inmuebles en la provincia: {boe.stats['subastas_provincia']} | "
+                f"lotes revisados: {boe.stats['lotes_revisados']} | en tus zonas: {len(auction_items)}"
+            )
+        except Exception as exc:  # noqa: BLE001
+            print(f"[WARN] Subastas BOE no disponibles hoy: {exc}")
+            auction_diff["errors"].append(f"Error leyendo subastas del BOE: {exc}")
+        sources_summary["boe_subastas"] = len(auction_items)
 
     # 5. Analizar, clasificar y filtrar cada anuncio
     analyzed_list: List[Dict[str, Any]] = []
@@ -171,12 +196,20 @@ def run_agent(skip_network: bool = False) -> Dict[str, Any]:
     # 7. Generar vista previa del email diario y enviarlo si procede
     notifier = EmailNotifier(config)
     preview_email_path = os.path.join(base_dir, "docs", "last_email_preview.html")
-    notifier.send_daily_report(stats, listings, diff, preview_path=preview_email_path)
+    notifier.send_daily_report(
+        stats,
+        listings,
+        diff,
+        preview_path=preview_email_path,
+        auctions=payload.get("auctions", []),
+        auction_diff=auction_diff,
+    )
 
     print(
         f"[OK] Base de datos actualizada: {stats['total_listings']} inmuebles totales | "
         f"{stats['highlighted_listings']} destacados (>=180 m²) | "
-        f"{stats['chollos_count']} chollos | {stats['price_drops_count']} con bajada de precio."
+        f"{stats['chollos_count']} chollos | {stats['price_drops_count']} con bajada de precio | "
+        f"{stats.get('auctions_count', 0)} subastas BOE activas en tus zonas."
     )
     return payload
 

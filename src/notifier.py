@@ -32,7 +32,10 @@ class EmailNotifier:
         stats: Dict[str, Any],
         all_listings: List[Dict[str, Any]],
         run_diff: Dict[str, Any],
+        auctions: Optional[List[Dict[str, Any]]] = None,
+        auction_diff: Optional[Dict[str, Any]] = None,
     ) -> str:
+        auctions_html = self.render_auctions_html(auctions or [], auction_diff or {})
         today_str = datetime.date.today().strftime("%d/%m/%Y")
         highlighted = [x for x in all_listings if x.get("is_highlighted")]
         chollos = sorted(
@@ -160,6 +163,8 @@ class EmailNotifier:
       <h2 style="font-size:17px;border-bottom:2px solid #0f766e;padding-bottom:6px;margin-top:22px;">🔥 Top Chollos y Oportunidades (Parcela ≥ 180 m²)</h2>
       {render_rows(chollos, show_drop=True)}
 
+      {auctions_html}
+
       <h2 style="font-size:17px;border-bottom:2px solid #d97706;padding-bottom:6px;margin-top:24px;">📉 Bajadas de Precio Registradas</h2>
       {render_rows(drops, show_drop=True)}
 
@@ -186,14 +191,72 @@ class EmailNotifier:
 </body>
 </html>"""
 
+    @staticmethod
+    def render_auctions_html(auctions: List[Dict[str, Any]], auction_diff: Dict[str, Any]) -> str:
+        import html as _h
+
+        def eur(v: Optional[float]) -> str:
+            return "—" if not v else f"{int(round(v)):,}".replace(",", ".") + " €"
+
+        def fecha(iso: Optional[str]) -> str:
+            if not iso:
+                return "—"
+            try:
+                d = datetime.datetime.fromisoformat(iso)
+                dias = (d.date() - datetime.date.today()).days
+                extra = " (hoy)" if dias == 0 else (f" (en {dias} días)" if dias > 0 else "")
+                return d.strftime("%d/%m/%Y %H:%M") + extra
+            except Exception:
+                return iso
+
+        errors = "".join(
+            f'<p style="background:#fffbeb;border:1px solid #fcd34d;color:#92400e;padding:8px 12px;border-radius:8px;font-size:13px;">⚠️ {_h.escape(e)}</p>'
+            for e in (auction_diff.get("errors") or [])
+        )
+        targets = [a for a in auctions if a.get("is_target_type")]
+        others = [a for a in auctions if not a.get("is_target_type")]
+        new_ids = {a.get("id") for a in (auction_diff.get("new_auctions") or [])}
+        rows = []
+        for a in targets[:10]:
+            m2 = a.get("superficie_efectiva_m2")
+            desc_pct = a.get("descuento_vs_mercado_pct")
+            riesgos = "".join(f"<li>{_h.escape(r)}</li>" for r in (a.get("riesgos") or []))
+            pros = " · ".join(_h.escape(r) for r in (a.get("score_reasons") or []))
+            badge_new = '<span style="background:#dcfce7;color:#166534;padding:2px 7px;border-radius:999px;font-size:11px;font-weight:700;margin-left:6px;">NUEVA</span>' if a.get("id") in new_ids else ""
+            rows.append(f'''
+            <div style="border:1px solid #cbd5e1;border-radius:10px;padding:12px 14px;margin-bottom:10px;background:#ffffff;">
+              <div style="font-size:11px;color:#64748b;text-transform:uppercase;font-weight:700;">{_h.escape(a.get("asset_label",""))} · {_h.escape(a.get("localidad",""))} · {_h.escape(a.get("tipo_subasta",""))}{badge_new}</div>
+              <div style="font-size:15px;font-weight:800;margin-top:3px;"><a href="{_h.escape(a.get("url","#"))}" style="color:#0f766e;text-decoration:none;">{_h.escape(a.get("id_subasta",""))}{(" · Lote " + str(a["lote"])) if a.get("lote") else ""} · {_h.escape(a.get("direccion",""))}</a></div>
+              <div style="font-size:13px;margin-top:6px;color:#0f172a;">
+                <b>Valor subasta:</b> {eur(a.get("valor_subasta_eur"))} · <b>Tasación:</b> {eur(a.get("tasacion_eur"))} · <b>Puja mínima:</b> {_h.escape(a.get("puja_minima_texto") or "—")} · <b>Depósito:</b> {eur(a.get("deposito_eur"))}<br>
+                <b>Superficie:</b> {f"{m2:.0f} m²" if m2 else "no consta"} · <b>Frente al €/m² de la zona:</b> {("—" if desc_pct is None else (f"{desc_pct:.0f}% por debajo" if desc_pct >= 0 else f"{-desc_pct:.0f}% por encima"))} · <b>Cierra:</b> {fecha(a.get("fecha_fin"))} · <b>Pujas:</b> {_h.escape((a.get("pujas") or {}).get("texto",""))}
+              </div>
+              {f'<div style="font-size:12.5px;color:#166534;margin-top:5px;">✅ {pros}</div>' if pros else ""}
+              {"".join(f'<a href="{_h.escape(doc["url"])}" style="font-size:12px;color:#7c3aed;margin-right:10px;">📄 {_h.escape(doc["titulo"])}</a>' for doc in (a.get("documentos") or []))}
+              {f'<ul style="font-size:12.5px;color:#991b1b;margin:6px 0 0 18px;padding:0;">{riesgos}</ul>' if riesgos else ""}
+            </div>''')
+        body = "".join(rows) or '<p style="color:#64748b;font-size:14px;">Hoy no hay subastas de solares o casas en tus zonas.</p>'
+        otros_txt = (
+            f'<p style="font-size:12.5px;color:#64748b;">Además hay {len(others)} subasta(s) de pisos, locales o fincas rústicas en tus zonas (en el panel, pestaña Subastas BOE).</p>'
+            if others else ""
+        )
+        return f'''
+      <h2 style="font-size:17px;border-bottom:2px solid #7c3aed;padding-bottom:6px;margin-top:24px;">⚖️ Subastas públicas del BOE en tus zonas</h2>
+      {errors}
+      <p style="font-size:12.5px;color:#475569;margin:0 0 10px;">El "descuento" compara el valor de subasta con el €/m² de referencia de la zona; es orientativo. Antes de pujar: nota simple y certificación de cargas del Registro, catastro y visita exterior. Para pujar hay que consignar el depósito (normalmente el 5%).</p>
+      {body}
+      {otros_txt}'''
+
     def send_daily_report(
         self,
         stats: Dict[str, Any],
         all_listings: List[Dict[str, Any]],
         run_diff: Dict[str, Any],
         preview_path: Optional[str] = None,
+        auctions: Optional[List[Dict[str, Any]]] = None,
+        auction_diff: Optional[Dict[str, Any]] = None,
     ) -> bool:
-        html_body = self.build_daily_html(stats, all_listings, run_diff)
+        html_body = self.build_daily_html(stats, all_listings, run_diff, auctions=auctions, auction_diff=auction_diff)
 
         # Guardar siempre una vista previa HTML para poder verla desde el navegador
         if preview_path:
@@ -204,7 +267,10 @@ class EmailNotifier:
         today_str = datetime.date.today().strftime("%d/%m/%Y")
         chollos_n = stats.get("chollos_count", 0)
         drops_n = stats.get("price_drops_count", 0)
+        n_new_auctions = len([a for a in ((auction_diff or {}).get("new_auctions") or []) if a.get("is_target_type")])
         subject = f"[Radar Solares Orihuela] {today_str} · {chollos_n} chollos y {drops_n} bajadas de precio"
+        if n_new_auctions:
+            subject += f" · {n_new_auctions} subasta(s) BOE nueva(s)"
 
         # 1. Envío por Resend API si está configurada
         if self.resend_api_key and self.to_email:

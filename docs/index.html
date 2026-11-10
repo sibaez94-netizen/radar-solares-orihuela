@@ -406,6 +406,23 @@
     table.z-tbl th { color: var(--muted); font-size: 11px; text-transform: uppercase; }
 
     /* Excel Spreadsheet Section */
+    .auctions-sec { display: none; margin-bottom: 20px; }
+    .auctions-sec.active { display: block; }
+    .auc-note { background: var(--bg-card); border: 1px solid var(--line); border-left: 4px solid #7c3aed; border-radius: 12px; padding: 12px 16px; font-size: 13px; line-height: 1.5; margin-bottom: 14px; }
+    .auc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 14px; }
+    .auc-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 8px; }
+    .auc-card.secondary { opacity: .78; }
+    .auc-head { display: flex; justify-content: space-between; gap: 8px; align-items: flex-start; }
+    .auc-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--muted); }
+    .auc-title { font-size: 15px; font-weight: 800; color: var(--txt); text-decoration: none; }
+    .auc-title:hover { text-decoration: underline; }
+    .auc-score { font-weight: 800; font-size: 13px; padding: 3px 9px; border-radius: 999px; background: #ede9fe; color: #5b21b6; white-space: nowrap; }
+    .auc-kv { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px; font-size: 12.5px; }
+    .auc-kv b { font-variant-numeric: tabular-nums; }
+    .auc-pros { font-size: 12.5px; color: #166534; }
+    .auc-risks { font-size: 12.5px; color: #b91c1c; margin: 0 0 0 16px; padding: 0; }
+    .auc-desc { font-size: 12px; color: var(--muted); max-height: 64px; overflow: hidden; }
+    .auc-new { background: #dcfce7; color: #166534; font-size: 10.5px; font-weight: 800; padding: 2px 7px; border-radius: 999px; margin-left: 6px; }
     .excel-sec {
       display: none;
       background: var(--bg-card);
@@ -564,6 +581,9 @@
       <button class="tab-btn" data-tab="favs">
         ⭐ Favoritos y Notas <span class="tab-count" id="tc-favs">0</span>
       </button>
+      <button class="tab-btn" data-tab="subastas">
+        ⚖️ Subastas BOE <span class="tab-count" id="tc-subastas">0</span>
+      </button>
     </nav>
 
     <!-- Quick Zone Pills -->
@@ -647,6 +667,18 @@
     </section>
 
     <!-- Excel Spreadsheet Section -->
+    <section class="auctions-sec" id="auctions-sec">
+      <div class="auc-note">
+        <b>⚖️ Subastas públicas del Portal del BOE</b> (judiciales, Agencia Tributaria, Seguridad Social y notariales) con bienes en tus zonas.
+        El <b>descuento</b> compara el valor de subasta con el €/m² de referencia de la zona y es orientativo.
+        Antes de pujar revisa siempre la <b>nota simple y la certificación de cargas</b> del Registro, el catastro y el estado de ocupación.
+        Para pujar hay que registrarse en el portal y consignar el depósito (normalmente el 5%).
+      </div>
+      <div class="auc-grid" id="auc-grid"></div>
+      <h4 style="margin:18px 0 8px;font-size:14px;color:var(--muted);" id="auc-others-title"></h4>
+      <div class="auc-grid" id="auc-grid-others"></div>
+    </section>
+
     <section class="excel-sec" id="excel-sec">
       <div class="excel-toolbar">
         <div>
@@ -833,6 +865,7 @@
       favs: JSON.parse(localStorage.getItem('solares_favs') || '{}'),
       notes: JSON.parse(localStorage.getItem('solares_notes') || '{}'),
       manualItems: JSON.parse(localStorage.getItem('solares_manual') || '[]'),
+      auctions: [],
     };
 
     let mapInstance = null;
@@ -848,6 +881,7 @@
       if (!payload) payload = {stats: {}, listings: []};
       STATE.stats = payload.stats || {};
       STATE.listings = [...STATE.manualItems, ...(payload.listings || [])];
+      STATE.auctions = payload.auctions || [];
       updateKPIs();
       renderZoneStatsTable();
       renderAll();
@@ -872,6 +906,7 @@
       $('tc-drops').textContent = drops.length;
       $('tc-all').textContent = all.length;
       $('tc-favs').textContent = favCount;
+      $('tc-subastas').textContent = STATE.auctions.filter(a => a.is_target_type).length;
 
       const liveCount = all.filter(x => !String(x.id).startsWith('ori-') && !String(x.id).startsWith('ben-') && !String(x.id).startsWith('gra-')).length;
       $('source-status-txt').textContent = `${liveCount} inmuebles reales activos (filtrados entre 180 y 2.000 m², sin rústicos ni Orihuela Costa).`;
@@ -1031,7 +1066,70 @@
       a.click();
     }
 
+    const escH = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    function fmtFecha(iso) {
+      if (!iso) return '—';
+      const d = new Date(iso);
+      if (isNaN(d)) return iso;
+      const days = Math.round((new Date(d.toDateString()) - new Date(new Date().toDateString())) / 86400000);
+      const txt = d.toLocaleString('es-ES', {day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit'});
+      return txt + (days === 0 ? ' (hoy)' : days > 0 ? ` (en ${days} días)` : '');
+    }
+    function auctionCard(a, secondary) {
+      const zoneOk = STATE.zone === 'ALL' || a.zone_id === STATE.zone;
+      const q = (STATE.search || '').toLowerCase();
+      const txt = `${a.localidad} ${a.direccion} ${a.descripcion} ${a.id_subasta}`.toLowerCase();
+      if (!zoneOk || (q && !txt.includes(q))) return '';
+      const m2 = a.superficie_efectiva_m2;
+      const d = a.descuento_vs_mercado_pct;
+      const risks = (a.riesgos || []).map(r => `<li>${escH(r)}</li>`).join('');
+      const pros = (a.score_reasons || []).map(escH).join(' · ');
+      const isNew = a.first_seen_at && (Date.now() - new Date(a.first_seen_at)) < 36 * 3600 * 1000;
+      return `<article class="auc-card ${secondary ? 'secondary' : ''}">
+        <div class="auc-head">
+          <div>
+            <div class="auc-tag">${escH(a.asset_label)} · ${escH(a.localidad)} · ${escH(a.estado)}${isNew ? '<span class="auc-new">NUEVA</span>' : ''}</div>
+            <a class="auc-title" href="${escH(a.url)}" target="_blank" rel="noopener">${escH(a.id_subasta)}${a.lote ? ' · Lote ' + a.lote : ''}</a>
+            <div style="font-size:12.5px;color:var(--muted);">${escH(a.direccion)} · ${escH(a.tipo_subasta)}</div>
+          </div>
+          <span class="auc-score">${a.score ?? '–'}/100</span>
+        </div>
+        <div class="auc-kv">
+          <span>Valor subasta: <b>${fmtEur(a.valor_subasta_eur)}</b></span>
+          <span>Tasación: <b>${a.tasacion_eur ? fmtEur(a.tasacion_eur) : '—'}</b></span>
+          <span>Puja mínima: <b>${escH(a.puja_minima_texto || '—')}</b></span>
+          <span>Depósito: <b>${a.deposito_eur ? fmtEur(a.deposito_eur) : '—'}</b></span>
+          <span>Superficie: <b>${m2 ? fmtNum(m2) + ' m²' : 'no consta'}</b></span>
+          <span>Frente a la zona: <b>${d == null ? '—' : fmtNum(Math.abs(d)) + (d >= 0 ? '% por debajo' : '% por encima')}</b></span>
+          <span>Cierra: <b>${fmtFecha(a.fecha_fin)}</b></span>
+          <span>Pujas: <b>${escH((a.pujas || {}).texto || '—')}</b></span>
+        </div>
+        ${pros ? `<div class="auc-pros">✅ ${pros}</div>` : ''}
+        ${risks ? `<ul class="auc-risks">${risks}</ul>` : ''}
+        ${(a.documentos || []).length ? `<div style="font-size:12px;">${a.documentos.map(dc => `<a href="${escH(dc.url)}" target="_blank" rel="noopener" style="color:#7c3aed;margin-right:10px;">📄 ${escH(dc.titulo)}</a>`).join('')}</div>` : ''}
+        <div class="auc-desc">${escH(a.descripcion)}</div>
+      </article>`;
+    }
+    function renderAuctions() {
+      const targets = STATE.auctions.filter(a => a.is_target_type);
+      const others = STATE.auctions.filter(a => !a.is_target_type);
+      const html = targets.map(a => auctionCard(a, false)).join('');
+      $('auc-grid').innerHTML = html || `<div style="grid-column:1/-1;text-align:center;padding:36px;color:var(--muted);background:var(--bg-card);border-radius:14px;border:1px solid var(--line-soft);">No hay subastas de solares o casas en estas zonas ahora mismo.</div>`;
+      const htmlO = others.map(a => auctionCard(a, true)).join('');
+      $('auc-others-title').textContent = htmlO ? `Otras subastas en tus zonas (pisos, locales, fincas rústicas): ${others.length}` : '';
+      $('auc-grid-others').innerHTML = htmlO;
+    }
+
     function renderAll() {
+      const showAuctions = STATE.tab === 'subastas';
+      $('auctions-sec').classList.toggle('active', showAuctions);
+      if (showAuctions) {
+        $('analytics-sec').classList.remove('active');
+        $('excel-sec').classList.remove('active');
+        $('listings-grid').style.display = 'none';
+        renderAuctions();
+        return;
+      }
       const items = getFilteredListings();
       const showAnalytics = STATE.tab === 'map';
       const showExcel = STATE.tab === 'excel';

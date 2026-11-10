@@ -101,6 +101,24 @@ class StorageManager:
                 conn.execute("ALTER TABLE listings ADD COLUMN rooms INTEGER")
             except Exception:
                 pass
+            # Subastas del BOE: tabla propia (no se mezclan con los anuncios de venta)
+            conn.executescript(
+                """
+                CREATE TABLE IF NOT EXISTS auctions (
+                    id TEXT PRIMARY KEY,
+                    id_subasta TEXT,
+                    data_json TEXT NOT NULL,
+                    first_seen_at TEXT,
+                    last_seen_at TEXT,
+                    status TEXT DEFAULT 'active'
+                );
+                CREATE TABLE IF NOT EXISTS boe_cache (
+                    id_subasta TEXT PRIMARY KEY,
+                    data_json TEXT NOT NULL,
+                    fetched_at TEXT
+                );
+                """
+            )
 
     def upsert_listings(self, analyzed_items: List[Dict[str, Any]], now_iso: Optional[str] = None) -> Dict[str, Any]:
         """
@@ -291,6 +309,74 @@ class StorageManager:
             "ran_at": now_str,
         }
 
+    # ------------------------------------------------------------ Subastas BOE
+    def load_boe_cache(self) -> Dict[str, Any]:
+        with self._connect() as conn:
+            rows = conn.execute("SELECT id_subasta, data_json FROM boe_cache").fetchall()
+        out: Dict[str, Any] = {}
+        for r in rows:
+            try:
+                out[r["id_subasta"]] = json.loads(r["data_json"])
+            except Exception:
+                pass
+        return out
+
+    def save_boe_cache(self, cache: Dict[str, Any], keep_ids: Optional[List[str]] = None) -> None:
+        with self._connect() as conn:
+            for k, v in cache.items():
+                conn.execute(
+                    "INSERT OR REPLACE INTO boe_cache (id_subasta, data_json, fetched_at) VALUES (?, ?, ?)",
+                    (k, json.dumps(v, ensure_ascii=False), v.get("fetched_at")),
+                )
+            if keep_ids is not None:
+                # Borra de la caché las subastas que ya no salen en el portal (cerradas, suspendidas...)
+                keep = set(keep_ids)
+                for (k,) in conn.execute("SELECT id_subasta FROM boe_cache").fetchall():
+                    if k not in keep:
+                        conn.execute("DELETE FROM boe_cache WHERE id_subasta = ?", (k,))
+
+    def upsert_auctions(self, items: List[Dict[str, Any]], fetch_ok: bool = True) -> Dict[str, Any]:
+        """Guarda las subastas en zona. Si la lectura del portal fue completa, marca como cerradas las que ya no aparecen."""
+        now_str = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        new_items: List[Dict[str, Any]] = []
+        seen = set()
+        with self._connect() as conn:
+            for it in items:
+                seen.add(it["id"])
+                row = conn.execute("SELECT first_seen_at FROM auctions WHERE id = ?", (it["id"],)).fetchone()
+                first_seen = row["first_seen_at"] if row else now_str
+                it["first_seen_at"] = first_seen
+                it["is_new"] = row is None
+                if row is None:
+                    new_items.append(it)
+                conn.execute(
+                    """
+                    INSERT INTO auctions (id, id_subasta, data_json, first_seen_at, last_seen_at, status)
+                    VALUES (?, ?, ?, ?, ?, 'active')
+                    ON CONFLICT(id) DO UPDATE SET data_json=excluded.data_json, last_seen_at=excluded.last_seen_at, status='active'
+                    """,
+                    (it["id"], it.get("id_subasta"), json.dumps(it, ensure_ascii=False), first_seen, now_str),
+                )
+            if fetch_ok:
+                for r in conn.execute("SELECT id FROM auctions WHERE status = 'active'").fetchall():
+                    if r["id"] not in seen:
+                        conn.execute("UPDATE auctions SET status = 'closed' WHERE id = ?", (r["id"],))
+        return {"new_auctions": new_items}
+
+    def get_active_auctions(self) -> List[Dict[str, Any]]:
+        with self._connect() as conn:
+            rows = conn.execute("SELECT data_json, first_seen_at FROM auctions WHERE status = 'active'").fetchall()
+        out = []
+        for r in rows:
+            try:
+                d = json.loads(r["data_json"])
+                d["first_seen_at"] = r["first_seen_at"]
+                out.append(d)
+            except Exception:
+                pass
+        out.sort(key=lambda x: (not x.get("is_target_type"), -(x.get("score") or 0), x.get("fecha_fin") or ""))
+        return out
+
     def log_run(self, total_scraped: int, new_count: int, drops_count: int, inc_count: int, sources: Dict[str, int]) -> None:
         now_str = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
         with self._connect() as conn:
@@ -410,9 +496,13 @@ class StorageManager:
         """
         listings = self.get_all_listings()
         stats = self.compute_stats(listings)
+        auctions = self.get_active_auctions()
+        stats["auctions_count"] = len(auctions)
+        stats["auctions_target_count"] = sum(1 for a in auctions if a.get("is_target_type"))
         payload = {
             "stats": stats,
             "listings": listings,
+            "auctions": auctions,
         }
 
         json_path = os.path.join(self.docs_data_dir, "listings.json")

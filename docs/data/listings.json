@@ -1,6 +1,6 @@
 {
   "stats": {
-    "updated_at": "2026-11-10T14:58:39Z",
+    "updated_at": "2026-11-10T15:49:22Z",
     "total_listings": 103,
     "highlighted_listings": 42,
     "secondary_listings": 61,
@@ -112,10 +112,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² muy bajo (29 €/m², un 92% bajo media de zona)",
@@ -163,10 +163,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² muy bajo (76 €/m², un 78% bajo media de zona)",
@@ -214,10 +214,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 4,
+      "times_seen": 5,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² muy bajo (110 €/m², un 52% bajo media de zona)",
@@ -266,10 +266,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² muy bajo (89 €/m², un 53% bajo media de zona)",
@@ -317,10 +317,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 4,
+      "times_seen": 5,
       "rooms": 3,
       "chollo_reasons": [
         "Precio/m² muy bajo (232 €/m², un 45% bajo media de zona)",
@@ -368,10 +368,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² muy bajo (126 €/m², un 34% bajo media de zona)",
@@ -420,10 +420,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 5,
       "chollo_reasons": [
         "Precio/m² muy bajo (314 €/m², un 40% bajo media de zona)",
@@ -471,10 +471,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² muy bajo (214 €/m², un 37% bajo media de zona)",
@@ -522,10 +522,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 3,
+      "times_seen": 4,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² muy bajo (147 €/m², un 36% bajo media de zona)",
@@ -573,10 +573,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² muy bajo (147 €/m², un 36% bajo media de zona)",
@@ -624,10 +624,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² muy bajo (147 €/m², un 30% bajo media de zona)",
@@ -675,10 +675,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
       "chollo_reasons": [
         "Buen ratio (163 €/m², 22% bajo referencia en Raiguero de Bonanza)",
@@ -727,10 +727,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": null,
       "chollo_reasons": [
         "Buen ratio (267 €/m², 22% bajo referencia en Orihuela (Casco y Centro))",
@@ -778,10 +778,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 4,
       "chollo_reasons": [
         "Buen ratio (330 €/m², 21% bajo referencia en Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...))",
@@ -829,10 +829,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 4,
+      "times_seen": 5,
       "rooms": 3,
       "chollo_reasons": [
         "Buen ratio (421 €/m², 19% bajo referencia en Orihuela (Casco y Centro))"
@@ -879,10 +879,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": null,
       "chollo_reasons": [
         "Gran amplitud de parcela (405 m²)"
@@ -929,10 +929,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": null,
       "chollo_reasons": [
         "Gran amplitud de parcela (405 m²)"
@@ -979,10 +979,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 3,
+      "times_seen": 4,
       "rooms": null,
       "chollo_reasons": [
         "Gran amplitud de parcela (411 m²)"
@@ -1029,10 +1029,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": null,
       "chollo_reasons": [],
       "price_history": [
@@ -1077,10 +1077,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 4,
+      "times_seen": 5,
       "rooms": 8,
       "chollo_reasons": [
         "Gran amplitud de parcela (1200 m²)"
@@ -1127,10 +1127,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 4,
+      "times_seen": 5,
       "rooms": null,
       "chollo_reasons": [
         "Vendedor indica urgencia / rebaja"
@@ -1177,10 +1177,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 3,
       "chollo_reasons": [],
       "price_history": [
@@ -1225,10 +1225,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": 5,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (539 €/m²)",
@@ -1276,10 +1276,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (250 €/m²)",
@@ -1327,10 +1327,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (254 €/m²)",
@@ -1378,10 +1378,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 4,
+      "times_seen": 5,
       "rooms": 3,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (606 €/m²)",
@@ -1429,10 +1429,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 4,
+      "times_seen": 5,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (284 €/m²)",
@@ -1480,10 +1480,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (318 €/m²)",
@@ -1532,10 +1532,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (322 €/m²)"
@@ -1582,10 +1582,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 4,
+      "times_seen": 5,
       "rooms": 3,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (760 €/m²)",
@@ -1633,10 +1633,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (354 €/m²)",
@@ -1684,10 +1684,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (360 €/m²)",
@@ -1735,10 +1735,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (400 €/m²)",
@@ -1837,10 +1837,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (447 €/m²)",
@@ -1889,10 +1889,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-10T14:58:39Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
-      "status": "new",
-      "times_seen": 1,
+      "status": "active",
+      "times_seen": 2,
       "rooms": 3,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (803 €/m²)"
@@ -1939,10 +1939,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": 3,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (816 €/m²)",
@@ -1990,10 +1990,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 4,
+      "times_seen": 5,
       "rooms": 4,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1076 €/m²)",
@@ -2041,10 +2041,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": 3,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1320 €/m²)"
@@ -2091,10 +2091,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": 3,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1321 €/m²)"
@@ -2141,10 +2141,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1576 €/m²)",
@@ -2192,10 +2192,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 4,
+      "times_seen": 5,
       "rooms": 3,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1878 €/m²)",
@@ -2243,10 +2243,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 1,
       "chollo_reasons": [
         "Precio/m² muy bajo (127 €/m², un 76% bajo media de zona)",
@@ -2295,10 +2295,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² muy bajo (186 €/m², un 45% bajo media de zona)",
@@ -2313,48 +2313,6 @@
           "change_pct": 0.0
         }
       ]
-    },
-    {
-      "id": "8f7c5f59d5b195",
-      "portal": "Idealista",
-      "title": "Casa o chalet independiente en venta en Montepinar-La Aparecida ...",
-      "url": "https://www.idealista.com/inmueble/108117424/",
-      "zone_id": "montepinar",
-      "zone_name": "Montepinar",
-      "tier": 1,
-      "location_raw": "Montepinar",
-      "lat": 38.04585,
-      "lon": -1.03157,
-      "asset_type": "casa_planta_baja",
-      "asset_label": "Casa / Vivienda con Parcela",
-      "is_target_type": true,
-      "is_orihuela_costa": false,
-      "initial_price_eur": null,
-      "price_eur": null,
-      "min_price_eur": null,
-      "max_price_eur": null,
-      "price_drop_eur": 0.0,
-      "price_drop_pct": 0.0,
-      "surface_plot_m2": null,
-      "surface_built_m2": null,
-      "effective_plot_m2": 0.0,
-      "eur_per_m2": null,
-      "discount_vs_ref_pct": null,
-      "is_highlighted": false,
-      "chollo_score": 35,
-      "description": "Casa o chalet independiente en venta en Montepinar-La Aparecida ... www.idealista.com/inmueble/108117424/",
-      "image_url": "",
-      "phone": "",
-      "first_seen_at": "2026-11-10T14:58:39Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
-      "last_price_change_at": null,
-      "status": "new",
-      "times_seen": 1,
-      "rooms": null,
-      "chollo_reasons": [
-        "Falta precio o m² para valorar €/m²"
-      ],
-      "price_history": []
     },
     {
       "id": "0dcf15fadbd052",
@@ -2387,8 +2345,8 @@
       "description": "Casa o chalet independiente en venta en Montepinar-La Aparecida ... www.idealista.com/inmueble/109157811/",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T14:58:39Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "first_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -2399,16 +2357,16 @@
       "price_history": []
     },
     {
-      "id": "201683648ec254",
+      "id": "179d9ad200283c",
       "portal": "Idealista",
       "title": "Casa o chalet en venta en Montepinar-La Aparecida-Raiguero, Orihuela ...",
-      "url": "https://www.idealista.com/inmueble/112555279/",
+      "url": "https://www.idealista.com/inmueble/107757298/",
       "zone_id": "montepinar",
       "zone_name": "Montepinar",
       "tier": 1,
       "location_raw": "Montepinar",
-      "lat": 38.04578,
-      "lon": -1.03165,
+      "lat": 38.04775,
+      "lon": -1.03042,
       "asset_type": "casa_planta_baja",
       "asset_label": "Casa / Vivienda con Parcela",
       "is_target_type": true,
@@ -2426,11 +2384,11 @@
       "discount_vs_ref_pct": null,
       "is_highlighted": false,
       "chollo_score": 35,
-      "description": "Casa o chalet en venta en Montepinar-La Aparecida-Raiguero, Orihuela ... www.idealista.com/inmueble/112555279/",
+      "description": "Casa o chalet en venta en Montepinar-La Aparecida-Raiguero, Orihuela ... www.idealista.com/inmueble/107757298/",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T14:58:39Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "first_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -2471,8 +2429,8 @@
       "description": "Casa o chalet independiente en venta en Montepinar-La Aparecida ... www.idealista.com/inmueble/107568321/",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T14:58:39Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "first_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -2483,16 +2441,16 @@
       "price_history": []
     },
     {
-      "id": "9a088eb8098bc7",
+      "id": "201683648ec254",
       "portal": "Idealista",
       "title": "Casa o chalet en venta en Montepinar-La Aparecida-Raiguero, Orihuela ...",
-      "url": "https://www.idealista.com/inmueble/112015286/",
+      "url": "https://www.idealista.com/inmueble/112555279/",
       "zone_id": "montepinar",
       "zone_name": "Montepinar",
       "tier": 1,
       "location_raw": "Montepinar",
-      "lat": 38.04576,
-      "lon": -1.02734,
+      "lat": 38.04578,
+      "lon": -1.03165,
       "asset_type": "casa_planta_baja",
       "asset_label": "Casa / Vivienda con Parcela",
       "is_target_type": true,
@@ -2510,53 +2468,11 @@
       "discount_vs_ref_pct": null,
       "is_highlighted": false,
       "chollo_score": 35,
-      "description": "Casa o chalet en venta en Montepinar-La Aparecida-Raiguero, Orihuela ... www.idealista.com/inmueble/112015286/",
+      "description": "Casa o chalet en venta en Montepinar-La Aparecida-Raiguero, Orihuela ... www.idealista.com/inmueble/112555279/",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T14:58:39Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
-      "last_price_change_at": null,
-      "status": "new",
-      "times_seen": 1,
-      "rooms": null,
-      "chollo_reasons": [
-        "Falta precio o m² para valorar €/m²"
-      ],
-      "price_history": []
-    },
-    {
-      "id": "23f34690af359f",
-      "portal": "Idealista",
-      "title": "Casa o chalet en venta en Montepinar-La Aparecida-Raiguero, Orihuela ...",
-      "url": "https://www.idealista.com/inmueble/112701432/",
-      "zone_id": "montepinar",
-      "zone_name": "Montepinar",
-      "tier": 1,
-      "location_raw": "Montepinar",
-      "lat": 38.04745,
-      "lon": -1.03231,
-      "asset_type": "casa_planta_baja",
-      "asset_label": "Casa / Vivienda con Parcela",
-      "is_target_type": true,
-      "is_orihuela_costa": false,
-      "initial_price_eur": null,
-      "price_eur": null,
-      "min_price_eur": null,
-      "max_price_eur": null,
-      "price_drop_eur": 0.0,
-      "price_drop_pct": 0.0,
-      "surface_plot_m2": null,
-      "surface_built_m2": null,
-      "effective_plot_m2": 0.0,
-      "eur_per_m2": null,
-      "discount_vs_ref_pct": null,
-      "is_highlighted": false,
-      "chollo_score": 35,
-      "description": "Casa o chalet en venta en Montepinar-La Aparecida-Raiguero, Orihuela ... www.idealista.com/inmueble/112701432/",
-      "image_url": "",
-      "phone": "",
-      "first_seen_at": "2026-11-10T14:58:39Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "first_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -2597,8 +2513,92 @@
       "description": "Casa o chalet independiente en venta en Montepinar-La Aparecida ... www.idealista.com/inmueble/112814851/",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T14:58:39Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "first_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_price_change_at": null,
+      "status": "new",
+      "times_seen": 1,
+      "rooms": null,
+      "chollo_reasons": [
+        "Falta precio o m² para valorar €/m²"
+      ],
+      "price_history": []
+    },
+    {
+      "id": "9a088eb8098bc7",
+      "portal": "Idealista",
+      "title": "Casa o chalet en venta en Montepinar-La Aparecida-Raiguero, Orihuela ...",
+      "url": "https://www.idealista.com/inmueble/112015286/",
+      "zone_id": "montepinar",
+      "zone_name": "Montepinar",
+      "tier": 1,
+      "location_raw": "Montepinar",
+      "lat": 38.04576,
+      "lon": -1.02734,
+      "asset_type": "casa_planta_baja",
+      "asset_label": "Casa / Vivienda con Parcela",
+      "is_target_type": true,
+      "is_orihuela_costa": false,
+      "initial_price_eur": null,
+      "price_eur": null,
+      "min_price_eur": null,
+      "max_price_eur": null,
+      "price_drop_eur": 0.0,
+      "price_drop_pct": 0.0,
+      "surface_plot_m2": null,
+      "surface_built_m2": null,
+      "effective_plot_m2": 0.0,
+      "eur_per_m2": null,
+      "discount_vs_ref_pct": null,
+      "is_highlighted": false,
+      "chollo_score": 35,
+      "description": "Casa o chalet en venta en Montepinar-La Aparecida-Raiguero, Orihuela ... www.idealista.com/inmueble/112015286/",
+      "image_url": "",
+      "phone": "",
+      "first_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_price_change_at": null,
+      "status": "new",
+      "times_seen": 1,
+      "rooms": null,
+      "chollo_reasons": [
+        "Falta precio o m² para valorar €/m²"
+      ],
+      "price_history": []
+    },
+    {
+      "id": "23f34690af359f",
+      "portal": "Idealista",
+      "title": "Casa o chalet en venta en Montepinar-La Aparecida-Raiguero, Orihuela ...",
+      "url": "https://www.idealista.com/inmueble/112701432/",
+      "zone_id": "montepinar",
+      "zone_name": "Montepinar",
+      "tier": 1,
+      "location_raw": "Montepinar",
+      "lat": 38.04745,
+      "lon": -1.03231,
+      "asset_type": "casa_planta_baja",
+      "asset_label": "Casa / Vivienda con Parcela",
+      "is_target_type": true,
+      "is_orihuela_costa": false,
+      "initial_price_eur": null,
+      "price_eur": null,
+      "min_price_eur": null,
+      "max_price_eur": null,
+      "price_drop_eur": 0.0,
+      "price_drop_pct": 0.0,
+      "surface_plot_m2": null,
+      "surface_built_m2": null,
+      "effective_plot_m2": 0.0,
+      "eur_per_m2": null,
+      "discount_vs_ref_pct": null,
+      "is_highlighted": false,
+      "chollo_score": 35,
+      "description": "Casa o chalet en venta en Montepinar-La Aparecida-Raiguero, Orihuela ... www.idealista.com/inmueble/112701432/",
+      "image_url": "",
+      "phone": "",
+      "first_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -2639,8 +2639,8 @@
       "description": "Casa o chalet independiente en venta en Montepinar-La Aparecida ... www.idealista.com/inmueble/111777946/",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T14:58:39Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "first_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -2681,8 +2681,8 @@
       "description": "Casa o chalet en venta en Montepinar-La Aparecida-Raiguero, Orihuela ... www.idealista.com/inmueble/111750228/",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T14:58:39Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "first_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -2723,8 +2723,8 @@
       "description": "Terreno en venta en Montepinar-La Aparecida-Raiguero, Orihuela — idealista www.idealista.com/inmueble/104522449/",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T14:58:39Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "first_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -2765,8 +2765,8 @@
       "description": "\"> <td c",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T14:58:39Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "first_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
       "times_seen": 2,
@@ -2807,8 +2807,8 @@
       "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Calle Pio Baroja, Bigastro\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/109790978/?utm_medium=email&utm_campaign=recomm",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T14:58:39Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "first_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -2849,8 +2849,8 @@
       "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Calle Moreal s/n, Bigastro\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/111524015/?utm_medium=email&utm_campaign=recomm",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T14:58:39Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "first_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -2891,8 +2891,8 @@
       "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Calle Chumberas, 1, Orihuela Ciudad, Orihuela\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/110902340/?utm_medium=email&",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T14:58:39Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "first_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -2933,8 +2933,8 @@
       "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Orihuela Ciudad, Orihuela\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/112874860/?utm_medium=email&utm_campaign=recomme",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T14:58:39Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "first_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -2975,8 +2975,8 @@
       "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Orihuela Ciudad, Orihuela\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/107806309/?utm_medium=email&utm_campaign=recomme",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T14:58:39Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "first_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -3017,8 +3017,8 @@
       "description": "6px;padding:0 12px 16px 12px\"> 1.428.900 € <a href=\"https://www.fotocasa.es/es/comprar/terreno/cox/cox/191248431/d?stc=em-cross_alert-24x7_realtime-20261105-cardFreshContent&utm_medium=email&utm_source=alert&utm_campaign=24x7_registered_realtime&utm_content=variant_a&utm_term=cardFreshContent\" target=\"_blank\" style=\"text",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T14:58:39Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "first_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -3067,8 +3067,8 @@
       "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Calle Oscar Espla, Rafal\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/111184592/?utm_medium=email&utm_campaign=recommen",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T14:58:39Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "first_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -3109,8 +3109,8 @@
       "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Calle Oscar Espla, Rafal\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/106914733/?utm_medium=email&utm_campaign=recommen",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T14:58:39Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "first_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -3151,8 +3151,8 @@
       "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Calle Aureliano Díaz, 10, Bigastro\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/112976433/?utm_medium=email&utm_campaig",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T14:58:39Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "first_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -3193,8 +3193,8 @@
       "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Calle Mayor, 26, Bigastro\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/112623119/?utm_medium=email&utm_campaign=recomme",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T14:58:39Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "first_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -3235,8 +3235,8 @@
       "description": "\"width:287px;padding:0 12px 16px 12px\"> 110.000 € <a href=\"https://www.fotocasa.es/es/comprar/terreno/benferri/benferri/191274599/d?stc=em-cross_alert-24x7_realtime-20261109-cardFreshContent&utm_medium=email&utm_source=alert&utm_campaign=24x7_registered_realtime&utm_content=variant_a&utm_term=cardFreshContent\" target=\"_",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T14:58:39Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "first_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
       "times_seen": 2,
@@ -3285,8 +3285,8 @@
       "description": "\"width:287px;padding:0 12px 16px 12px\"> 48.000 € <a href=\"https://www.fotocasa.es/es/comprar/terreno/benferri/benferri/191274602/d?stc=em-cross_alert-24x7_realtime-20261109-cardFreshContent&utm_medium=email&utm_source=alert&utm_campaign=24x7_registered_realtime&utm_content=variant_a&utm_term=cardFreshContent\" target=\"_b",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T14:58:39Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "first_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
       "times_seen": 2,
@@ -3335,8 +3335,8 @@
       "description": "\"width:287px;padding:0 12px 16px 12px\"> 98.000 € <a href=\"https://www.fotocasa.es/es/comprar/terreno/benferri/benferri/191274603/d?stc=em-cross_alert-24x7_realtime-20261109-cardFreshContent&utm_medium=email&utm_source=alert&utm_campaign=24x7_registered_realtime&utm_content=variant_a&utm_term=cardFreshContent\" target=\"_b",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T14:58:39Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "first_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
       "times_seen": 2,
@@ -3386,10 +3386,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 4,
+      "times_seen": 5,
       "rooms": 3,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (531 €/m²)",
@@ -3438,10 +3438,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": 3,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (692 €/m²)",
@@ -3490,10 +3490,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 4,
+      "times_seen": 5,
       "rooms": 3,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (613 €/m²)",
@@ -3542,10 +3542,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 4,
+      "times_seen": 5,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (528 €/m²)",
@@ -3594,10 +3594,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (551 €/m²)",
@@ -3646,10 +3646,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (551 €/m²)",
@@ -3698,10 +3698,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (795 €/m²)",
@@ -3749,10 +3749,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (551 €/m²)",
@@ -3800,10 +3800,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 4,
+      "times_seen": 5,
       "rooms": 3,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (662 €/m²)",
@@ -3851,10 +3851,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 2,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (740 €/m²)",
@@ -3902,10 +3902,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 3,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (849 €/m²)",
@@ -3954,10 +3954,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": 3,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (849 €/m²)",
@@ -4006,10 +4006,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": 3,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (849 €/m²)",
@@ -4058,10 +4058,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": 3,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (849 €/m²)",
@@ -4110,10 +4110,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 4,
+      "times_seen": 5,
       "rooms": 3,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (879 €/m²)",
@@ -4161,10 +4161,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 4,
+      "times_seen": 5,
       "rooms": 3,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (884 €/m²)",
@@ -4212,10 +4212,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 4,
+      "times_seen": 5,
       "rooms": 4,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (905 €/m²)",
@@ -4263,10 +4263,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 4,
+      "times_seen": 5,
       "rooms": 4,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (905 €/m²)",
@@ -4314,10 +4314,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 3,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (922 €/m²)",
@@ -4365,10 +4365,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 3,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1064 €/m²)",
@@ -4416,10 +4416,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 4,
+      "times_seen": 5,
       "rooms": 3,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1075 €/m²)",
@@ -4519,10 +4519,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": 3,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1253 €/m²)",
@@ -4570,10 +4570,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 4,
+      "times_seen": 5,
       "rooms": 3,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1441 €/m²)",
@@ -4621,10 +4621,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 4,
+      "times_seen": 5,
       "rooms": 3,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1441 €/m²)",
@@ -4672,10 +4672,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 4,
+      "times_seen": 5,
       "rooms": 2,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1498 €/m²)",
@@ -4723,10 +4723,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 2,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1637 €/m²)",
@@ -4774,10 +4774,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": 2,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1689 €/m²)",
@@ -4826,10 +4826,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": 2,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1689 €/m²)",
@@ -4878,10 +4878,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 3,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (2525 €/m²)",
@@ -4929,10 +4929,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": 2,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (2876 €/m²)",
@@ -4980,10 +4980,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": 3,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (2901 €/m²)",
@@ -5031,10 +5031,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (3421 €/m²)",
@@ -5083,10 +5083,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (18067 €/m²)",
@@ -5135,10 +5135,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T14:58:39Z",
+      "last_seen_at": "2026-11-10T15:49:22Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (135000 €/m²)",
@@ -5229,7 +5229,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L2",
@@ -5304,7 +5304,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L3",
@@ -5379,7 +5379,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L4",
@@ -5454,7 +5454,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L5",
@@ -5529,7 +5529,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L6",
@@ -5604,7 +5604,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L7",
@@ -5679,7 +5679,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L8",
@@ -5754,7 +5754,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L9",
@@ -5829,7 +5829,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L10",
@@ -5904,7 +5904,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L11",
@@ -5979,7 +5979,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L12",
@@ -6054,7 +6054,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L13",
@@ -6129,7 +6129,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L14",
@@ -6204,7 +6204,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L15",
@@ -6279,7 +6279,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L16",
@@ -6354,7 +6354,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L17",
@@ -6429,7 +6429,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L18",
@@ -6504,7 +6504,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L19",
@@ -6579,7 +6579,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L20",
@@ -6654,7 +6654,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L21",
@@ -6729,7 +6729,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L22",
@@ -6804,7 +6804,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L23",
@@ -6879,7 +6879,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L24",
@@ -6954,7 +6954,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L25",
@@ -7029,7 +7029,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L26",
@@ -7104,7 +7104,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L27",
@@ -7179,7 +7179,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L28",
@@ -7254,7 +7254,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L29",
@@ -7329,7 +7329,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L30",
@@ -7404,7 +7404,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L31",
@@ -7479,7 +7479,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L32",
@@ -7554,7 +7554,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L33",
@@ -7629,7 +7629,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L34",
@@ -7704,7 +7704,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L35",
@@ -7779,7 +7779,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L36",
@@ -7854,7 +7854,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L37",
@@ -7929,7 +7929,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L38",
@@ -8004,7 +8004,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L39",
@@ -8079,7 +8079,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L40",
@@ -8154,7 +8154,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L41",
@@ -8229,7 +8229,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L42",
@@ -8304,7 +8304,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L43",
@@ -8379,7 +8379,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L44",
@@ -8454,7 +8454,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L45",
@@ -8529,7 +8529,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L46",
@@ -8604,7 +8604,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L47",
@@ -8679,7 +8679,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L48",
@@ -8754,7 +8754,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L49",
@@ -8829,7 +8829,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L50",
@@ -8904,7 +8904,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L51",
@@ -8979,7 +8979,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L52",
@@ -9054,7 +9054,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L53",
@@ -9129,7 +9129,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L54",
@@ -9204,7 +9204,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L55",
@@ -9279,7 +9279,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L56",
@@ -9354,7 +9354,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L57",
@@ -9429,7 +9429,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L58",
@@ -9504,7 +9504,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L59",
@@ -9579,7 +9579,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L60",
@@ -9654,7 +9654,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L61",
@@ -9729,7 +9729,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L62",
@@ -9804,7 +9804,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L63",
@@ -9879,7 +9879,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L64",
@@ -9954,7 +9954,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L65",
@@ -10029,7 +10029,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L66",
@@ -10104,7 +10104,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L67",
@@ -10179,7 +10179,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L68",
@@ -10254,7 +10254,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L69",
@@ -10329,7 +10329,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L70",
@@ -10404,7 +10404,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L71",
@@ -10479,7 +10479,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L72",
@@ -10554,7 +10554,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L73",
@@ -10629,7 +10629,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L74",
@@ -10704,7 +10704,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L75",
@@ -10779,7 +10779,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L76",
@@ -10854,7 +10854,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L77",
@@ -10929,7 +10929,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L78",
@@ -11004,7 +11004,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L79",
@@ -11079,7 +11079,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L80",
@@ -11154,7 +11154,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L81",
@@ -11229,7 +11229,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L82",
@@ -11304,7 +11304,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L83",
@@ -11379,7 +11379,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L84",
@@ -11454,7 +11454,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L85",
@@ -11529,7 +11529,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L86",
@@ -11604,7 +11604,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L87",
@@ -11679,7 +11679,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L88",
@@ -11754,7 +11754,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L89",
@@ -11829,7 +11829,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L90",
@@ -11904,7 +11904,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L91",
@@ -11979,7 +11979,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L92",
@@ -12054,7 +12054,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L93",
@@ -12129,7 +12129,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L94",
@@ -12204,7 +12204,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L95",
@@ -12279,7 +12279,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L96",
@@ -12354,7 +12354,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L97",
@@ -12429,7 +12429,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L98",
@@ -12504,7 +12504,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L99",
@@ -12579,7 +12579,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L100",
@@ -12654,7 +12654,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L101",
@@ -12729,7 +12729,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L102",
@@ -12804,7 +12804,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L103",
@@ -12879,7 +12879,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L104",
@@ -12954,7 +12954,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L105",
@@ -13029,7 +13029,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L106",
@@ -13104,7 +13104,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L107",
@@ -13179,7 +13179,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L108",
@@ -13254,7 +13254,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L109",
@@ -13329,7 +13329,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L110",
@@ -13404,7 +13404,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L111",
@@ -13479,7 +13479,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267436-L112",
@@ -13554,7 +13554,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-267726",
@@ -13626,7 +13626,7 @@
         "Ya tiene pujas"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "SUB-JA-2026-268200-L1",
@@ -13685,7 +13685,7 @@
         "Sin puja mínima"
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
-      "is_new": true
+      "is_new": false
     }
   ]
 }

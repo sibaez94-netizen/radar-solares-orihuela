@@ -8,7 +8,11 @@
     "exclude_high_rise_apartments": true,
     "exclude_non_buildable_rustic": true,
     "max_price_eur": null,
-    "chollo_threshold_score": 72
+    "chollo_threshold_score": 72,
+    "zonas_sin_filtro": [
+      "montepinar"
+    ],
+    "_nota_zonas_sin_filtro": "En estas zonas se guarda y se enseña TODO: terrenos, casas, pisos, adosados, rústicos y cualquier superficie o precio. No se aplica el tope de 2.000 m², ni el descarte de pisos en altura o chalets terminados, ni el mínimo de 180 m² para destacar. Usa el id de la zona tal como aparece en el bloque \"zones\"."
   },
   "zones": {
     "orihuela": {

@@ -170,8 +170,15 @@ def parecido(nuevo: Dict[str, Any], conocido: Dict[str, Any]) -> Tuple[int, List
             puntos += 12
             motivos.append("descripción muy parecida")
 
-    pr = _cerca(nuevo.get("price_eur"), conocido.get("price_eur"), 0.10)
-    if pr is True:
+    mismo_precio = _cerca(nuevo.get("price_eur"), conocido.get("price_eur"), 0.02) is True
+    if mismo_precio:
+        puntos += 8
+        # Clavar superficie y precio a la vez, viniendo de portales distintos, no es
+        # casualidad: es el mismo anuncio replicado por la agencia y el portal.
+        if sup is True:
+            puntos += 20
+            motivos.append("misma superficie y el mismo precio exacto")
+    elif _cerca(nuevo.get("price_eur"), conocido.get("price_eur"), 0.10) is True:
         puntos += 8
     elif _cerca(nuevo.get("price_eur"), conocido.get("price_eur"), 0.30):
         puntos += 3

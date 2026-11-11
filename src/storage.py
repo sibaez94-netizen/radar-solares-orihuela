@@ -111,6 +111,7 @@ class StorageManager:
                 ("prop_id", "TEXT"),
                 ("missing_runs", "INTEGER DEFAULT 0"),
                 ("delisted_at", "TEXT"),
+                ("sin_filtro", "INTEGER DEFAULT 0"),
             ):
                 try:
                     conn.execute(f"ALTER TABLE listings ADD COLUMN {col} {decl}")
@@ -324,9 +325,11 @@ class StorageManager:
 
         with self._connect() as conn:
             for item in analyzed_items:
-                # Ignorar pisos en altura, rústicos, parcelas > 2000 m2 o costa
+                # Ignorar pisos en altura, rústicos, parcelas > 2000 m2 o costa.
+                # En las zonas sin filtro (Montepinar) no se descarta nada.
                 eff_m2 = item.get("effective_plot_m2") or 0
-                if (
+                sin_filtro = bool(item.get("sin_filtro"))
+                if not sin_filtro and (
                     item.get("asset_type") in ("descartado_piso", "rustico_dudoso")
                     or item.get("is_orihuela_costa")
                     or eff_m2 > 2000
@@ -357,7 +360,7 @@ class StorageManager:
                             eur_per_m2, discount_vs_ref_pct, is_highlighted,
                             chollo_score, chollo_reasons_json, description, image_url, phone,
                             first_seen_at, last_seen_at, last_price_change_at, status, times_seen,
-                            prop_id, missing_runs
+                            prop_id, missing_runs, sin_filtro
                         ) VALUES (
                             ?, ?, ?, ?, ?, ?, ?, ?,
                             ?, ?, ?, ?, ?, ?,
@@ -367,7 +370,7 @@ class StorageManager:
                             ?, ?, ?,
                             ?, ?, ?, ?, ?,
                             ?, ?, NULL, 'new', 1,
-                            ?, 0
+                            ?, 0, ?
                         )
                         """,
                         (
@@ -404,6 +407,7 @@ class StorageManager:
                             now_str,
                             now_str,
                             prop_id,
+                            1 if sin_filtro else 0,
                         ),
                     )
                     if cur_price and cur_price > 0:
@@ -561,6 +565,7 @@ class StorageManager:
                             status = ?,
                             times_seen = times_seen + 1,
                             prop_id = ?,
+                            sin_filtro = ?,
                             missing_runs = 0,
                             delisted_at = NULL
                         WHERE id = ?
@@ -581,6 +586,7 @@ class StorageManager:
                             last_change_at,
                             status,
                             prop_id,
+                            1 if sin_filtro else 0,
                             lid,
                         ),
                     )
@@ -932,6 +938,7 @@ class StorageManager:
             d["republicaciones"] = (p or {}).get("republicaciones") or 0
             d["anuncios_del_inmueble"] = (p or {}).get("listings_count") or 1
             d["retirado"] = d.get("status") == "retirado"
+            d["sin_filtro"] = bool(d.get("sin_filtro"))
             out.append(d)
         return out
 
@@ -995,6 +1002,7 @@ class StorageManager:
             "updated_at": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
             "total_listings": len(items),
             "retirados_count": len(retirados),
+            "sin_filtro_count": sum(1 for x in items if x.get("sin_filtro")),
             "republicados_count": len(
                 {x.get("prop_id") for x in items if (x.get("republicaciones") or 0) > 0 and x.get("prop_id")}
             ),

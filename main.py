@@ -87,21 +87,30 @@ def clean_non_direct_urls(storage: StorageManager, analyzer: Optional[PropertyAn
             url = r["url"] or ""
             eff_m2 = r["effective_plot_m2"] or 0
             atype = r["asset_type"] or ""
+            sin_filtro = bool(r["sin_filtro"])
 
             if analyzer:
                 re_eval = analyzer.analyze_raw_item(dict(r))
                 atype = re_eval["asset_type"]
                 eff_m2 = re_eval["effective_plot_m2"] or 0
+                sin_filtro = bool(re_eval.get("sin_filtro"))
                 if re_eval.get("rooms") is not None:
                     conn.execute("UPDATE listings SET rooms = ? WHERE id = ?", (re_eval["rooms"], lid))
+                conn.execute(
+                    "UPDATE listings SET sin_filtro = ? WHERE id = ?", (1 if sin_filtro else 0, lid)
+                )
 
-            if (
-                str(lid).startswith(("ori-", "ben-", "gra-"))
-                or not PortalsScraper.is_valid_detail_url(url)
-                or atype in ("rustico_dudoso", "descartado_piso")
-                or eff_m2 <= 0
-                or eff_m2 > 2000
-                or not r["price_eur"]
+            # En las zonas sin filtro (Montepinar) solo se borra lo que no es un
+            # anuncio de verdad: ni el tipo, ni la superficie, ni el precio descartan.
+            basura = str(lid).startswith(("ori-", "ben-", "gra-")) or not PortalsScraper.is_valid_detail_url(url)
+            if basura or (
+                not sin_filtro
+                and (
+                    atype in ("rustico_dudoso", "descartado_piso")
+                    or eff_m2 <= 0
+                    or eff_m2 > 2000
+                    or not r["price_eur"]
+                )
             ):
                 conn.execute("DELETE FROM price_history WHERE listing_id = ?", (lid,))
                 conn.execute("DELETE FROM listing_spells WHERE listing_id = ?", (lid,))

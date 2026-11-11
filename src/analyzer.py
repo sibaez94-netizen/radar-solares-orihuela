@@ -497,8 +497,21 @@ class PropertyAnalyzer:
         max_plot_m2 = float(self.filters.get("max_plot_m2", 2000))
         norm_full = normalize_text(full_text)
 
+        # Zonas en las que interesa verlo todo (Montepinar): no se descarta nada por
+        # tipo, superficie ni precio, y todo entra en destacados y en el correo.
+        sin_filtro = zone_id in set(self.filters.get("zonas_sin_filtro", []))
+
+        if sin_filtro:
+            # Un piso o un chalet terminado en estas zonas sigue interesando, así que
+            # se le pone etiqueta propia en vez de descartarlo.
+            if asset_type == "descartado_piso":
+                asset_type, asset_label = "piso_o_vivienda", "Piso / Vivienda terminada"
+            elif asset_type == "rustico_dudoso":
+                asset_label = "Suelo rústico / Huerta"
+            is_target_type = True
+
         # Regla estricta: evitar cualquier solar o terreno de más de 2.000 m² o rústico (< 40 €/m²)
-        if effective_plot_m2 > max_plot_m2:
+        elif effective_plot_m2 > max_plot_m2:
             asset_type = "rustico_dudoso"
             asset_label = f"Descartado (> {int(max_plot_m2)} m² / Rústico)"
             is_target_type = False
@@ -510,14 +523,14 @@ class PropertyAnalyzer:
                 is_target_type = False
 
         # Si es un chalet/casa de más de 155.000€ que no menciona reforma, derribo, casa de pueblo ni planta baja, descartar
-        if asset_type == "casa_planta_baja" and price_eur and price_eur > 155000:
+        if not sin_filtro and asset_type == "casa_planta_baja" and price_eur and price_eur > 155000:
             if not any(w in norm_full for w in ["reformar", "derribar", "planta baja", "casa de pueblo", "antigua", "solar"]):
                 asset_type = "descartado_piso"
                 asset_label = "Chalet terminado / No objetivo"
                 is_target_type = False
 
         min_hl = self.filters.get("min_highlight_plot_m2", 180)
-        is_highlighted = (
+        is_highlighted = sin_filtro or (
             is_target_type
             and not is_costa
             and min_hl <= effective_plot_m2 <= max_plot_m2
@@ -562,6 +575,7 @@ class PropertyAnalyzer:
             "eur_per_m2": eur_m2,
             "discount_vs_ref_pct": discount_pct,
             "is_highlighted": is_highlighted,
+            "sin_filtro": sin_filtro,
             "chollo_score": score,
             "chollo_reasons": reasons,
             "description": description[:700],

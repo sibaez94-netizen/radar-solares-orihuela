@@ -108,6 +108,18 @@ class PortalsScraper:
         # Milanuncios
         ("Milanuncios", 'site:milanuncios.com "solar" "Orihuela"'),
         ("Milanuncios", 'site:milanuncios.com "Raiguero" OR "Montepinar" OR "Benferri" solar'),
+        # Montepinar: aquí interesa TODO lo que haya en venta, no solo solares, así que
+        # se barre por tipos de inmueble en cada portal además de las URLs directas.
+        ("Idealista", 'site:idealista.com/inmueble "Montepinar" terreno OR solar OR parcela'),
+        ("Idealista", 'site:idealista.com/inmueble "Montepinar" casa OR chalet OR villa'),
+        ("Idealista", 'site:idealista.com/inmueble "Montepinar" piso OR apartamento OR adosado OR bungalow'),
+        ("Fotocasa", 'site:fotocasa.es "Montepinar" terreno OR solar OR parcela'),
+        ("Fotocasa", 'site:fotocasa.es "Montepinar" casa OR chalet OR adosado OR piso'),
+        ("Milanuncios", 'site:milanuncios.com "Montepinar" venta casa OR chalet OR parcela OR piso'),
+        ("Pisos.com", 'site:pisos.com "Montepinar"'),
+        ("Habitaclia", 'site:habitaclia.com "Montepinar"'),
+        ("Yaencontre", 'site:yaencontre.com "Montepinar"'),
+        ("Trovimap", 'site:trovimap.com "Montepinar"'),
     ]
 
     #: Qué portales han respondido en la última pasada. Sirve para no dar por

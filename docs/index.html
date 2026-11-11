@@ -571,7 +571,7 @@
     <!-- KPIs -->
     <section class="kpi-grid">
       <div class="kpi-card">
-        <div class="kpi-lbl">Destacados (Parcela ≥ 180 m²)</div>
+        <div class="kpi-lbl">Destacados (≥ 180 m², y todo lo de Montepinar)</div>
         <div class="kpi-val" id="k-hl" style="color:var(--accent)">–</div>
         <div class="kpi-sub" id="k-total">de – monitorizados en total</div>
       </div>
@@ -595,7 +595,7 @@
     <!-- Navigation Tabs -->
     <nav class="tabs-bar" id="main-tabs">
       <button class="tab-btn active" data-tab="principal">
-        🎯 Destacados (180–2.000 m²) <span class="tab-count" id="tc-principal">0</span>
+        🎯 Destacados (180–2.000 m² + Montepinar) <span class="tab-count" id="tc-principal">0</span>
       </button>
       <button class="tab-btn" data-tab="excel">
         📊 Tabla Excel (Histórico) <span class="tab-count" id="tc-excel">0</span>
@@ -649,7 +649,7 @@
       </div>
       <div class="f-grp">
         <label for="f-min-m2">Superficie Mínima (m²)</label>
-        <input class="inp" id="f-min-m2" type="number" step="10" value="180" />
+        <input class="inp" id="f-min-m2" type="number" step="10" placeholder="Sin mínimo" />
       </div>
       <div class="f-grp">
         <label for="f-max-price">Precio Máximo (€)</label>
@@ -902,7 +902,8 @@
       zone: 'ALL',
       type: 'ALL',
       search: '',
-      minM2: 180,
+      minM2: 0,
+      minM2Auto: false,
       maxPrice: null,
       maxM2Price: null,
       sort: 'score',
@@ -963,25 +964,32 @@
       $('tc-subastas').textContent = STATE.auctions.filter(a => a.is_target_type).length;
 
       const liveCount = all.filter(x => !String(x.id).startsWith('ori-') && !String(x.id).startsWith('ben-') && !String(x.id).startsWith('gra-')).length;
-      $('source-status-txt').textContent = `${liveCount} inmuebles reales activos (filtrados entre 180 y 2.000 m², sin rústicos ni Orihuela Costa).`;
+      const libres = all.filter(x => x.sin_filtro).length;
+      $('source-status-txt').textContent = `${liveCount} inmuebles reales activos`
+        + (libres
+            ? `: ${liveCount - libres} filtrados entre 180 y 2.000 m² sin rústicos ni Orihuela Costa, y ${libres} en Montepinar, donde se recoge todo (terrenos, casas, pisos y cualquier superficie o precio).`
+            : ` (filtrados entre 180 y 2.000 m², sin rústicos ni Orihuela Costa).`);
     }
 
     function getFilteredListings() {
       return STATE.listings.filter(item => {
         const plotM2 = item.effective_plot_m2 || item.surface_plot_m2 || 0;
-        if (plotM2 > 2000) return false; // Evitar solares rústicos o > 2000 m²
+        // En las zonas sin filtro (Montepinar) se ve todo: cualquier tipo, superficie y precio
+        const libre = !!item.sin_filtro;
+
+        if (plotM2 > 2000 && !libre) return false; // Evitar solares rústicos o > 2000 m²
 
         // Los retirados solo se ven en "Todos" y en la tabla histórica, para que no
         // ensucien las vistas de búsqueda pero no se pierda su histórico de precios.
         if (item.retirado && STATE.tab !== 'all' && STATE.tab !== 'excel') return false;
 
-        if (STATE.tab === 'principal' && plotM2 < 180) return false;
+        if (STATE.tab === 'principal' && plotM2 < 180 && !libre) return false;
         if (STATE.tab === 'drops' && !(item.price_drop_pct > 0)) return false;
         if (STATE.tab === 'favs' && !STATE.favs[item.id] && !STATE.notes[item.id]) return false;
 
         if (STATE.zone !== 'ALL' && item.zone_id !== STATE.zone) return false;
         if (STATE.type !== 'ALL' && item.asset_type !== STATE.type) return false;
-        if (STATE.minM2 > 0 && plotM2 < STATE.minM2) return false;
+        if (STATE.minM2 > 0 && plotM2 < STATE.minM2 && !(libre && STATE.minM2Auto)) return false;
         if (STATE.maxPrice && item.price_eur && item.price_eur > STATE.maxPrice) return false;
         if (STATE.maxM2Price && item.eur_per_m2 && item.eur_per_m2 > STATE.maxM2Price) return false;
 
@@ -1224,7 +1232,8 @@
         const dropHtml = (it.price_drop_pct || 0) > 0
           ? `<span class="badge b-drop">▼ Rebajado -${it.price_drop_pct.toFixed(1)}% (-${fmtEur(it.price_drop_eur)})</span>`
           : '';
-        const sizeWarn = plotM2 < 180
+        const libre = !!it.sin_filtro;
+        const sizeWarn = (plotM2 < 180 && plotM2 > 0 && !libre)
           ? `<span class="badge" style="background:var(--bg-subtle);color:var(--muted)">Parcela &lt; 180 m²</span>`
           : '';
 
@@ -1233,6 +1242,7 @@
           it.retirado ? `<span class="badge" style="background:#fee2e2;color:#b91c1c">👻 Retirado del portal</span>` : '',
           (it.republicaciones || 0) > 0 ? `<span class="badge" style="background:#ede9fe;color:#6d28d9">♻️ Republicado ${it.republicaciones}×</span>` : '',
           (it.anuncios_del_inmueble || 1) > 1 ? `<span class="badge" style="background:#e0f2fe;color:#0369a1">👯 ${it.anuncios_del_inmueble} anuncios</span>` : '',
+          it.sin_filtro ? `<span class="badge" style="background:#dcfce7;color:#15803d">📍 Zona sin filtro</span>` : '',
         ].join('');
         const trkPartes = [];
         if (it.dias_en_venta != null) trkPartes.push(`En venta desde hace <b>${it.dias_en_venta} días</b>`);
@@ -1538,8 +1548,14 @@
       if (!btn) return;
       STATE.tab = btn.dataset.tab;
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b === btn));
+      // El 180 de la pestaña "Destacados" lo pone el panel, no el usuario: por eso
+      // se anota, para no aplicarlo a las zonas sin filtro (Montepinar).
+      STATE.minM2Auto = false;
       if (STATE.tab === 'all' || STATE.tab === 'excel') $('f-min-m2').value = 0;
-      else if (STATE.tab === 'principal' && +$('f-min-m2').value < 180) $('f-min-m2').value = 180;
+      else if (STATE.tab === 'principal' && +$('f-min-m2').value < 180) {
+        $('f-min-m2').value = 180;
+        STATE.minM2Auto = true;
+      }
       STATE.minM2 = +$('f-min-m2').value || 0;
       renderAll();
     };
@@ -1564,6 +1580,7 @@
         STATE.search = $('f-search').value.trim();
         STATE.type = $('f-type').value;
         STATE.minM2 = +$('f-min-m2').value || 0;
+        STATE.minM2Auto = false;
         STATE.maxPrice = +$('f-max-price').value || null;
         STATE.maxM2Price = +$('f-max-m2price').value || null;
         STATE.sort = $('f-sort').value;

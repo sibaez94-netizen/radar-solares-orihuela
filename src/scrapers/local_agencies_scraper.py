@@ -23,14 +23,28 @@ class LocalAgenciesAndBanksScraper:
 
     def __init__(self, custom_agencies: Optional[List[Dict[str, str]]] = None):
         self.custom_agencies = custom_agencies or []
+        #: Qué fuentes han respondido en la última pasada
+        self.source_health: Dict[str, Dict[str, int]] = {}
+
+    def _anota(self, nombre: str, ok: bool) -> None:
+        s = self.source_health.setdefault(nombre, {"intentos": 0, "ok": 0})
+        s["intentos"] += 1
+        if ok:
+            s["ok"] += 1
+
+    @property
+    def portales_ok(self) -> List[str]:
+        return [n for n, s in self.source_health.items() if s["ok"] > 0]
 
     def run_all(self) -> List[Dict[str, Any]]:
         results: List[Dict[str, Any]] = []
         seen_urls = set()
+        self.source_health: Dict[str, Dict[str, int]] = {}
 
         # 1. Escanear servicers bancarios
         for bank_name, url, raw_type in self.BANK_URLS:
             raw_html = http_get(url)
+            self._anota(bank_name, bool(raw_html))
             if not raw_html:
                 continue
             for item in self.parse_universal_agency_html(raw_html, bank_name, url, raw_type):
@@ -47,6 +61,7 @@ class LocalAgenciesAndBanksScraper:
             if not url:
                 continue
             raw_html = http_get(url)
+            self._anota(name, bool(raw_html))
             if not raw_html:
                 continue
             for item in self.parse_universal_agency_html(raw_html, name, url, raw_type):

@@ -16,6 +16,7 @@ from src.scrapers.imap_alerts import ImapAlertsReader
 from src.scrapers.local_agencies_scraper import LocalAgenciesAndBanksScraper, get_initial_market_baseline
 from src.scrapers.portals_scraper import PortalsScraper
 from src.storage import StorageManager
+from src.tracking import ordena_alertas
 
 
 def load_dotenv_file(base_dir: str) -> None:
@@ -103,8 +104,15 @@ def clean_non_direct_urls(storage: StorageManager, analyzer: Optional[PropertyAn
                 or not r["price_eur"]
             ):
                 conn.execute("DELETE FROM price_history WHERE listing_id = ?", (lid,))
+                conn.execute("DELETE FROM listing_spells WHERE listing_id = ?", (lid,))
+                conn.execute("DELETE FROM alerts WHERE listing_id = ?", (lid,))
                 conn.execute("DELETE FROM listings WHERE id = ?", (lid,))
                 removed += 1
+
+        # Inmuebles que se han quedado sin ningún anuncio
+        conn.execute(
+            "DELETE FROM properties WHERE prop_id NOT IN (SELECT DISTINCT prop_id FROM listings WHERE prop_id IS NOT NULL)"
+        )
     return removed
 
 
@@ -113,7 +121,7 @@ def run_agent(skip_network: bool = False) -> Dict[str, Any]:
     load_dotenv_file(base_dir)
     config = load_config(os.path.join(base_dir, "config.json"))
     analyzer = PropertyAnalyzer(config)
-    storage = StorageManager()
+    storage = StorageManager(reglas=config.get("alertas", {}))
 
     # 1. Limpiar enlaces genéricos de buscadores, rústicos o parcelas > 2.000 m²
     purged = clean_non_direct_urls(storage, analyzer)
@@ -122,6 +130,7 @@ def run_agent(skip_network: bool = False) -> Dict[str, Any]:
 
     raw_collected: List[Dict[str, Any]] = []
     sources_summary: Dict[str, int] = {}
+    portales_ok: List[str] = []
 
     if not skip_network:
         # 2. Leer alertas de correo IMAP (Idealista, Fotocasa, Milanuncios, Pisos.com...)
@@ -140,6 +149,7 @@ def run_agent(skip_network: bool = False) -> Dict[str, Any]:
         portals = PortalsScraper()
         portal_items = portals.run_all()
         sources_summary["portals"] = len(portal_items)
+        portales_ok.extend(portals.portales_ok)
         raw_collected.extend(portal_items)
 
         # 4. Escanear inmobiliarias locales de la Vega Baja y bancos
@@ -147,7 +157,13 @@ def run_agent(skip_network: bool = False) -> Dict[str, Any]:
         local_scraper = LocalAgenciesAndBanksScraper(config.get("local_agencies_urls", []))
         local_items = local_scraper.run_all()
         sources_summary["local_and_banks"] = len(local_items)
+        portales_ok.extend(local_scraper.portales_ok)
         raw_collected.extend(local_items)
+        caidos = [
+            n for n, s in {**portals.source_health, **local_scraper.source_health}.items() if s["ok"] == 0
+        ]
+        if caidos:
+            print(f"      Fuentes que hoy no han respondido: {', '.join(caidos)}")
 
     # 4b. Subastas públicas del BOE (tabla propia, no se mezclan con los anuncios)
     auction_items: List[Dict[str, Any]] = []
@@ -180,6 +196,17 @@ def run_agent(skip_network: bool = False) -> Dict[str, Any]:
         analyzed_list.append(analyzed)
 
     diff = storage.upsert_listings(analyzed_list)
+
+    # 5b. Anuncios que han dejado de aparecer. Solo se miran los portales que hoy
+    #     han respondido, para no dar por retirado lo que simplemente no se pudo leer.
+    bajas = storage.marcar_desaparecidos(portales_ok)
+    diff["retirados"] = bajas["retirados"]
+
+    # 5c. Alertas de seguimiento: cambios de hoy + lectura del conjunto
+    alertas = list(diff.get("alertas") or []) + list(bajas.get("alertas") or [])
+    alertas += storage.generar_alertas_de_estado()
+    diff["alertas_nuevas"] = ordena_alertas(storage.guardar_alertas(alertas))
+
     storage.log_run(
         total_scraped=len(raw_collected),
         new_count=len(diff["new_items"]),
@@ -203,13 +230,21 @@ def run_agent(skip_network: bool = False) -> Dict[str, Any]:
         preview_path=preview_email_path,
         auctions=payload.get("auctions", []),
         auction_diff=auction_diff,
+        alertas=diff.get("alertas_nuevas", []),
     )
 
     print(
-        f"[OK] Base de datos actualizada: {stats['total_listings']} inmuebles totales | "
+        f"[OK] Base de datos actualizada: {stats['total_listings']} inmuebles activos | "
         f"{stats['highlighted_listings']} destacados (>=180 m²) | "
         f"{stats['chollos_count']} chollos | {stats['price_drops_count']} con bajada de precio | "
         f"{stats.get('auctions_count', 0)} subastas BOE activas en tus zonas."
+    )
+    print(
+        f"[Seguimiento] {len(diff.get('republicados', []))} republicados | "
+        f"{len(diff.get('retirados', []))} retirados hoy | "
+        f"{stats.get('retirados_count', 0)} retirados en total | "
+        f"{len(diff.get('alertas_nuevas', []))} alertas nuevas | "
+        f"{stats.get('alertas_count', 0)} alertas guardadas."
     )
     return payload
 

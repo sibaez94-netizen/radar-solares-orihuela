@@ -135,7 +135,25 @@
     <li><strong>Amplitud de parcela:</strong> Bonifica las parcelas de ≥ 180 m² y ≥ 300 m².</li>
   </ol>
 
-  <h2>4. Cómo conectar tu Gmail en 2 minutos (Sin usar Google Cloud API)</h2>
+  <h2>4. Seguimiento de precios y alertas: desde cuándo está en venta de verdad</h2>
+  <p>El agente no guarda solo lo que ve hoy: guarda <strong>el inmueble</strong>, que es algo distinto del anuncio. Un mismo solar puede salir en dos portales a la vez, o desaparecer y volver semanas después con otra referencia, como si fuera nuevo. El agente lo reconoce comparando la superficie, el teléfono de contacto y el texto del anuncio, y sigue contando desde que salió a la venta por primera vez.</p>
+  <ul>
+    <li><strong>Cada anuncio con su histórico:</strong> cada vez que cambia el precio se guarda una línea nueva con la fecha. En la ficha de cada inmueble (botón <em>"📈 Histórico / Nota"</em>) ves la curva de precios y los <strong>tramos publicados</strong>: desde cuándo estuvo puesto, cuándo lo retiraron y cuándo volvió.</li>
+    <li><strong>Dos cifras distintas:</strong> <em>"en venta desde hace X días"</em> cuenta desde la primera vez que se vio, aunque el anuncio de hoy sea nuevo; <em>"publicado Y de ellos"</em> descuenta los días que estuvo retirado. Si las dos cifras se separan mucho, es que lo han estado quitando y poniendo.</li>
+    <li><strong>Retirados:</strong> cuando un anuncio deja de aparecer no se borra; se marca como retirado y conserva todo su histórico, que sirve de referencia de mercado. Solo se da por retirado si el portal <em>sí</em> respondió ese día y el anuncio falta en dos ejecuciones seguidas, para que una caída del portal no lo marque por error.</li>
+  </ul>
+  <p>Con eso, la pestaña <strong>"🔔 Alertas de Seguimiento"</strong> avisa de los movimientos que importan:</p>
+  <ul>
+    <li><strong>🔻 Bajada fuerte</strong> (≥ 5 % o ≥ 10.000 € de golpe) y <strong>📉 bajada acumulada</strong> (≥ 15 % desde su precio más alto).</li>
+    <li><strong>♻️ Vuelve a publicarse más barato:</strong> estuvo retirado y ha vuelto por debajo del precio al que estaba. Es la señal más clara de vendedor que quiere cerrar.</li>
+    <li><strong>♻️ Republicado para borrar el tiempo en venta:</strong> vuelve al mismo precio tras estar retirado. El anuncio parece nuevo, pero el agente te dice cuánto lleva realmente.</li>
+    <li><strong>👯 El mismo inmueble, más barato en otro anuncio:</strong> está publicado en dos sitios con precios distintos. El más bajo es tu punto de partida para negociar.</li>
+    <li><strong>🕰️ Mucho tiempo en venta y sin bajar</strong> (más de 180 días sin tocar el precio) y <strong>🪧 primera bajada después de mucho tiempo</strong>: el vendedor acaba de empezar a moverse.</li>
+    <li><strong>🎢 El precio sube y baja</strong>, <strong>💎 muy por debajo del €/m² de su zona</strong> y <strong>👻 ha desaparecido del portal</strong>.</li>
+  </ul>
+  <p>Cada alerta se da <strong>una sola vez</strong>: si la situación cambia (otro precio, otra retirada), vuelve a avisar. Los umbrales se tocan en el bloque <code>alertas</code> de <code>config.json</code>.</p>
+
+  <h2>5. Cómo conectar tu Gmail en 2 minutos (Sin usar Google Cloud API)</h2>
   <div class="card blue">
     No necesitas contratar ninguna API ni saber programar. Google permite generar una <strong>Contraseña de Aplicación</strong> gratuita para que tu agente lea las alertas de Idealista/Fotocasa y te mande el resumen cada mañana:
     <ol style="margin-top:8px;">

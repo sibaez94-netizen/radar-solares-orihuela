@@ -34,8 +34,10 @@ class EmailNotifier:
         run_diff: Dict[str, Any],
         auctions: Optional[List[Dict[str, Any]]] = None,
         auction_diff: Optional[Dict[str, Any]] = None,
+        alertas: Optional[List[Dict[str, Any]]] = None,
     ) -> str:
         auctions_html = self.render_auctions_html(auctions or [], auction_diff or {})
+        alertas_html = self.render_alertas_html(alertas or [], run_diff or {})
         today_str = datetime.date.today().strftime("%d/%m/%Y")
         highlighted = [x for x in all_listings if x.get("is_highlighted")]
         chollos = sorted(
@@ -160,6 +162,8 @@ class EmailNotifier:
 
       {dash_btn}
 
+      {alertas_html}
+
       <h2 style="font-size:17px;border-bottom:2px solid #0f766e;padding-bottom:6px;margin-top:22px;">🔥 Top Chollos y Oportunidades (Parcela ≥ 180 m²)</h2>
       {render_rows(chollos, show_drop=True)}
 
@@ -190,6 +194,65 @@ class EmailNotifier:
   </div>
 </body>
 </html>"""
+
+    @staticmethod
+    def render_alertas_html(alertas: List[Dict[str, Any]], run_diff: Dict[str, Any]) -> str:
+        """Movimientos raros o interesantes detectados hoy: bajadas fuertes, republicaciones, retiradas."""
+        import html as _h
+
+        retirados = run_diff.get("retirados") or []
+        republicados = run_diff.get("republicados") or []
+        if not alertas and not retirados and not republicados:
+            return ""
+
+        COLOR = {"alta": "#b91c1c", "media": "#b45309", "info": "#475569"}
+        FONDO = {"alta": "#fef2f2", "media": "#fffbeb", "info": "#f8fafc"}
+
+        filas = []
+        for a in alertas[:14]:
+            g = a.get("gravedad", "info")
+            titulo = _h.escape(a.get("listing_title") or "Anuncio sin título")
+            enlace = a.get("url") or ""
+            nombre = (
+                f'<a href="{_h.escape(enlace)}" style="color:#0f172a;text-decoration:none;">{titulo}</a>'
+                if enlace.startswith("http")
+                else titulo
+            )
+            zona = _h.escape(a.get("zone_name") or "")
+            filas.append(
+                f"""
+                <div style="border-left:4px solid {COLOR[g]};background:{FONDO[g]};border-radius:0 8px 8px 0;
+                            padding:10px 14px;margin-bottom:8px;">
+                  <div style="font-size:12px;font-weight:800;color:{COLOR[g]};text-transform:uppercase;letter-spacing:0.4px;">
+                    {a.get("icono", "")} {_h.escape(a.get("titulo") or "")}{f" · {zona}" if zona else ""}
+                  </div>
+                  <div style="font-size:14px;font-weight:700;margin:3px 0 2px;">{nombre}</div>
+                  <div style="font-size:13px;color:#334155;">{_h.escape(a.get("detalle") or "")}</div>
+                </div>
+                """
+            )
+
+        resumen = []
+        if republicados:
+            resumen.append(f"{len(republicados)} han vuelto a publicarse")
+        if retirados:
+            resumen.append(f"{len(retirados)} han desaparecido del portal")
+        pie = (
+            f'<div style="font-size:12px;color:#64748b;margin-top:6px;">Hoy: {" · ".join(resumen)}.</div>'
+            if resumen
+            else ""
+        )
+        mas = (
+            f'<div style="font-size:12px;color:#64748b;margin-top:6px;">Y {len(alertas) - 14} alertas más en el panel.</div>'
+            if len(alertas) > 14
+            else ""
+        )
+        cuerpo = "".join(filas) or '<p style="color:#64748b;font-size:14px;">Sin movimientos raros hoy.</p>'
+
+        return f"""
+      <h2 style="font-size:17px;border-bottom:2px solid #b91c1c;padding-bottom:6px;margin-top:22px;">🔔 Alertas de seguimiento</h2>
+      {cuerpo}{mas}{pie}
+        """
 
     @staticmethod
     def render_auctions_html(auctions: List[Dict[str, Any]], auction_diff: Dict[str, Any]) -> str:
@@ -255,8 +318,12 @@ class EmailNotifier:
         preview_path: Optional[str] = None,
         auctions: Optional[List[Dict[str, Any]]] = None,
         auction_diff: Optional[Dict[str, Any]] = None,
+        alertas: Optional[List[Dict[str, Any]]] = None,
     ) -> bool:
-        html_body = self.build_daily_html(stats, all_listings, run_diff, auctions=auctions, auction_diff=auction_diff)
+        html_body = self.build_daily_html(
+            stats, all_listings, run_diff,
+            auctions=auctions, auction_diff=auction_diff, alertas=alertas,
+        )
 
         # Guardar siempre una vista previa HTML para poder verla desde el navegador
         if preview_path:
@@ -268,7 +335,10 @@ class EmailNotifier:
         chollos_n = stats.get("chollos_count", 0)
         drops_n = stats.get("price_drops_count", 0)
         n_new_auctions = len([a for a in ((auction_diff or {}).get("new_auctions") or []) if a.get("is_target_type")])
+        n_alertas_altas = len([a for a in (alertas or []) if a.get("gravedad") == "alta"])
         subject = f"[Radar Solares Orihuela] {today_str} · {chollos_n} chollos y {drops_n} bajadas de precio"
+        if n_alertas_altas:
+            subject += f" · {n_alertas_altas} alerta(s) de seguimiento"
         if n_new_auctions:
             subject += f" · {n_new_auctions} subasta(s) BOE nueva(s)"
 

@@ -408,6 +408,37 @@
     /* Excel Spreadsheet Section */
     .auctions-sec { display: none; margin-bottom: 20px; }
     .auctions-sec.active { display: block; }
+
+    /* Alertas de seguimiento */
+    .alertas-sec { display: none; margin-bottom: 20px; }
+    .alertas-sec.active { display: block; }
+    .al-filtros { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 14px; }
+    .al-pill {
+      border: 1px solid var(--line-soft); background: var(--bg-card); color: var(--muted);
+      border-radius: 999px; padding: 6px 13px; font-size: 12.5px; font-weight: 600; cursor: pointer;
+    }
+    .al-pill.on { background: var(--accent, #0f766e); border-color: transparent; color: #fff; }
+    .al-card {
+      display: flex; gap: 12px; align-items: flex-start;
+      background: var(--bg-card); border: 1px solid var(--line-soft);
+      border-left: 4px solid var(--muted); border-radius: 0 12px 12px 0;
+      padding: 12px 16px; margin-bottom: 9px;
+    }
+    .al-card.g-alta  { border-left-color: #b91c1c; }
+    .al-card.g-media { border-left-color: #b45309; }
+    .al-card.g-info  { border-left-color: #64748b; }
+    .al-ico { font-size: 22px; line-height: 1.2; }
+    .al-kind { font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .4px; }
+    .g-alta  .al-kind { color: #b91c1c; }
+    .g-media .al-kind { color: #b45309; }
+    .g-info  .al-kind { color: #64748b; }
+    .al-tit { font-size: 15px; font-weight: 700; margin: 2px 0 3px; }
+    .al-tit a { color: inherit; text-decoration: none; }
+    .al-tit a:hover { text-decoration: underline; }
+    .al-det { font-size: 13.5px; color: var(--muted); }
+    .al-cuando { font-size: 11.5px; color: var(--muted); white-space: nowrap; margin-left: auto; padding-left: 10px; }
+    .trk { font-size: 11.5px; color: var(--muted); margin: 2px 0 6px; }
+    .trk b { color: var(--txt); }
     .auc-note { background: var(--bg-card); border: 1px solid var(--line); border-left: 4px solid #7c3aed; border-radius: 12px; padding: 12px 16px; font-size: 13px; line-height: 1.5; margin-bottom: 14px; }
     .auc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 14px; }
     .auc-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 8px; }
@@ -572,6 +603,9 @@
       <button class="tab-btn" data-tab="drops">
         📉 Bajadas de Precio <span class="tab-count" id="tc-drops">0</span>
       </button>
+      <button class="tab-btn" data-tab="alertas">
+        🔔 Alertas de Seguimiento <span class="tab-count" id="tc-alertas">0</span>
+      </button>
       <button class="tab-btn" data-tab="map">
         🗺️ Mapa y €/m² por Pedanía
       </button>
@@ -677,6 +711,18 @@
       <div class="auc-grid" id="auc-grid"></div>
       <h4 style="margin:18px 0 8px;font-size:14px;color:var(--muted);" id="auc-others-title"></h4>
       <div class="auc-grid" id="auc-grid-others"></div>
+    </section>
+
+    <section class="alertas-sec" id="alertas-sec">
+      <div class="auc-note">
+        <b>🔔 Movimientos raros o interesantes</b> de los inmuebles que ya están en la base de datos.
+        El agente guarda cada anuncio con su propio histórico y, si un inmueble se retira y se vuelve a publicar
+        con otra referencia, lo reconoce por la superficie, el teléfono y el texto, de forma que sigue contando
+        desde que salió a la venta por primera vez.
+        Cada alerta se da una sola vez: si la situación cambia (otro precio, otra retirada), vuelve a avisar.
+      </div>
+      <div class="al-filtros" id="al-filtros"></div>
+      <div id="al-lista"></div>
     </section>
 
     <section class="excel-sec" id="excel-sec">
@@ -866,6 +912,8 @@
       notes: JSON.parse(localStorage.getItem('solares_notes') || '{}'),
       manualItems: JSON.parse(localStorage.getItem('solares_manual') || '[]'),
       auctions: [],
+      alertas: [],
+      alertaFiltro: 'TODAS',
     };
 
     let mapInstance = null;
@@ -882,29 +930,35 @@
       STATE.stats = payload.stats || {};
       STATE.listings = [...STATE.manualItems, ...(payload.listings || [])];
       STATE.auctions = payload.auctions || [];
+      STATE.alertas = payload.alertas || [];
       updateKPIs();
       renderZoneStatsTable();
       renderAll();
     }
 
     function updateKPIs() {
-      const all = STATE.listings;
+      const todos = STATE.listings;
+      // Los retirados se guardan para conservar su histórico, pero no cuentan como oferta viva
+      const all = todos.filter(x => !x.retirado);
+      const retirados = todos.length - all.length;
       const hl = all.filter(x => x.is_highlighted || (x.effective_plot_m2 >= 180));
       const chollos = hl.filter(x => (x.chollo_score || 0) >= 72);
       const drops = all.filter(x => (x.price_drop_pct || 0) > 0);
       const favCount = all.filter(x => STATE.favs[x.id]).length;
 
       $('k-hl').textContent = hl.length;
-      $('k-total').textContent = `de ${all.length} monitorizados en base de datos`;
+      $('k-total').textContent = `de ${all.length} monitorizados en base de datos`
+        + (retirados ? ` · ${retirados} ya retirados` : '');
       $('k-chollos').textContent = chollos.length;
       $('k-drops').textContent = drops.length;
       $('k-med-solar').textContent = (STATE.stats.median_solar_eur_m2 ? fmtNum(STATE.stats.median_solar_eur_m2) : '205') + ' €/m²';
       $('k-med-casa').textContent = `Casas a reformar: ${STATE.stats.median_casa_eur_m2 ? fmtNum(STATE.stats.median_casa_eur_m2) : '440'} €/m²`;
 
+      $('tc-alertas').textContent = (STATE.alertas || []).length;
       $('tc-principal').textContent = hl.length;
-      $('tc-excel').textContent = all.length;
+      $('tc-excel').textContent = todos.length;
       $('tc-drops').textContent = drops.length;
-      $('tc-all').textContent = all.length;
+      $('tc-all').textContent = todos.length;
       $('tc-favs').textContent = favCount;
       $('tc-subastas').textContent = STATE.auctions.filter(a => a.is_target_type).length;
 
@@ -916,6 +970,10 @@
       return STATE.listings.filter(item => {
         const plotM2 = item.effective_plot_m2 || item.surface_plot_m2 || 0;
         if (plotM2 > 2000) return false; // Evitar solares rústicos o > 2000 m²
+
+        // Los retirados solo se ven en "Todos" y en la tabla histórica, para que no
+        // ensucien las vistas de búsqueda pero no se pierda su histórico de precios.
+        if (item.retirado && STATE.tab !== 'all' && STATE.tab !== 'excel') return false;
 
         if (STATE.tab === 'principal' && plotM2 < 180) return false;
         if (STATE.tab === 'drops' && !(item.price_drop_pct > 0)) return false;
@@ -1122,12 +1180,14 @@
 
     function renderAll() {
       const showAuctions = STATE.tab === 'subastas';
+      const showAlertas = STATE.tab === 'alertas';
       $('auctions-sec').classList.toggle('active', showAuctions);
-      if (showAuctions) {
+      $('alertas-sec').classList.toggle('active', showAlertas);
+      if (showAuctions || showAlertas) {
         $('analytics-sec').classList.remove('active');
         $('excel-sec').classList.remove('active');
         $('listings-grid').style.display = 'none';
-        renderAuctions();
+        if (showAuctions) renderAuctions(); else renderAlertas();
         return;
       }
       const items = getFilteredListings();
@@ -1168,6 +1228,19 @@
           ? `<span class="badge" style="background:var(--bg-subtle);color:var(--muted)">Parcela &lt; 180 m²</span>`
           : '';
 
+        // Seguimiento: desde cuándo está en venta de verdad, aunque el anuncio sea nuevo
+        const trkBadges = [
+          it.retirado ? `<span class="badge" style="background:#fee2e2;color:#b91c1c">👻 Retirado del portal</span>` : '',
+          (it.republicaciones || 0) > 0 ? `<span class="badge" style="background:#ede9fe;color:#6d28d9">♻️ Republicado ${it.republicaciones}×</span>` : '',
+          (it.anuncios_del_inmueble || 1) > 1 ? `<span class="badge" style="background:#e0f2fe;color:#0369a1">👯 ${it.anuncios_del_inmueble} anuncios</span>` : '',
+        ].join('');
+        const trkPartes = [];
+        if (it.dias_en_venta != null) trkPartes.push(`En venta desde hace <b>${it.dias_en_venta} días</b>`);
+        if (it.dias_publicado != null && it.dias_en_venta != null && it.dias_publicado < it.dias_en_venta - 2) {
+          trkPartes.push(`publicado solo <b>${it.dias_publicado}</b> de ellos`);
+        }
+        const trkLine = trkPartes.length ? `<div class="trk">🕓 ${trkPartes.join(', ')}.</div>` : '';
+
         const reasons = (it.chollo_reasons || []).map(r => `<li>${r}</li>`).join('');
 
         return `
@@ -1177,7 +1250,7 @@
                 <span class="badge b-zone">📍 ${it.zone_name}</span>
                 <span class="badge ${typeBadge}">${it.asset_label}</span>
                 ${dropHtml}
-                ${sizeWarn}
+                ${sizeWarn}${trkBadges}
               </div>
               <span class="score-pill ${scClass}" title="Puntuación de oportunidad (0-100)">
                 ${score >= 75 ? '🔥 ' : ''}Score ${score}
@@ -1206,6 +1279,7 @@
               </div>
             </div>
 
+            ${trkLine}
             ${reasons ? `<ul class="reasons-list">${reasons}</ul>` : ''}
             <p class="prop-desc">${it.description || ''}</p>
             ${note ? `<div style="background:var(--amber-soft);color:var(--amber);padding:7px 10px;border-radius:8px;font-size:12px;">📝 <b>Tu nota:</b> ${note}</div>` : ''}
@@ -1226,6 +1300,50 @@
             </div>
           </article>
         `;
+      }).join('');
+    }
+
+    function renderAlertas() {
+      const todas = STATE.alertas || [];
+      const cuentas = {};
+      todas.forEach(a => { cuentas[a.kind] = (cuentas[a.kind] || 0) + 1; });
+
+      const titulos = {};
+      todas.forEach(a => { titulos[a.kind] = `${a.icono} ${a.titulo}`; });
+      const ordenKinds = Object.keys(cuentas).sort((a, b) => cuentas[b] - cuentas[a]);
+
+      $('al-filtros').innerHTML =
+        `<button class="al-pill ${STATE.alertaFiltro === 'TODAS' ? 'on' : ''}" data-k="TODAS">Todas (${todas.length})</button>` +
+        `<button class="al-pill ${STATE.alertaFiltro === 'ALTA' ? 'on' : ''}" data-k="ALTA">🚩 Solo importantes (${todas.filter(a => a.gravedad === 'alta').length})</button>` +
+        ordenKinds.map(k => `<button class="al-pill ${STATE.alertaFiltro === k ? 'on' : ''}" data-k="${k}">${titulos[k]} (${cuentas[k]})</button>`).join('');
+
+      let lista = todas;
+      if (STATE.alertaFiltro === 'ALTA') lista = todas.filter(a => a.gravedad === 'alta');
+      else if (STATE.alertaFiltro !== 'TODAS') lista = todas.filter(a => a.kind === STATE.alertaFiltro);
+
+      if (!lista.length) {
+        $('al-lista').innerHTML = `<div style="text-align:center;padding:40px;color:var(--muted);background:var(--bg-card);border-radius:14px;border:1px solid var(--line-soft);">
+          Todavía no hay movimientos de este tipo. Las alertas aparecen a partir del segundo día, cuando el agente ya tiene con qué comparar.
+        </div>`;
+        return;
+      }
+
+      $('al-lista').innerHTML = lista.map(a => {
+        const d = a.dias;
+        const cuando = d === 0 ? 'hoy' : d === 1 ? 'ayer' : (d != null ? `hace ${d} días` : '');
+        const titulo = a.url && /^https?:/.test(a.url)
+          ? `<a href="${a.url}" target="_blank" rel="noopener">${a.listing_title || 'Ver anuncio'}</a>`
+          : (a.listing_title || 'Anuncio');
+        return `
+          <article class="al-card g-${a.gravedad}">
+            <div class="al-ico">${a.icono || '🔔'}</div>
+            <div style="flex:1;min-width:0;">
+              <div class="al-kind">${a.titulo}${a.zone_name ? ' · ' + a.zone_name : ''}</div>
+              <div class="al-tit">${titulo}</div>
+              <div class="al-det">${a.detalle || ''}</div>
+            </div>
+            <div class="al-cuando">${cuando}</div>
+          </article>`;
       }).join('');
     }
 
@@ -1349,12 +1467,30 @@
         ? it.price_history
         : [{date: (it.first_seen_at || '').slice(0, 10) || 'Actual', price: it.price_eur}];
 
-      $('dh-list').innerHTML = hist.map((h, idx) => `
-        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line-soft);">
-          <span>📅 ${h.date}</span>
-          <b>${fmtEur(h.price)} ${idx > 0 && h.price < hist[idx-1].price ? '<span style="color:var(--accent)">▼ Rebaja</span>' : ''}</b>
-        </div>
-      `).join('');
+      const fecha = s => (s || '').slice(0, 10).split('-').reverse().join('/');
+      const tramos = (it.tramos || []).map((t, i) => `
+        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--line-soft);font-size:12.5px;">
+          <span>${i + 1}ª publicación · desde el ${fecha(t.started_at)}</span>
+          <b>${t.ended_at ? 'retirado el ' + fecha(t.ended_at) : 'sigue publicado'}</b>
+        </div>`).join('');
+
+      const seg = [];
+      if (it.dias_en_venta != null) seg.push(`A la venta desde el <b>${fecha(it.primera_vez_en_venta)}</b> (${it.dias_en_venta} días).`);
+      if (it.dias_publicado != null && it.dias_en_venta != null && it.dias_publicado < it.dias_en_venta - 2) {
+        seg.push(`Ha estado publicado <b>${it.dias_publicado}</b> de esos días.`);
+      }
+      if ((it.republicaciones || 0) > 0) seg.push(`Se ha vuelto a publicar <b>${it.republicaciones}</b> ${it.republicaciones === 1 ? 'vez' : 'veces'}.`);
+      if ((it.anuncios_del_inmueble || 1) > 1) seg.push(`El mismo inmueble se ha publicado en <b>${it.anuncios_del_inmueble}</b> anuncios distintos.`);
+
+      $('dh-list').innerHTML =
+        (seg.length ? `<div class="trk" style="margin-bottom:10px;font-size:12.5px;">🕓 ${seg.join(' ')}</div>` : '') +
+        hist.map((h, idx) => `
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line-soft);">
+            <span>📅 ${h.date}</span>
+            <b>${fmtEur(h.price)} ${idx > 0 && h.price < hist[idx-1].price ? '<span style="color:var(--accent)">▼ Rebaja</span>' : ''}</b>
+          </div>
+        `).join('') +
+        (tramos ? `<div style="margin-top:12px;"><div class="al-kind" style="color:var(--muted);margin-bottom:4px;">Tramos publicados</div>${tramos}</div>` : '');
 
       $('dlg-history').showModal();
 
@@ -1406,6 +1542,13 @@
       else if (STATE.tab === 'principal' && +$('f-min-m2').value < 180) $('f-min-m2').value = 180;
       STATE.minM2 = +$('f-min-m2').value || 0;
       renderAll();
+    };
+
+    $('al-filtros').onclick = e => {
+      const pill = e.target.closest('.al-pill');
+      if (!pill) return;
+      STATE.alertaFiltro = pill.dataset.k;
+      renderAlertas();
     };
 
     $('btn-export-csv').onclick = exportExcelCSV;

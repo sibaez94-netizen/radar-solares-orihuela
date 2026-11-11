@@ -110,12 +110,28 @@ class PortalsScraper:
         ("Milanuncios", 'site:milanuncios.com "Raiguero" OR "Montepinar" OR "Benferri" solar'),
     ]
 
+    #: Qué portales han respondido en la última pasada. Sirve para no dar por
+    #: retirado un anuncio solo porque hoy su portal no contestaba.
+    source_health: Dict[str, Dict[str, int]] = {}
+
+    def _anota(self, portal_name: str, ok: bool) -> None:
+        s = self.source_health.setdefault(portal_name, {"intentos": 0, "ok": 0})
+        s["intentos"] += 1
+        if ok:
+            s["ok"] += 1
+
+    @property
+    def portales_ok(self) -> List[str]:
+        return [n for n, s in self.source_health.items() if s["ok"] > 0]
+
     def run_all(self) -> List[Dict[str, Any]]:
         results: List[Dict[str, Any]] = []
         seen_urls = set()
+        self.source_health = {}
 
         for portal_name, url, raw_type in self.PORTAL_URLS:
             page_html = http_get(url)
+            self._anota(portal_name, bool(page_html))
             if not page_html:
                 continue
             parsed = self.parse_portal_html(page_html, portal_name=portal_name, base_url=url, raw_type=raw_type)
@@ -129,6 +145,10 @@ class PortalsScraper:
         # Ejecutar descubrimiento indexado para Idealista / Fotocasa / Milanuncios
         for portal_name, query in self.SEARCH_DORKS:
             dork_items = self.search_indexed_listings(query, portal_name)
+            # En las búsquedas indexadas no se distingue "no hay resultados" de
+            # "el buscador no ha contestado", así que solo se da el portal por
+            # vivo cuando ha devuelto algo.
+            self._anota(portal_name, bool(dork_items))
             for item in dork_items:
                 u = item.get("url", "")
                 if u and u not in seen_urls:

@@ -255,5 +255,22 @@
     "extra_localidades": [],
     "delay_s": 0.6,
     "_nota": "Portal de Subastas del BOE. provincias: 03 = Alicante (añade '30' para Murcia). estados: EJ = celebrándose, PU = próxima apertura. Solo se guardan bienes cuya localidad/dirección coincide con las palabras clave de 'zones' y no está en 'excluded_costa_keywords'."
+  },
+  "alertas": {
+    "_nota": "Reglas de las alertas de seguimiento. Todo en porcentaje o en euros.",
+    "bajada_fuerte_pct": 5.0,
+    "bajada_fuerte_eur": 10000,
+    "bajada_acumulada_pct": 15.0,
+    "republicacion_dias": 7,
+    "republicacion_mas_barato_pct": 3.0,
+    "duplicado_dif_pct": 3.0,
+    "estancado_dias": 180,
+    "primera_bajada_dias": 90,
+    "bajo_mercado_factor": 0.7,
+    "bajo_mercado_min_comparables": 5,
+    "bajo_mercado_minimo_creible": 0.2,
+    "yoyo_min_cambios": 3,
+    "conservar_alertas_dias": 180,
+    "runs_sin_ver_para_retirar": 2
   }
 }

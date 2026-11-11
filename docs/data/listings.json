@@ -1,9 +1,11 @@
 {
   "stats": {
-    "updated_at": "2026-11-10T15:49:22Z",
-    "total_listings": 103,
+    "updated_at": "2026-11-11T09:09:55Z",
+    "total_listings": 110,
+    "retirados_count": 0,
+    "republicados_count": 0,
     "highlighted_listings": 42,
-    "secondary_listings": 61,
+    "secondary_listings": 68,
     "chollos_count": 14,
     "price_drops_count": 0,
     "median_solar_eur_m2": 266.9,
@@ -12,18 +14,18 @@
       "orihuela": {
         "zone_id": "orihuela",
         "zone_name": "Orihuela (Casco y Centro)",
-        "total_count": 36,
+        "total_count": 37,
         "highlighted_count": 12,
         "min_eur_m2": 28.6,
         "avg_solar_eur_m2": 413.8,
         "median_solar_eur_m2": 312.4,
-        "avg_casa_eur_m2": 736.1,
-        "median_casa_eur_m2": 879.0
+        "avg_casa_eur_m2": 721.1,
+        "median_casa_eur_m2": 837.1
       },
       "montepinar": {
         "zone_id": "montepinar",
         "zone_name": "Montepinar",
-        "total_count": 13,
+        "total_count": 15,
         "highlighted_count": 3,
         "min_eur_m2": 109.9,
         "avg_solar_eur_m2": 134.9,
@@ -34,11 +36,11 @@
       "pedanias_orihuela": {
         "zone_id": "pedanias_orihuela",
         "zone_name": "Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...)",
-        "total_count": 45,
+        "total_count": 49,
         "highlighted_count": 22,
         "min_eur_m2": 88.6,
-        "avg_solar_eur_m2": 446.3,
-        "median_solar_eur_m2": 322.4,
+        "avg_solar_eur_m2": 487.8,
+        "median_solar_eur_m2": 338.0,
         "avg_casa_eur_m2": 921.3,
         "median_casa_eur_m2": 849.3
       },
@@ -77,7 +79,10 @@
       }
     },
     "auctions_count": 114,
-    "auctions_target_count": 0
+    "auctions_target_count": 0,
+    "alertas_count": 13,
+    "alertas_altas_count": 13,
+    "alertas_7d_count": 0
   },
   "listings": [
     {
@@ -117,6 +122,9 @@
       "status": "active",
       "times_seen": 6,
       "rooms": null,
+      "prop_id": "P31a51141ceabf7",
+      "missing_runs": 1,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² muy bajo (29 €/m², un 92% bajo media de zona)",
         "Gran amplitud de parcela (1920 m²)"
@@ -129,7 +137,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "23a40191183af0",
+          "prop_id": "P31a51141ceabf7",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 55000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:02:24Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "8c8eb52fb32f09",
@@ -163,11 +187,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
+      "prop_id": "P4ee321b464e895",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² muy bajo (76 €/m², un 78% bajo media de zona)",
         "Gran amplitud de parcela (1318 m²)"
@@ -180,7 +207,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "8c8eb52fb32f09",
+          "prop_id": "P4ee321b464e895",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 100000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:02:24Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "vega-e028-01048",
@@ -214,11 +257,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": null,
+      "prop_id": "P72a7aa4aa1b42b",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² muy bajo (110 €/m², un 52% bajo media de zona)",
         "Gran amplitud de parcela (955 m²)",
@@ -232,7 +278,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "vega-e028-01048",
+          "prop_id": "P72a7aa4aa1b42b",
+          "started_at": "2026-11-09T11:53:34Z",
+          "ended_at": null,
+          "start_price_eur": 105000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:53:34Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "2c691978a42a93",
@@ -266,11 +328,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
+      "prop_id": "P21db8ab6d2c2cf",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² muy bajo (89 €/m², un 53% bajo media de zona)",
         "Gran amplitud de parcela (1185 m²)"
@@ -283,7 +348,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "2c691978a42a93",
+          "prop_id": "P21db8ab6d2c2cf",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 105000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:02:24Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "bf3dabcbff2a65",
@@ -317,11 +398,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 3,
+      "prop_id": "P01dbaf77730a3c",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² muy bajo (232 €/m², un 45% bajo media de zona)",
         "Gran amplitud de parcela (410 m²)"
@@ -334,7 +418,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "bf3dabcbff2a65",
+          "prop_id": "P01dbaf77730a3c",
+          "started_at": "2026-11-09T11:53:34Z",
+          "ended_at": null,
+          "start_price_eur": 95000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:53:34Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "e91ab627abd829",
@@ -368,11 +468,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 7,
+      "times_seen": 8,
       "rooms": null,
+      "prop_id": "Pec47cff67addf5",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² muy bajo (126 €/m², un 34% bajo media de zona)",
         "Gran amplitud de parcela (441 m²)",
@@ -386,7 +489,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "e91ab627abd829",
+          "prop_id": "Pec47cff67addf5",
+          "started_at": "2026-11-09T10:37:00Z",
+          "ended_at": null,
+          "start_price_eur": 55650.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T10:37:00Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "291f0003f6d000",
@@ -420,11 +539,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": 5,
+      "prop_id": "P72bffa777e9f71",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² muy bajo (314 €/m², un 40% bajo media de zona)",
         "Gran amplitud de parcela (828 m²)"
@@ -437,7 +559,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "291f0003f6d000",
+          "prop_id": "P72bffa777e9f71",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 260000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:02:24Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "15f965af48fe4f",
@@ -471,11 +609,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
+      "prop_id": "P259487ee72b6a1",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² muy bajo (214 €/m², un 37% bajo media de zona)",
         "Gran amplitud de parcela (337 m²)"
@@ -488,7 +629,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "15f965af48fe4f",
+          "prop_id": "P259487ee72b6a1",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 72000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:02:24Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "10soles-sol0003",
@@ -522,11 +679,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 4,
+      "times_seen": 5,
       "rooms": null,
+      "prop_id": "P1015d6b065f205-ol0003",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² muy bajo (147 €/m², un 36% bajo media de zona)",
         "Gran amplitud de parcela (1900 m²)"
@@ -539,7 +699,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "10soles-sol0003",
+          "prop_id": "P1015d6b065f205-ol0003",
+          "started_at": "2026-11-09T11:53:34Z",
+          "ended_at": null,
+          "start_price_eur": 280000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:53:34Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "823e27e412db86",
@@ -573,11 +749,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 7,
+      "times_seen": 8,
       "rooms": null,
+      "prop_id": "P1015d6b065f205",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² muy bajo (147 €/m², un 36% bajo media de zona)",
         "Gran amplitud de parcela (1900 m²)"
@@ -590,7 +769,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "823e27e412db86",
+          "prop_id": "P1015d6b065f205",
+          "started_at": "2026-11-09T10:37:00Z",
+          "ended_at": null,
+          "start_price_eur": 280000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T10:37:00Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "304f91601f8d1e",
@@ -624,11 +819,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
+      "prop_id": "P4c4cdef91f9fd9-1f8d1e",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² muy bajo (147 €/m², un 30% bajo media de zona)",
         "Gran amplitud de parcela (344 m²)"
@@ -641,7 +839,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "304f91601f8d1e",
+          "prop_id": "P4c4cdef91f9fd9-1f8d1e",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 50500.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:02:24Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "48bf984abeddeb",
@@ -675,11 +889,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 7,
+      "times_seen": 8,
       "rooms": null,
+      "prop_id": "P4c4cdef91f9fd9",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Buen ratio (163 €/m², 22% bajo referencia en Raiguero de Bonanza)",
         "Gran amplitud de parcela (344 m²)",
@@ -693,7 +910,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "48bf984abeddeb",
+          "prop_id": "P4c4cdef91f9fd9",
+          "started_at": "2026-11-09T10:37:00Z",
+          "ended_at": null,
+          "start_price_eur": 56100.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T10:37:00Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "9476ee8440bbbd",
@@ -727,11 +960,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
+      "prop_id": "Pb60f58fcde1b7e",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Buen ratio (267 €/m², 22% bajo referencia en Orihuela (Casco y Centro))",
         "Vendedor indica urgencia / rebaja"
@@ -744,7 +980,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "9476ee8440bbbd",
+          "prop_id": "Pb60f58fcde1b7e",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 79000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:02:24Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "ddb75ef4ef4d9a",
@@ -778,11 +1030,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": 4,
+      "prop_id": "Pa9ad60097f4f5b",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Buen ratio (330 €/m², 21% bajo referencia en Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...))",
         "Gran amplitud de parcela (300 m²)"
@@ -795,7 +1050,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "ddb75ef4ef4d9a",
+          "prop_id": "Pa9ad60097f4f5b",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 99000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:02:24Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "10soles-pue0063",
@@ -829,11 +1100,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 3,
+      "prop_id": "P85aa3f939f20b3",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Buen ratio (421 €/m², 19% bajo referencia en Orihuela (Casco y Centro))"
       ],
@@ -845,7 +1119,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "10soles-pue0063",
+          "prop_id": "P85aa3f939f20b3",
+          "started_at": "2026-11-09T11:53:34Z",
+          "ended_at": null,
+          "start_price_eur": 109000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:53:34Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "3c04a4de5251ce",
@@ -879,11 +1169,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
+      "prop_id": "P1c7e03dce6610a",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Gran amplitud de parcela (405 m²)"
       ],
@@ -895,7 +1188,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "3c04a4de5251ce",
+          "prop_id": "P1c7e03dce6610a",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 125000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:02:24Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "22d94b77ef429c",
@@ -929,11 +1238,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
+      "prop_id": "P1c7e03dce6610a",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Gran amplitud de parcela (405 m²)"
       ],
@@ -945,7 +1257,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "22d94b77ef429c",
+          "prop_id": "P1c7e03dce6610a",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 125000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:02:24Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "10soles-sol0008",
@@ -979,11 +1307,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 4,
+      "times_seen": 5,
       "rooms": null,
+      "prop_id": "P5a1af600b33d74",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Gran amplitud de parcela (411 m²)"
       ],
@@ -995,7 +1326,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "10soles-sol0008",
+          "prop_id": "P5a1af600b33d74",
+          "started_at": "2026-11-09T11:53:34Z",
+          "ended_at": null,
+          "start_price_eur": 129900.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:53:34Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "bb0f84386af76e",
@@ -1029,11 +1376,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
+      "prop_id": "Pc0f12ede5b6787",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [],
       "price_history": [
         {
@@ -1043,7 +1393,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "bb0f84386af76e",
+          "prop_id": "Pc0f12ede5b6787",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 60000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:02:24Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "83e5c48d0e775b",
@@ -1077,11 +1443,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 8,
+      "prop_id": "P2e350c31f97685",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Gran amplitud de parcela (1200 m²)"
       ],
@@ -1093,7 +1462,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "83e5c48d0e775b",
+          "prop_id": "P2e350c31f97685",
+          "started_at": "2026-11-09T11:53:34Z",
+          "ended_at": null,
+          "start_price_eur": 249890.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:53:34Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "69916ae5a13166",
@@ -1127,11 +1512,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": null,
+      "prop_id": "Pd5e7686c72f5cd",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Vendedor indica urgencia / rebaja"
       ],
@@ -1143,7 +1531,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "69916ae5a13166",
+          "prop_id": "Pd5e7686c72f5cd",
+          "started_at": "2026-11-09T11:53:34Z",
+          "ended_at": null,
+          "start_price_eur": 149000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:53:34Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "c441b68d7a6660",
@@ -1177,11 +1581,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": 3,
+      "prop_id": "Pfc8b3e76d8ec62",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [],
       "price_history": [
         {
@@ -1191,7 +1598,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "c441b68d7a6660",
+          "prop_id": "Pfc8b3e76d8ec62",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 95000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:02:24Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "6d141684853551",
@@ -1225,11 +1648,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 7,
+      "times_seen": 8,
       "rooms": 5,
+      "prop_id": "Pcc8254599963e9",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (539 €/m²)",
         "Vendedor indica urgencia / rebaja"
@@ -1242,7 +1668,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "6d141684853551",
+          "prop_id": "Pcc8254599963e9",
+          "started_at": "2026-11-09T10:37:00Z",
+          "ended_at": null,
+          "start_price_eur": 141700.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T10:37:00Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "5e6d058f975ea7",
@@ -1276,11 +1718,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
+      "prop_id": "Pfd81870025950a",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (250 €/m²)",
         "Vendedor indica urgencia / rebaja"
@@ -1293,7 +1738,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "5e6d058f975ea7",
+          "prop_id": "Pfd81870025950a",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 65000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:02:24Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "31b8169cd22b9f",
@@ -1327,11 +1788,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
+      "prop_id": "P49bbd092218cc7",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (254 €/m²)",
         "Vendedor indica urgencia / rebaja"
@@ -1344,7 +1808,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "31b8169cd22b9f",
+          "prop_id": "P49bbd092218cc7",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 70000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:02:24Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "4b5860a2b0de9c",
@@ -1378,11 +1858,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 3,
+      "prop_id": "P4f71e0395b55da",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (606 €/m²)",
         "Gran amplitud de parcela (330 m²)"
@@ -1395,7 +1878,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "4b5860a2b0de9c",
+          "prop_id": "P4f71e0395b55da",
+          "started_at": "2026-11-09T11:53:34Z",
+          "ended_at": null,
+          "start_price_eur": 199900.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:53:34Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "3ef1dbe4c7bae9",
@@ -1429,11 +1928,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": null,
+      "prop_id": "P237b3175ddb67d-c7bae9",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (284 €/m²)",
         "Vendedor indica urgencia / rebaja"
@@ -1446,7 +1948,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "3ef1dbe4c7bae9",
+          "prop_id": "P237b3175ddb67d-c7bae9",
+          "started_at": "2026-11-09T11:53:34Z",
+          "ended_at": null,
+          "start_price_eur": 69900.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:53:34Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "932aae0df25165",
@@ -1480,11 +1998,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 7,
+      "times_seen": 8,
       "rooms": null,
+      "prop_id": "P5285e425c10dc9",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (318 €/m²)",
         "Gran amplitud de parcela (1022 m²)",
@@ -1498,7 +2019,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "932aae0df25165",
+          "prop_id": "P5285e425c10dc9",
+          "started_at": "2026-11-09T10:37:00Z",
+          "ended_at": null,
+          "start_price_eur": 325000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T10:37:00Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "83cbc2eca32673",
@@ -1532,11 +2069,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 7,
+      "times_seen": 8,
       "rooms": null,
+      "prop_id": "P57544ef21673cc",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (322 €/m²)"
       ],
@@ -1548,7 +2088,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "83cbc2eca32673",
+          "prop_id": "P57544ef21673cc",
+          "started_at": "2026-11-09T10:37:00Z",
+          "ended_at": null,
+          "start_price_eur": 69000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T10:37:00Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "10soles-pue0060",
@@ -1582,11 +2138,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 3,
+      "prop_id": "Pa5adee229e30f3",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (760 €/m²)",
         "Vendedor indica urgencia / rebaja"
@@ -1599,7 +2158,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "10soles-pue0060",
+          "prop_id": "Pa5adee229e30f3",
+          "started_at": "2026-11-09T11:53:34Z",
+          "ended_at": null,
+          "start_price_eur": 139900.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:53:34Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "013e92049cf74b",
@@ -1633,11 +2208,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 7,
+      "times_seen": 8,
       "rooms": null,
+      "prop_id": "P237b3175ddb67d",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (354 €/m²)",
         "Vendedor indica urgencia / rebaja"
@@ -1650,7 +2228,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "013e92049cf74b",
+          "prop_id": "P237b3175ddb67d",
+          "started_at": "2026-11-09T10:37:00Z",
+          "ended_at": null,
+          "start_price_eur": 87000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T10:37:00Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "3214df86903e26",
@@ -1684,11 +2278,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 7,
+      "times_seen": 8,
       "rooms": null,
+      "prop_id": "Pf60c47ec29670f",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (360 €/m²)",
         "Gran amplitud de parcela (400 m²)"
@@ -1701,7 +2298,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "3214df86903e26",
+          "prop_id": "Pf60c47ec29670f",
+          "started_at": "2026-11-09T10:37:00Z",
+          "ended_at": null,
+          "start_price_eur": 144000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T10:37:00Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "1432867d2a0b64",
@@ -1735,11 +2348,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 7,
+      "times_seen": 8,
       "rooms": null,
+      "prop_id": "P870ee89ef92690",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (400 €/m²)",
         "Gran amplitud de parcela (770 m²)"
@@ -1752,7 +2368,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "1432867d2a0b64",
+          "prop_id": "P870ee89ef92690",
+          "started_at": "2026-11-09T10:37:00Z",
+          "ended_at": null,
+          "start_price_eur": 308000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T10:37:00Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "58f4bb7ccdfa5e",
@@ -1791,6 +2423,9 @@
       "status": "new",
       "times_seen": 1,
       "rooms": null,
+      "prop_id": "P192943afd8e78b",
+      "missing_runs": 1,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (400 €/m²)",
         "Vendedor indica urgencia / rebaja"
@@ -1803,7 +2438,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "58f4bb7ccdfa5e",
+          "prop_id": "P192943afd8e78b",
+          "started_at": "2026-11-09T10:37:00Z",
+          "ended_at": null,
+          "start_price_eur": 84000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T10:37:00Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "7ade55a685606e",
@@ -1837,11 +2488,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 7,
+      "times_seen": 8,
       "rooms": null,
+      "prop_id": "P3a9c094347db66",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (447 €/m²)",
         "Gran amplitud de parcela (1120 m²)",
@@ -1855,7 +2509,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "7ade55a685606e",
+          "prop_id": "P3a9c094347db66",
+          "started_at": "2026-11-09T10:37:00Z",
+          "ended_at": null,
+          "start_price_eur": 500000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T10:37:00Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "9cf5acc7194eaf",
@@ -1889,11 +2559,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-10T14:58:39Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 2,
+      "times_seen": 3,
       "rooms": 3,
+      "prop_id": "P41f05eda7cb47d",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (803 €/m²)"
       ],
@@ -1905,7 +2578,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "9cf5acc7194eaf",
+          "prop_id": "P41f05eda7cb47d",
+          "started_at": "2026-11-10T14:58:39Z",
+          "ended_at": null,
+          "start_price_eur": 155000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-10T14:58:39Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "1d79e91e405c0c",
@@ -1939,11 +2628,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 7,
+      "times_seen": 8,
       "rooms": 3,
+      "prop_id": "P9445902f7cccc5",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (816 €/m²)",
         "Vendedor indica urgencia / rebaja"
@@ -1956,7 +2648,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "1d79e91e405c0c",
+          "prop_id": "P9445902f7cccc5",
+          "started_at": "2026-11-09T10:37:00Z",
+          "ended_at": null,
+          "start_price_eur": 155000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T10:37:00Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "vega-e028-01637",
@@ -1990,11 +2698,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 4,
+      "prop_id": "Pe964e2fe189f73",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1076 €/m²)",
         "Vendedor indica urgencia / rebaja"
@@ -2007,7 +2718,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "vega-e028-01637",
+          "prop_id": "Pe964e2fe189f73",
+          "started_at": "2026-11-09T11:53:34Z",
+          "ended_at": null,
+          "start_price_eur": 199000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:53:34Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "43caa7271c57d5",
@@ -2041,11 +2768,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 7,
+      "times_seen": 8,
       "rooms": 3,
+      "prop_id": "P479dc6d75dcd82",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1320 €/m²)"
       ],
@@ -2057,7 +2787,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "43caa7271c57d5",
+          "prop_id": "P479dc6d75dcd82",
+          "started_at": "2026-11-09T10:37:00Z",
+          "ended_at": null,
+          "start_price_eur": 375000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T10:37:00Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "8b442282416ebf",
@@ -2091,11 +2837,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 7,
+      "times_seen": 8,
       "rooms": 3,
+      "prop_id": "P40d90e7ed3676a",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1321 €/m²)"
       ],
@@ -2107,7 +2856,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "8b442282416ebf",
+          "prop_id": "P40d90e7ed3676a",
+          "started_at": "2026-11-09T10:37:00Z",
+          "ended_at": null,
+          "start_price_eur": 255000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T10:37:00Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "ce23417f5f0bb8",
@@ -2141,11 +2906,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
+      "prop_id": "P9fefbf32ec4f1e",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1576 €/m²)",
         "Gran amplitud de parcela (349 m²)"
@@ -2158,7 +2926,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "ce23417f5f0bb8",
+          "prop_id": "P9fefbf32ec4f1e",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 550000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:02:24Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "vega-e028-01741",
@@ -2192,11 +2976,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 3,
+      "prop_id": "Pd23c09407e63f1",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1878 €/m²)",
         "Solar en esquina / da a dos calles"
@@ -2209,7 +2996,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "vega-e028-01741",
+          "prop_id": "Pd23c09407e63f1",
+          "started_at": "2026-11-09T11:53:34Z",
+          "ended_at": null,
+          "start_price_eur": 417000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:53:34Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "b563155845ed08",
@@ -2243,11 +3046,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": 1,
+      "prop_id": "P547bd3e570b730",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² muy bajo (127 €/m², un 76% bajo media de zona)",
         "Parcela inferior al objetivo principal (150 m² < 180 m²)",
@@ -2261,7 +3067,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "b563155845ed08",
+          "prop_id": "P547bd3e570b730",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 19000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:02:24Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "be44485850d071",
@@ -2295,11 +3117,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
+      "prop_id": "P0636211f1b5240",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² muy bajo (186 €/m², un 45% bajo media de zona)",
         "Parcela inferior al objetivo principal (86 m² < 180 m²)"
@@ -2312,61 +3137,35 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
-    },
-    {
-      "id": "0dcf15fadbd052",
-      "portal": "Idealista",
-      "title": "Casa o chalet independiente en venta en Montepinar-La Aparecida ...",
-      "url": "https://www.idealista.com/inmueble/109157811/",
-      "zone_id": "montepinar",
-      "zone_name": "Montepinar",
-      "tier": 1,
-      "location_raw": "Montepinar",
-      "lat": 38.0467,
-      "lon": -1.03556,
-      "asset_type": "casa_planta_baja",
-      "asset_label": "Casa / Vivienda con Parcela",
-      "is_target_type": true,
-      "is_orihuela_costa": false,
-      "initial_price_eur": null,
-      "price_eur": null,
-      "min_price_eur": null,
-      "max_price_eur": null,
-      "price_drop_eur": 0.0,
-      "price_drop_pct": 0.0,
-      "surface_plot_m2": null,
-      "surface_built_m2": null,
-      "effective_plot_m2": 0.0,
-      "eur_per_m2": null,
-      "discount_vs_ref_pct": null,
-      "is_highlighted": false,
-      "chollo_score": 35,
-      "description": "Casa o chalet independiente en venta en Montepinar-La Aparecida ... www.idealista.com/inmueble/109157811/",
-      "image_url": "",
-      "phone": "",
-      "first_seen_at": "2026-11-10T15:49:22Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
-      "last_price_change_at": null,
-      "status": "new",
-      "times_seen": 1,
-      "rooms": null,
-      "chollo_reasons": [
-        "Falta precio o m² para valorar €/m²"
       ],
-      "price_history": []
+      "tramos": [
+        {
+          "listing_id": "be44485850d071",
+          "prop_id": "P0636211f1b5240",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 16000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:02:24Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
-      "id": "179d9ad200283c",
+      "id": "a051b7f9819d08",
       "portal": "Idealista",
       "title": "Casa o chalet en venta en Montepinar-La Aparecida-Raiguero, Orihuela ...",
-      "url": "https://www.idealista.com/inmueble/107757298/",
+      "url": "https://www.idealista.com/inmueble/112742227/",
       "zone_id": "montepinar",
       "zone_name": "Montepinar",
       "tier": 1,
       "location_raw": "Montepinar",
-      "lat": 38.04775,
-      "lon": -1.03042,
+      "lat": 38.04705,
+      "lon": -1.02749,
       "asset_type": "casa_planta_baja",
       "asset_label": "Casa / Vivienda con Parcela",
       "is_target_type": true,
@@ -2384,19 +3183,99 @@
       "discount_vs_ref_pct": null,
       "is_highlighted": false,
       "chollo_score": 35,
-      "description": "Casa o chalet en venta en Montepinar-La Aparecida-Raiguero, Orihuela ... www.idealista.com/inmueble/107757298/",
+      "description": "Casa o chalet en venta en Montepinar-La Aparecida-Raiguero, Orihuela ... www.idealista.com/inmueble/112742227/",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T15:49:22Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
       "rooms": null,
+      "prop_id": "P2e527b1bd7ccb0-819d08",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Falta precio o m² para valorar €/m²"
       ],
-      "price_history": []
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "a051b7f9819d08",
+          "prop_id": "P2e527b1bd7ccb0-819d08",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
+    },
+    {
+      "id": "5aa243814314ff",
+      "portal": "Idealista",
+      "title": "Casa o chalet en venta en Montepinar-La Aparecida-Raiguero, Orihuela ...",
+      "url": "https://www.idealista.com/inmueble/111750068/",
+      "zone_id": "montepinar",
+      "zone_name": "Montepinar",
+      "tier": 1,
+      "location_raw": "Montepinar",
+      "lat": 38.04841,
+      "lon": -1.03226,
+      "asset_type": "casa_planta_baja",
+      "asset_label": "Casa / Vivienda con Parcela",
+      "is_target_type": true,
+      "is_orihuela_costa": false,
+      "initial_price_eur": null,
+      "price_eur": null,
+      "min_price_eur": null,
+      "max_price_eur": null,
+      "price_drop_eur": 0.0,
+      "price_drop_pct": 0.0,
+      "surface_plot_m2": null,
+      "surface_built_m2": null,
+      "effective_plot_m2": 0.0,
+      "eur_per_m2": null,
+      "discount_vs_ref_pct": null,
+      "is_highlighted": false,
+      "chollo_score": 35,
+      "description": "Casa o chalet en venta en Montepinar-La Aparecida-Raiguero, Orihuela ... www.idealista.com/inmueble/111750068/",
+      "image_url": "",
+      "phone": "",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
+      "last_price_change_at": null,
+      "status": "new",
+      "times_seen": 1,
+      "rooms": null,
+      "prop_id": "P2e527b1bd7ccb0-4314ff",
+      "missing_runs": 0,
+      "delisted_at": null,
+      "chollo_reasons": [
+        "Falta precio o m² para valorar €/m²"
+      ],
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "5aa243814314ff",
+          "prop_id": "P2e527b1bd7ccb0-4314ff",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "9ee6ea038d972e",
@@ -2429,16 +3308,218 @@
       "description": "Casa o chalet independiente en venta en Montepinar-La Aparecida ... www.idealista.com/inmueble/107568321/",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T15:49:22Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
       "rooms": null,
+      "prop_id": "P2e527b1bd7ccb0-8d972e",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Falta precio o m² para valorar €/m²"
       ],
-      "price_history": []
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "9ee6ea038d972e",
+          "prop_id": "P2e527b1bd7ccb0-8d972e",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
+    },
+    {
+      "id": "bc58c27a19ea1e",
+      "portal": "Idealista",
+      "title": "Casa o chalet independiente en venta en Montepinar-La Aparecida ...",
+      "url": "https://www.idealista.com/inmueble/111155107/",
+      "zone_id": "montepinar",
+      "zone_name": "Montepinar",
+      "tier": 1,
+      "location_raw": "Montepinar",
+      "lat": 38.04473,
+      "lon": -1.02787,
+      "asset_type": "casa_planta_baja",
+      "asset_label": "Casa / Vivienda con Parcela",
+      "is_target_type": true,
+      "is_orihuela_costa": false,
+      "initial_price_eur": null,
+      "price_eur": null,
+      "min_price_eur": null,
+      "max_price_eur": null,
+      "price_drop_eur": 0.0,
+      "price_drop_pct": 0.0,
+      "surface_plot_m2": null,
+      "surface_built_m2": null,
+      "effective_plot_m2": 0.0,
+      "eur_per_m2": null,
+      "discount_vs_ref_pct": null,
+      "is_highlighted": false,
+      "chollo_score": 35,
+      "description": "Casa o chalet independiente en venta en Montepinar-La Aparecida ... www.idealista.com/inmueble/111155107/",
+      "image_url": "",
+      "phone": "",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
+      "last_price_change_at": null,
+      "status": "new",
+      "times_seen": 1,
+      "rooms": null,
+      "prop_id": "P2e527b1bd7ccb0-19ea1e",
+      "missing_runs": 0,
+      "delisted_at": null,
+      "chollo_reasons": [
+        "Falta precio o m² para valorar €/m²"
+      ],
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "bc58c27a19ea1e",
+          "prop_id": "P2e527b1bd7ccb0-19ea1e",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
+    },
+    {
+      "id": "35a897b5c7d4e2",
+      "portal": "Idealista",
+      "title": "Casa o chalet independiente en venta en Montepinar-La Aparecida ...",
+      "url": "https://www.idealista.com/inmueble/112345224/",
+      "zone_id": "montepinar",
+      "zone_name": "Montepinar",
+      "tier": 1,
+      "location_raw": "Montepinar",
+      "lat": 38.04652,
+      "lon": -1.03234,
+      "asset_type": "casa_planta_baja",
+      "asset_label": "Casa / Vivienda con Parcela",
+      "is_target_type": true,
+      "is_orihuela_costa": false,
+      "initial_price_eur": null,
+      "price_eur": null,
+      "min_price_eur": null,
+      "max_price_eur": null,
+      "price_drop_eur": 0.0,
+      "price_drop_pct": 0.0,
+      "surface_plot_m2": null,
+      "surface_built_m2": null,
+      "effective_plot_m2": 0.0,
+      "eur_per_m2": null,
+      "discount_vs_ref_pct": null,
+      "is_highlighted": false,
+      "chollo_score": 35,
+      "description": "Casa o chalet independiente en venta en Montepinar-La Aparecida ... www.idealista.com/inmueble/112345224/",
+      "image_url": "",
+      "phone": "",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
+      "last_price_change_at": null,
+      "status": "new",
+      "times_seen": 1,
+      "rooms": null,
+      "prop_id": "P2e527b1bd7ccb0-c7d4e2",
+      "missing_runs": 0,
+      "delisted_at": null,
+      "chollo_reasons": [
+        "Falta precio o m² para valorar €/m²"
+      ],
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "35a897b5c7d4e2",
+          "prop_id": "P2e527b1bd7ccb0-c7d4e2",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
+    },
+    {
+      "id": "0dcf15fadbd052",
+      "portal": "Idealista",
+      "title": "Casa o chalet independiente en venta en Montepinar-La Aparecida ...",
+      "url": "https://www.idealista.com/inmueble/109157811/",
+      "zone_id": "montepinar",
+      "zone_name": "Montepinar",
+      "tier": 1,
+      "location_raw": "Montepinar",
+      "lat": 38.0467,
+      "lon": -1.03556,
+      "asset_type": "casa_planta_baja",
+      "asset_label": "Casa / Vivienda con Parcela",
+      "is_target_type": true,
+      "is_orihuela_costa": false,
+      "initial_price_eur": null,
+      "price_eur": null,
+      "min_price_eur": null,
+      "max_price_eur": null,
+      "price_drop_eur": 0.0,
+      "price_drop_pct": 0.0,
+      "surface_plot_m2": null,
+      "surface_built_m2": null,
+      "effective_plot_m2": 0.0,
+      "eur_per_m2": null,
+      "discount_vs_ref_pct": null,
+      "is_highlighted": false,
+      "chollo_score": 35,
+      "description": "Casa o chalet independiente en venta en Montepinar-La Aparecida ... www.idealista.com/inmueble/109157811/",
+      "image_url": "",
+      "phone": "",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
+      "last_price_change_at": null,
+      "status": "new",
+      "times_seen": 1,
+      "rooms": null,
+      "prop_id": "P2e527b1bd7ccb0-dbd052",
+      "missing_runs": 0,
+      "delisted_at": null,
+      "chollo_reasons": [
+        "Falta precio o m² para valorar €/m²"
+      ],
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "0dcf15fadbd052",
+          "prop_id": "P2e527b1bd7ccb0-dbd052",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "201683648ec254",
@@ -2471,184 +3552,35 @@
       "description": "Casa o chalet en venta en Montepinar-La Aparecida-Raiguero, Orihuela ... www.idealista.com/inmueble/112555279/",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T15:49:22Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
       "rooms": null,
+      "prop_id": "P2e527b1bd7ccb0-8ec254",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Falta precio o m² para valorar €/m²"
       ],
-      "price_history": []
-    },
-    {
-      "id": "e5ee5c0f7b5625",
-      "portal": "Idealista",
-      "title": "Casa o chalet independiente en venta en Montepinar-La Aparecida ...",
-      "url": "https://www.idealista.com/inmueble/112814851/",
-      "zone_id": "montepinar",
-      "zone_name": "Montepinar",
-      "tier": 1,
-      "location_raw": "Montepinar",
-      "lat": 38.04307,
-      "lon": -1.03024,
-      "asset_type": "casa_planta_baja",
-      "asset_label": "Casa / Vivienda con Parcela",
-      "is_target_type": true,
-      "is_orihuela_costa": false,
-      "initial_price_eur": null,
-      "price_eur": null,
-      "min_price_eur": null,
-      "max_price_eur": null,
-      "price_drop_eur": 0.0,
-      "price_drop_pct": 0.0,
-      "surface_plot_m2": null,
-      "surface_built_m2": null,
-      "effective_plot_m2": 0.0,
-      "eur_per_m2": null,
-      "discount_vs_ref_pct": null,
-      "is_highlighted": false,
-      "chollo_score": 35,
-      "description": "Casa o chalet independiente en venta en Montepinar-La Aparecida ... www.idealista.com/inmueble/112814851/",
-      "image_url": "",
-      "phone": "",
-      "first_seen_at": "2026-11-10T15:49:22Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
-      "last_price_change_at": null,
-      "status": "new",
-      "times_seen": 1,
-      "rooms": null,
-      "chollo_reasons": [
-        "Falta precio o m² para valorar €/m²"
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "201683648ec254",
+          "prop_id": "P2e527b1bd7ccb0-8ec254",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
       ],
-      "price_history": []
-    },
-    {
-      "id": "9a088eb8098bc7",
-      "portal": "Idealista",
-      "title": "Casa o chalet en venta en Montepinar-La Aparecida-Raiguero, Orihuela ...",
-      "url": "https://www.idealista.com/inmueble/112015286/",
-      "zone_id": "montepinar",
-      "zone_name": "Montepinar",
-      "tier": 1,
-      "location_raw": "Montepinar",
-      "lat": 38.04576,
-      "lon": -1.02734,
-      "asset_type": "casa_planta_baja",
-      "asset_label": "Casa / Vivienda con Parcela",
-      "is_target_type": true,
-      "is_orihuela_costa": false,
-      "initial_price_eur": null,
-      "price_eur": null,
-      "min_price_eur": null,
-      "max_price_eur": null,
-      "price_drop_eur": 0.0,
-      "price_drop_pct": 0.0,
-      "surface_plot_m2": null,
-      "surface_built_m2": null,
-      "effective_plot_m2": 0.0,
-      "eur_per_m2": null,
-      "discount_vs_ref_pct": null,
-      "is_highlighted": false,
-      "chollo_score": 35,
-      "description": "Casa o chalet en venta en Montepinar-La Aparecida-Raiguero, Orihuela ... www.idealista.com/inmueble/112015286/",
-      "image_url": "",
-      "phone": "",
-      "first_seen_at": "2026-11-10T15:49:22Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
-      "last_price_change_at": null,
-      "status": "new",
-      "times_seen": 1,
-      "rooms": null,
-      "chollo_reasons": [
-        "Falta precio o m² para valorar €/m²"
-      ],
-      "price_history": []
-    },
-    {
-      "id": "23f34690af359f",
-      "portal": "Idealista",
-      "title": "Casa o chalet en venta en Montepinar-La Aparecida-Raiguero, Orihuela ...",
-      "url": "https://www.idealista.com/inmueble/112701432/",
-      "zone_id": "montepinar",
-      "zone_name": "Montepinar",
-      "tier": 1,
-      "location_raw": "Montepinar",
-      "lat": 38.04745,
-      "lon": -1.03231,
-      "asset_type": "casa_planta_baja",
-      "asset_label": "Casa / Vivienda con Parcela",
-      "is_target_type": true,
-      "is_orihuela_costa": false,
-      "initial_price_eur": null,
-      "price_eur": null,
-      "min_price_eur": null,
-      "max_price_eur": null,
-      "price_drop_eur": 0.0,
-      "price_drop_pct": 0.0,
-      "surface_plot_m2": null,
-      "surface_built_m2": null,
-      "effective_plot_m2": 0.0,
-      "eur_per_m2": null,
-      "discount_vs_ref_pct": null,
-      "is_highlighted": false,
-      "chollo_score": 35,
-      "description": "Casa o chalet en venta en Montepinar-La Aparecida-Raiguero, Orihuela ... www.idealista.com/inmueble/112701432/",
-      "image_url": "",
-      "phone": "",
-      "first_seen_at": "2026-11-10T15:49:22Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
-      "last_price_change_at": null,
-      "status": "new",
-      "times_seen": 1,
-      "rooms": null,
-      "chollo_reasons": [
-        "Falta precio o m² para valorar €/m²"
-      ],
-      "price_history": []
-    },
-    {
-      "id": "fef3d0e800d2f0",
-      "portal": "Idealista",
-      "title": "Casa o chalet independiente en venta en Montepinar-La Aparecida ...",
-      "url": "https://www.idealista.com/inmueble/111777946/",
-      "zone_id": "montepinar",
-      "zone_name": "Montepinar",
-      "tier": 1,
-      "location_raw": "Montepinar",
-      "lat": 38.04961,
-      "lon": -1.02893,
-      "asset_type": "casa_planta_baja",
-      "asset_label": "Casa / Vivienda con Parcela",
-      "is_target_type": true,
-      "is_orihuela_costa": false,
-      "initial_price_eur": null,
-      "price_eur": null,
-      "min_price_eur": null,
-      "max_price_eur": null,
-      "price_drop_eur": 0.0,
-      "price_drop_pct": 0.0,
-      "surface_plot_m2": null,
-      "surface_built_m2": null,
-      "effective_plot_m2": 0.0,
-      "eur_per_m2": null,
-      "discount_vs_ref_pct": null,
-      "is_highlighted": false,
-      "chollo_score": 35,
-      "description": "Casa o chalet independiente en venta en Montepinar-La Aparecida ... www.idealista.com/inmueble/111777946/",
-      "image_url": "",
-      "phone": "",
-      "first_seen_at": "2026-11-10T15:49:22Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
-      "last_price_change_at": null,
-      "status": "new",
-      "times_seen": 1,
-      "rooms": null,
-      "chollo_reasons": [
-        "Falta precio o m² para valorar €/m²"
-      ],
-      "price_history": []
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "e27df0fa59499b",
@@ -2681,16 +3613,218 @@
       "description": "Casa o chalet en venta en Montepinar-La Aparecida-Raiguero, Orihuela ... www.idealista.com/inmueble/111750228/",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T15:49:22Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
       "rooms": null,
+      "prop_id": "P2e527b1bd7ccb0-59499b",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Falta precio o m² para valorar €/m²"
       ],
-      "price_history": []
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "e27df0fa59499b",
+          "prop_id": "P2e527b1bd7ccb0-59499b",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
+    },
+    {
+      "id": "fef3d0e800d2f0",
+      "portal": "Idealista",
+      "title": "Casa o chalet independiente en venta en Montepinar-La Aparecida ...",
+      "url": "https://www.idealista.com/inmueble/111777946/",
+      "zone_id": "montepinar",
+      "zone_name": "Montepinar",
+      "tier": 1,
+      "location_raw": "Montepinar",
+      "lat": 38.04961,
+      "lon": -1.02893,
+      "asset_type": "casa_planta_baja",
+      "asset_label": "Casa / Vivienda con Parcela",
+      "is_target_type": true,
+      "is_orihuela_costa": false,
+      "initial_price_eur": null,
+      "price_eur": null,
+      "min_price_eur": null,
+      "max_price_eur": null,
+      "price_drop_eur": 0.0,
+      "price_drop_pct": 0.0,
+      "surface_plot_m2": null,
+      "surface_built_m2": null,
+      "effective_plot_m2": 0.0,
+      "eur_per_m2": null,
+      "discount_vs_ref_pct": null,
+      "is_highlighted": false,
+      "chollo_score": 35,
+      "description": "Casa o chalet independiente en venta en Montepinar-La Aparecida ... www.idealista.com/inmueble/111777946/",
+      "image_url": "",
+      "phone": "",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
+      "last_price_change_at": null,
+      "status": "new",
+      "times_seen": 1,
+      "rooms": null,
+      "prop_id": "P2e527b1bd7ccb0-00d2f0",
+      "missing_runs": 0,
+      "delisted_at": null,
+      "chollo_reasons": [
+        "Falta precio o m² para valorar €/m²"
+      ],
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "fef3d0e800d2f0",
+          "prop_id": "P2e527b1bd7ccb0-00d2f0",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
+    },
+    {
+      "id": "23f34690af359f",
+      "portal": "Idealista",
+      "title": "Casa o chalet en venta en Montepinar-La Aparecida-Raiguero, Orihuela ...",
+      "url": "https://www.idealista.com/inmueble/112701432/",
+      "zone_id": "montepinar",
+      "zone_name": "Montepinar",
+      "tier": 1,
+      "location_raw": "Montepinar",
+      "lat": 38.04745,
+      "lon": -1.03231,
+      "asset_type": "casa_planta_baja",
+      "asset_label": "Casa / Vivienda con Parcela",
+      "is_target_type": true,
+      "is_orihuela_costa": false,
+      "initial_price_eur": null,
+      "price_eur": null,
+      "min_price_eur": null,
+      "max_price_eur": null,
+      "price_drop_eur": 0.0,
+      "price_drop_pct": 0.0,
+      "surface_plot_m2": null,
+      "surface_built_m2": null,
+      "effective_plot_m2": 0.0,
+      "eur_per_m2": null,
+      "discount_vs_ref_pct": null,
+      "is_highlighted": false,
+      "chollo_score": 35,
+      "description": "Casa o chalet en venta en Montepinar-La Aparecida-Raiguero, Orihuela ... www.idealista.com/inmueble/112701432/",
+      "image_url": "",
+      "phone": "",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
+      "last_price_change_at": null,
+      "status": "new",
+      "times_seen": 1,
+      "rooms": null,
+      "prop_id": "P2e527b1bd7ccb0-af359f",
+      "missing_runs": 0,
+      "delisted_at": null,
+      "chollo_reasons": [
+        "Falta precio o m² para valorar €/m²"
+      ],
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "23f34690af359f",
+          "prop_id": "P2e527b1bd7ccb0-af359f",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
+    },
+    {
+      "id": "e5ee5c0f7b5625",
+      "portal": "Idealista",
+      "title": "Casa o chalet independiente en venta en Montepinar-La Aparecida ...",
+      "url": "https://www.idealista.com/inmueble/112814851/",
+      "zone_id": "montepinar",
+      "zone_name": "Montepinar",
+      "tier": 1,
+      "location_raw": "Montepinar",
+      "lat": 38.04307,
+      "lon": -1.03024,
+      "asset_type": "casa_planta_baja",
+      "asset_label": "Casa / Vivienda con Parcela",
+      "is_target_type": true,
+      "is_orihuela_costa": false,
+      "initial_price_eur": null,
+      "price_eur": null,
+      "min_price_eur": null,
+      "max_price_eur": null,
+      "price_drop_eur": 0.0,
+      "price_drop_pct": 0.0,
+      "surface_plot_m2": null,
+      "surface_built_m2": null,
+      "effective_plot_m2": 0.0,
+      "eur_per_m2": null,
+      "discount_vs_ref_pct": null,
+      "is_highlighted": false,
+      "chollo_score": 35,
+      "description": "Casa o chalet independiente en venta en Montepinar-La Aparecida ... www.idealista.com/inmueble/112814851/",
+      "image_url": "",
+      "phone": "",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
+      "last_price_change_at": null,
+      "status": "new",
+      "times_seen": 1,
+      "rooms": null,
+      "prop_id": "P2e527b1bd7ccb0",
+      "missing_runs": 0,
+      "delisted_at": null,
+      "chollo_reasons": [
+        "Falta precio o m² para valorar €/m²"
+      ],
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "e5ee5c0f7b5625",
+          "prop_id": "P2e527b1bd7ccb0",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "a1f1816042a72c",
@@ -2723,58 +3857,35 @@
       "description": "Terreno en venta en Montepinar-La Aparecida-Raiguero, Orihuela — idealista www.idealista.com/inmueble/104522449/",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T15:49:22Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
       "rooms": null,
+      "prop_id": "P2aab0364bafb52",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Falta precio o m² para valorar €/m²"
       ],
-      "price_history": []
-    },
-    {
-      "id": "873e8d4d632998",
-      "portal": "Idealista (Alerta Email)",
-      "title": "Uno de tus favoritos vuelve a estar publicado",
-      "url": "https://www.idealista.com/inmueble/111625152",
-      "zone_id": "orihuela",
-      "zone_name": "Orihuela (Casco y Centro)",
-      "tier": 1,
-      "location_raw": "Uno de tus favoritos vuelve a estar publicado",
-      "lat": 38.08445,
-      "lon": -0.94219,
-      "asset_type": "solar_urbano",
-      "asset_label": "Solar Urbano",
-      "is_target_type": true,
-      "is_orihuela_costa": false,
-      "initial_price_eur": null,
-      "price_eur": null,
-      "min_price_eur": null,
-      "max_price_eur": null,
-      "price_drop_eur": 0.0,
-      "price_drop_pct": 0.0,
-      "surface_plot_m2": null,
-      "surface_built_m2": null,
-      "effective_plot_m2": 0.0,
-      "eur_per_m2": null,
-      "discount_vs_ref_pct": null,
-      "is_highlighted": false,
-      "chollo_score": 35,
-      "description": "\"> <td c",
-      "image_url": "",
-      "phone": "",
-      "first_seen_at": "2026-11-10T15:49:22Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
-      "last_price_change_at": null,
-      "status": "active",
-      "times_seen": 2,
-      "rooms": null,
-      "chollo_reasons": [
-        "Falta precio o m² para valorar €/m²"
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "a1f1816042a72c",
+          "prop_id": "P2aab0364bafb52",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
       ],
-      "price_history": []
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "0ef07b1a85d247",
@@ -2807,16 +3918,35 @@
       "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Calle Pio Baroja, Bigastro\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/109790978/?utm_medium=email&utm_campaign=recomm",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T15:49:22Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
       "rooms": null,
+      "prop_id": "P917867d06ef8bb-85d247",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Falta precio o m² para valorar €/m²"
       ],
-      "price_history": []
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "0ef07b1a85d247",
+          "prop_id": "P917867d06ef8bb-85d247",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "2a7b613f1c3572",
@@ -2849,16 +3979,35 @@
       "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Calle Moreal s/n, Bigastro\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/111524015/?utm_medium=email&utm_campaign=recomm",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T15:49:22Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
       "rooms": null,
+      "prop_id": "P917867d06ef8bb-1c3572",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Falta precio o m² para valorar €/m²"
       ],
-      "price_history": []
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "2a7b613f1c3572",
+          "prop_id": "P917867d06ef8bb-1c3572",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "7e43917d1927a1",
@@ -2891,16 +4040,35 @@
       "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Calle Chumberas, 1, Orihuela Ciudad, Orihuela\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/110902340/?utm_medium=email&",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T15:49:22Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
       "rooms": null,
+      "prop_id": "P917867d06ef8bb-1927a1",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Falta precio o m² para valorar €/m²"
       ],
-      "price_history": []
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "7e43917d1927a1",
+          "prop_id": "P917867d06ef8bb-1927a1",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "dbbe4a56e663ec",
@@ -2933,16 +4101,35 @@
       "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Orihuela Ciudad, Orihuela\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/112874860/?utm_medium=email&utm_campaign=recomme",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T15:49:22Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
       "rooms": null,
+      "prop_id": "P917867d06ef8bb-e663ec",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Falta precio o m² para valorar €/m²"
       ],
-      "price_history": []
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "dbbe4a56e663ec",
+          "prop_id": "P917867d06ef8bb-e663ec",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "4f93bac2eb7ede",
@@ -2975,16 +4162,35 @@
       "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Orihuela Ciudad, Orihuela\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/107806309/?utm_medium=email&utm_campaign=recomme",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T15:49:22Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
       "rooms": null,
+      "prop_id": "P917867d06ef8bb-eb7ede",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Falta precio o m² para valorar €/m²"
       ],
-      "price_history": []
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "4f93bac2eb7ede",
+          "prop_id": "P917867d06ef8bb-eb7ede",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "d3ed955e2c7805",
@@ -3017,24 +4223,43 @@
       "description": "6px;padding:0 12px 16px 12px\"> 1.428.900 € <a href=\"https://www.fotocasa.es/es/comprar/terreno/cox/cox/191248431/d?stc=em-cross_alert-24x7_realtime-20261105-cardFreshContent&utm_medium=email&utm_source=alert&utm_campaign=24x7_registered_realtime&utm_content=variant_a&utm_term=cardFreshContent\" target=\"_blank\" style=\"text",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T15:49:22Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
       "rooms": null,
+      "prop_id": "P584b192bc9749f-2c7805",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Falta precio o m² para valorar €/m²"
       ],
       "price_history": [
         {
-          "date": "2026-11-10",
+          "date": "2026-11-11",
           "price": 1428900.0,
           "eur_m2": null,
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "d3ed955e2c7805",
+          "prop_id": "P584b192bc9749f-2c7805",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": 1428900.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "aae83c7dca8028",
@@ -3067,16 +4292,35 @@
       "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Calle Oscar Espla, Rafal\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/111184592/?utm_medium=email&utm_campaign=recommen",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T15:49:22Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
       "rooms": null,
+      "prop_id": "P917867d06ef8bb-ca8028",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Falta precio o m² para valorar €/m²"
       ],
-      "price_history": []
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "aae83c7dca8028",
+          "prop_id": "P917867d06ef8bb-ca8028",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "a7359dc3eb974e",
@@ -3109,16 +4353,35 @@
       "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Calle Oscar Espla, Rafal\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/106914733/?utm_medium=email&utm_campaign=recommen",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T15:49:22Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
       "rooms": null,
+      "prop_id": "P917867d06ef8bb-eb974e",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Falta precio o m² para valorar €/m²"
       ],
-      "price_history": []
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "a7359dc3eb974e",
+          "prop_id": "P917867d06ef8bb-eb974e",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "59ddbcb7bbaef8",
@@ -3151,16 +4414,35 @@
       "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Calle Aureliano Díaz, 10, Bigastro\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/112976433/?utm_medium=email&utm_campaig",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T15:49:22Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
       "rooms": null,
+      "prop_id": "P917867d06ef8bb-bbaef8",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Falta precio o m² para valorar €/m²"
       ],
-      "price_history": []
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "59ddbcb7bbaef8",
+          "prop_id": "P917867d06ef8bb-bbaef8",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "4d5a5274133b5f",
@@ -3193,16 +4475,35 @@
       "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Calle Mayor, 26, Bigastro\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/112623119/?utm_medium=email&utm_campaign=recomme",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T15:49:22Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
       "rooms": null,
+      "prop_id": "P917867d06ef8bb-133b5f",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Falta precio o m² para valorar €/m²"
       ],
-      "price_history": []
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "4d5a5274133b5f",
+          "prop_id": "P917867d06ef8bb-133b5f",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "9b955cf8d04a31",
@@ -3235,24 +4536,43 @@
       "description": "\"width:287px;padding:0 12px 16px 12px\"> 110.000 € <a href=\"https://www.fotocasa.es/es/comprar/terreno/benferri/benferri/191274599/d?stc=em-cross_alert-24x7_realtime-20261109-cardFreshContent&utm_medium=email&utm_source=alert&utm_campaign=24x7_registered_realtime&utm_content=variant_a&utm_term=cardFreshContent\" target=\"_",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T15:49:22Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
       "times_seen": 2,
       "rooms": null,
+      "prop_id": "P9a33163668b7e2-d04a31",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Falta precio o m² para valorar €/m²"
       ],
       "price_history": [
         {
-          "date": "2026-11-10",
+          "date": "2026-11-11",
           "price": 110000.0,
           "eur_m2": null,
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "9b955cf8d04a31",
+          "prop_id": "P9a33163668b7e2-d04a31",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": 110000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "bf78b5922208d1",
@@ -3285,24 +4605,43 @@
       "description": "\"width:287px;padding:0 12px 16px 12px\"> 48.000 € <a href=\"https://www.fotocasa.es/es/comprar/terreno/benferri/benferri/191274602/d?stc=em-cross_alert-24x7_realtime-20261109-cardFreshContent&utm_medium=email&utm_source=alert&utm_campaign=24x7_registered_realtime&utm_content=variant_a&utm_term=cardFreshContent\" target=\"_b",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T15:49:22Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
       "times_seen": 2,
       "rooms": null,
+      "prop_id": "P9a33163668b7e2-2208d1",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Falta precio o m² para valorar €/m²"
       ],
       "price_history": [
         {
-          "date": "2026-11-10",
+          "date": "2026-11-11",
           "price": 48000.0,
           "eur_m2": null,
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "bf78b5922208d1",
+          "prop_id": "P9a33163668b7e2-2208d1",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": 48000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "2dc2f06e8498bf",
@@ -3335,24 +4674,356 @@
       "description": "\"width:287px;padding:0 12px 16px 12px\"> 98.000 € <a href=\"https://www.fotocasa.es/es/comprar/terreno/benferri/benferri/191274603/d?stc=em-cross_alert-24x7_realtime-20261109-cardFreshContent&utm_medium=email&utm_source=alert&utm_campaign=24x7_registered_realtime&utm_content=variant_a&utm_term=cardFreshContent\" target=\"_b",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-10T15:49:22Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
       "times_seen": 2,
       "rooms": null,
+      "prop_id": "P9a33163668b7e2-8498bf",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Falta precio o m² para valorar €/m²"
       ],
       "price_history": [
         {
-          "date": "2026-11-10",
+          "date": "2026-11-11",
           "price": 98000.0,
           "eur_m2": null,
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "2dc2f06e8498bf",
+          "prop_id": "P9a33163668b7e2",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": 98000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
+    },
+    {
+      "id": "c0eae8fce325c0",
+      "portal": "Idealista (Alerta Email)",
+      "title": "5 anuncios recomendados para ti",
+      "url": "https://www.idealista.com/inmueble/111838991",
+      "zone_id": "orihuela",
+      "zone_name": "Orihuela (Casco y Centro)",
+      "tier": 1,
+      "location_raw": "5 anuncios recomendados para ti",
+      "lat": 38.08831,
+      "lon": -0.94344,
+      "asset_type": "solar_urbano",
+      "asset_label": "Solar Urbano",
+      "is_target_type": true,
+      "is_orihuela_costa": false,
+      "initial_price_eur": null,
+      "price_eur": null,
+      "min_price_eur": null,
+      "max_price_eur": null,
+      "price_drop_eur": 0.0,
+      "price_drop_pct": 0.0,
+      "surface_plot_m2": null,
+      "surface_built_m2": null,
+      "effective_plot_m2": 0.0,
+      "eur_per_m2": null,
+      "discount_vs_ref_pct": null,
+      "is_highlighted": false,
+      "chollo_score": 35,
+      "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Benejuzar\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/111838991/?utm_medium=email&utm_campaign=recommender_sale&utm_ca",
+      "image_url": "",
+      "phone": "",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
+      "last_price_change_at": null,
+      "status": "new",
+      "times_seen": 1,
+      "rooms": null,
+      "prop_id": "P917867d06ef8bb",
+      "missing_runs": 0,
+      "delisted_at": null,
+      "chollo_reasons": [
+        "Falta precio o m² para valorar €/m²"
+      ],
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "c0eae8fce325c0",
+          "prop_id": "P917867d06ef8bb",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
+    },
+    {
+      "id": "5fd410e04d30a4",
+      "portal": "Idealista (Alerta Email)",
+      "title": "5 anuncios recomendados para ti",
+      "url": "https://www.idealista.com/inmueble/112697481",
+      "zone_id": "pedanias_orihuela",
+      "zone_name": "Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...)",
+      "tier": 2,
+      "location_raw": "5 anuncios recomendados para ti",
+      "lat": 38.06865,
+      "lon": -0.95257,
+      "asset_type": "solar_urbano",
+      "asset_label": "Solar Urbano",
+      "is_target_type": true,
+      "is_orihuela_costa": false,
+      "initial_price_eur": null,
+      "price_eur": null,
+      "min_price_eur": null,
+      "max_price_eur": null,
+      "price_drop_eur": 0.0,
+      "price_drop_pct": 0.0,
+      "surface_plot_m2": null,
+      "surface_built_m2": null,
+      "effective_plot_m2": 0.0,
+      "eur_per_m2": null,
+      "discount_vs_ref_pct": null,
+      "is_highlighted": false,
+      "chollo_score": 35,
+      "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Molins-Campaneta-San Bartolomé, Orihuela\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/112697481/?utm_medium=email&utm_c",
+      "image_url": "",
+      "phone": "",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
+      "last_price_change_at": null,
+      "status": "new",
+      "times_seen": 1,
+      "rooms": null,
+      "prop_id": "P584b192bc9749f-4d30a4",
+      "missing_runs": 0,
+      "delisted_at": null,
+      "chollo_reasons": [
+        "Falta precio o m² para valorar €/m²"
+      ],
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "5fd410e04d30a4",
+          "prop_id": "P584b192bc9749f-4d30a4",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
+    },
+    {
+      "id": "1696c836193f8c",
+      "portal": "Idealista (Alerta Email)",
+      "title": "5 anuncios recomendados para ti",
+      "url": "https://www.idealista.com/inmueble/113008456",
+      "zone_id": "pedanias_orihuela",
+      "zone_name": "Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...)",
+      "tier": 2,
+      "location_raw": "5 anuncios recomendados para ti",
+      "lat": 38.0669,
+      "lon": -0.95214,
+      "asset_type": "solar_urbano",
+      "asset_label": "Solar Urbano",
+      "is_target_type": true,
+      "is_orihuela_costa": false,
+      "initial_price_eur": null,
+      "price_eur": null,
+      "min_price_eur": null,
+      "max_price_eur": null,
+      "price_drop_eur": 0.0,
+      "price_drop_pct": 0.0,
+      "surface_plot_m2": null,
+      "surface_built_m2": null,
+      "effective_plot_m2": 0.0,
+      "eur_per_m2": null,
+      "discount_vs_ref_pct": null,
+      "is_highlighted": false,
+      "chollo_score": 35,
+      "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Avenida del Alicante s/n, Molins-Campaneta-San Bartolomé, Orihuela\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/1130084",
+      "image_url": "",
+      "phone": "",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
+      "last_price_change_at": null,
+      "status": "new",
+      "times_seen": 1,
+      "rooms": null,
+      "prop_id": "P584b192bc9749f-193f8c",
+      "missing_runs": 0,
+      "delisted_at": null,
+      "chollo_reasons": [
+        "Falta precio o m² para valorar €/m²"
+      ],
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "1696c836193f8c",
+          "prop_id": "P584b192bc9749f-193f8c",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
+    },
+    {
+      "id": "3c5d6e70298718",
+      "portal": "Idealista (Alerta Email)",
+      "title": "5 anuncios recomendados para ti",
+      "url": "https://www.idealista.com/inmueble/112910426",
+      "zone_id": "pedanias_orihuela",
+      "zone_name": "Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...)",
+      "tier": 2,
+      "location_raw": "5 anuncios recomendados para ti",
+      "lat": 38.0689,
+      "lon": -0.95502,
+      "asset_type": "solar_urbano",
+      "asset_label": "Solar Urbano",
+      "is_target_type": true,
+      "is_orihuela_costa": false,
+      "initial_price_eur": null,
+      "price_eur": null,
+      "min_price_eur": null,
+      "max_price_eur": null,
+      "price_drop_eur": 0.0,
+      "price_drop_pct": 0.0,
+      "surface_plot_m2": null,
+      "surface_built_m2": null,
+      "effective_plot_m2": 0.0,
+      "eur_per_m2": null,
+      "discount_vs_ref_pct": null,
+      "is_highlighted": false,
+      "chollo_score": 35,
+      "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Dr Jose Ricarte, Molins-Campaneta-San Bartolomé, Orihuela\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/112910426/?utm_m",
+      "image_url": "",
+      "phone": "",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
+      "last_price_change_at": null,
+      "status": "new",
+      "times_seen": 1,
+      "rooms": null,
+      "prop_id": "P584b192bc9749f",
+      "missing_runs": 0,
+      "delisted_at": null,
+      "chollo_reasons": [
+        "Falta precio o m² para valorar €/m²"
+      ],
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "3c5d6e70298718",
+          "prop_id": "P584b192bc9749f",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
+    },
+    {
+      "id": "fa273e8e2aac75",
+      "portal": "Pisos.com",
+      "title": "Chalet en calle Sallavedra",
+      "url": "https://www.pisos.com/comprar/chalet-orihuela_pedanias03314-69256814585_107700/",
+      "zone_id": "orihuela",
+      "zone_name": "Orihuela (Casco y Centro)",
+      "tier": 1,
+      "location_raw": "Orihuela (Casco y Centro)",
+      "lat": 38.08687,
+      "lon": -0.94607,
+      "asset_type": "casa_planta_baja",
+      "asset_label": "Casa / Vivienda con Parcela",
+      "is_target_type": true,
+      "is_orihuela_costa": false,
+      "initial_price_eur": 69000.0,
+      "price_eur": 69000.0,
+      "min_price_eur": 69000.0,
+      "max_price_eur": 69000.0,
+      "price_drop_eur": 0.0,
+      "price_drop_pct": 0.0,
+      "surface_plot_m2": 124.0,
+      "surface_built_m2": null,
+      "effective_plot_m2": 124.0,
+      "eur_per_m2": 556.5,
+      "discount_vs_ref_pct": -7.0,
+      "is_highlighted": false,
+      "chollo_score": 35,
+      "description": "1 /22 Nuevo DESTACADO 69.000 € Chalet en calle Sallavedra Orihuela Pedanías (Orihuela) 3 habs. 1 baño 124 m² Descubre este amplio piso en orihuela, alicante, ideal para recuperar y personalizar a tu gusto. Con un precio atractivo de 79,000... Llamar Contactar Avísame si baja { \"@context\": \"https://schema.org/\", \"@type\": \"SingleFamilyResidence\", \"@id\": \"69256814585.107700\", \"image\":\"https://fotos.imghs.net/mm-wp/1077/3230323630393032/0d9b7a1b-7460-4abe-b0d5-514a2d7d91d5.jpg\", \"name\": \"Chalet en calle Sallavedra\", \"description\": \"Chalet en calle",
+      "image_url": "",
+      "phone": "",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
+      "last_price_change_at": null,
+      "status": "new",
+      "times_seen": 1,
+      "rooms": 3,
+      "prop_id": "P57aee3e312a2fc-2aac75",
+      "missing_runs": 0,
+      "delisted_at": null,
+      "chollo_reasons": [
+        "Parcela inferior al objetivo principal (124 m² < 180 m²)"
+      ],
+      "price_history": [
+        {
+          "date": "2026-11-11",
+          "price": 69000.0,
+          "eur_m2": 556.5,
+          "change_eur": 0.0,
+          "change_pct": 0.0
+        }
+      ],
+      "tramos": [
+        {
+          "listing_id": "fa273e8e2aac75",
+          "prop_id": "P57aee3e312a2fc-2aac75",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": 69000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "10soles-pue0043",
@@ -3386,11 +5057,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 3,
+      "prop_id": "P6de6bfd63849be",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (531 €/m²)",
         "Parcela inferior al objetivo principal (160 m² < 180 m²)",
@@ -3404,7 +5078,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "10soles-pue0043",
+          "prop_id": "P6de6bfd63849be",
+          "started_at": "2026-11-09T11:53:34Z",
+          "ended_at": null,
+          "start_price_eur": 85000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:53:34Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "2088bed494ffdc",
@@ -3438,11 +5128,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 7,
+      "times_seen": 8,
       "rooms": 3,
+      "prop_id": "P2f0598bd699bf6",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (692 €/m²)",
         "Parcela inferior al objetivo principal (130 m² < 180 m²)",
@@ -3456,7 +5149,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "2088bed494ffdc",
+          "prop_id": "P2f0598bd699bf6",
+          "started_at": "2026-11-09T10:37:00Z",
+          "ended_at": null,
+          "start_price_eur": 90000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T10:37:00Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "10soles-pue0064",
@@ -3490,11 +5199,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 3,
+      "prop_id": "Pc2f617f7bacce0",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (613 €/m²)",
         "Parcela inferior al objetivo principal (150 m² < 180 m²)",
@@ -3508,7 +5220,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "10soles-pue0064",
+          "prop_id": "Pc2f617f7bacce0",
+          "started_at": "2026-11-09T11:53:34Z",
+          "ended_at": null,
+          "start_price_eur": 92000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:53:34Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "vega-e028-01730",
@@ -3542,11 +5270,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": null,
+      "prop_id": "Pc3cdf14be58a64",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (528 €/m²)",
         "Parcela inferior al objetivo principal (161 m² < 180 m²)",
@@ -3560,7 +5291,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "vega-e028-01730",
+          "prop_id": "Pc3cdf14be58a64",
+          "started_at": "2026-11-09T11:53:34Z",
+          "ended_at": null,
+          "start_price_eur": 85000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:53:34Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "9d30717a07484f",
@@ -3594,11 +5341,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
+      "prop_id": "P8d6a99362a5707",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (551 €/m²)",
         "Parcela inferior al objetivo principal (89 m² < 180 m²)",
@@ -3612,7 +5362,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "9d30717a07484f",
+          "prop_id": "P8d6a99362a5707",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 49000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:02:24Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "5ee9264eb70401",
@@ -3646,11 +5412,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
+      "prop_id": "P8d6a99362a5707",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (551 €/m²)",
         "Parcela inferior al objetivo principal (89 m² < 180 m²)",
@@ -3664,7 +5433,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "5ee9264eb70401",
+          "prop_id": "P8d6a99362a5707",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 49000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:02:24Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "535df9d8240088",
@@ -3698,11 +5483,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 7,
+      "times_seen": 8,
       "rooms": null,
+      "prop_id": "P7d688db727bfec",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (795 €/m²)",
         "Parcela inferior al objetivo principal (166 m² < 180 m²)"
@@ -3715,7 +5503,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "535df9d8240088",
+          "prop_id": "P7d688db727bfec",
+          "started_at": "2026-11-09T10:37:00Z",
+          "ended_at": null,
+          "start_price_eur": 132000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T10:37:00Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "c1a67b4abb6cbe",
@@ -3749,11 +5553,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
+      "prop_id": "P8d6a99362a5707-bb6cbe",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (551 €/m²)",
         "Parcela inferior al objetivo principal (89 m² < 180 m²)"
@@ -3766,7 +5573,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "c1a67b4abb6cbe",
+          "prop_id": "P8d6a99362a5707-bb6cbe",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 49000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:02:24Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "10soles-pue0046",
@@ -3800,11 +5623,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 3,
+      "prop_id": "Pc3797341c099e0-ue0046",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (662 €/m²)",
         "Parcela inferior al objetivo principal (80 m² < 180 m²)"
@@ -3817,7 +5643,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "10soles-pue0046",
+          "prop_id": "Pc3797341c099e0-ue0046",
+          "started_at": "2026-11-09T11:53:34Z",
+          "ended_at": null,
+          "start_price_eur": 53000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:53:34Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "6cd8882ea0a86f",
@@ -3851,11 +5693,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": 2,
+      "prop_id": "Pc3797341c099e0-a0a86f",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (740 €/m²)",
         "Parcela inferior al objetivo principal (81 m² < 180 m²)"
@@ -3868,7 +5713,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "6cd8882ea0a86f",
+          "prop_id": "Pc3797341c099e0-a0a86f",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 59900.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:02:24Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "c276147348c93b",
@@ -3902,11 +5763,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": 3,
+      "prop_id": "P06ad40719d3535",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (849 €/m²)",
         "Parcela inferior al objetivo principal (146 m² < 180 m²)",
@@ -3920,7 +5784,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "c276147348c93b",
+          "prop_id": "P06ad40719d3535",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 123991.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T10:37:00Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "079fc435c1785e",
@@ -3954,11 +5834,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 7,
+      "times_seen": 8,
       "rooms": 3,
+      "prop_id": "P06ad40719d3535",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (849 €/m²)",
         "Parcela inferior al objetivo principal (146 m² < 180 m²)",
@@ -3972,7 +5855,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "079fc435c1785e",
+          "prop_id": "P06ad40719d3535",
+          "started_at": "2026-11-09T10:37:00Z",
+          "ended_at": null,
+          "start_price_eur": 123991.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T10:37:00Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "d671c1299c5c1a",
@@ -4006,11 +5905,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 7,
+      "times_seen": 8,
       "rooms": 3,
+      "prop_id": "P06ad40719d3535",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (849 €/m²)",
         "Parcela inferior al objetivo principal (146 m² < 180 m²)",
@@ -4024,7 +5926,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "d671c1299c5c1a",
+          "prop_id": "P06ad40719d3535",
+          "started_at": "2026-11-09T10:37:00Z",
+          "ended_at": null,
+          "start_price_eur": 123991.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T10:37:00Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "f648aa65b7875a",
@@ -4058,15 +5976,17 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 7,
+      "times_seen": 8,
       "rooms": 3,
+      "prop_id": "P06ad40719d3535",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (849 €/m²)",
-        "Parcela inferior al objetivo principal (146 m² < 180 m²)",
-        "Vendedor indica urgencia / rebaja"
+        "Parcela inferior al objetivo principal (146 m² < 180 m²)"
       ],
       "price_history": [
         {
@@ -4076,7 +5996,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "f648aa65b7875a",
+          "prop_id": "P06ad40719d3535",
+          "started_at": "2026-11-09T10:37:00Z",
+          "ended_at": null,
+          "start_price_eur": 123991.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T10:37:00Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "10soles-pue0066",
@@ -4110,11 +6046,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 3,
+      "prop_id": "P57aee3e312a2fc",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (879 €/m²)",
         "Parcela inferior al objetivo principal (124 m² < 180 m²)"
@@ -4127,7 +6066,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "10soles-pue0066",
+          "prop_id": "P57aee3e312a2fc",
+          "started_at": "2026-11-09T11:53:34Z",
+          "ended_at": null,
+          "start_price_eur": 109000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:53:34Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "vega-e028-01713",
@@ -4161,11 +6116,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 3,
+      "prop_id": "Pd04d5f668cf6f0",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (884 €/m²)",
         "Parcela inferior al objetivo principal (147 m² < 180 m²)"
@@ -4178,7 +6136,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "vega-e028-01713",
+          "prop_id": "Pd04d5f668cf6f0",
+          "started_at": "2026-11-09T11:53:34Z",
+          "ended_at": null,
+          "start_price_eur": 130000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:53:34Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "e5c3d085e6aa5c",
@@ -4212,11 +6186,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 4,
+      "prop_id": "Pf5e4233d6b8858-e6aa5c",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (905 €/m²)",
         "Parcela inferior al objetivo principal (138 m² < 180 m²)"
@@ -4229,7 +6206,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "e5c3d085e6aa5c",
+          "prop_id": "Pf5e4233d6b8858-e6aa5c",
+          "started_at": "2026-11-09T11:53:34Z",
+          "ended_at": null,
+          "start_price_eur": 124900.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:53:34Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "08b29cc0a502d1",
@@ -4263,11 +6256,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 4,
+      "prop_id": "P0f3d851f0a15ca-a502d1",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (905 €/m²)",
         "Parcela inferior al objetivo principal (138 m² < 180 m²)"
@@ -4280,7 +6276,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "08b29cc0a502d1",
+          "prop_id": "P0f3d851f0a15ca-a502d1",
+          "started_at": "2026-11-09T11:53:34Z",
+          "ended_at": null,
+          "start_price_eur": 124900.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:53:34Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "905cfcd24ab3a4",
@@ -4314,11 +6326,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": 3,
+      "prop_id": "P0f3d851f0a15ca",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (922 €/m²)",
         "Parcela inferior al objetivo principal (141 m² < 180 m²)"
@@ -4331,7 +6346,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "905cfcd24ab3a4",
+          "prop_id": "P0f3d851f0a15ca",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 129999.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:02:24Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "dac677f0561bd1",
@@ -4365,11 +6396,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": 3,
+      "prop_id": "Pf5e4233d6b8858",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1064 €/m²)",
         "Parcela inferior al objetivo principal (140 m² < 180 m²)"
@@ -4382,7 +6416,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "dac677f0561bd1",
+          "prop_id": "Pf5e4233d6b8858",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 149000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:02:24Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "vega-e028-01728",
@@ -4416,11 +6466,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 3,
+      "prop_id": "Pf085283672febe",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1075 €/m²)",
         "Parcela inferior al objetivo principal (160 m² < 180 m²)"
@@ -4433,7 +6486,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "vega-e028-01728",
+          "prop_id": "Pf085283672febe",
+          "started_at": "2026-11-09T11:53:34Z",
+          "ended_at": null,
+          "start_price_eur": 172000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:53:34Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "2c75388f195d60",
@@ -4472,6 +6541,9 @@
       "status": "active",
       "times_seen": 3,
       "rooms": 4,
+      "prop_id": "P7afc06f23fa8bd",
+      "missing_runs": 1,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1082 €/m²)",
         "Parcela inferior al objetivo principal (135 m² < 180 m²)",
@@ -4485,7 +6557,93 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "2c75388f195d60",
+          "prop_id": "P7afc06f23fa8bd",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 146000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:02:24Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
+    },
+    {
+      "id": "5eb1339302b37d",
+      "portal": "Pisos.com",
+      "title": "Terreno en Orihuela Pedanías",
+      "url": "https://www.pisos.com/comprar/terreno-orihuela_pedanias03316-66760821424_106600/",
+      "zone_id": "pedanias_orihuela",
+      "zone_name": "Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...)",
+      "tier": 2,
+      "location_raw": "Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...)",
+      "lat": 38.06973,
+      "lon": -0.95437,
+      "asset_type": "solar_urbano",
+      "asset_label": "Solar Urbano",
+      "is_target_type": true,
+      "is_orihuela_costa": false,
+      "initial_price_eur": 199000.0,
+      "price_eur": 199000.0,
+      "min_price_eur": 199000.0,
+      "max_price_eur": 199000.0,
+      "price_drop_eur": 0.0,
+      "price_drop_pct": 0.0,
+      "surface_plot_m2": 179.0,
+      "surface_built_m2": null,
+      "effective_plot_m2": 179.0,
+      "eur_per_m2": 1111.7,
+      "discount_vs_ref_pct": -485.1,
+      "is_highlighted": false,
+      "chollo_score": 5,
+      "description": "1 /9 Nuevo PREMIUM 199.000 € 50.000 € (-20%) Terreno en Orihuela Pedanías Orihuela Pedanías (Orihuela) 179 m² Espacio, independencia y vida al aire libre en la matanza Hay viviendas que destacan por lo que ofrecen dentro y otras que, además... Llamar Contactar Avísame si baja WhatsApp { \"@context\": \"https://schema.org/\", \"@type\": \"SingleFamilyResidence\", \"@id\": \"66760821424.106600\", \"image\":\"https://fotos.imghs.net/mm-wp/1066/3230323631303331/e7fbab00-2ad8-4f6a-8767-8b9559f04bc3.jpg\", \"name\": \"Terreno en Orihuela Pedanías\", \"description\": \"Terr",
+      "image_url": "",
+      "phone": "",
+      "first_seen_at": "2026-11-11T09:09:55Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
+      "last_price_change_at": null,
+      "status": "new",
+      "times_seen": 1,
+      "rooms": null,
+      "prop_id": "P053202c7b39ff9",
+      "missing_runs": 0,
+      "delisted_at": null,
+      "chollo_reasons": [
+        "Precio/m² elevado respecto a la zona (1112 €/m²)",
+        "Parcela inferior al objetivo principal (179 m² < 180 m²)"
+      ],
+      "price_history": [
+        {
+          "date": "2026-11-11",
+          "price": 199000.0,
+          "eur_m2": 1111.7,
+          "change_eur": 0.0,
+          "change_pct": 0.0
+        }
+      ],
+      "tramos": [
+        {
+          "listing_id": "5eb1339302b37d",
+          "prop_id": "P053202c7b39ff9",
+          "started_at": "2026-11-11T09:09:55Z",
+          "ended_at": null,
+          "start_price_eur": 199000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-11T09:09:55Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "c7a6adedbacf38",
@@ -4519,11 +6677,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 7,
+      "times_seen": 8,
       "rooms": 3,
+      "prop_id": "P2d69f233957157",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1253 €/m²)",
         "Parcela inferior al objetivo principal (178 m² < 180 m²)"
@@ -4536,7 +6697,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "c7a6adedbacf38",
+          "prop_id": "P2d69f233957157",
+          "started_at": "2026-11-09T10:37:00Z",
+          "ended_at": null,
+          "start_price_eur": 223000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T10:37:00Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "541195ee8ad403",
@@ -4570,11 +6747,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 3,
+      "prop_id": "P9c8308f156a5f4",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1441 €/m²)",
         "Parcela inferior al objetivo principal (104 m² < 180 m²)"
@@ -4587,7 +6767,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "541195ee8ad403",
+          "prop_id": "P3f0f4b91c80d1d",
+          "started_at": "2026-11-09T11:53:34Z",
+          "ended_at": null,
+          "start_price_eur": 149890.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:53:34Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "b8813b41f41ff6",
@@ -4621,11 +6817,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 3,
+      "prop_id": "P9c8308f156a5f4",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1441 €/m²)",
         "Parcela inferior al objetivo principal (104 m² < 180 m²)"
@@ -4638,7 +6837,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "b8813b41f41ff6",
+          "prop_id": "P3f0f4b91c80d1d",
+          "started_at": "2026-11-09T11:53:34Z",
+          "ended_at": null,
+          "start_price_eur": 149890.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:53:34Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "10soles-pue0068",
@@ -4672,11 +6887,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 2,
+      "prop_id": "P012cee8c872f2d",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1498 €/m²)",
         "Parcela inferior al objetivo principal (40 m² < 180 m²)"
@@ -4689,7 +6907,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "10soles-pue0068",
+          "prop_id": "P012cee8c872f2d",
+          "started_at": "2026-11-09T11:53:34Z",
+          "ended_at": null,
+          "start_price_eur": 59900.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:53:34Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "a6ca32d94dda61",
@@ -4723,11 +6957,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": 2,
+      "prop_id": "Pe8d973e757a547",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1637 €/m²)",
         "Parcela inferior al objetivo principal (91 m² < 180 m²)"
@@ -4740,7 +6977,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "a6ca32d94dda61",
+          "prop_id": "Pe8d973e757a547",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 149000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:02:24Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "ef27c72bbd445f",
@@ -4774,11 +7027,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 7,
+      "times_seen": 8,
       "rooms": 2,
+      "prop_id": "P4dc1332f9e837f",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1689 €/m²)",
         "Parcela inferior al objetivo principal (74 m² < 180 m²)",
@@ -4792,7 +7048,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "ef27c72bbd445f",
+          "prop_id": "P4dc1332f9e837f",
+          "started_at": "2026-11-09T10:37:00Z",
+          "ended_at": null,
+          "start_price_eur": 125000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T10:37:00Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "9116c9fa1e58ad",
@@ -4826,11 +7098,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 7,
+      "times_seen": 8,
       "rooms": 2,
+      "prop_id": "P4dc1332f9e837f",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1689 €/m²)",
         "Parcela inferior al objetivo principal (74 m² < 180 m²)",
@@ -4844,7 +7119,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "9116c9fa1e58ad",
+          "prop_id": "P4dc1332f9e837f",
+          "started_at": "2026-11-09T10:37:00Z",
+          "ended_at": null,
+          "start_price_eur": 125000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T10:37:00Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "b632211721f844",
@@ -4878,11 +7169,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": 3,
+      "prop_id": "P6aa27aa470f48d",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (2525 €/m²)",
         "Parcela inferior al objetivo principal (101 m² < 180 m²)"
@@ -4895,7 +7189,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "b632211721f844",
+          "prop_id": "P6aa27aa470f48d",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 255000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:02:24Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "35efa55d30accf",
@@ -4929,11 +7239,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 7,
+      "times_seen": 8,
       "rooms": 2,
+      "prop_id": "Pc3797341c099e0",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (2876 €/m²)",
         "Parcela inferior al objetivo principal (81 m² < 180 m²)"
@@ -4946,7 +7259,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "35efa55d30accf",
+          "prop_id": "Pc3797341c099e0",
+          "started_at": "2026-11-09T10:37:00Z",
+          "ended_at": null,
+          "start_price_eur": 233000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T10:37:00Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "e60e6c9edc4e83",
@@ -4980,11 +7309,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 7,
+      "times_seen": 8,
       "rooms": 3,
+      "prop_id": "Pc3797341c099e0-dc4e83",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (2901 €/m²)",
         "Parcela inferior al objetivo principal (81 m² < 180 m²)"
@@ -4997,7 +7329,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "e60e6c9edc4e83",
+          "prop_id": "Pc3797341c099e0-dc4e83",
+          "started_at": "2026-11-09T10:37:00Z",
+          "ended_at": null,
+          "start_price_eur": 235000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T10:37:00Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "7269bfae730dab",
@@ -5031,11 +7379,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 7,
+      "times_seen": 8,
       "rooms": null,
+      "prop_id": "P460b4ff2dbbfe1",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (3421 €/m²)",
         "Parcela inferior al objetivo principal (19 m² < 180 m²)",
@@ -5049,7 +7400,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "7269bfae730dab",
+          "prop_id": "P460b4ff2dbbfe1",
+          "started_at": "2026-11-09T10:37:00Z",
+          "ended_at": null,
+          "start_price_eur": 65000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T10:37:00Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "ab38e673e64352",
@@ -5083,11 +7450,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 7,
+      "times_seen": 8,
       "rooms": null,
+      "prop_id": "P5b209038198251",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (18067 €/m²)",
         "Parcela inferior al objetivo principal (15 m² < 180 m²)",
@@ -5101,7 +7471,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "ab38e673e64352",
+          "prop_id": "P5b209038198251",
+          "started_at": "2026-11-09T10:37:00Z",
+          "ended_at": null,
+          "start_price_eur": 271000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T10:37:00Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "3644fee96f3b90",
@@ -5135,11 +7521,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-10T15:49:22Z",
+      "last_seen_at": "2026-11-11T09:09:55Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 6,
+      "times_seen": 7,
       "rooms": null,
+      "prop_id": "P322a1905e11e23",
+      "missing_runs": 0,
+      "delisted_at": null,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (135000 €/m²)",
         "Parcela inferior al objetivo principal (1 m² < 180 m²)"
@@ -5152,7 +7541,23 @@
           "change_eur": 0.0,
           "change_pct": 0.0
         }
-      ]
+      ],
+      "tramos": [
+        {
+          "listing_id": "3644fee96f3b90",
+          "prop_id": "P322a1905e11e23",
+          "started_at": "2026-11-09T11:02:24Z",
+          "ended_at": null,
+          "start_price_eur": 135000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:02:24Z",
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     }
   ],
   "auctions": [
@@ -13686,6 +16091,294 @@
       ],
       "first_seen_at": "2026-11-10T14:58:38Z",
       "is_new": false
+    }
+  ],
+  "alertas": [
+    {
+      "id": 13,
+      "created_at": "2026-11-11T09:09:55Z",
+      "kind": "bajo_mercado",
+      "gravedad": "alta",
+      "icono": "💎",
+      "titulo": "Muy por debajo del €/m² de su zona",
+      "detalle": "531 €/m² frente a los 849 €/m² de mediana en Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...) (24 comparables).",
+      "prop_id": "P6de6bfd63849be",
+      "listing_id": "10soles-pue0043",
+      "listing_title": "Casa de pueblo en orihuela con vistas (Ref. PUE0043)",
+      "url": "https://www.10soles.com/casa-de-pueblo-en-orihuela-con-vistas-es1114601.html",
+      "zone_name": "Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...)",
+      "price_eur": 85000.0,
+      "clave": "bajo_mercado|P6de6bfd63849be|531",
+      "vista": 0,
+      "datos": {
+        "eur_m2": 531.2,
+        "mediana": 849.3
+      },
+      "dias": 0
+    },
+    {
+      "id": 12,
+      "created_at": "2026-11-11T09:09:55Z",
+      "kind": "bajo_mercado",
+      "gravedad": "alta",
+      "icono": "💎",
+      "titulo": "Muy por debajo del €/m² de su zona",
+      "detalle": "556 €/m² frente a los 837 €/m² de mediana en Orihuela (Casco y Centro) (12 comparables).",
+      "prop_id": "P57aee3e312a2fc-2aac75",
+      "listing_id": "fa273e8e2aac75",
+      "listing_title": "Chalet en calle Sallavedra",
+      "url": "https://www.pisos.com/comprar/chalet-orihuela_pedanias03314-69256814585_107700/",
+      "zone_name": "Orihuela (Casco y Centro)",
+      "price_eur": 69000.0,
+      "clave": "bajo_mercado|P57aee3e312a2fc-2aac75|556",
+      "vista": 0,
+      "datos": {
+        "eur_m2": 556.5,
+        "mediana": 837.1
+      },
+      "dias": 0
+    },
+    {
+      "id": 11,
+      "created_at": "2026-11-11T09:09:55Z",
+      "kind": "bajo_mercado",
+      "gravedad": "alta",
+      "icono": "💎",
+      "titulo": "Muy por debajo del €/m² de su zona",
+      "detalle": "186 €/m² frente a los 312 €/m² de mediana en Orihuela (Casco y Centro) (12 comparables).",
+      "prop_id": "P0636211f1b5240",
+      "listing_id": "be44485850d071",
+      "listing_title": "Terreno en Casco Histórico",
+      "url": "https://www.pisos.com/comprar/terreno-orihuela_nucleo_urbano03300-53420744777_100500/",
+      "zone_name": "Orihuela (Casco y Centro)",
+      "price_eur": 16000.0,
+      "clave": "bajo_mercado|P0636211f1b5240|186",
+      "vista": 0,
+      "datos": {
+        "eur_m2": 186.0,
+        "mediana": 312.4
+      },
+      "dias": 0
+    },
+    {
+      "id": 10,
+      "created_at": "2026-11-11T09:09:55Z",
+      "kind": "bajo_mercado",
+      "gravedad": "alta",
+      "icono": "💎",
+      "titulo": "Muy por debajo del €/m² de su zona",
+      "detalle": "539 €/m² frente a los 849 €/m² de mediana en Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...) (24 comparables).",
+      "prop_id": "Pcc8254599963e9",
+      "listing_id": "6d141684853551",
+      "listing_title": "Casa adosada en Prolongación Virgen del Rosario, nº >",
+      "url": "https://www.pisos.com/comprar/casa_adosada-cox_centro_urbano-66692449785_109200/",
+      "zone_name": "Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...)",
+      "price_eur": 141700.0,
+      "clave": "bajo_mercado|Pcc8254599963e9|538",
+      "vista": 0,
+      "datos": {
+        "eur_m2": 538.8,
+        "mediana": 849.3
+      },
+      "dias": 0
+    },
+    {
+      "id": 9,
+      "created_at": "2026-11-11T09:09:55Z",
+      "kind": "bajo_mercado",
+      "gravedad": "alta",
+      "icono": "💎",
+      "titulo": "Muy por debajo del €/m² de su zona",
+      "detalle": "508 €/m² frente a los 849 €/m² de mediana en Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...) (24 comparables).",
+      "prop_id": "Pd5e7686c72f5cd",
+      "listing_id": "69916ae5a13166",
+      "listing_title": "Casa - Reventa - Orihuela - Molins-Campaneta-San Bartolomé",
+      "url": "https://inmoadapta.com/propiedad/3397/casa/reventa/espana/alicante/orihuela/molins-campaneta-san-bartolome/",
+      "zone_name": "Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...)",
+      "price_eur": 149000.0,
+      "clave": "bajo_mercado|Pd5e7686c72f5cd|508",
+      "vista": 0,
+      "datos": {
+        "eur_m2": 508.5,
+        "mediana": 849.3
+      },
+      "dias": 0
+    },
+    {
+      "id": 8,
+      "created_at": "2026-11-11T09:09:55Z",
+      "kind": "bajo_mercado",
+      "gravedad": "alta",
+      "icono": "💎",
+      "titulo": "Muy por debajo del €/m² de su zona",
+      "detalle": "208 €/m² frente a los 338 €/m² de mediana en Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...) (16 comparables).",
+      "prop_id": "P2e350c31f97685",
+      "listing_id": "83e5c48d0e775b",
+      "listing_title": "Casa con terreno - Reventa - Orihuela - Arneva",
+      "url": "https://inmoadapta.com/propiedad/2064/casa-con-terreno/reventa/espana/alicante/orihuela/arneva/",
+      "zone_name": "Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...)",
+      "price_eur": 249890.0,
+      "clave": "bajo_mercado|P2e350c31f97685|208",
+      "vista": 0,
+      "datos": {
+        "eur_m2": 208.2,
+        "mediana": 338.0
+      },
+      "dias": 0
+    },
+    {
+      "id": 7,
+      "created_at": "2026-11-11T09:09:55Z",
+      "kind": "bajo_mercado",
+      "gravedad": "alta",
+      "icono": "💎",
+      "titulo": "Muy por debajo del €/m² de su zona",
+      "detalle": "421 €/m² frente a los 837 €/m² de mediana en Orihuela (Casco y Centro) (12 comparables).",
+      "prop_id": "P85aa3f939f20b3",
+      "listing_id": "10soles-pue0063",
+      "listing_title": "Casa de pueblo en bigastro bigastro con vistas (Ref. PUE0063)",
+      "url": "https://www.10soles.com/casa-de-pueblo-en-bigastro-bigastro-con-vistas-es1696027.html",
+      "zone_name": "Orihuela (Casco y Centro)",
+      "price_eur": 109000.0,
+      "clave": "bajo_mercado|P85aa3f939f20b3|420",
+      "vista": 0,
+      "datos": {
+        "eur_m2": 420.8,
+        "mediana": 837.1
+      },
+      "dias": 0
+    },
+    {
+      "id": 6,
+      "created_at": "2026-11-11T09:09:55Z",
+      "kind": "bajo_mercado",
+      "gravedad": "alta",
+      "icono": "💎",
+      "titulo": "Muy por debajo del €/m² de su zona",
+      "detalle": "330 €/m² frente a los 849 €/m² de mediana en Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...) (24 comparables).",
+      "prop_id": "Pa9ad60097f4f5b",
+      "listing_id": "ddb75ef4ef4d9a",
+      "listing_title": "Casa en La Matanza",
+      "url": "https://www.pisos.com/comprar/casa-orihuela_pedanias03316-56720210766_100500/",
+      "zone_name": "Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...)",
+      "price_eur": 99000.0,
+      "clave": "bajo_mercado|Pa9ad60097f4f5b|330",
+      "vista": 0,
+      "datos": {
+        "eur_m2": 330.0,
+        "mediana": 849.3
+      },
+      "dias": 0
+    },
+    {
+      "id": 5,
+      "created_at": "2026-11-11T09:09:55Z",
+      "kind": "bajo_mercado",
+      "gravedad": "alta",
+      "icono": "💎",
+      "titulo": "Muy por debajo del €/m² de su zona",
+      "detalle": "214 €/m² frente a los 312 €/m² de mediana en Orihuela (Casco y Centro) (12 comparables).",
+      "prop_id": "P259487ee72b6a1",
+      "listing_id": "15f965af48fe4f",
+      "listing_title": "Terreno en calle >C. de los Campirulos, nº >",
+      "url": "https://www.pisos.com/comprar/terreno-orihuela_pedanias03315-61681687357_109200/",
+      "zone_name": "Orihuela (Casco y Centro)",
+      "price_eur": 72000.0,
+      "clave": "bajo_mercado|P259487ee72b6a1|213",
+      "vista": 0,
+      "datos": {
+        "eur_m2": 213.6,
+        "mediana": 312.4
+      },
+      "dias": 0
+    },
+    {
+      "id": 4,
+      "created_at": "2026-11-11T09:09:55Z",
+      "kind": "bajo_mercado",
+      "gravedad": "alta",
+      "icono": "💎",
+      "titulo": "Muy por debajo del €/m² de su zona",
+      "detalle": "314 €/m² frente a los 837 €/m² de mediana en Orihuela (Casco y Centro) (12 comparables).",
+      "prop_id": "P72bffa777e9f71",
+      "listing_id": "291f0003f6d000",
+      "listing_title": "Casa en Carrer Major de Ramón y Cajal",
+      "url": "https://www.pisos.com/comprar/casa-orihuela_nucleo_urbano03300-68367248119_106500/",
+      "zone_name": "Orihuela (Casco y Centro)",
+      "price_eur": 260000.0,
+      "clave": "bajo_mercado|P72bffa777e9f71|314",
+      "vista": 0,
+      "datos": {
+        "eur_m2": 314.0,
+        "mediana": 837.1
+      },
+      "dias": 0
+    },
+    {
+      "id": 3,
+      "created_at": "2026-11-11T09:09:55Z",
+      "kind": "bajo_mercado",
+      "gravedad": "alta",
+      "icono": "💎",
+      "titulo": "Muy por debajo del €/m² de su zona",
+      "detalle": "126 €/m² frente a los 338 €/m² de mediana en Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...) (16 comparables).",
+      "prop_id": "Pec47cff67addf5",
+      "listing_id": "e91ab627abd829",
+      "listing_title": "Terreno en La Murada",
+      "url": "https://www.pisos.com/comprar/terreno-orihuela_pedanias03315-50094596556_100500/",
+      "zone_name": "Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...)",
+      "price_eur": 55650.0,
+      "clave": "bajo_mercado|Pec47cff67addf5|126",
+      "vista": 0,
+      "datos": {
+        "eur_m2": 126.2,
+        "mediana": 338.0
+      },
+      "dias": 0
+    },
+    {
+      "id": 2,
+      "created_at": "2026-11-11T09:09:55Z",
+      "kind": "bajo_mercado",
+      "gravedad": "alta",
+      "icono": "💎",
+      "titulo": "Muy por debajo del €/m² de su zona",
+      "detalle": "232 €/m² frente a los 849 €/m² de mediana en Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...) (24 comparables).",
+      "prop_id": "P01dbaf77730a3c",
+      "listing_id": "bf3dabcbff2a65",
+      "listing_title": "Casa - Reventa - Orihuela - Arneva",
+      "url": "https://inmoadapta.com/propiedad/2914/casa/reventa/espana/alicante/orihuela/arneva/",
+      "zone_name": "Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...)",
+      "price_eur": 95000.0,
+      "clave": "bajo_mercado|P01dbaf77730a3c|231",
+      "vista": 0,
+      "datos": {
+        "eur_m2": 231.7,
+        "mediana": 849.3
+      },
+      "dias": 0
+    },
+    {
+      "id": 1,
+      "created_at": "2026-11-11T09:09:55Z",
+      "kind": "bajo_mercado",
+      "gravedad": "alta",
+      "icono": "💎",
+      "titulo": "Muy por debajo del €/m² de su zona",
+      "detalle": "89 €/m² frente a los 338 €/m² de mediana en Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...) (16 comparables).",
+      "prop_id": "P21db8ab6d2c2cf",
+      "listing_id": "2c691978a42a93",
+      "listing_title": "Terreno en La Aparecida",
+      "url": "https://www.pisos.com/comprar/terreno-orihuela_pedanias-56683866301_100500/",
+      "zone_name": "Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...)",
+      "price_eur": 105000.0,
+      "clave": "bajo_mercado|P21db8ab6d2c2cf|88",
+      "vista": 0,
+      "datos": {
+        "eur_m2": 88.6,
+        "mediana": 338.0
+      },
+      "dias": 0
     }
   ]
 }

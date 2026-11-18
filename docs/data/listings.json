@@ -1,33 +1,33 @@
 {
   "stats": {
-    "updated_at": "2026-11-17T17:07:01Z",
-    "total_listings": 106,
-    "retirados_count": 15,
-    "sin_filtro_count": 19,
-    "republicados_count": 2,
-    "highlighted_listings": 58,
-    "secondary_listings": 48,
-    "chollos_count": 17,
-    "price_drops_count": 0,
+    "updated_at": "2026-11-18T16:45:34Z",
+    "total_listings": 114,
+    "retirados_count": 14,
+    "sin_filtro_count": 22,
+    "republicados_count": 3,
+    "highlighted_listings": 62,
+    "secondary_listings": 52,
+    "chollos_count": 18,
+    "price_drops_count": 2,
     "median_solar_eur_m2": 253.6,
-    "median_casa_eur_m2": 538.8,
+    "median_casa_eur_m2": 523.6,
     "zones": {
       "orihuela": {
         "zone_id": "orihuela",
         "zone_name": "Orihuela (Casco y Centro)",
-        "total_count": 31,
-        "highlighted_count": 12,
+        "total_count": 35,
+        "highlighted_count": 13,
         "min_eur_m2": 28.6,
         "avg_solar_eur_m2": 413.8,
         "median_solar_eur_m2": 312.4,
-        "avg_casa_eur_m2": 701.5,
+        "avg_casa_eur_m2": 697.3,
         "median_casa_eur_m2": 837.1
       },
       "montepinar": {
         "zone_id": "montepinar",
         "zone_name": "Montepinar",
-        "total_count": 19,
-        "highlighted_count": 19,
+        "total_count": 22,
+        "highlighted_count": 22,
         "min_eur_m2": 95.8,
         "avg_solar_eur_m2": 134.9,
         "median_solar_eur_m2": 147.4,
@@ -37,12 +37,12 @@
       "pedanias_orihuela": {
         "zone_id": "pedanias_orihuela",
         "zone_name": "Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...)",
-        "total_count": 47,
+        "total_count": 48,
         "highlighted_count": 22,
         "min_eur_m2": 88.6,
         "avg_solar_eur_m2": 430.7,
         "median_solar_eur_m2": 318.0,
-        "avg_casa_eur_m2": 921.3,
+        "avg_casa_eur_m2": 926.2,
         "median_casa_eur_m2": 849.3
       },
       "raiguero_bonanza": {
@@ -72,18 +72,18 @@
         "zone_name": "Benferri",
         "total_count": 5,
         "highlighted_count": 1,
-        "min_eur_m2": 1075.0,
+        "min_eur_m2": 1062.5,
         "avg_solar_eur_m2": null,
         "median_solar_eur_m2": null,
-        "avg_casa_eur_m2": 1476.7,
-        "median_casa_eur_m2": 1476.7
+        "avg_casa_eur_m2": 1470.5,
+        "median_casa_eur_m2": 1470.5
       }
     },
     "auctions_count": 115,
     "auctions_target_count": 0,
-    "alertas_count": 33,
-    "alertas_altas_count": 15,
-    "alertas_7d_count": 32
+    "alertas_count": 34,
+    "alertas_altas_count": 16,
+    "alertas_7d_count": 33
   },
   "listings": [
     {
@@ -118,10 +118,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 12,
+      "times_seen": 13,
       "rooms": null,
       "prop_id": "P31a51141ceabf7",
       "missing_runs": 0,
@@ -159,8 +159,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:02:24Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 7,
+      "dias_en_venta": 9,
+      "dias_publicado": 8,
       "republicaciones": 1,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -197,10 +197,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 15,
+      "times_seen": 16,
       "rooms": null,
       "prop_id": "P4ee321b464e895",
       "missing_runs": 0,
@@ -230,8 +230,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:02:24Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -268,10 +268,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-11T14:48:14Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 8,
+      "times_seen": 9,
       "rooms": 3,
       "prop_id": "P6676c4947b0131",
       "missing_runs": 0,
@@ -302,8 +302,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-11T14:48:14Z",
-      "dias_en_venta": 6,
-      "dias_publicado": 6,
+      "dias_en_venta": 7,
+      "dias_publicado": 7,
       "republicaciones": 0,
       "anuncios_del_inmueble": 2,
       "retirado": false
@@ -340,10 +340,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-11T14:48:14Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 8,
+      "times_seen": 9,
       "rooms": 3,
       "prop_id": "P6676c4947b0131",
       "missing_runs": 0,
@@ -374,8 +374,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-11T14:48:14Z",
-      "dias_en_venta": 6,
-      "dias_publicado": 6,
+      "dias_en_venta": 7,
+      "dias_publicado": 7,
       "republicaciones": 0,
       "anuncios_del_inmueble": 2,
       "retirado": false
@@ -412,10 +412,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 14,
+      "times_seen": 15,
       "rooms": null,
       "prop_id": "P72a7aa4aa1b42b",
       "missing_runs": 0,
@@ -446,8 +446,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:53:34Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -484,10 +484,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-11T14:48:14Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 8,
+      "times_seen": 9,
       "rooms": 7,
       "prop_id": "Pce91b639582c02",
       "missing_runs": 0,
@@ -517,8 +517,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-11T14:48:14Z",
-      "dias_en_venta": 6,
-      "dias_publicado": 6,
+      "dias_en_venta": 7,
+      "dias_publicado": 7,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -555,10 +555,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 15,
+      "times_seen": 16,
       "rooms": null,
       "prop_id": "P21db8ab6d2c2cf",
       "missing_runs": 0,
@@ -588,8 +588,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:02:24Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -626,10 +626,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 14,
+      "times_seen": 15,
       "rooms": 3,
       "prop_id": "P01dbaf77730a3c",
       "missing_runs": 0,
@@ -659,8 +659,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:53:34Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -697,10 +697,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 16,
+      "times_seen": 17,
       "rooms": null,
       "prop_id": "Pec47cff67addf5",
       "missing_runs": 0,
@@ -731,8 +731,80 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T10:37:00Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
+    },
+    {
+      "id": "vega-e028-01433",
+      "portal": "Primer Grupo Vegacasa",
+      "title": "Casa/Chalet adosado en Orihuela Ciudad, Orihuela (Ref. E028-01433)",
+      "url": "https://www.primergrupovegacasa.com/ad/101827316",
+      "zone_id": "orihuela",
+      "zone_name": "Orihuela (Casco y Centro)",
+      "tier": 1,
+      "location_raw": "Orihuela (Casco y Centro)",
+      "lat": 38.08328,
+      "lon": -0.94455,
+      "asset_type": "casa_planta_baja",
+      "asset_label": "Casa / Vivienda con Parcela",
+      "is_target_type": true,
+      "is_orihuela_costa": false,
+      "initial_price_eur": 130000.0,
+      "price_eur": 130000.0,
+      "min_price_eur": 130000.0,
+      "max_price_eur": 130000.0,
+      "price_drop_eur": 0.0,
+      "price_drop_pct": 0.0,
+      "surface_plot_m2": 369.0,
+      "surface_built_m2": null,
+      "effective_plot_m2": 369.0,
+      "eur_per_m2": 352.3,
+      "discount_vs_ref_pct": 32.2,
+      "is_highlighted": true,
+      "chollo_score": 87,
+      "description": "Casa/Chalet adosado en Orihuela Ciudad, Orihuela 130.000 € Ref. E028-01433 ¡Bienvenidos a esta oportunidad única! Esta casa en el centro de Orihuela ciudad es ideal para la construcción de una vivienda unifamiliar o para la construcción de un edificio de apartamentos. Su ubicación en el centro de la ciudad y su potencial para venta o alquiler la convierten en una inversión atractiva. La zona es céntrica y de alta demanda, con buena conexión, cerca de servicios y comodidades en un entorno tranquilo y seguro. No pierdas la oportunidad de invertir",
+      "image_url": "",
+      "phone": "",
+      "first_seen_at": "2026-11-18T16:45:34Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
+      "last_price_change_at": null,
+      "status": "new",
+      "times_seen": 1,
+      "rooms": 3,
+      "prop_id": "Pc1091540b48446",
+      "missing_runs": 0,
+      "delisted_at": null,
+      "sin_filtro": false,
+      "chollo_reasons": [
+        "Precio/m² muy bajo (352 €/m², un 32% bajo media de zona)",
+        "Gran amplitud de parcela (369 m²)",
+        "Vendedor indica urgencia / rebaja"
+      ],
+      "price_history": [
+        {
+          "date": "2026-11-18",
+          "price": 130000.0,
+          "eur_m2": 352.3,
+          "change_eur": 0.0,
+          "change_pct": 0.0
+        }
+      ],
+      "tramos": [
+        {
+          "listing_id": "vega-e028-01433",
+          "prop_id": "Pc1091540b48446",
+          "started_at": "2026-11-18T16:45:34Z",
+          "ended_at": null,
+          "start_price_eur": 130000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-18T16:45:34Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -769,10 +841,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 15,
+      "times_seen": 16,
       "rooms": 5,
       "prop_id": "P72bffa777e9f71",
       "missing_runs": 0,
@@ -802,8 +874,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:02:24Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -840,10 +912,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 15,
+      "times_seen": 16,
       "rooms": null,
       "prop_id": "P259487ee72b6a1",
       "missing_runs": 0,
@@ -873,8 +945,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:02:24Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -911,10 +983,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 13,
+      "times_seen": 14,
       "rooms": null,
       "prop_id": "P1015d6b065f205-ol0003",
       "missing_runs": 0,
@@ -944,8 +1016,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:53:34Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -982,10 +1054,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 16,
+      "times_seen": 17,
       "rooms": null,
       "prop_id": "P1015d6b065f205",
       "missing_runs": 0,
@@ -1015,8 +1087,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T10:37:00Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -1053,10 +1125,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 15,
+      "times_seen": 16,
       "rooms": null,
       "prop_id": "P4c4cdef91f9fd9-1f8d1e",
       "missing_runs": 0,
@@ -1086,8 +1158,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:02:24Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -1124,10 +1196,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 16,
+      "times_seen": 17,
       "rooms": null,
       "prop_id": "P4c4cdef91f9fd9",
       "missing_runs": 0,
@@ -1158,8 +1230,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T10:37:00Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -1196,10 +1268,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 15,
+      "times_seen": 16,
       "rooms": null,
       "prop_id": "Pb60f58fcde1b7e",
       "missing_runs": 0,
@@ -1229,8 +1301,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:02:24Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -1267,10 +1339,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 15,
+      "times_seen": 16,
       "rooms": 4,
       "prop_id": "Pa9ad60097f4f5b",
       "missing_runs": 0,
@@ -1300,8 +1372,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:02:24Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -1338,10 +1410,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-14T14:32:08Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 4,
+      "times_seen": 5,
       "rooms": null,
       "prop_id": "P01d19720677e8c",
       "missing_runs": 0,
@@ -1371,8 +1443,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-14T14:32:08Z",
-      "dias_en_venta": 3,
-      "dias_publicado": 3,
+      "dias_en_venta": 4,
+      "dias_publicado": 4,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -1409,10 +1481,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 14,
+      "times_seen": 15,
       "rooms": 3,
       "prop_id": "P85aa3f939f20b3",
       "missing_runs": 0,
@@ -1441,8 +1513,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:53:34Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -1479,10 +1551,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 15,
+      "times_seen": 16,
       "rooms": null,
       "prop_id": "P1c7e03dce6610a",
       "missing_runs": 0,
@@ -1511,8 +1583,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:02:24Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -1549,10 +1621,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 15,
+      "times_seen": 16,
       "rooms": null,
       "prop_id": "P1c7e03dce6610a",
       "missing_runs": 0,
@@ -1581,8 +1653,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:02:24Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -1619,10 +1691,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 13,
+      "times_seen": 14,
       "rooms": null,
       "prop_id": "P5a1af600b33d74",
       "missing_runs": 0,
@@ -1651,8 +1723,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:53:34Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -1689,10 +1761,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 15,
+      "times_seen": 16,
       "rooms": null,
       "prop_id": "Pc0f12ede5b6787",
       "missing_runs": 0,
@@ -1719,8 +1791,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:02:24Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -1757,10 +1829,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 14,
+      "times_seen": 15,
       "rooms": 8,
       "prop_id": "P2e350c31f97685",
       "missing_runs": 0,
@@ -1789,8 +1861,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:53:34Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -1827,10 +1899,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-12T16:13:58Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 5,
+      "times_seen": 6,
       "rooms": 5,
       "prop_id": "Pf3514d4eb52aa4",
       "missing_runs": 0,
@@ -1860,8 +1932,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-12T16:13:58Z",
-      "dias_en_venta": 5,
-      "dias_publicado": 5,
+      "dias_en_venta": 6,
+      "dias_publicado": 6,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -1898,10 +1970,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 14,
+      "times_seen": 15,
       "rooms": null,
       "prop_id": "Pd5e7686c72f5cd",
       "missing_runs": 0,
@@ -1930,8 +2002,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:53:34Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -1968,10 +2040,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 15,
+      "times_seen": 16,
       "rooms": 3,
       "prop_id": "Pfc8b3e76d8ec62",
       "missing_runs": 0,
@@ -1998,8 +2070,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:02:24Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -2036,10 +2108,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 16,
+      "times_seen": 17,
       "rooms": 5,
       "prop_id": "Pcc8254599963e9",
       "missing_runs": 0,
@@ -2069,8 +2141,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T10:37:00Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -2107,10 +2179,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 15,
+      "times_seen": 16,
       "rooms": null,
       "prop_id": "Pfd81870025950a",
       "missing_runs": 0,
@@ -2140,8 +2212,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:02:24Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -2178,10 +2250,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 15,
+      "times_seen": 16,
       "rooms": null,
       "prop_id": "P49bbd092218cc7",
       "missing_runs": 0,
@@ -2211,8 +2283,194 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:02:24Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
+    },
+    {
+      "id": "566f903d0a586b",
+      "portal": "Idealista (Alerta Email)",
+      "title": "5 anuncios recomendados para ti",
+      "url": "https://www.idealista.com/inmueble/112565414",
+      "zone_id": "montepinar",
+      "zone_name": "Montepinar",
+      "tier": 1,
+      "location_raw": "5 anuncios recomendados para ti",
+      "lat": 38.04663,
+      "lon": -1.03164,
+      "asset_type": "solar_urbano",
+      "asset_label": "Solar Urbano",
+      "is_target_type": true,
+      "is_orihuela_costa": false,
+      "initial_price_eur": null,
+      "price_eur": null,
+      "min_price_eur": null,
+      "max_price_eur": null,
+      "price_drop_eur": 0.0,
+      "price_drop_pct": 0.0,
+      "surface_plot_m2": null,
+      "surface_built_m2": null,
+      "effective_plot_m2": 0.0,
+      "eur_per_m2": null,
+      "discount_vs_ref_pct": null,
+      "is_highlighted": true,
+      "chollo_score": 35,
+      "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en tetuan, Montepinar-La Aparecida-Raiguero, Orihuela\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/112565414/?utm_medium=e",
+      "image_url": "",
+      "phone": "",
+      "first_seen_at": "2026-11-18T16:45:34Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
+      "last_price_change_at": null,
+      "status": "new",
+      "times_seen": 1,
+      "rooms": null,
+      "prop_id": "P2aab0364bafb52-0a586b",
+      "missing_runs": 0,
+      "delisted_at": null,
+      "sin_filtro": true,
+      "chollo_reasons": [
+        "Falta precio o m² para valorar €/m²"
+      ],
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "566f903d0a586b",
+          "prop_id": "P2aab0364bafb52-0a586b",
+          "started_at": "2026-11-18T16:45:34Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-18T16:45:34Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
+    },
+    {
+      "id": "468c076ff77419",
+      "portal": "Idealista (Alerta Email)",
+      "title": "5 anuncios recomendados para ti",
+      "url": "https://www.idealista.com/inmueble/112089297",
+      "zone_id": "montepinar",
+      "zone_name": "Montepinar",
+      "tier": 1,
+      "location_raw": "5 anuncios recomendados para ti",
+      "lat": 38.04485,
+      "lon": -1.02846,
+      "asset_type": "solar_urbano",
+      "asset_label": "Solar Urbano",
+      "is_target_type": true,
+      "is_orihuela_costa": false,
+      "initial_price_eur": null,
+      "price_eur": null,
+      "min_price_eur": null,
+      "max_price_eur": null,
+      "price_drop_eur": 0.0,
+      "price_drop_pct": 0.0,
+      "surface_plot_m2": null,
+      "surface_built_m2": null,
+      "effective_plot_m2": 0.0,
+      "eur_per_m2": null,
+      "discount_vs_ref_pct": null,
+      "is_highlighted": true,
+      "chollo_score": 35,
+      "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Calle Princesa, 91, Montepinar-La Aparecida-Raiguero, Orihuela\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/112089297/?",
+      "image_url": "",
+      "phone": "",
+      "first_seen_at": "2026-11-18T16:45:34Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
+      "last_price_change_at": null,
+      "status": "new",
+      "times_seen": 1,
+      "rooms": null,
+      "prop_id": "P2aab0364bafb52-f77419",
+      "missing_runs": 0,
+      "delisted_at": null,
+      "sin_filtro": true,
+      "chollo_reasons": [
+        "Falta precio o m² para valorar €/m²"
+      ],
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "468c076ff77419",
+          "prop_id": "P2aab0364bafb52-f77419",
+          "started_at": "2026-11-18T16:45:34Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-18T16:45:34Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
+    },
+    {
+      "id": "17166159b6c9ac",
+      "portal": "Idealista (Alerta Email)",
+      "title": "5 anuncios recomendados para ti",
+      "url": "https://www.idealista.com/inmueble/101188890",
+      "zone_id": "montepinar",
+      "zone_name": "Montepinar",
+      "tier": 1,
+      "location_raw": "5 anuncios recomendados para ti",
+      "lat": 38.04614,
+      "lon": -1.03258,
+      "asset_type": "solar_urbano",
+      "asset_label": "Solar Urbano",
+      "is_target_type": true,
+      "is_orihuela_costa": false,
+      "initial_price_eur": null,
+      "price_eur": null,
+      "min_price_eur": null,
+      "max_price_eur": null,
+      "price_drop_eur": 0.0,
+      "price_drop_pct": 0.0,
+      "surface_plot_m2": null,
+      "surface_built_m2": null,
+      "effective_plot_m2": 0.0,
+      "eur_per_m2": null,
+      "discount_vs_ref_pct": null,
+      "is_highlighted": true,
+      "chollo_score": 35,
+      "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Calle Goya, 16, Montepinar-La Aparecida-Raiguero, Orihuela\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/101188890/?utm_",
+      "image_url": "",
+      "phone": "",
+      "first_seen_at": "2026-11-18T16:45:34Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
+      "last_price_change_at": null,
+      "status": "new",
+      "times_seen": 1,
+      "rooms": null,
+      "prop_id": "P2aab0364bafb52-b6c9ac",
+      "missing_runs": 0,
+      "delisted_at": null,
+      "sin_filtro": true,
+      "chollo_reasons": [
+        "Falta precio o m² para valorar €/m²"
+      ],
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "17166159b6c9ac",
+          "prop_id": "P2aab0364bafb52-b6c9ac",
+          "started_at": "2026-11-18T16:45:34Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-18T16:45:34Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -2249,10 +2507,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-16T17:28:59Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 2,
+      "times_seen": 3,
       "rooms": null,
       "prop_id": "P2e527b1bd7ccb0-d8d3e7",
       "missing_runs": 0,
@@ -2281,8 +2539,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-16T17:28:59Z",
-      "dias_en_venta": 0,
-      "dias_publicado": 0,
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -2319,10 +2577,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-16T17:28:59Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 2,
+      "times_seen": 3,
       "rooms": null,
       "prop_id": "P2e527b1bd7ccb0-a3ad60",
       "missing_runs": 0,
@@ -2351,8 +2609,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-16T17:28:59Z",
-      "dias_en_venta": 0,
-      "dias_publicado": 0,
+      "dias_en_venta": 1,
+      "dias_publicado": 1,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -2421,8 +2679,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-11T14:48:14Z",
-      "dias_en_venta": 6,
-      "dias_publicado": 6,
+      "dias_en_venta": 7,
+      "dias_publicado": 7,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -2491,8 +2749,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-11T14:48:14Z",
-      "dias_en_venta": 6,
-      "dias_publicado": 6,
+      "dias_en_venta": 7,
+      "dias_publicado": 7,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -2561,8 +2819,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-11T14:48:14Z",
-      "dias_en_venta": 6,
-      "dias_publicado": 6,
+      "dias_en_venta": 7,
+      "dias_publicado": 7,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -2631,8 +2889,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-11T14:48:14Z",
-      "dias_en_venta": 6,
-      "dias_publicado": 6,
+      "dias_en_venta": 7,
+      "dias_publicado": 7,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -2701,8 +2959,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-11T14:48:14Z",
-      "dias_en_venta": 6,
-      "dias_publicado": 6,
+      "dias_en_venta": 7,
+      "dias_publicado": 7,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -2739,10 +2997,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-11T14:48:14Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 9,
+      "times_seen": 10,
       "rooms": null,
       "prop_id": "P2e527b1bd7ccb0-067c9a",
       "missing_runs": 0,
@@ -2771,8 +3029,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-11T14:48:14Z",
-      "dias_en_venta": 6,
-      "dias_publicado": 6,
+      "dias_en_venta": 7,
+      "dias_publicado": 7,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -2809,10 +3067,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-11T14:48:14Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 16,
+      "times_seen": 17,
       "rooms": null,
       "prop_id": "P2e527b1bd7ccb0-b202e6",
       "missing_runs": 0,
@@ -2841,8 +3099,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-11T14:48:14Z",
-      "dias_en_venta": 6,
-      "dias_publicado": 6,
+      "dias_en_venta": 7,
+      "dias_publicado": 7,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -2879,10 +3137,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-11T14:48:14Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 10,
+      "times_seen": 11,
       "rooms": null,
       "prop_id": "P2e527b1bd7ccb0-898e63",
       "missing_runs": 0,
@@ -2911,8 +3169,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-11T14:48:14Z",
-      "dias_en_venta": 6,
-      "dias_publicado": 6,
+      "dias_en_venta": 7,
+      "dias_publicado": 7,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -2949,10 +3207,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-11T14:48:14Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 11,
+      "times_seen": 14,
       "rooms": null,
       "prop_id": "P2e527b1bd7ccb0-768253",
       "missing_runs": 0,
@@ -2981,8 +3239,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-11T14:48:14Z",
-      "dias_en_venta": 6,
-      "dias_publicado": 6,
+      "dias_en_venta": 7,
+      "dias_publicado": 7,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -3019,12 +3277,12 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-11T09:09:55Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 7,
+      "times_seen": 8,
       "rooms": null,
-      "prop_id": "P2aab0364bafb52",
+      "prop_id": "P2aab0364bafb52-42a72c",
       "missing_runs": 0,
       "delisted_at": null,
       "sin_filtro": true,
@@ -3043,8 +3301,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-11T09:09:55Z",
-      "dias_en_venta": 6,
-      "dias_publicado": 6,
+      "dias_en_venta": 7,
+      "dias_publicado": 7,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -3081,10 +3339,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 14,
+      "times_seen": 15,
       "rooms": 3,
       "prop_id": "P4f71e0395b55da",
       "missing_runs": 0,
@@ -3114,8 +3372,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:53:34Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -3152,10 +3410,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 14,
+      "times_seen": 15,
       "rooms": null,
       "prop_id": "P237b3175ddb67d-c7bae9",
       "missing_runs": 0,
@@ -3185,8 +3443,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:53:34Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -3223,10 +3481,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 16,
+      "times_seen": 17,
       "rooms": null,
       "prop_id": "P5285e425c10dc9",
       "missing_runs": 0,
@@ -3257,8 +3515,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T10:37:00Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -3295,10 +3553,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 16,
+      "times_seen": 17,
       "rooms": null,
       "prop_id": "P57544ef21673cc",
       "missing_runs": 0,
@@ -3327,8 +3585,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T10:37:00Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -3365,10 +3623,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 14,
+      "times_seen": 15,
       "rooms": 3,
       "prop_id": "Pa5adee229e30f3",
       "missing_runs": 0,
@@ -3398,8 +3656,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:53:34Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -3436,10 +3694,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 16,
+      "times_seen": 17,
       "rooms": null,
       "prop_id": "P237b3175ddb67d",
       "missing_runs": 0,
@@ -3469,8 +3727,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T10:37:00Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -3507,10 +3765,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 16,
+      "times_seen": 17,
       "rooms": null,
       "prop_id": "Pf60c47ec29670f",
       "missing_runs": 0,
@@ -3540,8 +3798,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T10:37:00Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -3578,10 +3836,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 16,
+      "times_seen": 17,
       "rooms": null,
       "prop_id": "P870ee89ef92690",
       "missing_runs": 0,
@@ -3611,8 +3869,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T10:37:00Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -3682,7 +3940,7 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T10:37:00Z",
-      "dias_en_venta": 8,
+      "dias_en_venta": 9,
       "dias_publicado": 2,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
@@ -3720,10 +3978,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 16,
+      "times_seen": 17,
       "rooms": null,
       "prop_id": "P3a9c094347db66",
       "missing_runs": 0,
@@ -3754,8 +4012,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T10:37:00Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -3792,10 +4050,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-10T14:58:39Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 11,
+      "times_seen": 12,
       "rooms": 3,
       "prop_id": "P41f05eda7cb47d",
       "missing_runs": 0,
@@ -3824,8 +4082,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-10T14:58:39Z",
-      "dias_en_venta": 7,
-      "dias_publicado": 7,
+      "dias_en_venta": 8,
+      "dias_publicado": 8,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -3862,10 +4120,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 16,
+      "times_seen": 17,
       "rooms": 3,
       "prop_id": "P9445902f7cccc5",
       "missing_runs": 0,
@@ -3894,8 +4152,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T10:37:00Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -3932,10 +4190,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 14,
+      "times_seen": 15,
       "rooms": 4,
       "prop_id": "Pe964e2fe189f73",
       "missing_runs": 0,
@@ -3965,8 +4223,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:53:34Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -4003,10 +4261,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 16,
+      "times_seen": 17,
       "rooms": 3,
       "prop_id": "P479dc6d75dcd82",
       "missing_runs": 0,
@@ -4035,8 +4293,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T10:37:00Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -4073,10 +4331,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 16,
+      "times_seen": 17,
       "rooms": 3,
       "prop_id": "P40d90e7ed3676a",
       "missing_runs": 0,
@@ -4105,8 +4363,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T10:37:00Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -4143,10 +4401,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 15,
+      "times_seen": 16,
       "rooms": null,
       "prop_id": "P9fefbf32ec4f1e",
       "missing_runs": 0,
@@ -4176,8 +4434,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:02:24Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -4214,10 +4472,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 14,
+      "times_seen": 15,
       "rooms": 3,
       "prop_id": "Pd23c09407e63f1",
       "missing_runs": 0,
@@ -4247,8 +4505,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:53:34Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -4285,10 +4543,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 15,
+      "times_seen": 16,
       "rooms": 1,
       "prop_id": "P547bd3e570b730",
       "missing_runs": 0,
@@ -4319,8 +4577,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:02:24Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -4357,10 +4615,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 15,
+      "times_seen": 16,
       "rooms": null,
       "prop_id": "P0636211f1b5240",
       "missing_runs": 0,
@@ -4390,8 +4648,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:02:24Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -4427,8 +4685,8 @@
       "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Benejuzar\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/111838991/?utm_medium=email&utm_campaign=recommender_sale&utm_ca",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-17T17:07:01Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "first_seen_at": "2026-11-18T16:45:34Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -4445,13 +4703,13 @@
         {
           "listing_id": "c0eae8fce325c0",
           "prop_id": "P917867d06ef8bb-e325c0",
-          "started_at": "2026-11-17T17:07:01Z",
+          "started_at": "2026-11-18T16:45:34Z",
           "ended_at": null,
           "start_price_eur": null,
           "end_price_eur": null
         }
       ],
-      "primera_vez_en_venta": "2026-11-17T17:07:01Z",
+      "primera_vez_en_venta": "2026-11-18T16:45:34Z",
       "dias_en_venta": 0,
       "dias_publicado": 0,
       "republicaciones": 0,
@@ -4489,8 +4747,8 @@
       "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Molins-Campaneta-San Bartolomé, Orihuela\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/112697481/?utm_medium=email&utm_c",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-17T17:07:01Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "first_seen_at": "2026-11-18T16:45:34Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -4507,13 +4765,13 @@
         {
           "listing_id": "5fd410e04d30a4",
           "prop_id": "P584b192bc9749f-4d30a4",
-          "started_at": "2026-11-17T17:07:01Z",
+          "started_at": "2026-11-18T16:45:34Z",
           "ended_at": null,
           "start_price_eur": null,
           "end_price_eur": null
         }
       ],
-      "primera_vez_en_venta": "2026-11-17T17:07:01Z",
+      "primera_vez_en_venta": "2026-11-18T16:45:34Z",
       "dias_en_venta": 0,
       "dias_publicado": 0,
       "republicaciones": 0,
@@ -4551,8 +4809,8 @@
       "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Avenida del Alicante s/n, Molins-Campaneta-San Bartolomé, Orihuela\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/1130084",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-17T17:07:01Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "first_seen_at": "2026-11-18T16:45:34Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -4569,13 +4827,13 @@
         {
           "listing_id": "1696c836193f8c",
           "prop_id": "P584b192bc9749f-193f8c",
-          "started_at": "2026-11-17T17:07:01Z",
+          "started_at": "2026-11-18T16:45:34Z",
           "ended_at": null,
           "start_price_eur": null,
           "end_price_eur": null
         }
       ],
-      "primera_vez_en_venta": "2026-11-17T17:07:01Z",
+      "primera_vez_en_venta": "2026-11-18T16:45:34Z",
       "dias_en_venta": 0,
       "dias_publicado": 0,
       "republicaciones": 0,
@@ -4613,8 +4871,8 @@
       "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Dr Jose Ricarte, Molins-Campaneta-San Bartolomé, Orihuela\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/112910426/?utm_m",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-17T17:07:01Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "first_seen_at": "2026-11-18T16:45:34Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -4631,13 +4889,13 @@
         {
           "listing_id": "3c5d6e70298718",
           "prop_id": "P584b192bc9749f",
-          "started_at": "2026-11-17T17:07:01Z",
+          "started_at": "2026-11-18T16:45:34Z",
           "ended_at": null,
           "start_price_eur": null,
           "end_price_eur": null
         }
       ],
-      "primera_vez_en_venta": "2026-11-17T17:07:01Z",
+      "primera_vez_en_venta": "2026-11-18T16:45:34Z",
       "dias_en_venta": 0,
       "dias_publicado": 0,
       "republicaciones": 0,
@@ -4675,8 +4933,8 @@
       "description": "6px;padding:0 12px 16px 12px\"> BAJADA DE PRECIO -3% 324.900 € 335.000 € <a href=\"https://www.",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-17T17:07:01Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "first_seen_at": "2026-11-18T16:45:34Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -4690,7 +4948,7 @@
       ],
       "price_history": [
         {
-          "date": "2026-11-17",
+          "date": "2026-11-18",
           "price": 324900.0,
           "eur_m2": null,
           "change_eur": 0.0,
@@ -4701,13 +4959,13 @@
         {
           "listing_id": "7d933f00313a2e",
           "prop_id": "P917867d06ef8bb-313a2e",
-          "started_at": "2026-11-17T17:07:01Z",
+          "started_at": "2026-11-18T16:45:34Z",
           "ended_at": null,
           "start_price_eur": 324900.0,
           "end_price_eur": null
         }
       ],
-      "primera_vez_en_venta": "2026-11-17T17:07:01Z",
+      "primera_vez_en_venta": "2026-11-18T16:45:34Z",
       "dias_en_venta": 0,
       "dias_publicado": 0,
       "republicaciones": 0,
@@ -4745,8 +5003,8 @@
       "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Benejuzar\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/111628652/?utm_medium=email&utm_campaign=recommender_sale&utm_ca",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-17T17:07:01Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "first_seen_at": "2026-11-18T16:45:34Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -4763,13 +5021,13 @@
         {
           "listing_id": "bed059a5e70bc6",
           "prop_id": "P917867d06ef8bb-e70bc6",
-          "started_at": "2026-11-17T17:07:01Z",
+          "started_at": "2026-11-18T16:45:34Z",
           "ended_at": null,
           "start_price_eur": null,
           "end_price_eur": null
         }
       ],
-      "primera_vez_en_venta": "2026-11-17T17:07:01Z",
+      "primera_vez_en_venta": "2026-11-18T16:45:34Z",
       "dias_en_venta": 0,
       "dias_publicado": 0,
       "republicaciones": 0,
@@ -4807,8 +5065,8 @@
       "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Benejuzar\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/112945291/?utm_medium=email&utm_campaign=recommender_sale&utm_ca",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-17T17:07:01Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "first_seen_at": "2026-11-18T16:45:34Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -4825,13 +5083,13 @@
         {
           "listing_id": "a451bfd328b6d3",
           "prop_id": "P917867d06ef8bb-28b6d3",
-          "started_at": "2026-11-17T17:07:01Z",
+          "started_at": "2026-11-18T16:45:34Z",
           "ended_at": null,
           "start_price_eur": null,
           "end_price_eur": null
         }
       ],
-      "primera_vez_en_venta": "2026-11-17T17:07:01Z",
+      "primera_vez_en_venta": "2026-11-18T16:45:34Z",
       "dias_en_venta": 0,
       "dias_publicado": 0,
       "republicaciones": 0,
@@ -4869,8 +5127,8 @@
       "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Benejuzar\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/112690374/?utm_medium=email&utm_campaign=recommender_sale&utm_ca",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-17T17:07:01Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "first_seen_at": "2026-11-18T16:45:34Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -4887,13 +5145,13 @@
         {
           "listing_id": "c2cf78d3a1c445",
           "prop_id": "P917867d06ef8bb-a1c445",
-          "started_at": "2026-11-17T17:07:01Z",
+          "started_at": "2026-11-18T16:45:34Z",
           "ended_at": null,
           "start_price_eur": null,
           "end_price_eur": null
         }
       ],
-      "primera_vez_en_venta": "2026-11-17T17:07:01Z",
+      "primera_vez_en_venta": "2026-11-18T16:45:34Z",
       "dias_en_venta": 0,
       "dias_publicado": 0,
       "republicaciones": 0,
@@ -4931,13 +5189,13 @@
       "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Benejuzar\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/112879913/?utm_medium=email&utm_campaign=recommender_sale&utm_ca",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-17T17:07:01Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "first_seen_at": "2026-11-18T16:45:34Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
       "rooms": null,
-      "prop_id": "P917867d06ef8bb",
+      "prop_id": "P917867d06ef8bb-cc9eb0",
       "missing_runs": 0,
       "delisted_at": null,
       "sin_filtro": false,
@@ -4948,14 +5206,14 @@
       "tramos": [
         {
           "listing_id": "3347aaadcc9eb0",
-          "prop_id": "P917867d06ef8bb",
-          "started_at": "2026-11-17T17:07:01Z",
+          "prop_id": "P917867d06ef8bb-cc9eb0",
+          "started_at": "2026-11-18T16:45:34Z",
           "ended_at": null,
           "start_price_eur": null,
           "end_price_eur": null
         }
       ],
-      "primera_vez_en_venta": "2026-11-17T17:07:01Z",
+      "primera_vez_en_venta": "2026-11-18T16:45:34Z",
       "dias_en_venta": 0,
       "dias_publicado": 0,
       "republicaciones": 0,
@@ -4993,8 +5251,8 @@
       "description": "\"width:287px;padding:0 12px 16px 12px\"> 110.000 € <a href=\"https://www.fotocasa.es/es/comprar/terreno/benferri/benferri/191274599/d?stc=em-cross_alert-24x7_realtime-20261116-cardFreshContent&utm_medium=email&utm_source=alert&utm_campaign=24x7_registered_realtime&utm_content=variant_a&utm_term=cardFreshContent\" target=\"_",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-17T17:07:01Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "first_seen_at": "2026-11-18T16:45:34Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -5008,7 +5266,7 @@
       ],
       "price_history": [
         {
-          "date": "2026-11-17",
+          "date": "2026-11-18",
           "price": 110000.0,
           "eur_m2": null,
           "change_eur": 0.0,
@@ -5019,13 +5277,13 @@
         {
           "listing_id": "9b955cf8d04a31",
           "prop_id": "P9a33163668b7e2-d04a31",
-          "started_at": "2026-11-17T17:07:01Z",
+          "started_at": "2026-11-18T16:45:34Z",
           "ended_at": null,
           "start_price_eur": 110000.0,
           "end_price_eur": null
         }
       ],
-      "primera_vez_en_venta": "2026-11-17T17:07:01Z",
+      "primera_vez_en_venta": "2026-11-18T16:45:34Z",
       "dias_en_venta": 0,
       "dias_publicado": 0,
       "republicaciones": 0,
@@ -5063,8 +5321,8 @@
       "description": "\"width:287px;padding:0 12px 16px 12px\"> 48.000 € <a href=\"https://www.fotocasa.es/es/comprar/terreno/benferri/benferri/191274602/d?stc=em-cross_alert-24x7_realtime-20261116-cardFreshContent&utm_medium=email&utm_source=alert&utm_campaign=24x7_registered_realtime&utm_content=variant_a&utm_term=cardFreshContent\" target=\"_b",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-17T17:07:01Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "first_seen_at": "2026-11-18T16:45:34Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -5078,7 +5336,7 @@
       ],
       "price_history": [
         {
-          "date": "2026-11-17",
+          "date": "2026-11-18",
           "price": 48000.0,
           "eur_m2": null,
           "change_eur": 0.0,
@@ -5089,13 +5347,13 @@
         {
           "listing_id": "bf78b5922208d1",
           "prop_id": "P9a33163668b7e2-2208d1",
-          "started_at": "2026-11-17T17:07:01Z",
+          "started_at": "2026-11-18T16:45:34Z",
           "ended_at": null,
           "start_price_eur": 48000.0,
           "end_price_eur": null
         }
       ],
-      "primera_vez_en_venta": "2026-11-17T17:07:01Z",
+      "primera_vez_en_venta": "2026-11-18T16:45:34Z",
       "dias_en_venta": 0,
       "dias_publicado": 0,
       "republicaciones": 0,
@@ -5133,8 +5391,8 @@
       "description": "\"width:287px;padding:0 12px 16px 12px\"> 98.000 € <a href=\"https://www.fotocasa.es/es/comprar/terreno/benferri/benferri/191274603/d?stc=em-cross_alert-24x7_realtime-20261116-cardFreshContent&utm_medium=email&utm_source=alert&utm_campaign=24x7_registered_realtime&utm_content=variant_a&utm_term=cardFreshContent\" target=\"_b",
       "image_url": "",
       "phone": "",
-      "first_seen_at": "2026-11-17T17:07:01Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "first_seen_at": "2026-11-18T16:45:34Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "new",
       "times_seen": 1,
@@ -5148,7 +5406,7 @@
       ],
       "price_history": [
         {
-          "date": "2026-11-17",
+          "date": "2026-11-18",
           "price": 98000.0,
           "eur_m2": null,
           "change_eur": 0.0,
@@ -5159,13 +5417,137 @@
         {
           "listing_id": "2dc2f06e8498bf",
           "prop_id": "P9a33163668b7e2",
-          "started_at": "2026-11-17T17:07:01Z",
+          "started_at": "2026-11-18T16:45:34Z",
           "ended_at": null,
           "start_price_eur": 98000.0,
           "end_price_eur": null
         }
       ],
-      "primera_vez_en_venta": "2026-11-17T17:07:01Z",
+      "primera_vez_en_venta": "2026-11-18T16:45:34Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
+    },
+    {
+      "id": "7ebf1bed8034a3",
+      "portal": "Idealista (Alerta Email)",
+      "title": "5 anuncios recomendados para ti",
+      "url": "https://www.idealista.com/inmueble/113050971",
+      "zone_id": "orihuela",
+      "zone_name": "Orihuela (Casco y Centro)",
+      "tier": 1,
+      "location_raw": "5 anuncios recomendados para ti",
+      "lat": 38.08511,
+      "lon": -0.94041,
+      "asset_type": "solar_urbano",
+      "asset_label": "Solar Urbano",
+      "is_target_type": true,
+      "is_orihuela_costa": false,
+      "initial_price_eur": null,
+      "price_eur": null,
+      "min_price_eur": null,
+      "max_price_eur": null,
+      "price_drop_eur": 0.0,
+      "price_drop_pct": 0.0,
+      "surface_plot_m2": null,
+      "surface_built_m2": null,
+      "effective_plot_m2": 0.0,
+      "eur_per_m2": null,
+      "discount_vs_ref_pct": null,
+      "is_highlighted": false,
+      "chollo_score": 35,
+      "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Calle la Concordia, Benejuzar\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/113050971/?utm_medium=email&utm_campaign=rec",
+      "image_url": "",
+      "phone": "",
+      "first_seen_at": "2026-11-18T16:45:34Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
+      "last_price_change_at": null,
+      "status": "new",
+      "times_seen": 1,
+      "rooms": null,
+      "prop_id": "P917867d06ef8bb-8034a3",
+      "missing_runs": 0,
+      "delisted_at": null,
+      "sin_filtro": false,
+      "chollo_reasons": [
+        "Falta precio o m² para valorar €/m²"
+      ],
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "7ebf1bed8034a3",
+          "prop_id": "P917867d06ef8bb-8034a3",
+          "started_at": "2026-11-18T16:45:34Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-18T16:45:34Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
+    },
+    {
+      "id": "db448556b1612b",
+      "portal": "Idealista (Alerta Email)",
+      "title": "5 anuncios recomendados para ti",
+      "url": "https://www.idealista.com/inmueble/113048512",
+      "zone_id": "orihuela",
+      "zone_name": "Orihuela (Casco y Centro)",
+      "tier": 1,
+      "location_raw": "5 anuncios recomendados para ti",
+      "lat": 38.08273,
+      "lon": -0.9422,
+      "asset_type": "solar_urbano",
+      "asset_label": "Solar Urbano",
+      "is_target_type": true,
+      "is_orihuela_costa": false,
+      "initial_price_eur": null,
+      "price_eur": null,
+      "min_price_eur": null,
+      "max_price_eur": null,
+      "price_drop_eur": 0.0,
+      "price_drop_pct": 0.0,
+      "surface_plot_m2": null,
+      "surface_built_m2": null,
+      "effective_plot_m2": 0.0,
+      "eur_per_m2": null,
+      "discount_vs_ref_pct": null,
+      "is_highlighted": false,
+      "chollo_score": 35,
+      "description": "s=\"\" style=\"vertical-align:top;width:264px;\" > <a title=\"Piso en Bigastro\" style=\"color: #2172b2; text-decoration: none; font-weight: bold;\" href=\"https://www.idealista.com/inmueble/113048512/?utm_medium=email&utm_campaign=recommender_sale&utm_cam",
+      "image_url": "",
+      "phone": "",
+      "first_seen_at": "2026-11-18T16:45:34Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
+      "last_price_change_at": null,
+      "status": "new",
+      "times_seen": 1,
+      "rooms": null,
+      "prop_id": "P917867d06ef8bb",
+      "missing_runs": 0,
+      "delisted_at": null,
+      "sin_filtro": false,
+      "chollo_reasons": [
+        "Falta precio o m² para valorar €/m²"
+      ],
+      "price_history": [],
+      "tramos": [
+        {
+          "listing_id": "db448556b1612b",
+          "prop_id": "P917867d06ef8bb",
+          "started_at": "2026-11-18T16:45:34Z",
+          "ended_at": null,
+          "start_price_eur": null,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-18T16:45:34Z",
       "dias_en_venta": 0,
       "dias_publicado": 0,
       "republicaciones": 0,
@@ -5228,7 +5610,7 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-11T09:09:55Z",
-      "dias_en_venta": 6,
+      "dias_en_venta": 7,
       "dias_publicado": 3,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
@@ -5290,7 +5672,7 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-11T09:09:55Z",
-      "dias_en_venta": 6,
+      "dias_en_venta": 7,
       "dias_publicado": 3,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
@@ -5352,7 +5734,7 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-11T09:09:55Z",
-      "dias_en_venta": 6,
+      "dias_en_venta": 7,
       "dias_publicado": 3,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
@@ -5414,7 +5796,7 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-11T09:09:55Z",
-      "dias_en_venta": 6,
+      "dias_en_venta": 7,
       "dias_publicado": 3,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
@@ -5476,7 +5858,7 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-11T09:09:55Z",
-      "dias_en_venta": 6,
+      "dias_en_venta": 7,
       "dias_publicado": 3,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
@@ -5538,7 +5920,7 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-11T09:09:55Z",
-      "dias_en_venta": 6,
+      "dias_en_venta": 7,
       "dias_publicado": 3,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
@@ -5600,7 +5982,7 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-11T09:09:55Z",
-      "dias_en_venta": 6,
+      "dias_en_venta": 7,
       "dias_publicado": 3,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
@@ -5662,7 +6044,7 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-11T09:09:55Z",
-      "dias_en_venta": 6,
+      "dias_en_venta": 7,
       "dias_publicado": 3,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
@@ -5724,7 +6106,7 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-11T09:09:55Z",
-      "dias_en_venta": 6,
+      "dias_en_venta": 7,
       "dias_publicado": 3,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
@@ -5786,7 +6168,7 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-11T09:09:55Z",
-      "dias_en_venta": 6,
+      "dias_en_venta": 7,
       "dias_publicado": 3,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
@@ -5848,7 +6230,7 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-11T09:09:55Z",
-      "dias_en_venta": 6,
+      "dias_en_venta": 7,
       "dias_publicado": 3,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
@@ -5918,7 +6300,7 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-11T09:09:55Z",
-      "dias_en_venta": 6,
+      "dias_en_venta": 7,
       "dias_publicado": 2,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
@@ -5956,10 +6338,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 14,
+      "times_seen": 15,
       "rooms": 3,
       "prop_id": "P6de6bfd63849be",
       "missing_runs": 0,
@@ -5990,8 +6372,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:53:34Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -6028,10 +6410,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 16,
+      "times_seen": 17,
       "rooms": 3,
       "prop_id": "P2f0598bd699bf6",
       "missing_runs": 0,
@@ -6062,8 +6444,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T10:37:00Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -6100,10 +6482,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 14,
+      "times_seen": 15,
       "rooms": 3,
       "prop_id": "Pc2f617f7bacce0",
       "missing_runs": 0,
@@ -6134,8 +6516,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:53:34Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -6172,10 +6554,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 14,
+      "times_seen": 15,
       "rooms": null,
       "prop_id": "Pc3cdf14be58a64",
       "missing_runs": 0,
@@ -6206,8 +6588,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:53:34Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -6244,10 +6626,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 15,
+      "times_seen": 16,
       "rooms": null,
       "prop_id": "P8d6a99362a5707",
       "missing_runs": 0,
@@ -6278,8 +6660,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:02:24Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -6316,10 +6698,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 15,
+      "times_seen": 16,
       "rooms": null,
       "prop_id": "P8d6a99362a5707",
       "missing_runs": 0,
@@ -6350,8 +6732,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:02:24Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -6388,10 +6770,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 16,
+      "times_seen": 17,
       "rooms": null,
       "prop_id": "P7d688db727bfec",
       "missing_runs": 0,
@@ -6421,8 +6803,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T10:37:00Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -6459,10 +6841,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 15,
+      "times_seen": 16,
       "rooms": null,
       "prop_id": "P8d6a99362a5707-bb6cbe",
       "missing_runs": 0,
@@ -6492,8 +6874,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:02:24Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -6530,10 +6912,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 14,
+      "times_seen": 15,
       "rooms": 3,
       "prop_id": "Pc3797341c099e0-ue0046",
       "missing_runs": 0,
@@ -6563,8 +6945,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:53:34Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -6601,10 +6983,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 13,
+      "times_seen": 14,
       "rooms": 2,
       "prop_id": "Pc3797341c099e0-a0a86f",
       "missing_runs": 0,
@@ -6642,8 +7024,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:02:24Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 7,
+      "dias_en_venta": 9,
+      "dias_publicado": 8,
       "republicaciones": 1,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -6680,10 +7062,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 15,
+      "times_seen": 16,
       "rooms": 3,
       "prop_id": "P06ad40719d3535",
       "missing_runs": 0,
@@ -6714,8 +7096,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T10:37:00Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -6752,10 +7134,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 16,
+      "times_seen": 17,
       "rooms": 3,
       "prop_id": "P06ad40719d3535",
       "missing_runs": 0,
@@ -6786,8 +7168,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T10:37:00Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -6824,10 +7206,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 16,
+      "times_seen": 17,
       "rooms": 3,
       "prop_id": "P06ad40719d3535",
       "missing_runs": 0,
@@ -6858,8 +7240,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T10:37:00Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -6896,10 +7278,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 16,
+      "times_seen": 17,
       "rooms": 3,
       "prop_id": "P06ad40719d3535",
       "missing_runs": 0,
@@ -6929,8 +7311,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T10:37:00Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -6967,10 +7349,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 14,
+      "times_seen": 15,
       "rooms": 3,
       "prop_id": "P57aee3e312a2fc",
       "missing_runs": 0,
@@ -7000,8 +7382,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:53:34Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -7038,10 +7420,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 14,
+      "times_seen": 15,
       "rooms": 3,
       "prop_id": "Pd04d5f668cf6f0",
       "missing_runs": 0,
@@ -7071,8 +7453,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:53:34Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -7109,10 +7491,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 14,
+      "times_seen": 15,
       "rooms": 4,
       "prop_id": "Pf5e4233d6b8858-e6aa5c",
       "missing_runs": 0,
@@ -7142,8 +7524,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:53:34Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -7180,10 +7562,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 14,
+      "times_seen": 15,
       "rooms": 4,
       "prop_id": "P0f3d851f0a15ca-a502d1",
       "missing_runs": 0,
@@ -7213,8 +7595,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:53:34Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -7251,10 +7633,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 15,
+      "times_seen": 16,
       "rooms": 3,
       "prop_id": "P0f3d851f0a15ca",
       "missing_runs": 0,
@@ -7284,8 +7666,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:02:24Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -7322,14 +7704,14 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-13T15:47:52Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": "2026-11-12T16:13:58Z",
-      "status": "retirado",
-      "times_seen": 5,
+      "status": "active",
+      "times_seen": 6,
       "rooms": 4,
       "prop_id": "P7afc06f23fa8bd",
-      "missing_runs": 2,
-      "delisted_at": "2026-11-15T14:59:36Z",
+      "missing_runs": 0,
+      "delisted_at": null,
       "sin_filtro": false,
       "chollo_reasons": [
         "Precio/m² elevado respecto a la zona (1000 €/m²)",
@@ -7368,14 +7750,172 @@
           "ended_at": "2026-11-15T14:59:36Z",
           "start_price_eur": 135000.0,
           "end_price_eur": 135000.0
+        },
+        {
+          "listing_id": "2c75388f195d60",
+          "prop_id": "P7afc06f23fa8bd",
+          "started_at": "2026-11-18T16:45:34Z",
+          "ended_at": null,
+          "start_price_eur": 135000.0,
+          "end_price_eur": null
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:02:24Z",
-      "dias_en_venta": 8,
+      "dias_en_venta": 9,
       "dias_publicado": 5,
-      "republicaciones": 1,
+      "republicaciones": 2,
       "anuncios_del_inmueble": 1,
-      "retirado": true
+      "retirado": false
+    },
+    {
+      "id": "9627926d76eb6e",
+      "portal": "Pisos.com",
+      "title": "Casa en Arneva",
+      "url": "https://www.pisos.com/comprar/casa-orihuela_pedanias-69202876665_100500/",
+      "zone_id": "pedanias_orihuela",
+      "zone_name": "Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...)",
+      "tier": 2,
+      "location_raw": "Otras Pedanías (La Aparecida, Hurchillo, Desamparados, Arneva...)",
+      "lat": 38.06692,
+      "lon": -0.95469,
+      "asset_type": "casa_planta_baja",
+      "asset_label": "Casa Planta Baja / A Reformar",
+      "is_target_type": true,
+      "is_orihuela_costa": false,
+      "initial_price_eur": 96000.0,
+      "price_eur": 96000.0,
+      "min_price_eur": 96000.0,
+      "max_price_eur": 96000.0,
+      "price_drop_eur": 0.0,
+      "price_drop_pct": 0.0,
+      "surface_plot_m2": 92.0,
+      "surface_built_m2": null,
+      "effective_plot_m2": 92.0,
+      "eur_per_m2": 1043.5,
+      "discount_vs_ref_pct": -148.5,
+      "is_highlighted": false,
+      "chollo_score": 5,
+      "description": "1 /9 DESTACADO 96.000 € Casa en Arneva Orihuela Pedanías (Orihuela) 3 habs. 1 baño 92 m² Casa con patio y amplia terraza delantera en venta en la carretera de arneva, orihuela Magnífica oportunidad de adquirir una casa ... Llamar Contactar Avísame si baja WhatsApp { \"@context\": \"https://schema.org/\", \"@type\": \"SingleFamilyResidence\", \"@id\": \"69202876665.100500\", \"image\":\"https://fotos.imghs.net/mm-wp/1005/3230323631313031/1e19a64a-3af7-4824-a7cf-cd2b72cf041b.jpg\", \"name\": \"Casa en Arneva\", \"description\": \"Casa en Arneva\", \"url\": \"/comprar/casa-",
+      "image_url": "",
+      "phone": "",
+      "first_seen_at": "2026-11-18T16:45:34Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
+      "last_price_change_at": null,
+      "status": "new",
+      "times_seen": 1,
+      "rooms": 3,
+      "prop_id": "Pe8d973e757a547-76eb6e",
+      "missing_runs": 0,
+      "delisted_at": null,
+      "sin_filtro": false,
+      "chollo_reasons": [
+        "Precio/m² elevado respecto a la zona (1044 €/m²)",
+        "Parcela inferior al objetivo principal (92 m² < 180 m²)",
+        "Vendedor indica urgencia / rebaja"
+      ],
+      "price_history": [
+        {
+          "date": "2026-11-18",
+          "price": 96000.0,
+          "eur_m2": 1043.5,
+          "change_eur": 0.0,
+          "change_pct": 0.0
+        }
+      ],
+      "tramos": [
+        {
+          "listing_id": "9627926d76eb6e",
+          "prop_id": "Pe8d973e757a547-76eb6e",
+          "started_at": "2026-11-18T16:45:34Z",
+          "ended_at": null,
+          "start_price_eur": 96000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-18T16:45:34Z",
+      "dias_en_venta": 0,
+      "dias_publicado": 0,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
+    },
+    {
+      "id": "vega-e028-01728",
+      "portal": "Primer Grupo Vegacasa",
+      "title": "Casa/Chalet adosado en Benferri (Ref. E028-01728)",
+      "url": "https://www.primergrupovegacasa.com/ad/112560024",
+      "zone_id": "benferri",
+      "zone_name": "Benferri",
+      "tier": 1,
+      "location_raw": "Benferri",
+      "lat": 38.14003,
+      "lon": -0.95989,
+      "asset_type": "casa_planta_baja",
+      "asset_label": "Casa Planta Baja / A Reformar",
+      "is_target_type": true,
+      "is_orihuela_costa": false,
+      "initial_price_eur": 172000.0,
+      "price_eur": 170000.0,
+      "min_price_eur": 170000.0,
+      "max_price_eur": 172000.0,
+      "price_drop_eur": 2000.0,
+      "price_drop_pct": 1.2,
+      "surface_plot_m2": 160.0,
+      "surface_built_m2": 150.0,
+      "effective_plot_m2": 160.0,
+      "eur_per_m2": 1062.5,
+      "discount_vs_ref_pct": -147.1,
+      "is_highlighted": false,
+      "chollo_score": 5,
+      "description": "Casa/Chalet adosado en Benferri 172.000 € Ref. E028-01728 Chalet Adosado en Venta - Zona Bien Comunicada ¡Descubre tu nuevo hogar! Te presentamos este magnífico chalet adosado de 150 m² construidos ubicado en una zona privilegiada con todos los servicios a tu alcance. Construido en 2003 y en buen estado de conservación, esta propiedad combina funcionalidad y confort para la vida en familia. Distribución Perfecta para tu Familia La planta baja alberga un acogedor salón de aproximadamente 27 m², una cocina amueblada de 14 m² con salida directa al",
+      "image_url": "",
+      "phone": "",
+      "first_seen_at": "2026-11-09T11:53:34Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
+      "last_price_change_at": "2026-11-18T16:45:34Z",
+      "status": "price_drop",
+      "times_seen": 15,
+      "rooms": 3,
+      "prop_id": "Pf085283672febe",
+      "missing_runs": 0,
+      "delisted_at": null,
+      "sin_filtro": false,
+      "chollo_reasons": [
+        "Precio/m² elevado respecto a la zona (1062 €/m²)",
+        "Parcela inferior al objetivo principal (160 m² < 180 m²)"
+      ],
+      "price_history": [
+        {
+          "date": "2026-11-09",
+          "price": 172000.0,
+          "eur_m2": 1075.0,
+          "change_eur": 0.0,
+          "change_pct": 0.0
+        },
+        {
+          "date": "2026-11-18",
+          "price": 170000.0,
+          "eur_m2": 1062.5,
+          "change_eur": -2000.0,
+          "change_pct": -1.16
+        }
+      ],
+      "tramos": [
+        {
+          "listing_id": "vega-e028-01728",
+          "prop_id": "Pf085283672febe",
+          "started_at": "2026-11-09T11:53:34Z",
+          "ended_at": null,
+          "start_price_eur": 172000.0,
+          "end_price_eur": null
+        }
+      ],
+      "primera_vez_en_venta": "2026-11-09T11:53:34Z",
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
+      "republicaciones": 0,
+      "anuncios_del_inmueble": 1,
+      "retirado": false
     },
     {
       "id": "dac677f0561bd1",
@@ -7409,10 +7949,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 15,
+      "times_seen": 16,
       "rooms": 3,
       "prop_id": "Pf5e4233d6b8858",
       "missing_runs": 0,
@@ -7442,79 +7982,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:02:24Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
-      "republicaciones": 0,
-      "anuncios_del_inmueble": 1,
-      "retirado": false
-    },
-    {
-      "id": "vega-e028-01728",
-      "portal": "Primer Grupo Vegacasa",
-      "title": "Casa/Chalet adosado en Benferri (Ref. E028-01728)",
-      "url": "https://www.primergrupovegacasa.com/ad/112560024",
-      "zone_id": "benferri",
-      "zone_name": "Benferri",
-      "tier": 1,
-      "location_raw": "Benferri",
-      "lat": 38.14003,
-      "lon": -0.95989,
-      "asset_type": "casa_planta_baja",
-      "asset_label": "Casa Planta Baja / A Reformar",
-      "is_target_type": true,
-      "is_orihuela_costa": false,
-      "initial_price_eur": 172000.0,
-      "price_eur": 172000.0,
-      "min_price_eur": 172000.0,
-      "max_price_eur": 172000.0,
-      "price_drop_eur": 0.0,
-      "price_drop_pct": 0.0,
-      "surface_plot_m2": 160.0,
-      "surface_built_m2": 150.0,
-      "effective_plot_m2": 160.0,
-      "eur_per_m2": 1075.0,
-      "discount_vs_ref_pct": -150.0,
-      "is_highlighted": false,
-      "chollo_score": 5,
-      "description": "Casa/Chalet adosado en Benferri 172.000 € Ref. E028-01728 Chalet Adosado en Venta - Zona Bien Comunicada ¡Descubre tu nuevo hogar! Te presentamos este magnífico chalet adosado de 150 m² construidos ubicado en una zona privilegiada con todos los servicios a tu alcance. Construido en 2003 y en buen estado de conservación, esta propiedad combina funcionalidad y confort para la vida en familia. Distribución Perfecta para tu Familia La planta baja alberga un acogedor salón de aproximadamente 27 m², una cocina amueblada de 14 m² con salida directa al",
-      "image_url": "",
-      "phone": "",
-      "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
-      "last_price_change_at": null,
-      "status": "active",
-      "times_seen": 14,
-      "rooms": 3,
-      "prop_id": "Pf085283672febe",
-      "missing_runs": 0,
-      "delisted_at": null,
-      "sin_filtro": false,
-      "chollo_reasons": [
-        "Precio/m² elevado respecto a la zona (1075 €/m²)",
-        "Parcela inferior al objetivo principal (160 m² < 180 m²)"
-      ],
-      "price_history": [
-        {
-          "date": "2026-11-09",
-          "price": 172000.0,
-          "eur_m2": 1075.0,
-          "change_eur": 0.0,
-          "change_pct": 0.0
-        }
-      ],
-      "tramos": [
-        {
-          "listing_id": "vega-e028-01728",
-          "prop_id": "Pf085283672febe",
-          "started_at": "2026-11-09T11:53:34Z",
-          "ended_at": null,
-          "start_price_eur": 172000.0,
-          "end_price_eur": null
-        }
-      ],
-      "primera_vez_en_venta": "2026-11-09T11:53:34Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -7584,7 +8053,7 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-11T09:09:55Z",
-      "dias_en_venta": 6,
+      "dias_en_venta": 7,
       "dias_publicado": 2,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
@@ -7622,10 +8091,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 16,
+      "times_seen": 17,
       "rooms": 3,
       "prop_id": "P2d69f233957157",
       "missing_runs": 0,
@@ -7655,8 +8124,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T10:37:00Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -7693,10 +8162,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 14,
+      "times_seen": 15,
       "rooms": 3,
       "prop_id": "P9c8308f156a5f4",
       "missing_runs": 0,
@@ -7726,8 +8195,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:53:34Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -7764,10 +8233,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 14,
+      "times_seen": 15,
       "rooms": 3,
       "prop_id": "P9c8308f156a5f4",
       "missing_runs": 0,
@@ -7797,8 +8266,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:53:34Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -7835,10 +8304,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:53:34Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 14,
+      "times_seen": 15,
       "rooms": 2,
       "prop_id": "P012cee8c872f2d",
       "missing_runs": 0,
@@ -7868,8 +8337,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:53:34Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -7906,10 +8375,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 15,
+      "times_seen": 16,
       "rooms": 2,
       "prop_id": "Pe8d973e757a547",
       "missing_runs": 0,
@@ -7939,8 +8408,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:02:24Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -7977,10 +8446,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 16,
+      "times_seen": 17,
       "rooms": 2,
       "prop_id": "P4dc1332f9e837f",
       "missing_runs": 0,
@@ -8011,8 +8480,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T10:37:00Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -8049,10 +8518,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 16,
+      "times_seen": 17,
       "rooms": 2,
       "prop_id": "P4dc1332f9e837f",
       "missing_runs": 0,
@@ -8083,8 +8552,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T10:37:00Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -8121,10 +8590,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 15,
+      "times_seen": 16,
       "rooms": 3,
       "prop_id": "P6aa27aa470f48d",
       "missing_runs": 0,
@@ -8154,8 +8623,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:02:24Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -8192,10 +8661,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 16,
+      "times_seen": 17,
       "rooms": 2,
       "prop_id": "Pc3797341c099e0",
       "missing_runs": 0,
@@ -8225,8 +8694,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T10:37:00Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -8263,10 +8732,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 16,
+      "times_seen": 17,
       "rooms": 3,
       "prop_id": "Pc3797341c099e0-dc4e83",
       "missing_runs": 0,
@@ -8296,8 +8765,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T10:37:00Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -8334,10 +8803,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 16,
+      "times_seen": 17,
       "rooms": null,
       "prop_id": "P460b4ff2dbbfe1",
       "missing_runs": 0,
@@ -8368,8 +8837,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T10:37:00Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -8406,10 +8875,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T10:37:00Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 16,
+      "times_seen": 17,
       "rooms": null,
       "prop_id": "P5b209038198251",
       "missing_runs": 0,
@@ -8440,8 +8909,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T10:37:00Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -8478,10 +8947,10 @@
       "image_url": "",
       "phone": "",
       "first_seen_at": "2026-11-09T11:02:24Z",
-      "last_seen_at": "2026-11-17T17:07:01Z",
+      "last_seen_at": "2026-11-18T16:45:34Z",
       "last_price_change_at": null,
       "status": "active",
-      "times_seen": 15,
+      "times_seen": 16,
       "rooms": null,
       "prop_id": "P322a1905e11e23",
       "missing_runs": 0,
@@ -8511,8 +8980,8 @@
         }
       ],
       "primera_vez_en_venta": "2026-11-09T11:02:24Z",
-      "dias_en_venta": 8,
-      "dias_publicado": 8,
+      "dias_en_venta": 9,
+      "dias_publicado": 9,
       "republicaciones": 0,
       "anuncios_del_inmueble": 1,
       "retirado": false
@@ -8524,8 +8993,8 @@
       "id_subasta": "SUB-JA-2026-268238",
       "lote": null,
       "url": "https://subastas.boe.es/detalleSubasta.php?idSub=SUB-JA-2026-268238&ver=1",
-      "estado_codigo": "PU",
-      "estado": "Próxima apertura",
+      "estado_codigo": "EJ",
+      "estado": "Celebrándose",
       "autoridad": "Sección Civil TI Orihuela. Plz.n 4 - ORIHUELA",
       "tipo_subasta": "JUDICIAL EN VÍA DE APREMIO",
       "fecha_inicio": "2026-11-17T18:00:00+01:00",
@@ -17133,6 +17602,28 @@
   ],
   "alertas": [
     {
+      "id": 139,
+      "created_at": "2026-11-18T16:45:34Z",
+      "kind": "bajo_mercado",
+      "gravedad": "alta",
+      "icono": "💎",
+      "titulo": "Muy por debajo del €/m² de su zona",
+      "detalle": "352 €/m² frente a los 837 €/m² de mediana en Orihuela (Casco y Centro) (12 comparables).",
+      "prop_id": "Pc1091540b48446",
+      "listing_id": "vega-e028-01433",
+      "listing_title": "Casa/Chalet adosado en Orihuela Ciudad, Orihuela (Ref. E028-01433)",
+      "url": "https://www.primergrupovegacasa.com/ad/101827316",
+      "zone_name": "Orihuela (Casco y Centro)",
+      "price_eur": 130000.0,
+      "clave": "bajo_mercado|Pc1091540b48446|352",
+      "vista": 0,
+      "datos": {
+        "eur_m2": 352.3,
+        "mediana": 837.1
+      },
+      "dias": 0
+    },
+    {
       "id": 109,
       "created_at": "2026-11-16T17:28:59Z",
       "kind": "desaparece",
@@ -17151,7 +17642,7 @@
       "datos": {
         "dias": 7
       },
-      "dias": 0
+      "dias": 1
     },
     {
       "id": 95,
@@ -17172,7 +17663,7 @@
       "datos": {
         "dias": 4
       },
-      "dias": 2
+      "dias": 3
     },
     {
       "id": 88,
@@ -17194,7 +17685,7 @@
         "eur_m2": 166.8,
         "mediana": 318.0
       },
-      "dias": 3
+      "dias": 4
     },
     {
       "id": 81,
@@ -17215,7 +17706,7 @@
       "datos": {
         "dias": 3
       },
-      "dias": 3
+      "dias": 4
     },
     {
       "id": 80,
@@ -17236,7 +17727,7 @@
       "datos": {
         "dias": 3
       },
-      "dias": 3
+      "dias": 4
     },
     {
       "id": 79,
@@ -17257,7 +17748,7 @@
       "datos": {
         "dias": 3
       },
-      "dias": 3
+      "dias": 4
     },
     {
       "id": 78,
@@ -17278,7 +17769,7 @@
       "datos": {
         "dias": 3
       },
-      "dias": 3
+      "dias": 4
     },
     {
       "id": 77,
@@ -17299,7 +17790,7 @@
       "datos": {
         "dias": 3
       },
-      "dias": 3
+      "dias": 4
     },
     {
       "id": 76,
@@ -17320,7 +17811,7 @@
       "datos": {
         "dias": 3
       },
-      "dias": 3
+      "dias": 4
     },
     {
       "id": 75,
@@ -17341,7 +17832,7 @@
       "datos": {
         "dias": 3
       },
-      "dias": 3
+      "dias": 4
     },
     {
       "id": 74,
@@ -17362,7 +17853,7 @@
       "datos": {
         "dias": 3
       },
-      "dias": 3
+      "dias": 4
     },
     {
       "id": 73,
@@ -17383,7 +17874,7 @@
       "datos": {
         "dias": 3
       },
-      "dias": 3
+      "dias": 4
     },
     {
       "id": 72,
@@ -17404,7 +17895,7 @@
       "datos": {
         "dias": 3
       },
-      "dias": 3
+      "dias": 4
     },
     {
       "id": 71,
@@ -17425,7 +17916,7 @@
       "datos": {
         "dias": 3
       },
-      "dias": 3
+      "dias": 4
     },
     {
       "id": 58,
@@ -17446,7 +17937,7 @@
       "datos": {
         "dias": 2
       },
-      "dias": 4
+      "dias": 5
     },
     {
       "id": 57,
@@ -17467,7 +17958,7 @@
       "datos": {
         "dias": 2
       },
-      "dias": 4
+      "dias": 5
     },
     {
       "id": 43,
@@ -17489,7 +17980,7 @@
         "pct": 7.5,
         "dif_eur": -11000.0
       },
-      "dias": 5
+      "dias": 6
     },
     {
       "id": 16,
@@ -17510,7 +18001,7 @@
       "datos": {
         "dias": 2
       },
-      "dias": 6
+      "dias": 7
     },
     {
       "id": 15,
@@ -17531,7 +18022,7 @@
       "datos": {
         "dias": 2
       },
-      "dias": 6
+      "dias": 7
     },
     {
       "id": 14,
@@ -17552,7 +18043,7 @@
       "datos": {
         "dias": 2
       },
-      "dias": 6
+      "dias": 7
     },
     {
       "id": 13,
@@ -17574,7 +18065,7 @@
         "eur_m2": 531.2,
         "mediana": 849.3
       },
-      "dias": 6
+      "dias": 7
     },
     {
       "id": 12,
@@ -17596,7 +18087,7 @@
         "eur_m2": 556.5,
         "mediana": 837.1
       },
-      "dias": 6
+      "dias": 7
     },
     {
       "id": 11,
@@ -17618,7 +18109,7 @@
         "eur_m2": 186.0,
         "mediana": 312.4
       },
-      "dias": 6
+      "dias": 7
     },
     {
       "id": 10,
@@ -17640,7 +18131,7 @@
         "eur_m2": 538.8,
         "mediana": 849.3
       },
-      "dias": 6
+      "dias": 7
     },
     {
       "id": 9,
@@ -17662,7 +18153,7 @@
         "eur_m2": 508.5,
         "mediana": 849.3
       },
-      "dias": 6
+      "dias": 7
     },
     {
       "id": 8,
@@ -17684,7 +18175,7 @@
         "eur_m2": 208.2,
         "mediana": 338.0
       },
-      "dias": 6
+      "dias": 7
     },
     {
       "id": 7,
@@ -17706,7 +18197,7 @@
         "eur_m2": 420.8,
         "mediana": 837.1
       },
-      "dias": 6
+      "dias": 7
     },
     {
       "id": 6,
@@ -17728,7 +18219,7 @@
         "eur_m2": 330.0,
         "mediana": 849.3
       },
-      "dias": 6
+      "dias": 7
     },
     {
       "id": 5,
@@ -17750,7 +18241,7 @@
         "eur_m2": 213.6,
         "mediana": 312.4
       },
-      "dias": 6
+      "dias": 7
     },
     {
       "id": 4,
@@ -17772,7 +18263,7 @@
         "eur_m2": 314.0,
         "mediana": 837.1
       },
-      "dias": 6
+      "dias": 7
     },
     {
       "id": 3,
@@ -17794,7 +18285,7 @@
         "eur_m2": 126.2,
         "mediana": 338.0
       },
-      "dias": 6
+      "dias": 7
     },
     {
       "id": 2,
@@ -17816,7 +18307,7 @@
         "eur_m2": 231.7,
         "mediana": 849.3
       },
-      "dias": 6
+      "dias": 7
     },
     {
       "id": 1,
@@ -17838,7 +18329,7 @@
         "eur_m2": 88.6,
         "mediana": 338.0
       },
-      "dias": 6
+      "dias": 7
     }
   ]
 }

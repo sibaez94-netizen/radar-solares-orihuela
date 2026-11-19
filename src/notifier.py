@@ -38,6 +38,9 @@ class EmailNotifier:
     ) -> str:
         auctions_html = self.render_auctions_html(auctions or [], auction_diff or {})
         alertas_html = self.render_alertas_html(alertas or [], run_diff or {})
+        ai_comment_html = self.render_ai_comment_html(
+            stats, all_listings, run_diff, auctions or [], alertas or []
+        )
         today_str = datetime.date.today().strftime("%d/%m/%Y")
         highlighted = [x for x in all_listings if x.get("is_highlighted")]
         chollos = sorted(
@@ -162,6 +165,8 @@ class EmailNotifier:
 
       {dash_btn}
 
+      {ai_comment_html}
+
       {alertas_html}
 
       <h2 style="font-size:17px;border-bottom:2px solid #0f766e;padding-bottom:6px;margin-top:22px;">🔥 Top Chollos y Oportunidades (Parcela ≥ 180 m²)</h2>
@@ -194,6 +199,61 @@ class EmailNotifier:
   </div>
 </body>
 </html>"""
+
+    @staticmethod
+    def render_ai_comment_html(
+        stats: Dict[str, Any],
+        all_listings: List[Dict[str, Any]],
+        run_diff: Dict[str, Any],
+        auctions: List[Dict[str, Any]],
+        alertas: List[Dict[str, Any]],
+    ) -> str:
+        """Comentario ejecutivo opcional con Gemini (solo si GEMINI_API_KEY está configurada)."""
+        api_key = (os.environ.get("GEMINI_API_KEY") or "").strip()
+        if not api_key:
+            return ""
+        try:
+            import html as _h
+            from src.ai_client import call_gemini
+
+            top_chollos = sorted(
+                [x for x in all_listings if x.get("is_highlighted")],
+                key=lambda x: x.get("chollo_score") or 0,
+                reverse=True,
+            )[:5]
+            lines = [
+                f"Destacados: {stats.get('highlighted_count', 0)} | Chollos: {stats.get('chollos_count', 0)} | "
+                f"Bajadas: {stats.get('drops_count', 0)} | Nuevos hoy: {len(run_diff.get('new_items') or [])} | "
+                f"Subastas BOE activas: {len(auctions)} | Alertas seguimiento: {len(alertas)}",
+                "Top oportunidades:",
+            ]
+            for it in top_chollos:
+                lines.append(
+                    f"- {it.get('zone_name')}: {it.get('title')} | {it.get('price_eur')} € | "
+                    f"{it.get('effective_plot_m2')} m² | score {it.get('chollo_score')}/100"
+                )
+            for al in alertas[:5]:
+                lines.append(f"- Alerta ({al.get('gravedad')}): {al.get('titulo')} — {al.get('listing_title')}: {al.get('detalle')}")
+
+            prompt = (
+                "Eres el asesor inmobiliario de Sergio (busca solar urbano >= 180 m² o casa de planta baja a reformar "
+                "en Orihuela, Montepinar, Raiguero, Benferri o Granja de Rocamora). "
+                "Con estos datos reales de hoy, escribe en español un resumen de 60 a 110 palabras: "
+                "qué merece llamada hoy, qué bajada o subasta vigilar y un consejo práctico. "
+                "Sin saludos ni inventar datos.\n\n" + "\n".join(lines)
+            )
+            comment = call_gemini(prompt, api_key=api_key, temperature=0.25, max_output_tokens=300)
+            if not comment:
+                return ""
+            return (
+                '<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-left:4px solid #0f766e;'
+                'border-radius:10px;padding:12px 14px;margin:16px 0;font-size:13.5px;line-height:1.55;color:#1e293b;">'
+                '<div style="font-size:11.5px;font-weight:800;color:#0f766e;text-transform:uppercase;margin-bottom:4px;">'
+                '🧠 Comentario del día (IA)</div>'
+                f'{_h.escape(comment)}</div>'
+            )
+        except Exception:
+            return ""
 
     @staticmethod
     def render_alertas_html(alertas: List[Dict[str, Any]], run_diff: Dict[str, Any]) -> str:

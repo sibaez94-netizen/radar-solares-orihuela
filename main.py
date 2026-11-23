@@ -12,9 +12,11 @@ from typing import Any, Dict, List, Optional
 from src.analyzer import PropertyAnalyzer, load_config
 from src.notifier import EmailNotifier
 from src.scrapers.boe_subastas import BoeSubastasScraper
+from src.scrapers.detail_enricher import enrich_top_candidates
 from src.scrapers.imap_alerts import ImapAlertsReader
 from src.scrapers.local_agencies_scraper import LocalAgenciesAndBanksScraper, get_initial_market_baseline
 from src.scrapers.portals_scraper import PortalsScraper, verify_listing_alive
+from src.scrapers.procuradores_subastas import ProcuradoresSubastasScraper
 from src.storage import StorageManager
 from src.tracking import ordena_alertas
 
@@ -168,41 +170,62 @@ def run_agent(skip_network: bool = False) -> Dict[str, Any]:
         sources_summary["local_and_banks"] = len(local_items)
         portales_ok.extend(local_scraper.portales_ok)
         raw_collected.extend(local_items)
-        caidos = [
-            n for n, s in {**portals.source_health, **local_scraper.source_health}.items() if s["ok"] == 0
-        ]
+
+        combined_health = {**portals.source_health, **local_scraper.source_health}
+        storage.save_source_health(combined_health, portales_ok)
+        caidos = [n for n, s in combined_health.items() if s.get("ok", 0) == 0]
         if caidos:
             print(f"      Fuentes que hoy no han respondido: {', '.join(caidos)}")
 
-    # 4b. Subastas públicas del BOE (tabla propia, no se mezclan con los anuncios)
+    # 4b. Subastas públicas del BOE + Subastas Procuradores (tabla propia, no se mezclan con anuncios)
     auction_items: List[Dict[str, Any]] = []
     auction_diff: Dict[str, Any] = {"new_auctions": [], "errors": []}
     boe_cfg = config.get("boe_subastas", {}) or {}
     if not skip_network and boe_cfg.get("enabled", True):
-        print("[4/4] Revisando subastas públicas del BOE (judiciales, Hacienda, Seg. Social, notariales)...")
+        print("[4/4] Revisando subastas públicas del BOE y Subastas Procuradores...")
         boe = BoeSubastasScraper(config, analyzer, cache=storage.load_boe_cache())
+        boe_ok = False
         try:
-            auction_items = boe.run()
+            boe_items = boe.run()
+            auction_items.extend(boe_items)
             if boe.listing_ok and boe.summary_ids:
+                boe_ok = True
                 storage.save_boe_cache(boe.cache, keep_ids=boe.summary_ids)
-                auction_diff.update(storage.upsert_auctions(auction_items, fetch_ok=True))
             else:
                 storage.save_boe_cache(boe.cache)
                 auction_diff["errors"].append("No se pudo leer el listado del portal de subastas del BOE hoy.")
             print(
-                f"      Subastas de inmuebles en la provincia: {boe.stats['subastas_provincia']} | "
-                f"lotes revisados: {boe.stats['lotes_revisados']} | en tus zonas: {len(auction_items)}"
+                f"      Subastas BOE en provincia: {boe.stats['subastas_provincia']} | "
+                f"lotes revisados: {boe.stats['lotes_revisados']} | en tus zonas: {len(boe_items)}"
             )
         except Exception as exc:  # noqa: BLE001
             print(f"[WARN] Subastas BOE no disponibles hoy: {exc}")
             auction_diff["errors"].append(f"Error leyendo subastas del BOE: {exc}")
+
+        try:
+            proc_scraper = ProcuradoresSubastasScraper(config, analyzer)
+            proc_items = proc_scraper.run()
+            auction_items.extend(proc_items)
+            if proc_items:
+                print(f"      Subastas Procuradores en tus zonas: {len(proc_items)}")
+        except Exception as exc:  # noqa: BLE001
+            print(f"[WARN] Subastas Procuradores no disponibles hoy: {exc}")
+
+        if auction_items or boe_ok:
+            auction_diff.update(storage.upsert_auctions(auction_items, fetch_ok=boe_ok))
         sources_summary["boe_subastas"] = len(auction_items)
 
-    # 5. Analizar, clasificar y filtrar cada anuncio
+    # 5. Analizar, clasificar, enriquecer fichas top/Montepinar y filtrar cada anuncio
     analyzed_list: List[Dict[str, Any]] = []
     for raw in raw_collected:
         analyzed = analyzer.analyze_raw_item(raw)
         analyzed_list.append(analyzed)
+
+    if not skip_network and analyzed_list:
+        known_ids = storage.get_known_listing_ids()
+        enriched_n = enrich_top_candidates(analyzed_list, analyzer, already_known_ids=known_ids, max_enrich=16)
+        if enriched_n:
+            print(f"[Enriquecimiento] {enriched_n} fichas completas analizadas (Catastro, particular, señales y parcela exacta).")
 
     diff = storage.upsert_listings(analyzed_list)
 

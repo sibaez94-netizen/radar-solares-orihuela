@@ -241,6 +241,14 @@
     {
       "name": "Inmobiliaria Dayas (Orihuela y Vega Baja)",
       "url": "https://www.dayas.org/sitemap.xml"
+    },
+    {
+      "name": "Grupo Orisalia (Orihuela y Vega Baja)",
+      "url": "https://grupoorisalia.com/inmuebles/"
+    },
+    {
+      "name": "Inmobiliaria VegaHouse (Orihuela)",
+      "url": "https://www.vegahouse.es/venta/"
     }
   ],
   "email_notification": {

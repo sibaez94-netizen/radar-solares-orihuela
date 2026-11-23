@@ -459,6 +459,106 @@ class PropertyAnalyzer:
         final_score = int(max(5, min(99, round(score))))
         return final_score, reasons[:4], eur_m2, discount_pct
 
+    @staticmethod
+    def detect_seller_and_signals(portal: str, title: str, description: str) -> Tuple[str, List[str]]:
+        """Identifica si es particular, agencia o banco y extrae señales útiles de negociación."""
+        p_low = (portal or "").lower()
+        norm = normalize_text(f"{title} {description}")
+        signals: List[str] = []
+
+        bank_portals = ("solvia", "aliseda", "haya", "sareb", "servihabitat", "altamira", "diglo", "hipoges")
+        agency_portals = ("10 soles", "vegacasa", "inmoadapta", "esphouses", "dayas", "orisalia", "vegahouse", "inmobiliaria")
+
+        if any(b in p_low for b in bank_portals) or any(
+            k in norm for k in ("procedente de banco", "activo bancario", "entidad bancaria", "sareb", "solvia", "aliseda")
+        ):
+            seller_type = "banco"
+            signals.append("🏦 Banco / Sin comisión")
+        elif any(a in p_low for a in agency_portals):
+            seller_type = "agencia"
+        elif any(
+            k in norm
+            for k in (
+                "soy particular", "venta particular", "de particular", "particular vende",
+                "directamente propietario", "trato directo", "abstenerse agencias",
+                "abstenerse inmobiliarias", "sin intermediarios", "sin comision de agencia",
+            )
+        ):
+            seller_type = "particular"
+            signals.append("👤 Particular")
+        elif any(k in norm for k in ("inmobiliaria", "agencia", "ref.", "referencia")):
+            seller_type = "agencia"
+        else:
+            seller_type = "desconocido"
+
+        signal_rules = [
+            (["urge", "urgente", "urje", "venta rapida"], "⚡ Urge venta"),
+            (["herencia", "herederos", "sucesion"], "🏛️ Herencia"),
+            (["negociable", "escuchan ofertas", "haz tu oferta", "precio negociable"], "🤝 Negociable"),
+            (["esquina", "chaflan", "dos calles", "2 calles", "tres calles", "3 calles"], "📐 Esquina / 2 calles"),
+            (["patio", "corral", "jardin", "huerto"], "🌳 Patio / Corral"),
+            (["agua y luz", "luz y agua", "acometida", "alcantarillado", "suministros a pie"], "💧⚡ Luz y agua"),
+            (["escritura", "registrado", "urbano consolidado", "licencia directa"], "📜 Urbano / Escrituras"),
+            (["sin comision", "sin comisiones", "0% comision"], "💸 Sin comisión"),
+        ]
+        for kws, badge in signal_rules:
+            if any(k in norm for k in kws) and badge not in signals:
+                signals.append(badge)
+
+        return seller_type, signals[:6]
+
+    @staticmethod
+    def estimate_turnkey_cost(
+        price_eur: Optional[float],
+        asset_type: str,
+        seller_type: str,
+        effective_plot_m2: float,
+        surface_built_m2: Optional[float],
+    ) -> Dict[str, Any]:
+        """
+        Calcula coste orientativo real puesto a escriturar (Comunitat Valenciana):
+        - Solar de banco/sociedad: 21% IVA + 1,5% AJD.
+        - Resto (vivienda / solar de particular): 10% ITP en Comunitat Valenciana.
+        - Notaría, Registro y Gestoría: ~2% (mínimo 1.800 €).
+        - Para casas a reformar/derribar: estima también el coste de derribo para comparar
+          en igualdad de condiciones frente a un solar limpio.
+        """
+        if not price_eur or price_eur <= 0:
+            return {}
+
+        is_bank_plot = seller_type == "banco" and asset_type in ("solar_urbano", "solar_urbanizable")
+        if is_bank_plot:
+            tax_rate = 0.225
+            tax_label = "IVA 21% + AJD 1,5%"
+        else:
+            tax_rate = 0.10
+            tax_label = "ITP 10% (CV)"
+
+        tax_eur = round(price_eur * tax_rate)
+        closing_eur = max(1800, round(price_eur * 0.02))
+        total_compra_eur = round(price_eur + tax_eur + closing_eur)
+
+        demolition_eur = 0
+        if asset_type == "casa_planta_baja":
+            ref_built = surface_built_m2 or min(effective_plot_m2 or 120, 180)
+            demolition_eur = int(max(9000, min(24000, round(ref_built * 75, -2))))
+
+        total_solar_limpio_eur = total_compra_eur + demolition_eur
+        eff_m2_llave = (
+            round(total_solar_limpio_eur / effective_plot_m2, 1)
+            if effective_plot_m2 and effective_plot_m2 > 0
+            else None
+        )
+        return {
+            "tax_label": tax_label,
+            "tax_eur": tax_eur,
+            "closing_eur": closing_eur,
+            "demolition_eur": demolition_eur,
+            "total_compra_eur": total_compra_eur,
+            "total_solar_limpio_eur": total_solar_limpio_eur,
+            "eur_m2_llave": eff_m2_llave,
+        }
+
     def analyze_raw_item(self, item: Dict[str, Any]) -> Dict[str, Any]:
         """
         Procesa un diccionario crudo de cualquier scraper/portal y devuelve el registro enriquecido.
@@ -546,10 +646,32 @@ class PropertyAnalyzer:
             price_drop_pct=float(item.get("price_drop_pct", 0.0)),
         )
 
-        # Generar ID estable por URL limpia o por hash de título+zona+superficie
+        seller_type, negotiation_signals = self.detect_seller_and_signals(
+            item.get("portal", "Web"), title, description
+        )
+        if seller_type == "particular" and score < 99:
+            score = min(99, score + 4)
+            if "Anuncio directo de particular" not in reasons:
+                reasons = (["Anuncio directo de particular"] + reasons)[:4]
+
+        cost_estimate = self.estimate_turnkey_cost(
+            price_eur=price_eur,
+            asset_type=asset_type,
+            seller_type=seller_type,
+            effective_plot_m2=effective_plot_m2,
+            surface_built_m2=built_m2,
+        )
+
+        from src.catastro import build_catastro_url, build_satellite_url, extract_cadastral_ref
+
+        rc = item.get("cadastral_ref") or extract_cadastral_ref(full_text)
+        catastro_url = build_catastro_url(lat, lon, rc)
+        maps_url = build_satellite_url(lat, lon, f"{location_raw or zone_name}, Orihuela, Alicante")
+
+        # Generar ID estable por URL limpia (conservando ?ID=... en Dayas) o por hash de título+zona
         ext_id = item.get("external_id")
         if not ext_id:
-            clean_u = url.split("?")[0].rstrip("/")
+            clean_u = url.rstrip("/") if "dayas.org/inmueble.php" in url.lower() else url.split("?")[0].rstrip("/")
             ext_id = hashlib.sha1(f"{clean_u or title}:{zone_id}".encode("utf-8")).hexdigest()[:14]
 
         return {
@@ -578,7 +700,14 @@ class PropertyAnalyzer:
             "sin_filtro": sin_filtro,
             "chollo_score": score,
             "chollo_reasons": reasons,
-            "description": description[:700],
+            "description": description[:1200],
             "image_url": item.get("image_url", ""),
             "phone": item.get("phone", ""),
+            "seller_type": seller_type,
+            "negotiation_signals": negotiation_signals,
+            "cost_estimate": cost_estimate,
+            "cadastral_ref": rc or "",
+            "catastro_info": item.get("catastro_info") or {},
+            "catastro_url": catastro_url,
+            "maps_url": maps_url,
         }

@@ -113,6 +113,13 @@ class StorageManager:
                 ("missing_runs", "INTEGER DEFAULT 0"),
                 ("delisted_at", "TEXT"),
                 ("sin_filtro", "INTEGER DEFAULT 0"),
+                ("seller_type", "TEXT DEFAULT 'desconocido'"),
+                ("signals_json", "TEXT DEFAULT '[]'"),
+                ("cost_json", "TEXT DEFAULT '{}'"),
+                ("cadastral_ref", "TEXT DEFAULT ''"),
+                ("catastro_json", "TEXT DEFAULT '{}'"),
+                ("catastro_url", "TEXT DEFAULT ''"),
+                ("maps_url", "TEXT DEFAULT ''"),
             ):
                 try:
                     conn.execute(f"ALTER TABLE listings ADD COLUMN {col} {decl}")
@@ -194,6 +201,16 @@ class StorageManager:
                     id_subasta TEXT PRIMARY KEY,
                     data_json TEXT NOT NULL,
                     fetched_at TEXT
+                );
+                CREATE TABLE IF NOT EXISTS source_health (
+                    source_name TEXT PRIMARY KEY,
+                    status TEXT,
+                    intentos INTEGER DEFAULT 0,
+                    ok INTEGER DEFAULT 0,
+                    items INTEGER DEFAULT 0,
+                    consecutive_fails INTEGER DEFAULT 0,
+                    last_ok_at TEXT,
+                    updated_at TEXT
                 );
                 """
             )
@@ -361,7 +378,8 @@ class StorageManager:
                             eur_per_m2, discount_vs_ref_pct, is_highlighted,
                             chollo_score, chollo_reasons_json, description, image_url, phone,
                             first_seen_at, last_seen_at, last_price_change_at, status, times_seen,
-                            prop_id, missing_runs, sin_filtro
+                            prop_id, missing_runs, sin_filtro,
+                            seller_type, signals_json, cost_json, cadastral_ref, catastro_json, catastro_url, maps_url
                         ) VALUES (
                             ?, ?, ?, ?, ?, ?, ?, ?,
                             ?, ?, ?, ?, ?, ?,
@@ -371,7 +389,8 @@ class StorageManager:
                             ?, ?, ?,
                             ?, ?, ?, ?, ?,
                             ?, ?, NULL, 'new', 1,
-                            ?, 0, ?
+                            ?, 0, ?,
+                            ?, ?, ?, ?, ?, ?, ?
                         )
                         """,
                         (
@@ -409,6 +428,13 @@ class StorageManager:
                             now_str,
                             prop_id,
                             1 if sin_filtro else 0,
+                            item.get("seller_type") or "desconocido",
+                            json.dumps(item.get("negotiation_signals") or [], ensure_ascii=False),
+                            json.dumps(item.get("cost_estimate") or {}, ensure_ascii=False),
+                            item.get("cadastral_ref") or "",
+                            json.dumps(item.get("catastro_info") or {}, ensure_ascii=False),
+                            item.get("catastro_url") or "",
+                            item.get("maps_url") or "",
                         ),
                     )
                     if cur_price and cur_price > 0:
@@ -568,7 +594,16 @@ class StorageManager:
                             prop_id = ?,
                             sin_filtro = ?,
                             missing_runs = 0,
-                            delisted_at = NULL
+                            delisted_at = NULL,
+                            image_url = COALESCE(NULLIF(?, ''), image_url),
+                            phone = COALESCE(NULLIF(?, ''), phone),
+                            seller_type = COALESCE(NULLIF(?, 'desconocido'), seller_type),
+                            signals_json = COALESCE(NULLIF(?, '[]'), signals_json),
+                            cost_json = COALESCE(NULLIF(?, '{}'), cost_json),
+                            cadastral_ref = COALESCE(NULLIF(?, ''), cadastral_ref),
+                            catastro_json = COALESCE(NULLIF(?, '{}'), catastro_json),
+                            catastro_url = COALESCE(NULLIF(?, ''), catastro_url),
+                            maps_url = COALESCE(NULLIF(?, ''), maps_url)
                         WHERE id = ?
                         """,
                         (
@@ -588,6 +623,15 @@ class StorageManager:
                             status,
                             prop_id,
                             1 if sin_filtro else 0,
+                            item.get("image_url") or "",
+                            item.get("phone") or "",
+                            item.get("seller_type") or "desconocido",
+                            json.dumps(item.get("negotiation_signals") or [], ensure_ascii=False),
+                            json.dumps(item.get("cost_estimate") or {}, ensure_ascii=False),
+                            item.get("cadastral_ref") or "",
+                            json.dumps(item.get("catastro_info") or {}, ensure_ascii=False),
+                            item.get("catastro_url") or "",
+                            item.get("maps_url") or "",
                             lid,
                         ),
                     )
@@ -925,6 +969,61 @@ class StorageManager:
         out.sort(key=lambda x: (not x.get("is_target_type"), -(x.get("score") or 0), x.get("fecha_fin") or ""))
         return out
 
+    def get_known_listing_ids(self) -> set:
+        with self._connect() as conn:
+            return {r["id"] for r in conn.execute("SELECT id FROM listings").fetchall()}
+
+    def save_source_health(self, health_map: Dict[str, Dict[str, int]], portales_ok: List[str]) -> None:
+        """Registra la salud diaria de cada portal/inmobiliaria y cuenta días consecutivos caído."""
+        now_str = tk.ahora_iso()
+        ok_set = set(portales_ok or [])
+        with self._connect() as conn:
+            for name, stats in (health_map or {}).items():
+                intentos = int(stats.get("direct_intentos", stats.get("intentos", 0)))
+                ok = int(stats.get("direct_ok", stats.get("ok", 0)))
+                items = int(stats.get("direct_items", stats.get("items", 0)))
+                prev = conn.execute(
+                    "SELECT consecutive_fails, last_ok_at FROM source_health WHERE source_name = ?", (name,)
+                ).fetchone()
+                prev_fails = prev["consecutive_fails"] if prev else 0
+                prev_last_ok = prev["last_ok_at"] if prev else None
+
+                if name in ok_set or (intentos > 0 and ok == intentos and items > 0):
+                    status = "ok"
+                    fails = 0
+                    last_ok = now_str
+                elif ok > 0:
+                    status = "partial"
+                    fails = 0 if items > 0 else prev_fails + 1
+                    last_ok = now_str if items > 0 else prev_last_ok
+                else:
+                    status = "down"
+                    fails = prev_fails + 1
+                    last_ok = prev_last_ok
+
+                conn.execute(
+                    """
+                    INSERT INTO source_health (source_name, status, intentos, ok, items, consecutive_fails, last_ok_at, updated_at)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                    ON CONFLICT(source_name) DO UPDATE SET
+                        status=excluded.status,
+                        intentos=excluded.intentos,
+                        ok=excluded.ok,
+                        items=excluded.items,
+                        consecutive_fails=excluded.consecutive_fails,
+                        last_ok_at=excluded.last_ok_at,
+                        updated_at=excluded.updated_at
+                    """,
+                    (name, status, intentos, ok, items, fails, last_ok, now_str),
+                )
+
+    def get_source_health(self) -> List[Dict[str, Any]]:
+        with self._connect() as conn:
+            rows = conn.execute(
+                "SELECT * FROM source_health ORDER BY CASE status WHEN 'ok' THEN 0 WHEN 'partial' THEN 1 ELSE 2 END, items DESC, source_name ASC"
+            ).fetchall()
+        return [dict(r) for r in rows]
+
     def log_run(self, total_scraped: int, new_count: int, drops_count: int, inc_count: int, sources: Dict[str, int]) -> None:
         now_str = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
         with self._connect() as conn:
@@ -997,7 +1096,67 @@ class StorageManager:
             d["anuncios_del_inmueble"] = (p or {}).get("listings_count") or 1
             d["retirado"] = d.get("status") == "retirado"
             d["sin_filtro"] = bool(d.get("sin_filtro"))
+            d["seller_type"] = d.get("seller_type") or "desconocido"
+            try:
+                d["negotiation_signals"] = json.loads(d.pop("signals_json", None) or "[]")
+            except Exception:
+                d["negotiation_signals"] = []
+            try:
+                d["cost_estimate"] = json.loads(d.pop("cost_json", None) or "{}")
+            except Exception:
+                d["cost_estimate"] = {}
+            try:
+                d["catastro_info"] = json.loads(d.pop("catastro_json", None) or "{}")
+            except Exception:
+                d["catastro_info"] = {}
+
+            # Fallback automático para anuncios antiguos que aún no tenían coste o enlaces guardados
+            if not d["cost_estimate"] and d.get("price_eur"):
+                from .analyzer import PropertyAnalyzer
+                d["cost_estimate"] = PropertyAnalyzer.estimate_turnkey_cost(
+                    d.get("price_eur"),
+                    d.get("asset_type") or "",
+                    d["seller_type"],
+                    d.get("effective_plot_m2") or 0,
+                    d.get("surface_built_m2"),
+                )
+            if not d.get("catastro_url"):
+                from .catastro import build_catastro_url, build_satellite_url
+                d["catastro_url"] = build_catastro_url(d.get("lat"), d.get("lon"), d.get("cadastral_ref"))
+                d["maps_url"] = d.get("maps_url") or build_satellite_url(
+                    d.get("lat"), d.get("lon"), f"{d.get('location_raw') or d.get('zone_name')}, Orihuela, Alicante"
+                )
+
             out.append(d)
+
+        # Cruce de duplicados entre portales/inmobiliarias por prop_id (solo activos)
+        active_by_prop: Dict[str, List[Dict[str, Any]]] = {}
+        for item in out:
+            if not item.get("retirado") and item.get("prop_id"):
+                active_by_prop.setdefault(item["prop_id"], []).append(item)
+
+        for item in out:
+            siblings = active_by_prop.get(item.get("prop_id") or "", [])
+            others = [s for s in siblings if s["id"] != item["id"]]
+            if others:
+                others_sorted = sorted(others, key=lambda x: x.get("price_eur") or 9e9)
+                my_price = item.get("price_eur") or 9e9
+                min_sib = min((s.get("price_eur") or 9e9) for s in siblings)
+                item["is_cheapest_duplicate"] = bool(my_price <= min_sib)
+                item["other_listings"] = [
+                    {
+                        "id": o["id"],
+                        "portal": o.get("portal") or "Otro portal",
+                        "price_eur": o.get("price_eur"),
+                        "url": o.get("url"),
+                        "diff_eur": round((o["price_eur"] - my_price), 0) if (o.get("price_eur") and my_price < 9e9) else None,
+                    }
+                    for o in others_sorted[:6]
+                ]
+            else:
+                item["is_cheapest_duplicate"] = True
+                item["other_listings"] = []
+
         return out
 
     def compute_stats(self, listings: Optional[List[Dict[str, Any]]] = None) -> Dict[str, Any]:
@@ -1089,11 +1248,18 @@ class StorageManager:
         stats["alertas_altas_count"] = sum(1 for a in alertas if a.get("gravedad") == "alta")
         stats["alertas_7d_count"] = sum(1 for a in alertas if (a.get("dias") or 99) <= 7)
 
+        source_health = self.get_source_health()
+        stats["sources_total_count"] = len(source_health)
+        stats["sources_ok_count"] = sum(1 for s in source_health if s.get("status") == "ok")
+        stats["sources_down_count"] = sum(1 for s in source_health if s.get("status") == "down")
+        stats["particular_count"] = sum(1 for x in listings if not x.get("retirado") and x.get("seller_type") == "particular")
+
         payload = {
             "stats": stats,
             "listings": listings,
             "auctions": auctions,
             "alertas": alertas,
+            "source_health": source_health,
         }
 
         json_path = os.path.join(self.docs_data_dir, "listings.json")

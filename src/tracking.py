@@ -205,8 +205,12 @@ TIPOS_ALERTA: Dict[str, Tuple[str, str, str]] = {
     "estancado": ("🕰️", "media", "Mucho tiempo en venta y sin bajar"),
     "primera_bajada": ("🪧", "media", "Primera bajada después de mucho tiempo"),
     "bajo_mercado": ("💎", "alta", "Muy por debajo del €/m² de su zona"),
+    "barrera_psicologica": ("🎯", "alta", "Rompe barrera psicológica de precio"),
     "subida": ("🔺", "info", "Ha subido de precio"),
 }
+
+BARRERAS_PRECIO_EUR = (200000, 150000, 100000, 75000, 60000, 50000)
+BARRERAS_EUR_M2 = (200, 150)
 
 ORDEN_GRAVEDAD = {"alta": 0, "media": 1, "info": 2}
 
@@ -276,6 +280,28 @@ def alertas_de_cambio_de_precio(prop_id: str, listing: Dict[str, Any], precio_an
                 f"Primera bajada tras {dias_en_venta} días en venta. El vendedor ha empezado a moverse.",
                 clave, {"dias": dias_en_venta},
             ))
+        # Barreras psicológicas de precio total (200k, 150k, 100k, 75k, 60k, 50k)
+        for barrera in BARRERAS_PRECIO_EUR:
+            if precio_anterior >= barrera > precio_nuevo:
+                out.append(_alerta(
+                    "barrera_psicologica", prop_id, listing,
+                    f"Baja de la barrera de los {eur(barrera)} (de {eur(precio_anterior)} a {eur(precio_nuevo)}).",
+                    f"eur{barrera}", {"barrera_eur": barrera},
+                ))
+                break
+        # Barreras de €/m² (200 €/m², 150 €/m²)
+        m2 = listing.get("effective_plot_m2") or 0
+        if m2 and m2 > 0:
+            em2_old = precio_anterior / m2
+            em2_new = precio_nuevo / m2
+            for b_m2 in BARRERAS_EUR_M2:
+                if em2_old >= b_m2 > em2_new:
+                    out.append(_alerta(
+                        "barrera_psicologica", prop_id, listing,
+                        f"Baja de los {b_m2} €/m² (de {em2_old:.0f} a {em2_new:.0f} €/m²).",
+                        f"m2_{b_m2}", {"barrera_m2": b_m2},
+                    ))
+                    break
     elif dif > 0:
         out.append(_alerta(
             "subida", prop_id, listing,

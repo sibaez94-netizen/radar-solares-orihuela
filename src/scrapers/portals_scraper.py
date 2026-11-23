@@ -257,6 +257,10 @@ class PortalsScraper:
         ("Yaencontre", "https://www.yaencontre.com/venta/terrenos/benferri", "solar_urbano"),
         ("Yaencontre", "https://www.yaencontre.com/venta/terrenos/granja-de-rocamora", "solar_urbano"),
         ("Yaencontre", "https://www.yaencontre.com/venta/casas/orihuela/e-reformar", "casa_planta_baja"),
+        # Indomio (terrenos en Orihuela, Benferri y Granja de Rocamora)
+        ("Indomio", "https://www.indomio.es/venta-terrenos/orihuela/", "solar_urbano"),
+        ("Indomio", "https://www.indomio.es/venta-terrenos/benferri/", "solar_urbano"),
+        ("Indomio", "https://www.indomio.es/venta-terrenos/granja-de-rocamora/", "solar_urbano"),
         # Trovimap
         ("Trovimap", "https://www.trovimap.com/venta-solar-orihuela", "solar_urbano"),
         ("Trovimap", "https://www.trovimap.com/venta-terreno-benferri", "solar_urbano"),
@@ -353,6 +357,12 @@ class PortalsScraper:
                 return f"{base}/pag-{next_n}"
             return None
 
+        if "indomio" in low_portal:
+            base = current_url.split("?")[0]
+            if f"pag={next_n}" in raw_html:
+                return f"{base}?pag={next_n}"
+            return None
+
         return None
 
     def run_all(self) -> List[Dict[str, Any]]:
@@ -423,6 +433,18 @@ class PortalsScraper:
             card = self._parse_card_block(m.group(1), portal_name, base_url, raw_type)
             if card:
                 items.append(card)
+
+        # 3. Indomio (<div class="card__elementsContainer"> o <li class="nd-list__item ..."> con /anuncios/...)
+        if not items and "indomio" in portal_name.lower():
+            parts = re.split(
+                r'(?=<div[^>]+class=["\'][^"\']*\bcard__elementsContainer\b|<li[^>]+class=["\'][^"\']*(?:nd-list__item|in-realEstateResults__item))',
+                raw_html,
+                flags=re.IGNORECASE,
+            )
+            for part in parts[1:]:
+                card = self._parse_card_block(part[:7000], portal_name, base_url, raw_type)
+                if card:
+                    items.append(card)
 
         return items
 
@@ -511,7 +533,8 @@ class PortalsScraper:
             r"fotocasa\.es/.*/comprar/(?:terreno|vivienda|casa|edificio)/[^/]+/\d+",
             r"milanuncios\.com/[^/]+-\d+\.htm",
             r"trovimap\.com/inmueble/",
-            r"solvia\.es/es/comprar/.*/[a-z0-9-]+-\d+",
+            r"indomio\.es/anuncios/\d+",
+            r"solvia\.es/es/(?:propiedades/)?comprar/.*/[a-z0-9-]+-\d+",
             r"alisedainmobiliaria\.com/inmueble/",
             r"haya\.es/.*/\d+",
             r"esphouses\.es/propiedad/",
@@ -519,6 +542,9 @@ class PortalsScraper:
             r"primergrupovegacasa\.com/ad/\d+",
             r"10soles\.com/[a-z0-9-]+-es\d+\.html",
             r"dayas\.org/venta-comprar/.+-\d{4,}\.html$",
+            r"grupoorisalia\.com/listados/[a-z0-9-]+",
+            r"vegahouse\.es/ficha/.+/\d+/",
+            r"subastasprocuradores\.com/subastas/[a-z0-9]{8,}",
         ]
         if any(re.search(p, u) for p in good_patterns):
             return True
@@ -572,7 +598,7 @@ class PortalsScraper:
         price_m = re.search(r"(\d{1,3}(?:\.\d{3})+|\d{4,7})\s*€", text_clean)
         price_eur = float(price_m.group(1).replace(".", "")) if price_m else None
 
-        m2_m = re.search(r"(\d{1,3}(?:\.\d{3})*|\d{2,6})\s*m[²2]", text_clean, re.IGNORECASE)
+        m2_m = re.search(r"(\d{1,3}(?:\.\d{3})*|\d{2,6})\s*m\s*[²2]", text_clean, re.IGNORECASE)
         surface_m2 = float(m2_m.group(1).replace(".", "")) if m2_m else None
 
         rooms_m = re.search(r"(\d{1,2})\s*(?:habs?\.?|habitaciones|dorms?\.?)", text_clean, re.IGNORECASE)
@@ -646,6 +672,7 @@ class PortalsScraper:
                     "price_eur": price_eur,
                     "surface_plot_m2": surface_m2,
                     "description": snippet[:500],
+                    "raw_type": "solar",
                 }
             )
         return found

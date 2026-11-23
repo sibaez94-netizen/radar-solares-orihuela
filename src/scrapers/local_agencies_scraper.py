@@ -15,7 +15,7 @@ from src.scrapers.portals_scraper import PortalsScraper, http_get
 
 
 class LocalAgenciesAndBanksScraper:
-    MAX_PAGES = 3
+    MAX_PAGES = 4
 
     DAYAS_ZONE_KEYWORDS = (
         "orihuela", "montepinar", "raiguero", "benferri", "rocamora",
@@ -92,6 +92,14 @@ class LocalAgenciesAndBanksScraper:
                 return urllib.parse.urljoin(current_url, html.unescape(m.group(1).strip("'\"")))
         if "10soles.com" in u_low:
             m = re.search(rf'href=["\']([^"\']*pag={next_n}\b[^"\']*)["\']', raw_html, re.IGNORECASE)
+            if m:
+                return urllib.parse.urljoin(current_url, html.unescape(m.group(1)))
+        if "grupoorisalia.com" in u_low:
+            m = re.search(rf'href=["\']([^"\']*/page/{next_n}/?[^"\']*)["\']', raw_html, re.IGNORECASE)
+            if m:
+                return urllib.parse.urljoin(current_url, html.unescape(m.group(1)))
+        if "solvia.es" in u_low:
+            m = re.search(rf'href=["\']([^"\']*numeroPagina={next_n}\b[^"\']*)["\']', raw_html, re.IGNORECASE)
             if m:
                 return urllib.parse.urljoin(current_url, html.unescape(m.group(1)))
         return None
@@ -217,6 +225,12 @@ class LocalAgenciesAndBanksScraper:
         u_low = base_url.lower()
         if "dayas.org" in u_low or 'class="sixteen columns list_house"' in raw_html:
             return self._parse_dayas(raw_html, agency_name, base_url, default_type)
+        if "grupoorisalia.com" in u_low or "grid-listing-info" in raw_html:
+            return self._parse_orisalia(raw_html, agency_name, base_url, default_type)
+        if "vegahouse.es" in u_low or "fotosAlVuelo" in raw_html:
+            return self._parse_vegahouse(raw_html, agency_name, base_url, default_type)
+        if "solvia.es" in u_low or "/es/propiedades/comprar/" in raw_html:
+            return self._parse_solvia(raw_html, agency_name, base_url, default_type)
         if "10soles.com" in u_low or 'class="venta punto_mapa"' in raw_html:
             return self._parse_10soles(raw_html, agency_name, base_url, default_type)
         if "primergrupovegacasa.com" in u_low or '<section class="inmueble container">' in raw_html:
@@ -374,6 +388,239 @@ class LocalAgenciesAndBanksScraper:
                     "image_url": image_url,
                     "description": f"{title} · {dist_txt} · {text_clean}"[:550],
                     "raw_type": rtype,
+                }
+            )
+        return items
+
+    def _parse_orisalia(
+        self, raw_html: str, agency_name: str, base_url: str, default_type: str = ""
+    ) -> List[Dict[str, Any]]:
+        """Parser específico para Grupo Orisalia (WordPress Real Estate: grid-listing-info)."""
+        items: List[Dict[str, Any]] = []
+        norm_html = re.sub(r"<\s*sup\s*>\s*2\s*<\s*/\s*sup\s*>", "2", raw_html, flags=re.IGNORECASE)
+        blocks = re.split(r'(?=<li[^>]+class=["\'][^"\']*\blisting\b)', norm_html, flags=re.IGNORECASE)
+        if len(blocks) <= 1:
+            blocks = re.split(r'(?=<div[^>]+class=["\'][^"\']*\bgrid-listing-info\b)', norm_html, flags=re.IGNORECASE)
+
+        seen_local = set()
+        for blk in blocks[1:]:
+            chunk = blk[:6000]
+            u_m = re.search(r'href=["\'](https?://(?:www\.)?grupoorisalia\.com/listados/[^"\']+)["\']', chunk, re.IGNORECASE)
+            if not u_m:
+                continue
+            full_url = u_m.group(1).strip()
+            if full_url in seen_local:
+                continue
+            seen_local.add(full_url)
+
+            title_m = re.search(r'<h5[^>]*>\s*<a[^>]*>(.*?)</a>\s*</h5>', chunk, re.IGNORECASE | re.DOTALL)
+            title = html.unescape(re.sub(r"<[^>]+>", " ", title_m.group(1))).strip() if title_m else ""
+
+            loc_m = re.search(r'<p[^>]+class=["\'][^"\']*\blocation\b[^"\']*["\'][^>]*>(.*?)</p>', chunk, re.IGNORECASE | re.DOTALL)
+            loc = html.unescape(re.sub(r"<[^>]+>", " ", loc_m.group(1))).strip() if loc_m else ""
+
+            price_m = re.search(r"listing-price['\"][^>]*>\s*([\d\.]+)\s*(?:€|&euro;)", chunk, re.IGNORECASE)
+            if not price_m:
+                clean_p = html.unescape(re.sub(r"<[^>]+>", " ", chunk))
+                price_m = re.search(r"(\d{1,3}(?:\.\d{3})+|\d{4,7})\s*€", clean_p)
+            price_eur = float(price_m.group(1).replace(".", "")) if price_m else None
+
+            img_m = re.search(r'<img[^>]+(?:data-src|src)=["\'](https?://[^"\']+\.(?:jpg|jpeg|png|webp)[^"\']*)["\']', chunk, re.IGNORECASE)
+            image_url = img_m.group(1) if img_m else ""
+
+            text_clean = html.unescape(re.sub(r"<[^>]+>", " ", chunk))
+            text_clean = re.sub(r"\s+", " ", text_clean).strip()
+
+            plot_m = re.search(r"parcela[^\d]{0,18}(\d{1,3}(?:\.\d{3})*|\d{2,5})\s*m[²2]|(\d{1,3}(?:\.\d{3})*|\d{2,5})\s*m[²2]\s*(?:de\s*)?parcela", text_clean, re.IGNORECASE)
+            plot_m2 = float((plot_m.group(1) or plot_m.group(2)).replace(".", "")) if plot_m else None
+            any_m2 = re.search(r"(\d{1,3}(?:\.\d{3})*|\d{2,5})\s*m[²2]", text_clean, re.IGNORECASE)
+            built_m2 = float(any_m2.group(1).replace(".", "")) if any_m2 else None
+
+            rooms_m = re.search(r"(\d{1,2})\s*(?:habs?\.?|habitaciones|dormitorios?)", text_clean, re.IGNORECASE)
+            rooms = int(rooms_m.group(1)) if rooms_m else None
+
+            if not price_eur:
+                continue
+            # Si no pone m² en la tarjeta pero es Montepinar/parcela/casa, conservar para enriquecer ficha
+            tl = f"{title} {loc} {full_url}".lower()
+            is_montepinar = "montepinar" in tl
+            if not (plot_m2 or built_m2) and not is_montepinar:
+                continue
+
+            if not is_montepinar and any(
+                w in tl for w in ("piso", "ático", "atico", "apartamento", "oficina", "local", "garaje", "trastero", "nave", "edificio", "alquiler")
+            ):
+                continue
+
+            rtype = default_type
+            if not rtype:
+                if any(w in tl for w in ("solar", "terreno", "parcela", "suelo")):
+                    rtype = "solar_urbano"
+                elif any(w in tl for w in ("casa", "chalet", "villa", "adosado", "finca")):
+                    rtype = "casa_planta_baja"
+                elif is_montepinar:
+                    rtype = "casa_planta_baja"
+                else:
+                    continue
+
+            items.append(
+                {
+                    "portal": agency_name,
+                    "title": (title or "Inmueble en Grupo Orisalia")[:150],
+                    "url": full_url,
+                    "location": loc,
+                    "price_eur": price_eur,
+                    "surface_plot_m2": plot_m2 or built_m2,
+                    "surface_built_m2": built_m2,
+                    "rooms": rooms,
+                    "image_url": image_url,
+                    "description": f"{title} · {loc} · {text_clean}"[:550],
+                    "raw_type": rtype,
+                }
+            )
+        return items
+
+    def _parse_vegahouse(
+        self, raw_html: str, agency_name: str, base_url: str, default_type: str = ""
+    ) -> List[Dict[str, Any]]:
+        """Parser específico para VegaHouse (Inmovilla/Apinmo: fichas paginadas `<article class="paginacion-ficha">` y destacados `window.location.href='ficha/...'`)."""
+        items: List[Dict[str, Any]] = []
+        norm_html = re.sub(r"<\s*sup\s*>\s*2\s*<\s*/\s*sup\s*>", "2", raw_html, flags=re.IGNORECASE)
+        blocks: List[str] = []
+        blocks.extend(re.findall(r'<article[^>]+class=["\'][^"\']*paginacion-ficha[^"\']*["\'][^>]*>(.*?)</article>', norm_html, re.IGNORECASE | re.DOTALL))
+        blocks.extend(re.split(r"(?=window\.location\.href=['\"]ficha/)", norm_html, flags=re.IGNORECASE)[1:])
+        seen_local = set()
+
+        for blk in blocks:
+            chunk = blk[:4800]
+            u_m = re.search(r'(?:href|window\.location\.href)\s*=\s*["\']/?(ficha/[^"\']+)["\']', chunk, re.IGNORECASE)
+            if not u_m:
+                continue
+            rel_url = u_m.group(1).strip()
+            full_url = urllib.parse.urljoin("https://www.vegahouse.es/", rel_url)
+            if full_url in seen_local:
+                continue
+            seen_local.add(full_url)
+
+            # Extraer tipo y población del slug: ficha/<tipo>/<pueblo>/<zona>/<cli>/<id>/es/
+            slug_parts = rel_url.strip("/").split("/")
+            slug_tipo = slug_parts[1].replace("-", " ") if len(slug_parts) > 1 else ""
+            slug_pueblo = slug_parts[2].replace("-", " ") if len(slug_parts) > 2 else ""
+            slug_zona = slug_parts[3].replace("-", " ") if len(slug_parts) > 3 else ""
+            prop_num = slug_parts[5] if len(slug_parts) > 5 and slug_parts[5].isdigit() else None
+
+            t_m = re.search(r'<h[1-4][^>]*class=["\'][^"\']*titulo[^"\']*["\'][^>]*>(.*?)</h[1-4]>', chunk, re.IGNORECASE | re.DOTALL)
+            title = html.unescape(re.sub(r"<[^>]+>", " ", t_m.group(1))).strip() if t_m else ""
+            if not title:
+                title = f"{slug_tipo.capitalize()} en {slug_pueblo.title()} ({slug_zona.title()})"
+
+            price_m = re.search(r'class=["\'](?:precio1?|paginacion-ficha-tituloprecio)["\'][^>]*>[^<\d]*([\d\.]+)\s*(?:€|&euro;)', chunk, re.IGNORECASE)
+            if not price_m:
+                clean_p = html.unescape(re.sub(r"<[^>]+>", " ", chunk))
+                price_m = re.search(r"(\d{1,3}(?:\.\d{3})+|\d{4,7})\s*€", clean_p)
+            price_eur = float(price_m.group(1).replace(".", "")) if price_m else None
+
+            img_m = re.search(r'cargaFoto=["\'](https?://[^"\']+)["\']', chunk, re.IGNORECASE)
+            image_url = img_m.group(1) if img_m else ""
+
+            text_clean = html.unescape(re.sub(r"<[^>]+>", " ", chunk))
+            text_clean = re.sub(r"\s+", " ", text_clean).strip()
+
+            plot_m = re.search(r"(?:parcela|terreno|solar)[^\d]{0,18}(\d[\d\.]*)\s*m\s*[²2]", text_clean, re.IGNORECASE)
+            plot_m2 = float(plot_m.group(1).replace(".", "")) if plot_m else None
+            any_m2 = re.search(r"(\d{1,3}(?:\.\d{3})*|\d{2,5})\s*m\s*[²2]", text_clean, re.IGNORECASE)
+            built_m2 = float(any_m2.group(1).replace(".", "")) if any_m2 else None
+
+            rooms_m = re.search(r"Habitaciones\s*(\d{1,2})|(\d{1,2})\s*(?:habs?\.?|dormitorios?)", text_clean, re.IGNORECASE)
+            rooms = int(rooms_m.group(1) or rooms_m.group(2)) if rooms_m else None
+
+            if not price_eur or not (plot_m2 or built_m2):
+                continue
+
+            tl = f"{title} {slug_tipo} {slug_pueblo} {slug_zona}".lower()
+            is_montepinar = "montepinar" in tl
+            if not is_montepinar and any(
+                w in tl for w in ("piso", "atico", "ático", "apartamento", "oficina", "local", "garaje", "trastero", "nave", "edificio", "duplex", "dúplex")
+            ):
+                continue
+            rtype = default_type
+            if not rtype:
+                if any(w in tl for w in ("solar", "terreno", "parcela", "suelo")):
+                    rtype = "solar_urbano"
+                elif any(w in tl for w in ("casa", "chalet", "villa", "adosado", "bungalow", "finca")):
+                    rtype = "casa_planta_baja"
+                elif is_montepinar:
+                    rtype = "casa_planta_baja"
+                else:
+                    continue
+
+            items.append(
+                {
+                    "external_id": f"vegahouse-{prop_num}" if prop_num else None,
+                    "portal": agency_name,
+                    "title": title[:150],
+                    "url": full_url,
+                    "location": f"{slug_zona.title()}, {slug_pueblo.title()}".strip(", "),
+                    "price_eur": price_eur,
+                    "surface_plot_m2": plot_m2 or built_m2,
+                    "surface_built_m2": built_m2,
+                    "rooms": rooms,
+                    "image_url": image_url,
+                    "description": f"{title} · {slug_pueblo} · {slug_zona} · {text_clean}"[:550],
+                    "raw_type": rtype,
+                }
+            )
+        return items
+
+    def _parse_solvia(
+        self, raw_html: str, agency_name: str, base_url: str, default_type: str = ""
+    ) -> List[Dict[str, Any]]:
+        """Parser específico para Solvia (Angular SSR con enlaces `/es/propiedades/comprar/...`)."""
+        items: List[Dict[str, Any]] = []
+        norm_html = re.sub(r"<\s*sup\s*>\s*2\s*<\s*/\s*sup\s*>", "2", raw_html, flags=re.IGNORECASE)
+        matches = list(re.finditer(r'href=["\'](https?://www\.solvia\.es/es/propiedades/comprar/[^"\']+|/es/propiedades/comprar/[^"\']+)["\']', norm_html, re.IGNORECASE))
+        seen_local = set()
+
+        for m in matches:
+            full_url = urllib.parse.urljoin("https://www.solvia.es", m.group(1).strip())
+            if full_url in seen_local:
+                continue
+
+            # Evitar coincidencia previa en el carrusel de fotos (sin precio/m2); esperar al enlace de ficha con datos
+            chunk = norm_html[max(0, m.start() - 120) : m.end() + 2600]
+            text_clean = html.unescape(re.sub(r"<[^>]+>", " ", chunk))
+            text_clean = re.sub(r"\s+", " ", text_clean).strip()
+
+            price_m = re.search(r"(\d{1,3}(?:\.\d{3})+|\d{4,7})\s*€", text_clean)
+            price_eur = float(price_m.group(1).replace(".", "")) if price_m else None
+
+            m2_m = re.search(r"(\d{1,3}(?:\.\d{3})*|\d{2,6})\s*m\s*[²2]", text_clean, re.IGNORECASE)
+            surface_m2 = float(m2_m.group(1).replace(".", "")) if m2_m else None
+
+            if not price_eur or not surface_m2:
+                continue
+
+            seen_local.add(full_url)
+            # Buscar imagen en el bloque inmediatamente anterior (carrusel de la misma tarjeta)
+            pre_chunk = norm_html[max(0, m.start() - 4200) : m.end() + 400]
+            img_m = re.search(r'src=["\'](https?://cdnsolv[^"\']+\.(?:jpg|jpeg|png|webp))["\']', pre_chunk, re.IGNORECASE)
+            image_url = img_m.group(1).replace("\\", "/") if img_m else ""
+
+            h3_m = re.search(r'<h3[^>]*class=["\'][^"\']*build-name[^"\']*["\'][^>]*>(.*?)</h3>', chunk, re.IGNORECASE | re.DOTALL)
+            slug = full_url.rstrip("/").split("/")[-1]
+            slug_title = re.sub(r"-\d+-\d+$", "", slug).replace("-", " ").capitalize()
+            title = html.unescape(re.sub(r"<[^>]+>", " ", h3_m.group(1))).strip() if h3_m else slug_title
+
+            items.append(
+                {
+                    "portal": agency_name,
+                    "title": f"{title} (Activo Bancario Solvia)"[:150],
+                    "url": full_url,
+                    "price_eur": price_eur,
+                    "surface_plot_m2": surface_m2,
+                    "image_url": image_url,
+                    "description": f"Activo bancario Solvia sin comisión · {title} · {text_clean}"[:550],
+                    "raw_type": default_type or ("solar_urbano" if "suelo" in slug or "solar" in slug else "casa_planta_baja"),
                 }
             )
         return items

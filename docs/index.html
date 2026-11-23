@@ -545,6 +545,52 @@
     * { -webkit-tap-highlight-color: transparent; }
     button, .btn, .tab-btn, .z-pill { touch-action: manipulation; }
 
+    /* Señales de negociación, coste llave en mano, Catastro, duplicados y fuentes */
+    .sig-row { display: flex; flex-wrap: wrap; gap: 5px; }
+    .sig-chip {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 99px;
+      background: var(--bg-subtle);
+      color: var(--txt);
+      border: 1px solid var(--line-soft);
+    }
+    .sig-chip.part { background: var(--accent-soft); color: var(--accent); border-color: transparent; }
+    .cost-box {
+      background: var(--bg-subtle);
+      border: 1px solid var(--line-soft);
+      border-radius: 10px;
+      padding: 8px 11px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .cost-box b { color: var(--txt); }
+    .cat-box {
+      background: var(--blue-soft);
+      color: var(--blue);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 11.5px;
+      font-weight: 600;
+    }
+    .dup-details {
+      background: var(--amber-soft);
+      border: 1px solid var(--line-soft);
+      border-radius: 9px;
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+    .dup-details summary { cursor: pointer; font-weight: 700; color: var(--amber); }
+    .dup-list { margin: 6px 0 0 14px; display: flex; flex-direction: column; gap: 3px; }
+    .dup-list a { color: var(--blue); text-decoration: none; font-weight: 600; }
+    .dup-list a:hover { text-decoration: underline; }
+    .src-pill { display: inline-block; padding: 2px 9px; border-radius: 99px; font-size: 11.5px; font-weight: 700; }
+    .src-ok { background: var(--accent-soft); color: var(--accent); }
+    .src-partial { background: var(--amber-soft); color: var(--amber); }
+    .src-down { background: #fee2e2; color: #b91c1c; }
+
     @media (max-width: 920px) {
       .analytics-layout.active { grid-template-columns: 1fr; }
       .listings-grid { grid-template-columns: 1fr; }
@@ -644,7 +690,10 @@
         ⭐ Favoritos y Notas <span class="tab-count" id="tc-favs">0</span>
       </button>
       <button class="tab-btn" data-tab="subastas">
-        ⚖️ Subastas BOE <span class="tab-count" id="tc-subastas">0</span>
+        ⚖️ Subastas (BOE + Proc.) <span class="tab-count" id="tc-subastas">0</span>
+      </button>
+      <button class="tab-btn" data-tab="fuentes">
+        📡 Estado de Fuentes <span class="tab-count" id="tc-fuentes">0</span>
       </button>
     </nav>
 
@@ -686,6 +735,17 @@
       <div class="f-grp">
         <label for="f-max-m2price">Tope €/m² Solar</label>
         <input class="inp" id="f-max-m2price" type="number" step="10" placeholder="Ej. 250 €/m²" />
+      </div>
+      <div class="f-grp">
+        <label for="f-seller">Vendedor / Señal</label>
+        <select class="inp" id="f-seller">
+          <option value="ALL">Todos los vendedores</option>
+          <option value="particular">👤 Solo particulares</option>
+          <option value="banco">🏦 Activos bancarios</option>
+          <option value="signals">⚡ Con señales (urge, herencia, esquina...)</option>
+          <option value="stagnant">🕰️ > 90 días en venta (negociables)</option>
+          <option value="dups">👯 Con duplicados en otros portales</option>
+        </select>
       </div>
       <div class="f-grp">
         <label for="f-sort">Ordenar por</label>
@@ -769,6 +829,32 @@
         <table class="excel-tbl" id="excel-tbl">
           <thead id="excel-thead"></thead>
           <tbody id="excel-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="excel-sec" id="fuentes-sec">
+      <div class="excel-toolbar">
+        <div>
+          <h3 style="font-size:16px;font-weight:800;">📡 Estado de Fuentes y Salud del Scraping</h3>
+          <p style="font-size:12px;color:var(--muted);">
+            Muestra qué portales e inmobiliarias respondieron hoy, cuántos anuncios devolvieron y si alguna fuente lleva días caída (evitando falsas alertas de desaparición).
+          </p>
+        </div>
+      </div>
+      <div class="excel-wrap">
+        <table class="excel-tbl">
+          <thead>
+            <tr>
+              <th>Portal / Inmobiliaria</th>
+              <th>Estado hoy</th>
+              <th style="text-align:center;">URLs OK / Intentos</th>
+              <th style="text-align:right;">Anuncios hoy</th>
+              <th style="text-align:center;">Días seguidos caído</th>
+              <th>Última lectura correcta</th>
+            </tr>
+          </thead>
+          <tbody id="fuentes-tbody"></tbody>
         </table>
       </div>
     </section>
@@ -929,6 +1015,7 @@
       tab: 'principal',
       zone: 'ALL',
       type: 'ALL',
+      seller: 'ALL',
       search: '',
       minM2: 0,
       minM2Auto: false,
@@ -942,6 +1029,7 @@
       manualItems: JSON.parse(localStorage.getItem('solares_manual') || '[]'),
       auctions: [],
       alertas: [],
+      sourceHealth: [],
       alertaFiltro: 'TODAS',
     };
 
@@ -960,6 +1048,7 @@
       STATE.listings = [...STATE.manualItems, ...(payload.listings || [])];
       STATE.auctions = payload.auctions || [];
       STATE.alertas = payload.alertas || [];
+      STATE.sourceHealth = payload.source_health || [];
       updateKPIs();
       renderZoneStatsTable();
       renderAll();
@@ -990,6 +1079,9 @@
       $('tc-all').textContent = todos.length;
       $('tc-favs').textContent = favCount;
       $('tc-subastas').textContent = STATE.auctions.filter(a => a.is_target_type).length;
+      const sh = STATE.sourceHealth || [];
+      const okSrc = sh.filter(s => s.status === 'ok').length;
+      $('tc-fuentes').textContent = sh.length ? `${okSrc}/${sh.length}` : '0';
 
       const liveCount = all.filter(x => !String(x.id).startsWith('ori-') && !String(x.id).startsWith('ben-') && !String(x.id).startsWith('gra-')).length;
       const libres = all.filter(x => x.sin_filtro).length;
@@ -1017,6 +1109,11 @@
 
         if (STATE.zone !== 'ALL' && item.zone_id !== STATE.zone) return false;
         if (STATE.type !== 'ALL' && item.asset_type !== STATE.type) return false;
+        if (STATE.seller === 'particular' && item.seller_type !== 'particular') return false;
+        if (STATE.seller === 'banco' && item.seller_type !== 'banco') return false;
+        if (STATE.seller === 'signals' && !(item.negotiation_signals && item.negotiation_signals.length)) return false;
+        if (STATE.seller === 'stagnant' && (item.dias_en_venta || 0) < 90) return false;
+        if (STATE.seller === 'dups' && !(item.other_listings && item.other_listings.length)) return false;
         if (STATE.minM2 > 0 && plotM2 < STATE.minM2 && !(libre && STATE.minM2Auto)) return false;
         if (STATE.maxPrice && item.price_eur && item.price_eur > STATE.maxPrice) return false;
         if (STATE.maxM2Price && item.eur_per_m2 && item.eur_per_m2 > STATE.maxM2Price) return false;
@@ -1214,16 +1311,45 @@
       $('auc-grid-others').innerHTML = htmlO;
     }
 
+    function renderFuentes() {
+      const sh = STATE.sourceHealth || [];
+      const tbody = $('fuentes-tbody');
+      if (!sh.length) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:24px;color:var(--muted);">Los datos de salud de fuentes aparecerán tras la próxima ejecución con red.</td></tr>';
+        return;
+      }
+      tbody.innerHTML = sh.map(s => {
+        const cls = s.status === 'ok' ? 'src-ok' : s.status === 'partial' ? 'src-partial' : 'src-down';
+        const lbl = s.status === 'ok' ? '🟢 Sana' : s.status === 'partial' ? '🟡 Parcial' : '🔴 Caída';
+        const fails = s.consecutive_fails || 0;
+        const failHtml = fails >= 2 ? `<b style="color:var(--red)">${fails} días ⚠️</b>` : `${fails}`;
+        return `
+          <tr>
+            <td><b>${escH(s.source_name)}</b></td>
+            <td><span class="src-pill ${cls}">${lbl}</span></td>
+            <td style="text-align:center;">${s.ok || 0} / ${s.intentos || 0}</td>
+            <td class="num">${s.items || 0}</td>
+            <td style="text-align:center;">${failHtml}</td>
+            <td>${s.last_ok_at ? fmtFecha(s.last_ok_at) : '—'}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
     function renderAll() {
       const showAuctions = STATE.tab === 'subastas';
       const showAlertas = STATE.tab === 'alertas';
+      const showFuentes = STATE.tab === 'fuentes';
       $('auctions-sec').classList.toggle('active', showAuctions);
       $('alertas-sec').classList.toggle('active', showAlertas);
-      if (showAuctions || showAlertas) {
+      $('fuentes-sec').classList.toggle('active', showFuentes);
+      if (showAuctions || showAlertas || showFuentes) {
         $('analytics-sec').classList.remove('active');
         $('excel-sec').classList.remove('active');
         $('listings-grid').style.display = 'none';
-        if (showAuctions) renderAuctions(); else renderAlertas();
+        if (showAuctions) renderAuctions();
+        else if (showAlertas) renderAlertas();
+        else renderFuentes();
         return;
       }
       const items = getFilteredListings();
@@ -1280,6 +1406,34 @@
         const trkLine = trkPartes.length ? `<div class="trk">🕓 ${trkPartes.join(', ')}.</div>` : '';
 
         const reasons = (it.chollo_reasons || []).map(r => `<li>${r}</li>`).join('');
+        const sigs = (it.negotiation_signals || []).map(s =>
+          `<span class="sig-chip ${s.includes('Particular') ? 'part' : ''}">${escH(s)}</span>`
+        ).join('');
+        const ce = it.cost_estimate || {};
+        let costHtml = '';
+        if (ce.total_compra_eur) {
+          costHtml = `<div class="cost-box">💶 <b>Coste real escriturado</b> (${escH(ce.tax_label || 'ITP 10%')} + notaría): <b>${fmtEur(ce.total_compra_eur)}</b>`
+            + (ce.demolition_eur ? `<br>🧱 <b>Como solar limpio (+derribo est. ${fmtEur(ce.demolition_eur)}):</b> <b>${fmtEur(ce.total_solar_limpio_eur)}</b>${ce.eur_m2_llave ? ` (${fmtNum(ce.eur_m2_llave)} €/m²)` : ''}` : (ce.eur_m2_llave ? ` · <b>${fmtNum(ce.eur_m2_llave)} €/m² llave</b>` : ''))
+            + `</div>`;
+        }
+        const ci = it.catastro_info || {};
+        const catParts = [ci.clase, ci.uso, ci.superficie_catastro_m2 ? fmtNum(ci.superficie_catastro_m2) + ' m² Catastro' : '', ci.anio_construccion ? 'Año ' + ci.anio_construccion : '', it.cadastral_ref ? 'RC ' + it.cadastral_ref : ''].filter(Boolean);
+        const catHtml = catParts.length ? `<div class="cat-box">🏛️ Catastro oficial: ${escH(catParts.join(' · '))}</div>` : '';
+
+        const others = it.other_listings || [];
+        let dupHtml = '';
+        if (others.length) {
+          const cheapestTag = it.is_cheapest_duplicate ? '✅ Más barato aquí' : '⚠️ Más barato en otro portal';
+          const lis = others.map(o => {
+            const diffTxt = o.diff_eur != null && o.diff_eur !== 0
+              ? (o.diff_eur > 0 ? ` (+${fmtEur(o.diff_eur)})` : ` (${fmtEur(o.diff_eur)} más barato)`)
+              : ' (mismo precio)';
+            return `<li><a href="${escH(o.url || '#')}" target="_blank" rel="noopener">${escH(o.portal)}: ${fmtEur(o.price_eur)}${diffTxt} ↗</a></li>`;
+          }).join('');
+          dupHtml = `<details class="dup-details"><summary>👯 También publicado en ${others.length} sitio(s) más · ${cheapestTag}</summary><ul class="dup-list">${lis}</ul></details>`;
+        }
+        const catUrl = it.catastro_url || (it.lat && it.lon ? `https://www1.sedecatastro.gob.es/Cartografia/mapa.aspx?buscar=S&lat=${it.lat}&lon=${it.lon}` : '');
+        const satUrl = it.maps_url || (it.lat && it.lon ? `https://www.google.com/maps/@${it.lat},${it.lon},18z/data=!3m1!1e3` : '');
 
         return `
           <article class="prop-card ${score >= 75 ? 'chollo-high' : ''} ${plotM2 < 180 ? 'secondary-size' : ''}">
@@ -1299,6 +1453,8 @@
               ${it.title}
             </a>
 
+            ${sigs ? `<div class="sig-row">${sigs}</div>` : ''}
+
             <div class="metrics-row">
               <div class="m-box">
                 <span>Precio Actual</span>
@@ -1317,6 +1473,9 @@
               </div>
             </div>
 
+            ${costHtml}
+            ${catHtml}
+            ${dupHtml}
             ${trkLine}
             ${reasons ? `<ul class="reasons-list">${reasons}</ul>` : ''}
             <p class="prop-desc">${it.description || ''}</p>
@@ -1331,6 +1490,8 @@
                 <button class="sm-btn" onclick="window.__openHistory('${it.id}')">
                   📈 Histórico / Nota
                 </button>
+                ${catUrl ? `<a class="sm-btn" href="${escH(catUrl)}" target="_blank" rel="noopener" title="Abrir en Sede del Catastro">🏛️ Catastro</a>` : ''}
+                ${satUrl ? `<a class="sm-btn" href="${escH(satUrl)}" target="_blank" rel="noopener" title="Ver en Google Maps Satélite">🛰️ Satélite</a>` : ''}
                 <a class="sm-btn" href="${it.url || '#'}" target="_blank" rel="noopener">
                   Ir al anuncio ↗
                 </a>
@@ -1603,10 +1764,11 @@
       window.__filterZone(pill.dataset.zone);
     };
 
-    ['f-search', 'f-type', 'f-min-m2', 'f-max-price', 'f-max-m2price', 'f-sort'].forEach(id => {
+    ['f-search', 'f-type', 'f-seller', 'f-min-m2', 'f-max-price', 'f-max-m2price', 'f-sort'].forEach(id => {
       $(id).oninput = $(id).onchange = () => {
         STATE.search = $('f-search').value.trim();
         STATE.type = $('f-type').value;
+        STATE.seller = $('f-seller').value;
         STATE.minM2 = +$('f-min-m2').value || 0;
         STATE.minM2Auto = false;
         STATE.maxPrice = +$('f-max-price').value || null;

@@ -76,6 +76,38 @@ class EmailNotifier:
                     )
                 reasons_str = " · ".join(it.get("chollo_reasons", [])[:2])
                 eur_m2_str = f'{it["eur_per_m2"]:.0f} €/m²' if it.get("eur_per_m2") else "—"
+                signals = it.get("negotiation_signals") or []
+                signals_html = (
+                    '<div style="margin-top:6px;">'
+                    + "".join(
+                        f'<span style="display:inline-block;background:#f1f5f9;color:#334155;padding:2px 7px;border-radius:99px;font-size:11px;font-weight:700;margin-right:4px;margin-bottom:3px;">{s}</span>'
+                        for s in signals[:4]
+                    )
+                    + "</div>"
+                    if signals
+                    else ""
+                )
+                ce = it.get("cost_estimate") or {}
+                cost_line = ""
+                if ce.get("total_compra_eur"):
+                    cost_line = f'💶 Escriturado ({ce.get("tax_label", "ITP 10%")}): <strong>{fmt_eur(ce["total_compra_eur"])}</strong>'
+                    if ce.get("demolition_eur"):
+                        cost_line += f' · Solar limpio (+derribo): <strong>{fmt_eur(ce["total_solar_limpio_eur"])}</strong>'
+                dias_v = it.get("dias_en_venta")
+                tiempo_str = f' · ⏱️ {dias_v} días en venta' if dias_v and dias_v >= 30 else ""
+                others = it.get("other_listings") or []
+                dup_line = ""
+                if others:
+                    otros_txt = " · ".join(
+                        f'<a href="{o.get("url")}" style="color:#0369a1;">{o.get("portal")} ({fmt_eur(o.get("price_eur"))})</a>'
+                        for o in others[:3]
+                    )
+                    dup_line = f'<div style="margin-top:4px;font-size:12px;color:#475569;">👯 También en: {otros_txt}</div>'
+                cat_link = (
+                    f' &nbsp;|&nbsp; <a href="{it["catastro_url"]}" style="color:#0369a1;text-decoration:none;font-size:12px;font-weight:700;">🗺️ Catastro</a>'
+                    if it.get("catastro_url")
+                    else ""
+                )
                 html_rows.append(
                     f"""
                     <div style="border:1px solid #e2e8f0;border-radius:10px;padding:14px;margin-bottom:10px;background:#ffffff;">
@@ -95,8 +127,11 @@ class EmailNotifier:
                         {drop_badge}
                         &nbsp;|&nbsp; <strong>{it.get("effective_plot_m2", 0):.0f} m²</strong> parcela
                         &nbsp;|&nbsp; <strong>{eur_m2_str}</strong>
-                        &nbsp;|&nbsp; <span style="color:#64748b;">{it.get("portal")}</span>
+                        &nbsp;|&nbsp; <span style="color:#64748b;">{it.get("portal")}{tiempo_str}</span>{cat_link}
                       </div>
+                      {signals_html}
+                      {f'<div style="margin-top:5px;font-size:12px;color:#334155;">{cost_line}</div>' if cost_line else ''}
+                      {dup_line}
                       {f'<div style="margin-top:6px;font-size:12px;color:#475569;">💡 {reasons_str}</div>' if reasons_str else ''}
                     </div>
                     """
@@ -127,6 +162,18 @@ class EmailNotifier:
             f'border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;">'
             f'Abrir Panel Web Interactivo</a></div>'
             if self.dashboard_url
+            else ""
+        )
+
+        stagnant = sorted(
+            [x for x in highlighted if not x.get("retirado") and (x.get("dias_en_venta") or 0) >= 90],
+            key=lambda x: x.get("dias_en_venta") or 0,
+            reverse=True,
+        )[:4]
+        stagnant_html = (
+            '<h2 style="font-size:17px;border-bottom:2px solid #7c3aed;padding-bottom:6px;margin-top:24px;">🕰️ Más de 90 días en venta (margen para negociar)</h2>'
+            + render_rows(stagnant, show_drop=True)
+            if stagnant
             else ""
         )
 
@@ -179,6 +226,8 @@ class EmailNotifier:
 
       <h2 style="font-size:17px;border-bottom:2px solid #2563eb;padding-bottom:6px;margin-top:24px;">🆕 Últimas Incorporaciones Destacadas</h2>
       {render_rows(new_items, show_drop=False)}
+
+      {stagnant_html}
 
       <h2 style="font-size:17px;border-bottom:2px solid #475569;padding-bottom:6px;margin-top:24px;">📊 Evolución €/m² por Zona</h2>
       <table width="100%" cellspacing="0" cellpadding="0" style="background:#ffffff;border:1px solid #e2e8f0;border-radius:10px;font-size:13px;overflow:hidden;">

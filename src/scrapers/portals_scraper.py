@@ -3,6 +3,14 @@
 Scraper multi-portal para portales inmobiliarios nacionales + Descubrimiento indexado
 (Idealista, Fotocasa, Milanuncios, Pisos.com, Habitaclia, Yaencontre, Trovimap).
 Funciona con librería estándar (urllib) o con requests/curl_cffi si están instalados.
+Incluye:
+- Reintentos con espera progresiva y detección de páginas antibot (Cloudflare / DataDome).
+- Paginación automática (hasta MAX_PAGES páginas por listado) para no perder anuncios
+  que bajan a página 2-4.
+- Verificación directa de ficha (`verify_listing_alive`) antes de marcar un anuncio como
+  retirado del portal.
+- Control estricto de salud por portal (`portales_ok`) para evitar falsas bajas por
+  caídas parciales o respuestas vacías.
 """
 
 import html
@@ -10,9 +18,10 @@ import json
 import random
 import re
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
@@ -20,9 +29,65 @@ USER_AGENTS = [
     "Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0",
 ]
 
+BOT_CHALLENGE_MARKERS = (
+    "cf-browser-verification",
+    "cf_chl_opt",
+    "just a moment...",
+    "attention required! | cloudflare",
+    "checking your browser",
+    "captcha-delivery.com",
+    "geo.captcha-delivery.com",
+    "dd_captcha",
+    "enable javascript and cookies to continue",
+    "please verify you are a human",
+    "access denied |",
+)
 
-def http_get(url: str, timeout: int = 15, extra_headers: Optional[Dict[str, str]] = None) -> Optional[str]:
-    """Petición HTTP resiliente usando curl_cffi, requests o urllib.request."""
+DELISTED_MARKERS = (
+    "este anuncio ya no está disponible",
+    "este anuncio ya no esta disponible",
+    "el anuncio ya no está disponible",
+    "el anuncio ya no esta disponible",
+    "anuncio no encontrado",
+    "anuncio dado de baja",
+    "anuncio caducado",
+    "anuncio retirado",
+    "ha sido retirado",
+    "inmueble no disponible",
+    "propiedad no disponible",
+    "la propiedad ya no está disponible",
+    "la propiedad ya no esta disponible",
+    "no hemos encontrado el anuncio",
+    "no encontramos el anuncio",
+    "página no encontrada",
+    "pagina no encontrada",
+    "error 404",
+    "404 not found",
+)
+
+
+def _is_bot_challenge(body: str) -> bool:
+    """Detecta respuestas HTTP 200 falsas que en realidad son retos antibot / Cloudflare / DataDome."""
+    if not body:
+        return True
+    low = body[:12000].lower()
+    if any(m in low for m in BOT_CHALLENGE_MARKERS):
+        return True
+    if len(body) < 1200 and ("captcha" in low or "datadome" in low or "cloudflare" in low):
+        return True
+    return False
+
+
+def http_fetch_response(
+    url: str,
+    timeout: int = 15,
+    extra_headers: Optional[Dict[str, str]] = None,
+    retries: int = 2,
+) -> Tuple[int, str, str]:
+    """
+    Devuelve (status_code, final_url, body).
+    status_code == 0 indica fallo de red/timeout.
+    """
     headers = {
         "User-Agent": random.choice(USER_AGENTS),
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,application/json;q=0.8,*/*;q=0.7",
@@ -32,41 +97,139 @@ def http_get(url: str, timeout: int = 15, extra_headers: Optional[Dict[str, str]
     if extra_headers:
         headers.update(extra_headers)
 
-    # 1. Intentar curl_cffi si está disponible (imita TLS fingerprint de Chrome real en GitHub Actions)
-    try:
-        from curl_cffi import requests as creq  # type: ignore
+    last_status = 0
+    last_url = url
+    last_body = ""
 
-        resp = creq.get(url, headers=headers, impersonate="chrome124", timeout=timeout)
-        if resp.status_code == 200 and resp.text:
-            return resp.text
-    except Exception:
-        pass
+    for attempt in range(max(1, retries)):
+        if attempt > 0:
+            time.sleep(1.2 * attempt + random.uniform(0.2, 0.7))
+            headers["User-Agent"] = random.choice(USER_AGENTS)
 
-    # 2. Intentar requests estándar si está disponible
-    try:
-        import requests  # type: ignore
+        # 1. Intentar curl_cffi si está disponible (imita TLS fingerprint de Chrome real en GitHub Actions)
+        try:
+            from curl_cffi import requests as creq  # type: ignore
 
-        resp = requests.get(url, headers=headers, timeout=timeout)
-        if resp.status_code == 200 and resp.text:
-            return resp.text
-    except Exception:
-        pass
+            resp = creq.get(url, headers=headers, impersonate="chrome124", timeout=timeout, allow_redirects=True)
+            last_status, last_url, last_body = int(resp.status_code), str(resp.url), resp.text or ""
+            if last_status in (200, 404, 410):
+                if last_status == 200 and _is_bot_challenge(last_body):
+                    continue
+                return last_status, last_url, last_body
+            if last_status in (403, 429, 500, 502, 503, 504):
+                continue
+        except ImportError:
+            pass
+        except Exception:
+            pass
 
-    # 3. Fallback a urllib.request de la librería estándar de Python
-    try:
-        req = urllib.request.Request(url, headers=headers)
-        with urllib.request.urlopen(req, timeout=timeout) as r:
-            charset = r.headers.get_content_charset() or "utf-8"
-            return r.read().decode(charset, errors="replace")
-    except Exception:
+        # 2. Intentar requests estándar si está disponible
+        try:
+            import requests  # type: ignore
+
+            resp = requests.get(url, headers=headers, timeout=timeout, allow_redirects=True)
+            last_status, last_url, last_body = int(resp.status_code), str(resp.url), resp.text or ""
+            if last_status in (200, 404, 410):
+                if last_status == 200 and _is_bot_challenge(last_body):
+                    continue
+                return last_status, last_url, last_body
+            if last_status in (403, 429, 500, 502, 503, 504):
+                continue
+        except ImportError:
+            pass
+        except Exception:
+            pass
+
+        # 3. Fallback a urllib.request de la librería estándar de Python
+        try:
+            req = urllib.request.Request(url, headers=headers)
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                charset = r.headers.get_content_charset() or "utf-8"
+                body = r.read().decode(charset, errors="replace")
+                last_status, last_url, last_body = int(getattr(r, "status", 200)), r.geturl(), body
+                if last_status == 200 and _is_bot_challenge(last_body):
+                    continue
+                return last_status, last_url, last_body
+        except urllib.error.HTTPError as e:
+            last_status = int(e.code)
+            last_url = e.geturl() or url
+            try:
+                last_body = e.read().decode("utf-8", errors="replace")
+            except Exception:
+                last_body = ""
+            if last_status in (404, 410):
+                return last_status, last_url, last_body
+        except Exception:
+            last_status = 0
+
+    return last_status, last_url, last_body
+
+
+def http_get(
+    url: str,
+    timeout: int = 15,
+    extra_headers: Optional[Dict[str, str]] = None,
+    retries: int = 2,
+) -> Optional[str]:
+    """Petición HTTP resiliente que devuelve el HTML solo si es HTTP 200 real (no reto antibot)."""
+    status, _, body = http_fetch_response(url, timeout=timeout, extra_headers=extra_headers, retries=retries)
+    if status == 200 and body and not _is_bot_challenge(body):
+        return body
+    return None
+
+
+def verify_listing_alive(url: str, timeout: int = 12) -> Optional[bool]:
+    """
+    Comprueba directamente la ficha de un anuncio antes de darlo por desaparecido.
+    - True: el anuncio sigue vivo en el portal.
+    - False: confirmado retirado (HTTP 404/410, redirección a listado genérico o aviso claro de baja).
+    - None: no concluyente (bloqueo 403/429, Cloudflare/DataDome, 5xx o timeout) -> NO retirar.
+    """
+    if not url or not url.lower().startswith("http"):
         return None
+
+    status, final_url, body = http_fetch_response(url, timeout=timeout, retries=2)
+    if status in (404, 410):
+        return False
+    if status != 200 or not body or _is_bot_challenge(body):
+        return None
+
+    # Si el portal redirigió desde una ficha individual a un listado general / portada, está retirado
+    if final_url and final_url.rstrip("/") != url.rstrip("/"):
+        orig_host = urllib.parse.urlparse(url).netloc.lower()
+        fin_host = urllib.parse.urlparse(final_url).netloc.lower()
+        if orig_host == fin_host and not PortalsScraper.is_valid_detail_url(final_url):
+            return False
+
+    # Inspeccionar título y texto visible en busca de avisos claros de anuncio retirado
+    title_m = re.search(r"<title[^>]*>(.*?)</title>", body, re.IGNORECASE | re.DOTALL)
+    title_txt = html.unescape(re.sub(r"\s+", " ", title_m.group(1))).strip().lower() if title_m else ""
+    if any(m in title_txt for m in DELISTED_MARKERS):
+        return False
+
+    clean_vis = re.sub(r"<script[^>]*>.*?</script>|<style[^>]*>.*?</style>", " ", body, flags=re.IGNORECASE | re.DOTALL)
+    clean_vis = html.unescape(re.sub(r"<[^>]+>", " ", clean_vis))
+    clean_vis = re.sub(r"\s+", " ", clean_vis).strip().lower()
+
+    if any(m in clean_vis for m in DELISTED_MARKERS):
+        # Confirmar que no es un pequeño texto de aviso junto a una ficha activa con precio y m²
+        has_price = bool(re.search(r"\b\d{1,3}(?:\.\d{3})+\s*€", clean_vis))
+        if not has_price or "este anuncio ya no" in clean_vis or "anuncio dado de baja" in clean_vis:
+            return False
+
+    # Si el HTML tiene tamaño razonable y conserva precio/superficie/título, está vivo
+    if len(clean_vis) >= 300:
+        return True
+    return None
 
 
 class PortalsScraper:
     """
-    Combina scraping directo de portales (Pisos.com, Habitaclia, Yaencontre, Trovimap)
+    Combina scraping directo (con paginación) de portales (Pisos.com, Habitaclia, Yaencontre, Trovimap)
     con búsqueda indexada para Idealista, Fotocasa y Milanuncios.
     """
+
+    MAX_PAGES = 4
 
     PORTAL_URLS = [
         # Pisos.com - Terrenos y Solares (Núcleo Urbano y Pedanías, sin Orihuela Costa)
@@ -79,10 +242,16 @@ class PortalsScraper:
         ("Pisos.com", "https://www.pisos.com/venta/casas-orihuela_pedanias/", "casa_planta_baja"),
         ("Pisos.com", "https://www.pisos.com/venta/casas-benferri/", "casa_planta_baja"),
         ("Pisos.com", "https://www.pisos.com/venta/casas-granja_de_rocamora/", "casa_planta_baja"),
-        # Habitaclia
-        ("Habitaclia", "https://www.habitaclia.com/terrenos-orihuela.htm", "solar_urbano"),
-        ("Habitaclia", "https://www.habitaclia.com/terrenos-benferri.htm", "solar_urbano"),
-        ("Habitaclia", "https://www.habitaclia.com/casas-orihuela.htm", "casa_planta_baja"),
+        # Habitaclia - URLs reales por zona (sin mezclar Orihuela Costa)
+        ("Habitaclia", "https://www.habitaclia.com/comprar/terrenos_y_solares/alicante-provincia/orihuela/orihuela-ciudad/s", "solar_urbano"),
+        ("Habitaclia", "https://www.habitaclia.com/comprar/terrenos_y_solares/alicante-provincia/orihuela/montepinar-la-aparecida-raiguero/s", "solar_urbano"),
+        ("Habitaclia", "https://www.habitaclia.com/comprar/terrenos_y_solares/alicante-provincia/benferri/s", "solar_urbano"),
+        ("Habitaclia", "https://www.habitaclia.com/comprar/terrenos_y_solares/alicante-provincia/granja-de-rocamora/s", "solar_urbano"),
+        ("Habitaclia", "https://www.habitaclia.com/comprar/casas/alicante-provincia/orihuela/orihuela-ciudad/s", "casa_planta_baja"),
+        ("Habitaclia", "https://www.habitaclia.com/comprar/casas/alicante-provincia/orihuela/montepinar-la-aparecida-raiguero/s", "casa_planta_baja"),
+        ("Habitaclia", "https://www.habitaclia.com/comprar/viviendas/alicante-provincia/orihuela/montepinar-la-aparecida-raiguero/s", "casa_planta_baja"),
+        ("Habitaclia", "https://www.habitaclia.com/comprar/casas/alicante-provincia/benferri/s", "casa_planta_baja"),
+        ("Habitaclia", "https://www.habitaclia.com/comprar/casas/alicante-provincia/granja-de-rocamora/s", "casa_planta_baja"),
         # Yaencontre
         ("Yaencontre", "https://www.yaencontre.com/venta/terrenos/orihuela", "solar_urbano"),
         ("Yaencontre", "https://www.yaencontre.com/venta/terrenos/benferri", "solar_urbano"),
@@ -122,45 +291,111 @@ class PortalsScraper:
         ("Trovimap", 'site:trovimap.com "Montepinar"'),
     ]
 
-    #: Qué portales han respondido en la última pasada. Sirve para no dar por
-    #: retirado un anuncio solo porque hoy su portal no contestaba.
+    #: Salud detallada por portal (solo los portales con lectura directa completa entran en portales_ok).
     source_health: Dict[str, Dict[str, int]] = {}
 
-    def _anota(self, portal_name: str, ok: bool) -> None:
-        s = self.source_health.setdefault(portal_name, {"intentos": 0, "ok": 0})
+    def _anota(self, portal_name: str, ok: bool, items_found: int = 0, direct: bool = True) -> None:
+        s = self.source_health.setdefault(
+            portal_name,
+            {"intentos": 0, "ok": 0, "items": 0, "direct_intentos": 0, "direct_ok": 0, "direct_items": 0},
+        )
         s["intentos"] += 1
         if ok:
             s["ok"] += 1
+        s["items"] += items_found
+        if direct:
+            s["direct_intentos"] += 1
+            if ok:
+                s["direct_ok"] += 1
+            s["direct_items"] += items_found
 
     @property
     def portales_ok(self) -> List[str]:
-        return [n for n, s in self.source_health.items() if s["ok"] > 0]
+        """
+        Solo se da un portal por sano para detectar desapariciones cuando:
+        - Tiene scraping directo (los dorks de DuckDuckGo son volátiles y no sirven para dar bajas),
+        - Al menos el 75 % de sus URLs directas han respondido bien,
+        - Y ha devuelto anuncios reales (> 0).
+        """
+        ok_list: List[str] = []
+        for n, s in self.source_health.items():
+            di = s.get("direct_intentos", 0)
+            dok = s.get("direct_ok", 0)
+            ditems = s.get("direct_items", 0)
+            if di > 0 and ditems > 0 and (dok / di) >= 0.75:
+                ok_list.append(n)
+        return ok_list
+
+    @staticmethod
+    def _next_page_url(raw_html: str, current_url: str, page_num: int, portal_name: str) -> Optional[str]:
+        """Detecta la URL de la siguiente página si existe en el HTML del portal."""
+        next_n = page_num + 1
+        low_portal = portal_name.lower()
+
+        if "pisos" in low_portal:
+            base = re.sub(r"/\d+/?$", "/", current_url.rstrip("/") + "/")
+            cand_rel = urllib.parse.urlparse(base).path + f"{next_n}/"
+            if cand_rel in raw_html or f"{base}{next_n}/" in raw_html:
+                return f"{base}{next_n}/"
+            return None
+
+        if "habitaclia" in low_portal:
+            base = re.sub(r"/\d+$", "", current_url.rstrip("/"))
+            cand_rel = urllib.parse.urlparse(base).path + f"/{next_n}"
+            if cand_rel in raw_html or f"{base}/{next_n}" in raw_html:
+                return f"{base}/{next_n}"
+            return None
+
+        if "yaencontre" in low_portal:
+            base = re.sub(r"/pag-\d+/?$", "", current_url.rstrip("/"))
+            cand_rel = urllib.parse.urlparse(base).path + f"/pag-{next_n}"
+            if cand_rel in raw_html or f"pag-{next_n}" in raw_html:
+                return f"{base}/pag-{next_n}"
+            return None
+
+        return None
 
     def run_all(self) -> List[Dict[str, Any]]:
         results: List[Dict[str, Any]] = []
         seen_urls = set()
         self.source_health = {}
 
-        for portal_name, url, raw_type in self.PORTAL_URLS:
-            page_html = http_get(url)
-            self._anota(portal_name, bool(page_html))
-            if not page_html:
-                continue
-            parsed = self.parse_portal_html(page_html, portal_name=portal_name, base_url=url, raw_type=raw_type)
-            for item in parsed:
-                u = item.get("url", "")
-                if u and u not in seen_urls:
-                    seen_urls.add(u)
-                    results.append(item)
-            time.sleep(0.4)
+        for portal_name, start_url, raw_type in self.PORTAL_URLS:
+            url = start_url
+            url_ok = False
+            url_items = 0
+
+            for page_num in range(1, self.MAX_PAGES + 1):
+                page_html = http_get(url, retries=2)
+                if not page_html:
+                    break
+                if page_num == 1:
+                    url_ok = True
+                parsed = self.parse_portal_html(page_html, portal_name=portal_name, base_url=url, raw_type=raw_type)
+                added_page = 0
+                for item in parsed:
+                    u = item.get("url", "")
+                    if u and u not in seen_urls:
+                        seen_urls.add(u)
+                        results.append(item)
+                        added_page += 1
+                url_items += len(parsed)
+
+                if added_page == 0 or page_num >= self.MAX_PAGES:
+                    break
+                next_url = self._next_page_url(page_html, url, page_num, portal_name)
+                if not next_url or next_url == url:
+                    break
+                url = next_url
+                time.sleep(0.35)
+
+            self._anota(portal_name, url_ok, items_found=url_items, direct=True)
+            time.sleep(0.35)
 
         # Ejecutar descubrimiento indexado para Idealista / Fotocasa / Milanuncios
         for portal_name, query in self.SEARCH_DORKS:
             dork_items = self.search_indexed_listings(query, portal_name)
-            # En las búsquedas indexadas no se distingue "no hay resultados" de
-            # "el buscador no ha contestado", así que solo se da el portal por
-            # vivo cuando ha devuelto algo.
-            self._anota(portal_name, bool(dork_items))
+            self._anota(portal_name, bool(dork_items), items_found=len(dork_items), direct=False)
             for item in dork_items:
                 u = item.get("url", "")
                 if u and u not in seen_urls:
@@ -237,7 +472,8 @@ class PortalsScraper:
         Verifica que la URL apunte a una ficha concreta de un anuncio (con ID o slug de inmueble)
         y NO a una página general de búsqueda, listado por municipio o perfil de inmobiliaria.
         """
-        u = url.lower().split("?")[0].rstrip("/")
+        u_full = url.lower().strip()
+        u = u_full.split("?")[0].rstrip("/")
         # Descartar perfiles de agencia, listados generales o páginas de categoría
         bad_fragments = [
             "/inmobiliaria/",
@@ -257,11 +493,18 @@ class PortalsScraper:
             return False
         if re.search(r"habitaclia\.com/(?:terrenos|casas|viviendas)-[a-z0-9_-]+\.htm$", u):
             return False
+        if re.search(r"habitaclia\.com/comprar/[^?]+/s(?:/\d+)?$", u):
+            return False
+
+        # Patrones con query string (ej. Dayas: inmueble.php?ID=818088180814732&idio=1)
+        if re.search(r"dayas\.org/inmueble\.php\?.*id=\d+", u_full):
+            return True
 
         # Patrones de ficha individual de anuncio por portal e inmobiliarias locales
         good_patterns = [
             r"pisos\.com/comprar/[^/]+-\d+",
             r"habitaclia\.com/comprar-[^/]+-i\d+\.htm",
+            r"habitaclia\.com/comprar/.+/[0-9a-f-]{20,}/d$",
             r"yaencontre\.com/venta/[^/]+/[^/]+/inmueble-\d+",
             r"yaencontre\.com/venta/(?:terrenos|casas|chalets)/inmueble-",
             r"idealista\.com/inmueble/\d+",
@@ -272,9 +515,10 @@ class PortalsScraper:
             r"alisedainmobiliaria\.com/inmueble/",
             r"haya\.es/.*/\d+",
             r"esphouses\.es/propiedad/",
-            r"inmoadapta\.com/propiedad/\d+/",
+            r"inmoadapta\.com/propiedad/\d+",
             r"primergrupovegacasa\.com/ad/\d+",
             r"10soles\.com/[a-z0-9-]+-es\d+\.html",
+            r"dayas\.org/venta-comprar/.+-\d{4,}\.html$",
         ]
         if any(re.search(p, u) for p in good_patterns):
             return True
@@ -355,7 +599,7 @@ class PortalsScraper:
         """
         encoded_q = urllib.parse.quote_plus(query)
         search_url = f"https://html.duckduckgo.com/html/?q={encoded_q}"
-        raw = http_get(search_url, timeout=12)
+        raw = http_get(search_url, timeout=12, retries=1)
         if not raw:
             return []
 
@@ -398,7 +642,7 @@ class PortalsScraper:
                 {
                     "portal": portal_name,
                     "title": title[:160],
-                    "url": real_url.split("?")[0],
+                    "url": real_url if "dayas.org/inmueble.php" in real_url.lower() else real_url.split("?")[0],
                     "price_eur": price_eur,
                     "surface_plot_m2": surface_m2,
                     "description": snippet[:500],

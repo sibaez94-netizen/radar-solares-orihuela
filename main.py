@@ -14,7 +14,7 @@ from src.notifier import EmailNotifier
 from src.scrapers.boe_subastas import BoeSubastasScraper
 from src.scrapers.imap_alerts import ImapAlertsReader
 from src.scrapers.local_agencies_scraper import LocalAgenciesAndBanksScraper, get_initial_market_baseline
-from src.scrapers.portals_scraper import PortalsScraper
+from src.scrapers.portals_scraper import PortalsScraper, verify_listing_alive
 from src.storage import StorageManager
 from src.tracking import ordena_alertas
 
@@ -206,9 +206,12 @@ def run_agent(skip_network: bool = False) -> Dict[str, Any]:
 
     diff = storage.upsert_listings(analyzed_list)
 
-    # 5b. Anuncios que han dejado de aparecer. Solo se miran los portales que hoy
-    #     han respondido, para no dar por retirado lo que simplemente no se pudo leer.
-    bajas = storage.marcar_desaparecidos(portales_ok)
+    # 5b. Anuncios que han dejado de aparecer. Solo se miran los portales con lectura
+    #     completa (>=75% URLs OK y >0 resultados) y se verifica la ficha directa antes de retirar.
+    bajas = storage.marcar_desaparecidos(
+        portales_ok,
+        verify_fn=(None if skip_network else verify_listing_alive),
+    )
     diff["retirados"] = bajas["retirados"]
 
     # 5c. Alertas de seguimiento: cambios de hoy + lectura del conjunto
@@ -251,6 +254,8 @@ def run_agent(skip_network: bool = False) -> Dict[str, Any]:
     print(
         f"[Seguimiento] {len(diff.get('republicados', []))} republicados | "
         f"{len(diff.get('retirados', []))} retirados hoy | "
+        f"{bajas.get('rescatados', 0)} rescatados tras comprobar ficha | "
+        f"{bajas.get('inconclusos', 0)} no concluyentes | "
         f"{stats.get('retirados_count', 0)} retirados en total | "
         f"{len(diff.get('alertas_nuevas', []))} alertas nuevas | "
         f"{stats.get('alertas_count', 0)} alertas guardadas."

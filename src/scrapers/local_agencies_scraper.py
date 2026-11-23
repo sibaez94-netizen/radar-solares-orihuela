@@ -7,6 +7,7 @@ Incluye parser universal compatible con Inmovilla, Witei y WordPress Real Estate
 
 import html
 import re
+import time
 import urllib.parse
 from typing import Any, Dict, List, Optional
 
@@ -14,6 +15,37 @@ from src.scrapers.portals_scraper import PortalsScraper, http_get
 
 
 class LocalAgenciesAndBanksScraper:
+    MAX_PAGES = 3
+
+    DAYAS_ZONE_KEYWORDS = (
+        "orihuela", "montepinar", "raiguero", "benferri", "rocamora",
+        "aparecida", "desamparados", "hurchillo", "arneva", "campaneta",
+        "molins", "san-bartolome", "correntias", "matanza", "murada",
+    )
+    DAYAS_EXCLUDE_KEYWORDS = (
+        "orihuela-costa", "playa-flamenca", "la-zenia", "cabo-roig",
+        "villamartin", "campoamor", "dehesa-de-campoamor", "punta-prima",
+        "los-dolses", "la-regia", "las-ramblas", "mil-palmeras",
+        "torrevieja", "aguamarina", "las-filipinas",
+    )
+    DAYAS_TARGET_TYPES = (
+        "/solar/", "/terreno/", "/parcela/", "/suelo/",
+        "/casa/", "/casa-de-campo/", "/casa-con-finca/",
+        "/chalet/", "/chalet-independiente/", "/villa/",
+        "/finca/", "/adosado/", "/bungalow/",
+    )
+    DAYAS_FALLBACK_URLS = [
+        "https://www.dayas.org/venta-comprar/casa/alicante/orihuela/urb-montepinar/venta-comprar-casa-alicante-orihuela-urb-montepinar.html",
+        "https://www.dayas.org/venta-comprar/chalet-independiente/alicante/orihuela/urb-montepinar/venta-comprar-chalet-independiente-alicante-orihuela-urb-montepinar.html",
+        "https://www.dayas.org/venta-comprar/casa/alicante/orihuela/orihuela/venta-comprar-casa-alicante-orihuela-orihuela.html",
+        "https://www.dayas.org/venta-comprar/casa/alicante/orihuela/centro/venta-comprar-casa-alicante-orihuela-centro.html",
+        "https://www.dayas.org/venta-comprar/solar/alicante/orihuela/centro/venta-comprar-solar-alicante-orihuela-centro.html",
+        "https://www.dayas.org/venta-comprar/terreno/alicante/orihuela/centro/venta-comprar-terreno-alicante-orihuela-centro.html",
+        "https://www.dayas.org/venta-comprar/chalet/alicante/orihuela/raiguero-de-bonanza/venta-comprar-chalet-alicante-orihuela-raiguero-de-bonanza.html",
+        "https://www.dayas.org/venta-comprar/chalet/alicante/benferri/benferri/venta-comprar-chalet-alicante-benferri-benferri.html",
+        "https://www.dayas.org/venta-comprar/finca/alicante/benferri/benferri/venta-comprar-finca-alicante-benferri-benferri.html",
+    ]
+
     BANK_URLS = [
         ("Solvia (Banco)", "https://www.solvia.es/es/comprar/suelos/alicante/orihuela", "solar_urbano"),
         ("Solvia (Banco)", "https://www.solvia.es/es/comprar/viviendas/alicante/orihuela?tipo=casas-chalets", "casa_planta_baja"),
@@ -26,15 +58,89 @@ class LocalAgenciesAndBanksScraper:
         #: Qué fuentes han respondido en la última pasada
         self.source_health: Dict[str, Dict[str, int]] = {}
 
-    def _anota(self, nombre: str, ok: bool) -> None:
-        s = self.source_health.setdefault(nombre, {"intentos": 0, "ok": 0})
+    def _anota(self, nombre: str, ok: bool, items_found: int = 0) -> None:
+        s = self.source_health.setdefault(nombre, {"intentos": 0, "ok": 0, "items": 0})
         s["intentos"] += 1
         if ok:
             s["ok"] += 1
+        s["items"] += items_found
 
     @property
     def portales_ok(self) -> List[str]:
-        return [n for n, s in self.source_health.items() if s["ok"] > 0]
+        """Solo da una agencia por sana si respondieron >= 75% de sus URLs y devolvió anuncios reales."""
+        out: List[str] = []
+        for n, s in self.source_health.items():
+            intentos = s.get("intentos", 0)
+            ok = s.get("ok", 0)
+            items = s.get("items", 0)
+            if intentos > 0 and items > 0 and (ok / intentos) >= 0.75:
+                out.append(n)
+        return out
+
+    @staticmethod
+    def _next_agency_page_url(raw_html: str, current_url: str, page_num: int) -> Optional[str]:
+        """Detecta la página siguiente en Mediaelx (InmoAdapta/Esphouses), 10 Soles o Vegacasa."""
+        next_n = page_num + 1
+        u_low = current_url.lower()
+        if "inmoadapta.com" in u_low or "esphouses.es" in u_low:
+            m = re.search(rf'href=["\']([^"\']*[?&]p={next_n}\b[^"\']*)["\']', raw_html, re.IGNORECASE)
+            if m:
+                return urllib.parse.urljoin(current_url, html.unescape(m.group(1)))
+        if "primergrupovegacasa.com" in u_low:
+            m = re.search(rf'href=["\']([^"\']*(?:page={next_n}|/{next_n})["\'])', raw_html, re.IGNORECASE)
+            if m:
+                return urllib.parse.urljoin(current_url, html.unescape(m.group(1).strip("'\"")))
+        if "10soles.com" in u_low:
+            m = re.search(rf'href=["\']([^"\']*pag={next_n}\b[^"\']*)["\']', raw_html, re.IGNORECASE)
+            if m:
+                return urllib.parse.urljoin(current_url, html.unescape(m.group(1)))
+        return None
+
+    def _scrape_dayas_sitemap(self, sitemap_url: str, agency_name: str, seen_urls: set) -> List[Dict[str, Any]]:
+        """Descubre y recorre todas las páginas de zona objetivo de Dayas Real Estates desde su sitemap.xml."""
+        sm = http_get(sitemap_url, timeout=22, retries=2)
+        zone_pages: List[str] = []
+        if sm:
+            locs = re.findall(r"<loc>(?:<!\[CDATA\[)?(.*?)(?:\]\]>)?</loc>", sm, re.IGNORECASE)
+            for loc in locs:
+                ll = loc.strip().lower()
+                if "/venta-comprar/" not in ll:
+                    continue
+                if any(e in ll for e in self.DAYAS_EXCLUDE_KEYWORDS):
+                    continue
+                if not any(z in ll for z in self.DAYAS_ZONE_KEYWORDS):
+                    continue
+                if not ("montepinar" in ll or any(t in ll for t in self.DAYAS_TARGET_TYPES)):
+                    continue
+                # Páginas de zona concreta (nivel hoja con fichas `list_house`: .../alicante/<muni>/<zona>/<slug>.html)
+                if ll.count("/") == 8:
+                    zone_pages.append(loc.strip().replace("http://", "https://"))
+            zone_pages = sorted(set(zone_pages))
+
+        if not zone_pages:
+            zone_pages = list(self.DAYAS_FALLBACK_URLS)
+
+        items_out: List[Dict[str, Any]] = []
+        for zurl in zone_pages:
+            raw_html = http_get(zurl, timeout=16, retries=2)
+            if not raw_html:
+                self._anota(agency_name, False, 0)
+                continue
+            default_type = ""
+            zl = zurl.lower()
+            if any(t in zl for t in ("/solar/", "/terreno/", "/parcela/", "/suelo/")):
+                default_type = "solar_urbano"
+            elif any(t in zl for t in ("/casa/", "/casa-de-campo/", "/casa-con-finca/", "/chalet", "/villa/", "/adosado/", "/bungalow/")):
+                default_type = "casa_planta_baja"
+            parsed = self._parse_dayas(raw_html, agency_name, zurl, default_type)
+            self._anota(agency_name, True, len(parsed))
+            for item in parsed:
+                u = item.get("url", "")
+                if u and u not in seen_urls:
+                    seen_urls.add(u)
+                    items_out.append(item)
+            time.sleep(0.25)
+        return items_out
 
     def run_all(self) -> List[Dict[str, Any]]:
         results: List[Dict[str, Any]] = []
@@ -43,11 +149,13 @@ class LocalAgenciesAndBanksScraper:
 
         # 1. Escanear servicers bancarios
         for bank_name, url, raw_type in self.BANK_URLS:
-            raw_html = http_get(url)
-            self._anota(bank_name, bool(raw_html))
+            raw_html = http_get(url, retries=2)
             if not raw_html:
+                self._anota(bank_name, False, 0)
                 continue
-            for item in self.parse_universal_agency_html(raw_html, bank_name, url, raw_type):
+            parsed = self.parse_universal_agency_html(raw_html, bank_name, url, raw_type)
+            self._anota(bank_name, True, len(parsed))
+            for item in parsed:
                 u = item.get("url", "")
                 if u and u not in seen_urls:
                     seen_urls.add(u)
@@ -56,19 +164,44 @@ class LocalAgenciesAndBanksScraper:
         # 2. Escanear inmobiliarias locales configuradas en config.json
         for ag in self.custom_agencies:
             name = ag.get("name", "Inmobiliaria Local")
-            url = ag.get("url", "")
+            start_url = ag.get("url", "")
             raw_type = ag.get("raw_type", "")
-            if not url:
+            if not start_url:
                 continue
-            raw_html = http_get(url)
-            self._anota(name, bool(raw_html))
-            if not raw_html:
+
+            # Caso especial Dayas sitemap.xml (descubre todas las zonas de Orihuela/Montepinar/Vega Baja)
+            if "dayas.org" in start_url.lower() and start_url.lower().endswith("sitemap.xml"):
+                dayas_items = self._scrape_dayas_sitemap(start_url, name, seen_urls)
+                results.extend(dayas_items)
                 continue
-            for item in self.parse_universal_agency_html(raw_html, name, url, raw_type):
-                u = item.get("url", "")
-                if u and u not in seen_urls:
-                    seen_urls.add(u)
-                    results.append(item)
+
+            url = start_url
+            url_ok = False
+            url_items = 0
+            for page_num in range(1, self.MAX_PAGES + 1):
+                raw_html = http_get(url, retries=2)
+                if not raw_html:
+                    break
+                if page_num == 1:
+                    url_ok = True
+                parsed = self.parse_universal_agency_html(raw_html, name, url, raw_type)
+                added = 0
+                for item in parsed:
+                    u = item.get("url", "")
+                    if u and u not in seen_urls:
+                        seen_urls.add(u)
+                        results.append(item)
+                        added += 1
+                url_items += len(parsed)
+                if added == 0 or page_num >= self.MAX_PAGES:
+                    break
+                next_url = self._next_agency_page_url(raw_html, url, page_num)
+                if not next_url or next_url == url:
+                    break
+                url = next_url
+                time.sleep(0.3)
+
+            self._anota(name, url_ok, url_items)
 
         return results
 
@@ -77,10 +210,13 @@ class LocalAgenciesAndBanksScraper:
     ) -> List[Dict[str, Any]]:
         """
         Parser para inmobiliarias locales de la Vega Baja:
-        Soporta específicamente 10 Soles (Inmoweb), Primer Grupo Vegacasa, InmoAdapta / Esphouses (Mediaelx),
+        Soporta específicamente Dayas Real Estates (Forocasas/Inmovirtual), 10 Soles (Inmoweb),
+        Primer Grupo Vegacasa, InmoAdapta / Esphouses (Mediaelx),
         además de Inmovilla, Witei y WordPress Real Estate.
         """
         u_low = base_url.lower()
+        if "dayas.org" in u_low or 'class="sixteen columns list_house"' in raw_html:
+            return self._parse_dayas(raw_html, agency_name, base_url, default_type)
         if "10soles.com" in u_low or 'class="venta punto_mapa"' in raw_html:
             return self._parse_10soles(raw_html, agency_name, base_url, default_type)
         if "primergrupovegacasa.com" in u_low or '<section class="inmueble container">' in raw_html:
@@ -146,6 +282,100 @@ class LocalAgenciesAndBanksScraper:
                 }
             )
 
+        return items
+
+    def _parse_dayas(
+        self, raw_html: str, agency_name: str, base_url: str, default_type: str = ""
+    ) -> List[Dict[str, Any]]:
+        """Parser específico para Dayas Real Estates (tarjetas `<li class="... list_house">`)."""
+        items: List[Dict[str, Any]] = []
+        norm_html = re.sub(r"<\s*sup\s*>\s*2\s*<\s*/\s*sup\s*>", "2", raw_html, flags=re.IGNORECASE)
+        blocks = re.split(r'(?=<li[^>]+class=["\'][^"\']*\blist_house\b)', norm_html, flags=re.IGNORECASE)
+        for blk in blocks[1:]:
+            chunk = blk[:5500]
+            h2_m = re.search(r"<div[^>]+class=['\"]TitInmuList['\"][^>]*>.*?<h2[^>]*>(.*?)</h2>", chunk, re.IGNORECASE | re.DOTALL)
+            title = html.unescape(re.sub(r"<[^>]+>", " ", h2_m.group(1))).strip() if h2_m else ""
+
+            # Extraer referencia del título o del enlace SEO (...-14732.html)
+            ref_m = re.search(r"Ref\.?\s*:?\s*(\d{3,8})", title, re.IGNORECASE)
+            if not ref_m:
+                ref_m = re.search(r"-(\d{4,8})\.html['\"]", chunk, re.IGNORECASE)
+            if not ref_m:
+                continue
+            ref = ref_m.group(1)
+
+            # Código de cliente Forocasas (81808 en Dayas) desde la URL de la foto si existe
+            cli_m = re.search(r"fotos/inmuebles/(\d{4,6})/", chunk)
+            cli = cli_m.group(1) if cli_m else "81808"
+            full_url = f"https://www.dayas.org/inmueble.php?ID={cli}{cli}{ref}&idio=1"
+
+            img_m = re.search(r'image=(https?://[^"\'\s&>]+)', chunk)
+            if not img_m:
+                img_m = re.search(r'<img[^>]+src=["\'](https?://[^"\']+)["\']', chunk, re.IGNORECASE)
+            image_url = html.unescape(img_m.group(1)) if img_m else ""
+
+            pvp_m = re.search(r"class=['\"]pvpList2?['\"][^>]*>(.*?)</div>", chunk, re.IGNORECASE | re.DOTALL)
+            pvp_txt = html.unescape(re.sub(r"<[^>]+>", " ", pvp_m.group(1))) if pvp_m else ""
+            price_m = re.search(r"(\d{1,3}(?:\.\d{3})+|\d{4,7})\s*€", pvp_txt)
+            if not price_m:
+                clean_all = html.unescape(re.sub(r"<[^>]+>", " ", chunk))
+                price_m = re.search(r"(\d{1,3}(?:\.\d{3})+|\d{4,7})\s*€", clean_all)
+            price_eur = float(price_m.group(1).replace(".", "")) if price_m else None
+
+            dist_m = re.search(r"class=['\"]DistriList['\"][^>]*>(.*?)</div>", chunk, re.IGNORECASE | re.DOTALL)
+            dist_txt = html.unescape(re.sub(r"<[^>]+>", " ", dist_m.group(1))) if dist_m else ""
+            dist_txt = re.sub(r"\s+", " ", dist_txt).strip()
+
+            plot_m = re.search(r"(\d[\d\.]*)\s*m[²2]\s*parc", dist_txt, re.IGNORECASE)
+            built_m = re.search(r"(\d[\d\.]*)\s*m[²2]\s*constr", dist_txt, re.IGNORECASE)
+            util_m = re.search(r"(\d[\d\.]*)\s*m[²2]\s*util", dist_txt, re.IGNORECASE)
+            plot_m2 = float(plot_m.group(1).replace(".", "")) if plot_m else None
+            built_m2 = float(built_m.group(1).replace(".", "")) if built_m else (
+                float(util_m.group(1).replace(".", "")) if util_m else None
+            )
+
+            rooms_m = re.search(r"(\d{1,2})\s*(?:Hab\.?|dormitorios?)", f"{dist_txt} {title}", re.IGNORECASE)
+            rooms = int(rooms_m.group(1)) if rooms_m else None
+
+            text_clean = html.unescape(re.sub(r"<[^>]+>", " ", chunk))
+            text_clean = re.sub(r"\s+", " ", text_clean).strip()
+
+            if not price_eur or not (plot_m2 or built_m2):
+                continue
+
+            # Inferir tipo de inmueble si no vino fijado por la URL de categoría
+            rtype = default_type
+            tl = f"{title} {base_url}".lower()
+            is_montepinar = "montepinar" in tl
+            if not is_montepinar and any(
+                w in tl for w in ("piso", "ático", "atico", "apartamento", "oficina", "local-comercial", "garaje", "trastero", "nave", "edificio", "hotel")
+            ):
+                continue
+            if not rtype:
+                if any(w in tl for w in ("solar", "terreno", "parcela", "suelo")):
+                    rtype = "solar_urbano"
+                elif any(w in tl for w in ("casa", "chalet", "villa", "adosado", "bungalow", "finca")):
+                    rtype = "casa_planta_baja"
+                elif is_montepinar:
+                    rtype = "casa_planta_baja"
+                else:
+                    continue
+
+            items.append(
+                {
+                    "external_id": f"dayas-{ref}",
+                    "portal": agency_name,
+                    "title": (title or f"Inmueble Ref. {ref} en Dayas")[:150],
+                    "url": full_url,
+                    "price_eur": price_eur,
+                    "surface_plot_m2": plot_m2 or built_m2,
+                    "surface_built_m2": built_m2,
+                    "rooms": rooms,
+                    "image_url": image_url,
+                    "description": f"{title} · {dist_txt} · {text_clean}"[:550],
+                    "raw_type": rtype,
+                }
+            )
         return items
 
     def _parse_10soles(

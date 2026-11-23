@@ -224,7 +224,7 @@ REGLAS_POR_DEFECTO: Dict[str, Any] = {
     "bajo_mercado_minimo_creible": 0.20,
     "yoyo_min_cambios": 3,
     "conservar_alertas_dias": 180,
-    "runs_sin_ver_para_retirar": 2,
+    "runs_sin_ver_para_retirar": 3,
 }
 
 

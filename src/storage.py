@@ -10,7 +10,8 @@ import json
 import os
 import sqlite3
 import statistics
-from typing import Any, Dict, List, Optional, Tuple
+import time
+from typing import Any, Callable, Dict, List, Optional, Tuple
 
 from . import tracking as tk
 
@@ -643,12 +644,23 @@ class StorageManager:
                 total += d
         return total
 
-    def marcar_desaparecidos(self, portales_ok: List[str], now_iso: Optional[str] = None) -> Dict[str, Any]:
+    def marcar_desaparecidos(
+        self,
+        portales_ok: List[str],
+        now_iso: Optional[str] = None,
+        verify_fn: Optional[Callable[[str], Optional[bool]]] = None,
+        max_verifications: int = 30,
+    ) -> Dict[str, Any]:
         """
-        Marca como retirado lo que ha dejado de aparecer. Solo se fija en anuncios de
-        portales que hoy han respondido: si Idealista se cae, sus anuncios no se dan
-        por retirados. Y espera a varias ejecuciones seguidas sin verlo, para que un
-        fallo puntual de paginación no cuente como retirada.
+        Marca como retirado lo que ha dejado de aparecer.
+        Protecciones contra falsas desapariciones:
+        1. Solo revisa anuncios de portales con lectura sana (>= 75% URLs OK y > 0 anuncios).
+        2. Exige varias ejecuciones seguidas sin verlo (`runs_sin_ver_para_retirar`, por defecto 3).
+        3. Antes de marcarlo como retirado, si se pasa `verify_fn`, comprueba directamente la URL
+           de la ficha:
+           - Si responde viva (True) -> se rescata (`missing_runs = 0`, `last_seen_at = hoy`).
+           - Si el portal bloquea o falla (None) -> no concluyente, NO se retira.
+           - Solo si confirma baja real (False: 404/410/aviso retirado/redirección) -> se retira.
         """
         now_str = now_iso or tk.ahora_iso()
         dia = now_str[:10]
@@ -658,9 +670,13 @@ class StorageManager:
         alertas: List[Dict[str, Any]] = []
 
         if not ok:
-            return {"retirados": [], "alertas": [], "en_duda": 0}
+            return {"retirados": [], "alertas": [], "en_duda": 0, "rescatados": 0, "inconclusos": 0}
 
         en_duda = 0
+        rescatados = 0
+        inconclusos = 0
+        verificados = 0
+
         with self._connect() as conn:
             filas = conn.execute("SELECT * FROM listings WHERE status != 'retirado'").fetchall()
             for r in filas:
@@ -674,6 +690,42 @@ class StorageManager:
                     conn.execute("UPDATE listings SET missing_runs = ? WHERE id = ?", (faltas, r["id"]))
                     en_duda += 1
                     continue
+
+                # Verificación directa de la ficha antes de emitir alerta de desaparición
+                url = (r["url"] or "").strip()
+                if verify_fn and url.lower().startswith("http"):
+                    if verificados >= max_verifications:
+                        inconclusos += 1
+                        continue
+                    verificados += 1
+                    try:
+                        alive = verify_fn(url)
+                    except Exception:
+                        alive = None
+                    if verificados < max_verifications:
+                        time.sleep(0.25)
+
+                    if alive is True:
+                        conn.execute(
+                            "UPDATE listings SET missing_runs = 0, last_seen_at = ? WHERE id = ?",
+                            (now_str, r["id"]),
+                        )
+                        if r["prop_id"]:
+                            conn.execute(
+                                "UPDATE properties SET last_seen_at = ? WHERE prop_id = ?",
+                                (now_str, r["prop_id"]),
+                            )
+                        rescatados += 1
+                        continue
+
+                    if alive is None:
+                        # Bloqueo temporal o fallo de red al comprobar la ficha: no dar falsa baja
+                        conn.execute(
+                            "UPDATE listings SET missing_runs = ? WHERE id = ?",
+                            (max(1, umbral - 1), r["id"]),
+                        )
+                        inconclusos += 1
+                        continue
 
                 conn.execute(
                     "UPDATE listings SET status = 'retirado', missing_runs = ?, delisted_at = ? WHERE id = ?",
@@ -689,7 +741,13 @@ class StorageManager:
                 )
                 retirados.append(item)
 
-        return {"retirados": retirados, "alertas": alertas, "en_duda": en_duda}
+        return {
+            "retirados": retirados,
+            "alertas": alertas,
+            "en_duda": en_duda,
+            "rescatados": rescatados,
+            "inconclusos": inconclusos,
+        }
 
     # ------------------------------------------------------------- Alertas
     def guardar_alertas(self, alertas: List[Dict[str, Any]], now_iso: Optional[str] = None) -> List[Dict[str, Any]]:

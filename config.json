@@ -237,6 +237,10 @@
     {
       "name": "Inmobiliaria Esphouses (Vega Baja)",
       "url": "https://www.esphouses.es/propiedades/?loct%5B%5D=orihuela"
+    },
+    {
+      "name": "Inmobiliaria Dayas (Orihuela y Vega Baja)",
+      "url": "https://www.dayas.org/sitemap.xml"
     }
   ],
   "email_notification": {
@@ -275,6 +279,6 @@
     "bajo_mercado_minimo_creible": 0.2,
     "yoyo_min_cambios": 3,
     "conservar_alertas_dias": 180,
-    "runs_sin_ver_para_retirar": 2
+    "runs_sin_ver_para_retirar": 3
   }
 }
